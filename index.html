@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ErciApps · Home</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0f172a;--fg:#e2e8f0;--muted:#94a3b8;--card:#111827;--acc:#22d3ee;}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(1200px 800px at 80% -10%,#1f2937 0,#0f172a 60%);color:var(--fg)}
+    header{max-width:1100px;margin:48px auto 24px;padding:0 16px}
+    h1{font-size:40px;margin:0 0 8px} p.lead{margin:0;color:var(--muted)}
+    .grid{max-width:1100px;margin:24px auto 64px;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .card{background:linear-gradient(180deg,#111827,#0b1220);border:1px solid #1f2937;border-radius:18px;padding:20px;transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.35);border-color:#23324a}
+    .tag{display:inline-block;font-size:12px;color:#0f172a;background:var(--acc);padding:3px 8px;border-radius:999px;font-weight:700;margin-bottom:10px}
+    .title{font-size:20px;font-weight:800;margin:4px 0 6px}
+    .desc{color:var(--muted);margin:0 0 12px;min-height:42px}
+    a.btn{display:inline-block;text-decoration:none;color:#0f172a;background:var(--acc);padding:9px 12px;border-radius:12px;font-weight:700}
+    footer{max-width:1100px;margin:0 auto 40px;padding:0 16px;color:var(--muted);font-size:14px;text-align:center}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ErciApps</h1>
+    <p class="lead">Portal de acceso a la docu y demos.</p>
+  </header>
+
+  <section class="grid">
+    <!-- Ajusta los href a tus dominios reales -->
+    <div class="card">
+      <span class="tag">Docusaurus</span>
+      <div class="title">DDI</div>
+      <p class="desc">Docu de Desarrollo de Interfaces.</p>
+      <a class="btn" href="https://ddi-erciapps.sytes.net/">Abrir</a>
+    </div>
+
+    <div class="card">
+      <span class="tag">Docusaurus</span>
+      <div class="title">SI</div>
+      <p class="desc">Docu de Sistemas Informáticos.</p>
+      <a class="btn" href="https://si-erciapps.sytes.net/">Abrir</a>
+    </div>
+
+    <div class="card">
+      <span class="tag">Docusaurus</span>
+      <div class="title">DocuDAM</div>
+      <p class="desc">Portal general de apuntes.</p>
+      <a class="btn" href="https://docudam.sytes.net/">Abrir</a>
+    </div>
+
+    <div class="card">
+      <span class="tag">Demo</span>
+      <div class="title">DAMX</div>
+      <p class="desc">Ejemplo extra (si lo usas).</p>
+      <a class="btn" href="https://profe-dam2.github.io/damx/">Abrir</a>
+    </div>
+  </section>
+
+  <footer>© <span id="y"></span> ErciApps</footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
