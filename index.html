@@ -25,8 +25,6 @@
     perspective:1000px;
   ">
 
-    <!-- CARD · helper (usa las mismas props en todas) -->
-    <!-- Cada tarjeta: variables CSS inline y transform con esas vars -->
     <!-- Tarjeta 1 · DDI (azul) -->
     <article class="card" style="
       --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
@@ -81,7 +79,7 @@
       ">Abrir <span style="transition:transform .18s;">→</span></a>
     </article>
 
-    <!-- Tarjeta 3 · DEMO verde -->
+    <!-- Tarjeta 3 · Proyecto 2 (verde) -->
     <article class="card" style="
       --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
       position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
@@ -98,9 +96,9 @@
       <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
 
       <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#a5d6a7;padding:4px 9px;border-radius:999px;margin-bottom:10px;">2ºDAM</span>
-      <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Projecto 2</h3>
+      <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Proyecto 2</h3>
       <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Ejemplo extra (si lo usas).</p>
-      <a href="https://project2-erciapps.sytes.net" aria-label="Abrir DAMX" style="
+      <a href="https://project2-erciapps.sytes.net" aria-label="Abrir Proyecto 2" style="
         display:inline-flex;align-items:center;gap:8px;
         text-decoration:none;color:#0b1220;background:#388e3c;
         padding:10px 14px;border-radius:12px;font-weight:800;
@@ -108,7 +106,7 @@
       ">Abrir <span style="transition:transform .18s;">→</span></a>
     </article>
 
-    <!-- Tarjeta 4 · Naranja -->
+    <!-- Tarjeta 4 · Sistemas Informáticos (naranja) -->
     <article class="card" style="
       --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
       position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
@@ -127,7 +125,7 @@
       <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#ffcc80;padding:4px 9px;border-radius:999px;margin-bottom:10px;">1ºDAM</span>
       <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Sistemas Informáticos</h3>
       <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Hardware, sistemas operativos, redes</p>
-      <a href="https://si-erciapps.sytes.net" aria-label="Abrir tarjeta naranja" style="
+      <a href="https://si-erciapps.sytes.net" aria-label="Abrir Sistemas Informáticos" style="
         display:inline-flex;align-items:center;gap:8px;
         text-decoration:none;color:#0b1220;background:#fb8c00;
         padding:10px 14px;border-radius:12px;font-weight:800;
@@ -135,35 +133,7 @@
       ">Abrir <span style="transition:transform .18s;">→</span></a>
     </article>
 
-    <!-- Tarjeta 5 · 
-    <article class="card" style="
-      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
-      position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
-      border:1px solid rgba(255,255,255,.08);
-      background: linear-gradient(135deg, #2a003f, #6a1b9a);
-      transform:
-        translate3d(0, calc(-1 * var(--lift)), 0)
-        translate3d(var(--tx), var(--ty), 0)
-        rotateX(var(--rx)) rotateY(var(--ry))
-        scale(var(--scale));
-      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
-      will-change:transform;
-    ">
-      <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
-
-      <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#ce93d8;padding:4px 9px;border-radius:999px;margin-bottom:10px;">Demo</span>
-      <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Morado</h3>
-      <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Ejemplo con degradado morado oscuro.</p>
-      <a href="#" aria-label="Abrir tarjeta morada" style="
-        display:inline-flex;align-items:center;gap:8px;
-        text-decoration:none;color:#0b1220;background:#8e24aa;
-        padding:10px 14px;border-radius:12px;font-weight:800;
-        box-shadow:0 6px 14px rgba(142,36,170,.45);
-      ">Abrir <span style="transition:transform .18s;">→</span></a>
-    </article>
-    Morado -->
-
-    <!-- Tarjeta 6 · Turquesa -->
+    <!-- Tarjeta 6 · Proyecto 1 (turquesa) -->
     <article class="card" style="
       --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
       position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
@@ -182,7 +152,7 @@
       <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#80deea;padding:4px 9px;border-radius:999px;margin-bottom:10px;">1ºDAM</span>
       <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Proyecto 1</h3>
       <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Ejemplo con degradado turquesa oscuro.</p>
-      <a href="https://project1-erciapps.sytes.net" aria-label="Abrir tarjeta turquesa" style="
+      <a href="https://project1-erciapps.sytes.net" aria-label="Abrir Proyecto 1" style="
         display:inline-flex;align-items:center;gap:8px;
         text-decoration:none;color:#0b1220;background:#26c6da;
         padding:10px 14px;border-radius:12px;font-weight:800;
@@ -205,6 +175,26 @@
     const HOVER_LIFT = 24;   // px (elevación vertical)
     const SCALE = 1.03;
 
+    const resetCard = (card) => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+      card.style.setProperty('--tx', '0px');
+      card.style.setProperty('--ty', '0px');
+      card.style.setProperty('--lift', '0px');
+      card.style.setProperty('--scale', 1);
+      const glow = card.querySelector('.glow');
+      if (glow) {
+        glow.style.opacity = 0;
+        glow.style.background =
+          'radial-gradient(220px 140px at 50% 50%, rgba(255,255,255,.20), rgba(255,255,255,0) 65%)';
+      }
+      card.style.boxShadow = 'none';
+      card.style.borderColor = 'rgba(255,255,255,.08)';
+      const arrow = card.querySelector('a span');
+      if (arrow) arrow.style.transform = 'translateX(0)';
+    };
+    const resetAll = () => cards.forEach(resetCard);
+
     cards.forEach(card => {
       const glow = card.querySelector('.glow');
 
@@ -217,7 +207,6 @@
         const dx = x - cx;
         const dy = y - cy;
 
-        // Tilt + desplazamiento
         const rx = (-dy / cy) * MAX_TILT;   // rotateX
         const ry = (dx / cx) * MAX_TILT;    // rotateY
         const tx = (dx / cx) * MAX_MOVE;
@@ -234,9 +223,11 @@
         glow.style.opacity = 0.65;
         glow.style.background =
           `radial-gradient(220px 140px at ${x}px ${y}px, rgba(255,255,255,.20), rgba(255,255,255,0) 65%)`;
+
         // Micro interacción del botón (flecha) si existe
         const arrow = card.querySelector('a span');
         if (arrow) arrow.style.transform = 'translateX(2px)';
+
         // Sombra y borde más notorio al interactuar
         card.style.boxShadow = '0 20px 46px rgba(0,0,0,.48)';
         card.style.borderColor = 'rgba(255,255,255,.18)';
@@ -248,27 +239,21 @@
       }
 
       function onLeave(){
-        card.style.setProperty('--rx', '0deg');
-        card.style.setProperty('--ry', '0deg');
-        card.style.setProperty('--tx', '0px');
-        card.style.setProperty('--ty', '0px');
-        card.style.setProperty('--lift', '0px');
-        card.style.setProperty('--scale', 1);
-        glow.style.opacity = 0;
-        glow.style.background =
-          'radial-gradient(220px 140px at 50% 50%, rgba(255,255,255,.20), rgba(255,255,255,0) 65%)';
-        const arrow = card.querySelector('a span');
-        if (arrow) arrow.style.transform = 'translateX(0)';
-        card.style.boxShadow = 'none';
-        card.style.borderColor = 'rgba(255,255,255,.08)';
+        resetCard(card);
       }
 
       card.addEventListener('mousemove', onMove);
       card.addEventListener('mouseenter', onEnter);
       card.addEventListener('mouseleave', onLeave);
-      // Estado inicial
-      onLeave();
+
+      // Estado inicial limpio
+      resetCard(card);
     });
+
+    // 🔁 Reset al volver desde atrás (bfcache), navegar con historial o volver a foco
+    window.addEventListener('pageshow', resetAll); // incluye e.persisted=true (bfcache)
+    window.addEventListener('popstate', resetAll);
+    window.addEventListener('focus', resetAll);
   </script>
 </body>
 </html>
