@@ -18,23 +18,24 @@
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--fg);
-      /* Fondo actualizado: azul-violeta con halo suave */
+      /* Fondo azul-violeta */
       background:
         radial-gradient(1200px 800px at 15% -10%, #2a3772 0%, rgba(42,55,114,0) 60%),
         linear-gradient(180deg, #0a0f21, #0c1230 60%, #0a0f21 100%);
     }
 
-    /* Layout */
     header, .grid, footer{max-width:1100px;margin:auto;padding:0 16px}
     header{padding:48px 16px 8px}
     h1{margin:0 0 6px;font-size:clamp(28px,3vw,40px);letter-spacing:.3px}
     .lead{margin:0;color:var(--muted)}
     .grid{padding:24px 16px 64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
 
-    /* Card base con tilt + desplazamiento */
     .card{
-      --from:#0a1930; --to:#0d47a1; --btn:#1976d2; /* valores por defecto */
-      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; /* vars de movimiento */
+      /* colores por defecto (se pueden sobreescribir inline) */
+      --from:#0a1930; --to:#0d47a1; --btn:#1976d2;
+      /* estados de movimiento */
+      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px;
+
       position:relative;
       border-radius:18px;
       padding:20px;
@@ -44,21 +45,27 @@
         linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)),
         linear-gradient(135deg, var(--from), var(--to));
       background-size:150% 150%, 150% 150%;
+
       transform:
         translate3d(var(--tx), calc(var(--ty) - var(--lift)), 0)
         rotateX(var(--rx)) rotateY(var(--ry));
       transform-style:preserve-3d;
+
       transition:
-        transform .18s ease,
-        box-shadow .2s ease,
-        border-color .2s ease,
+        transform .22s cubic-bezier(.2,.8,.2,1),
+        box-shadow .22s ease,
+        border-color .22s ease,
         background-position .6s ease;
+      will-change: transform;
+
       animation:cardIdle 14s ease-in-out infinite alternate;
       overflow:hidden;
     }
-    .card:hover{
-      --lift:6px;
-      box-shadow:0 18px 40px rgba(0,0,0,.45);
+    .card:hover,
+    .card:focus-within{
+      /* Fallback solo-CSS: pequeña elevación si no hay JS */
+      --lift:8px;
+      box-shadow:0 20px 46px rgba(0,0,0,.48);
       border-color:rgba(255,255,255,.18);
       animation-duration:8s;
     }
@@ -67,10 +74,10 @@
       100%{background-position:100% 100%, 100% 100%}
     }
 
-    /* Halo/luz que sigue al ratón — alineado al centro exacto del cursor */
+    /* Luz/halo centrada al cursor (coincide con la posición exacta del puntero) */
     .card::after{
       content:"";
-      position:absolute; inset:0;           /* <-- caja igual a la tarjeta (sin offset) */
+      position:absolute; inset:0;
       pointer-events:none;
       background:
         radial-gradient(220px 140px at var(--mx,50%) var(--my,50%),
@@ -202,10 +209,11 @@
     // Año en footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Tilt + desplazamiento + luz centrada al ratón
+    // Tilt + desplazamiento + elevación + luz centrada al cursor
     const cards = document.querySelectorAll('.card');
-    const MAX_TILT = 10;   // grados
-    const MAX_MOVE = 8;    // px
+    const MAX_TILT = 10;    // grados
+    const MAX_MOVE = 10;    // px (seguimiento lateral)
+    const HOVER_LIFT = 14;  // px (elevación vertical clara)
 
     cards.forEach(card => {
       function move(e){
@@ -215,13 +223,13 @@
         const px = x / r.width;
         const py = y / r.height;
 
-        // Posición exacta del halo en px dentro de la tarjeta
+        // Posición exacta del halo
         card.style.setProperty('--mx', x + 'px');
         card.style.setProperty('--my', y + 'px');
 
-        // Tilt y desplazamiento sutil siguiendo el cursor
-        const ry = (px - 0.5) * (MAX_TILT * 2); // rotateY
-        const rx = -(py - 0.5) * (MAX_TILT * 2); // rotateX
+        // Tilt (rotación) + desplazamiento lateral
+        const ry = (px - 0.5) * (MAX_TILT * 2);   // rotateY
+        const rx = -(py - 0.5) * (MAX_TILT * 2);  // rotateX
         const tx = (px - 0.5) * (MAX_MOVE * 2);
         const ty = (py - 0.5) * (MAX_MOVE * 2);
 
@@ -230,17 +238,24 @@
         card.style.setProperty('--tx', tx.toFixed(2) + 'px');
         card.style.setProperty('--ty', ty.toFixed(2) + 'px');
       }
+      function enter(){
+        card.style.setProperty('--lift', HOVER_LIFT + 'px'); // ↑ eleva toda la tarjeta
+      }
       function leave(){
         card.style.setProperty('--ry','0deg');
         card.style.setProperty('--rx','0deg');
         card.style.setProperty('--tx','0px');
         card.style.setProperty('--ty','0px');
-        // Centrar halo al salir
+        card.style.setProperty('--lift','0px');  // ↓ vuelve a su sitio
+        // Centra halo al salir
         card.style.setProperty('--mx','50%');
         card.style.setProperty('--my','50%');
       }
+
       card.addEventListener('mousemove', move);
+      card.addEventListener('mouseenter', enter);
       card.addEventListener('mouseleave', leave);
+
       // Estado inicial del halo
       card.style.setProperty('--mx','50%');
       card.style.setProperty('--my','50%');
