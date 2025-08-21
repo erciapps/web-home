@@ -8,10 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0b1220;
       --fg:#e2e8f0;
-      --muted:#98a2b3;
-      --surface:#111827;
+      --muted:#9aa4b2;
       --ring:#22d3ee;
     }
     *{box-sizing:border-box}
@@ -20,9 +18,10 @@
       margin:0;
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--fg);
+      /* Fondo actualizado: azul-violeta con halo suave */
       background:
-        radial-gradient(1200px 800px at 80% -10%, #1b2540 0, rgba(27,37,64,0) 60%),
-        linear-gradient(180deg, #0a0f1f, #0b1220);
+        radial-gradient(1200px 800px at 15% -10%, #2a3772 0%, rgba(42,55,114,0) 60%),
+        linear-gradient(180deg, #0a0f21, #0c1230 60%, #0a0f21 100%);
     }
 
     /* Layout */
@@ -32,67 +31,71 @@
     .lead{margin:0;color:var(--muted)}
     .grid{padding:24px 16px 64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
 
-    /* Card base */
+    /* Card base con tilt + desplazamiento */
     .card{
+      --from:#0a1930; --to:#0d47a1; --btn:#1976d2; /* valores por defecto */
+      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; /* vars de movimiento */
       position:relative;
       border-radius:18px;
       padding:20px;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.08);
       background:
         linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)),
-        linear-gradient(135deg, var(--from,#0a1930), var(--to,#0d47a1));
-      color:#fff;
+        linear-gradient(135deg, var(--from), var(--to));
+      background-size:150% 150%, 150% 150%;
+      transform:
+        translate3d(var(--tx), calc(var(--ty) - var(--lift)), 0)
+        rotateX(var(--rx)) rotateY(var(--ry));
+      transform-style:preserve-3d;
+      transition:
+        transform .18s ease,
+        box-shadow .2s ease,
+        border-color .2s ease,
+        background-position .6s ease;
+      animation:cardIdle 14s ease-in-out infinite alternate;
       overflow:hidden;
-      transform:translateZ(0);
-      transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-      border:1px solid rgba(255,255,255,.08);
-    }
-    /* Animated border glow */
-    .card::before{
-      content:"";
-      position:absolute; inset:-1px;
-      border-radius:20px;
-      pointer-events:none;
-      background:
-        conic-gradient(from 180deg, rgba(255,255,255,.0), rgba(255,255,255,.15), rgba(255,255,255,.0));
-      filter:blur(6px) saturate(130%);
-      opacity:.0;
-      transition:opacity .25s ease;
-    }
-    /* Shine sweep */
-    .card::after{
-      content:"";
-      position:absolute; inset:-40%;
-      background: radial-gradient(200px 120px at var(--mx,120%) var(--my,-20%), rgba(255,255,255,.18), rgba(255,255,255,0) 60%);
-      opacity:.0; transition:opacity .25s ease;
     }
     .card:hover{
-      transform:translateY(-6px);
+      --lift:6px;
       box-shadow:0 18px 40px rgba(0,0,0,.45);
       border-color:rgba(255,255,255,.18);
+      animation-duration:8s;
     }
-    .card:hover::before{opacity:.55}
-    .card:hover::after{opacity:.7}
-
-    /* Subtle gradient animation */
-    .card{
-      background-size:150% 150%, 150% 150%;
-      animation:cardIdle 14s ease-in-out infinite alternate;
-    }
-    .card:hover{animation-duration:8s}
     @keyframes cardIdle{
       0%{background-position:0% 0%, 0% 0%}
       100%{background-position:100% 100%, 100% 100%}
     }
 
+    /* Halo/luz que sigue al ratón — alineado al centro exacto del cursor */
+    .card::after{
+      content:"";
+      position:absolute; inset:0;           /* <-- caja igual a la tarjeta (sin offset) */
+      pointer-events:none;
+      background:
+        radial-gradient(220px 140px at var(--mx,50%) var(--my,50%),
+          rgba(255,255,255,.20), rgba(255,255,255,0) 65%);
+      opacity:.0;
+      transition:opacity .25s ease;
+    }
+    .card:hover::after{opacity:.65}
+
+    /* Brillo de borde sutil */
+    .card::before{
+      content:"";
+      position:absolute; inset:-1px; border-radius:20px;
+      pointer-events:none;
+      background: conic-gradient(from 180deg, rgba(255,255,255,.0), rgba(255,255,255,.15), rgba(255,255,255,0));
+      filter:blur(6px) saturate(130%); opacity:.0; transition:opacity .25s ease;
+    }
+    .card:hover::before{opacity:.5}
+
     .tag{
       display:inline-block;
       font-size:12px; font-weight:700;
       color:#0b1220;
-      background: color-mix(in oklab, var(--btn,#22d3ee) 85%, white 10%);
-      padding:4px 9px;
-      border-radius:999px;
-      margin-bottom:10px;
-      letter-spacing:.2px;
+      background: color-mix(in oklab, var(--btn) 85%, white 10%);
+      padding:4px 9px; border-radius:999px; margin-bottom:10px; letter-spacing:.2px;
     }
     .title{font-size:20px;font-weight:800;margin:6px 0 6px}
     .desc{color:rgba(255,255,255,.85);margin:0 0 14px;min-height:42px}
@@ -100,23 +103,22 @@
     .btn{
       display:inline-flex;align-items:center;gap:8px;
       text-decoration:none;color:#0b1220;
-      background:var(--btn,#22d3ee);
+      background:var(--btn);
       padding:10px 14px;border-radius:12px;font-weight:800;
       transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-      box-shadow:0 6px 14px color-mix(in oklab, var(--btn,#22d3ee) 40%, black 70%);
+      box-shadow:0 6px 14px color-mix(in oklab, var(--btn) 40%, black 70%);
     }
     .btn:hover{transform:translateY(-1px)}
     .btn:active{transform:translateY(0)}
     .btn .arr{transition:transform .18s ease}
     .btn:hover .arr{transform:translateX(2px)}
     .btn:focus-visible{
-      outline:3px solid color-mix(in oklab, var(--btn,#22d3ee) 40%, white 30%);
+      outline:3px solid color-mix(in oklab, var(--btn) 40%, white 30%);
       outline-offset:3px;border-radius:14px;
     }
 
-    footer{padding:0 16px 40px;color:var(--muted);font-size:14px;text-align:center}
+    footer{padding:0 16px 40px;color:#94a3b8;font-size:14px;text-align:center}
 
-    /* Respetar reduce motion */
     @media (prefers-reduced-motion: reduce){
       .card,.btn{transition:none}
       .card{animation:none}
@@ -134,8 +136,7 @@
 
   <section class="grid">
     <!-- DDI · Azul -->
-    <article class="card" style="--from:#0a1930; --to:#0d47a1; --btn:#1976d2;"
-             onmousemove="this.style.setProperty('--mx', event.offsetX+'px'); this.style.setProperty('--my', event.offsetY+'px');">
+    <article class="card" style="--from:#0a1930; --to:#0d47a1; --btn:#1976d2;">
       <span class="tag">2ºDAM</span>
       <h3 class="title">📱🖌️ DDI</h3>
       <p class="desc">Documentación de Desarrollo de Interfaces.</p>
@@ -145,8 +146,7 @@
     </article>
 
     <!-- SGE · Rojo -->
-    <article class="card" style="--from:#3b0a0a; --to:#b71c1c; --btn:#d32f2f;"
-             onmousemove="this.style.setProperty('--mx', event.offsetX+'px'); this.style.setProperty('--my', event.offsetY+'px');">
+    <article class="card" style="--from:#3b0a0a; --to:#b71c1c; --btn:#d32f2f;">
       <span class="tag">2ºDAM</span>
       <h3 class="title">🛍️ SGE</h3>
       <p class="desc">Documentación de Sistemas de Gestión Empresarial.</p>
@@ -156,8 +156,7 @@
     </article>
 
     <!-- DEMO · Verde -->
-    <article class="card" style="--from:#0b2f0b; --to:#2e7d32; --btn:#388e3c;"
-             onmousemove="this.style.setProperty('--mx', event.offsetX+'px'); this.style.setProperty('--my', event.offsetY+'px');">
+    <article class="card" style="--from:#0b2f0b; --to:#2e7d32; --btn:#388e3c;">
       <span class="tag">Demo</span>
       <h3 class="title">DAMX</h3>
       <p class="desc">Ejemplo extra (si lo usas).</p>
@@ -167,8 +166,7 @@
     </article>
 
     <!-- Naranja -->
-    <article class="card" style="--from:#4a2500; --to:#e65100; --btn:#fb8c00;"
-             onmousemove="this.style.setProperty('--mx', event.offsetX+'px'); this.style.setProperty('--my', event.offsetY+'px');">
+    <article class="card" style="--from:#4a2500; --to:#e65100; --btn:#fb8c00;">
       <span class="tag">Demo</span>
       <h3 class="title">Naranja</h3>
       <p class="desc">Ejemplo con degradado naranja oscuro.</p>
@@ -178,8 +176,7 @@
     </article>
 
     <!-- Morado -->
-    <article class="card" style="--from:#2a003f; --to:#6a1b9a; --btn:#8e24aa;"
-             onmousemove="this.style.setProperty('--mx', event.offsetX+'px'); this.style.setProperty('--my', event.offsetY+'px');">
+    <article class="card" style="--from:#2a003f; --to:#6a1b9a; --btn:#8e24aa;">
       <span class="tag">Demo</span>
       <h3 class="title">Morado</h3>
       <p class="desc">Ejemplo con degradado morado oscuro.</p>
@@ -189,8 +186,7 @@
     </article>
 
     <!-- Turquesa -->
-    <article class="card" style="--from:#004d4d; --to:#00acc1; --btn:#26c6da;"
-             onmousemove="this.style.setProperty('--mx', event.offsetX+'px'); this.style.setProperty('--my', event.offsetY+'px');">
+    <article class="card" style="--from:#004d4d; --to:#00acc1; --btn:#26c6da;">
       <span class="tag">Demo</span>
       <h3 class="title">Turquesa</h3>
       <p class="desc">Ejemplo con degradado turquesa oscuro.</p>
@@ -201,7 +197,54 @@
   </section>
 
   <footer>© <span id="y"></span> ErciApps</footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+
+  <script>
+    // Año en footer
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Tilt + desplazamiento + luz centrada al ratón
+    const cards = document.querySelectorAll('.card');
+    const MAX_TILT = 10;   // grados
+    const MAX_MOVE = 8;    // px
+
+    cards.forEach(card => {
+      function move(e){
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
+        const px = x / r.width;
+        const py = y / r.height;
+
+        // Posición exacta del halo en px dentro de la tarjeta
+        card.style.setProperty('--mx', x + 'px');
+        card.style.setProperty('--my', y + 'px');
+
+        // Tilt y desplazamiento sutil siguiendo el cursor
+        const ry = (px - 0.5) * (MAX_TILT * 2); // rotateY
+        const rx = -(py - 0.5) * (MAX_TILT * 2); // rotateX
+        const tx = (px - 0.5) * (MAX_MOVE * 2);
+        const ty = (py - 0.5) * (MAX_MOVE * 2);
+
+        card.style.setProperty('--ry', ry.toFixed(2) + 'deg');
+        card.style.setProperty('--rx', rx.toFixed(2) + 'deg');
+        card.style.setProperty('--tx', tx.toFixed(2) + 'px');
+        card.style.setProperty('--ty', ty.toFixed(2) + 'px');
+      }
+      function leave(){
+        card.style.setProperty('--ry','0deg');
+        card.style.setProperty('--rx','0deg');
+        card.style.setProperty('--tx','0px');
+        card.style.setProperty('--ty','0px');
+        // Centrar halo al salir
+        card.style.setProperty('--mx','50%');
+        card.style.setProperty('--my','50%');
+      }
+      card.addEventListener('mousemove', move);
+      card.addEventListener('mouseleave', leave);
+      // Estado inicial del halo
+      card.style.setProperty('--mx','50%');
+      card.style.setProperty('--my','50%');
+    });
+  </script>
 </body>
 </html>
-
