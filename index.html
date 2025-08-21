@@ -6,259 +6,267 @@
   <title>ErciApps · Home</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --fg:#e2e8f0;
-      --muted:#9aa4b2;
-      --ring:#22d3ee;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--fg);
-      /* Fondo azul-violeta */
-      background:
-        radial-gradient(1200px 800px at 15% -10%, #2a3772 0%, rgba(42,55,114,0) 60%),
-        linear-gradient(180deg, #0a0f21, #0c1230 60%, #0a0f21 100%);
-    }
-
-    header, .grid, footer{max-width:1100px;margin:auto;padding:0 16px}
-    header{padding:48px 16px 8px}
-    h1{margin:0 0 6px;font-size:clamp(28px,3vw,40px);letter-spacing:.3px}
-    .lead{margin:0;color:var(--muted)}
-    .grid{padding:24px 16px 64px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
-
-    .card{
-      /* colores por defecto (se pueden sobreescribir inline) */
-      --from:#0a1930; --to:#0d47a1; --btn:#1976d2;
-      /* estados de movimiento */
-      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px;
-
-      position:relative;
-      border-radius:18px;
-      padding:20px;
-      color:#fff;
-      border:1px solid rgba(255,255,255,.08);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)),
-        linear-gradient(135deg, var(--from), var(--to));
-      background-size:150% 150%, 150% 150%;
-
-      transform:
-        translate3d(var(--tx), calc(var(--ty) - var(--lift)), 0)
-        rotateX(var(--rx)) rotateY(var(--ry));
-      transform-style:preserve-3d;
-
-      transition:
-        transform .22s cubic-bezier(.2,.8,.2,1),
-        box-shadow .22s ease,
-        border-color .22s ease,
-        background-position .6s ease;
-      will-change: transform;
-
-      animation:cardIdle 14s ease-in-out infinite alternate;
-      overflow:hidden;
-    }
-    .card:hover,
-    .card:focus-within{
-      /* Fallback solo-CSS: pequeña elevación si no hay JS */
-      --lift:8px;
-      box-shadow:0 20px 46px rgba(0,0,0,.48);
-      border-color:rgba(255,255,255,.18);
-      animation-duration:8s;
-    }
-    @keyframes cardIdle{
-      0%{background-position:0% 0%, 0% 0%}
-      100%{background-position:100% 100%, 100% 100%}
-    }
-
-    /* Luz/halo centrada al cursor (coincide con la posición exacta del puntero) */
-    .card::after{
-      content:"";
-      position:absolute; inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(220px 140px at var(--mx,50%) var(--my,50%),
-          rgba(255,255,255,.20), rgba(255,255,255,0) 65%);
-      opacity:.0;
-      transition:opacity .25s ease;
-    }
-    .card:hover::after{opacity:.65}
-
-    /* Brillo de borde sutil */
-    .card::before{
-      content:"";
-      position:absolute; inset:-1px; border-radius:20px;
-      pointer-events:none;
-      background: conic-gradient(from 180deg, rgba(255,255,255,.0), rgba(255,255,255,.15), rgba(255,255,255,0));
-      filter:blur(6px) saturate(130%); opacity:.0; transition:opacity .25s ease;
-    }
-    .card:hover::before{opacity:.5}
-
-    .tag{
-      display:inline-block;
-      font-size:12px; font-weight:700;
-      color:#0b1220;
-      background: color-mix(in oklab, var(--btn) 85%, white 10%);
-      padding:4px 9px; border-radius:999px; margin-bottom:10px; letter-spacing:.2px;
-    }
-    .title{font-size:20px;font-weight:800;margin:6px 0 6px}
-    .desc{color:rgba(255,255,255,.85);margin:0 0 14px;min-height:42px}
-
-    .btn{
-      display:inline-flex;align-items:center;gap:8px;
-      text-decoration:none;color:#0b1220;
-      background:var(--btn);
-      padding:10px 14px;border-radius:12px;font-weight:800;
-      transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-      box-shadow:0 6px 14px color-mix(in oklab, var(--btn) 40%, black 70%);
-    }
-    .btn:hover{transform:translateY(-1px)}
-    .btn:active{transform:translateY(0)}
-    .btn .arr{transition:transform .18s ease}
-    .btn:hover .arr{transform:translateX(2px)}
-    .btn:focus-visible{
-      outline:3px solid color-mix(in oklab, var(--btn) 40%, white 30%);
-      outline-offset:3px;border-radius:14px;
-    }
-
-    footer{padding:0 16px 40px;color:#94a3b8;font-size:14px;text-align:center}
-
-    @media (prefers-reduced-motion: reduce){
-      .card,.btn{transition:none}
-      .card{animation:none}
-      .card:hover{transform:none}
-      .btn:hover,.btn:active{transform:none}
-      .card::before,.card::after{transition:none}
-    }
-  </style>
 </head>
-<body>
-  <header>
-    <h1>ErciApps</h1>
-    <p class="lead">Portal de acceso al curso Desarrollo de Aplicaciones Multiplataforma 2025-2026.</p>
+<body style="
+  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:#e2e8f0;
+  background:
+    radial-gradient(1200px 800px at 15% -10%, #2a3772 0%, rgba(42,55,114,0) 60%),
+    linear-gradient(180deg, #0a0f21, #0c1230 60%, #0a0f21 100%);
+">
+  <header style="max-width:1100px;margin:48px auto 8px;padding:0 16px;">
+    <h1 style="margin:0 0 6px;font-size:clamp(28px,3vw,40px);letter-spacing:.3px;">ErciApps</h1>
+    <p style="margin:0;color:#9aa4b2;">Portal de acceso al curso Desarrollo de Aplicaciones Multiplataforma 2025-2026.</p>
   </header>
 
-  <section class="grid">
-    <!-- DDI · Azul -->
-    <article class="card" style="--from:#0a1930; --to:#0d47a1; --btn:#1976d2;">
-      <span class="tag">2ºDAM</span>
-      <h3 class="title">📱🖌️ DDI</h3>
-      <p class="desc">Documentación de Desarrollo de Interfaces.</p>
-      <a class="btn" href="https://ddi-erciapps.sytes.net/" aria-label="Abrir DDI">
-        Abrir <span class="arr">→</span>
-      </a>
+  <!-- GRID -->
+  <section style="
+    max-width:1100px; margin:24px auto 64px; padding:0 16px;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;
+    perspective:1000px;
+  ">
+
+    <!-- CARD · helper (usa las mismas props en todas) -->
+    <!-- Cada tarjeta: variables CSS inline y transform con esas vars -->
+    <!-- Tarjeta 1 · DDI (azul) -->
+    <article class="card" style="
+      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
+      position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
+      border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(135deg, #0a1930, #0d47a1);
+      transform:
+        translate3d(0, calc(-1 * var(--lift)), 0)
+        translate3d(var(--tx), var(--ty), 0)
+        rotateX(var(--rx)) rotateY(var(--ry))
+        scale(var(--scale));
+      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+      will-change:transform;
+    ">
+      <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+
+      <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#38bdf8;padding:4px 9px;border-radius:999px;margin-bottom:10px;">2ºDAM</span>
+      <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">📱🖌️ DDI</h3>
+      <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Documentación de Desarrollo de Interfaces.</p>
+      <a href="https://ddi-erciapps.sytes.net/" aria-label="Abrir DDI" style="
+        display:inline-flex;align-items:center;gap:8px;
+        text-decoration:none;color:#0b1220;background:#1976d2;
+        padding:10px 14px;border-radius:12px;font-weight:800;
+        box-shadow:0 6px 14px rgba(25,118,210,.4);
+      ">Abrir <span style="transition:transform .18s;">→</span></a>
     </article>
 
-    <!-- SGE · Rojo -->
-    <article class="card" style="--from:#3b0a0a; --to:#b71c1c; --btn:#d32f2f;">
-      <span class="tag">2ºDAM</span>
-      <h3 class="title">🛍️ SGE</h3>
-      <p class="desc">Documentación de Sistemas de Gestión Empresarial.</p>
-      <a class="btn" href="https://sge-erciapps.sytes.net/" aria-label="Abrir SGE">
-        Abrir <span class="arr">→</span>
-      </a>
+    <!-- Tarjeta 2 · SGE (rojo) -->
+    <article class="card" style="
+      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
+      position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
+      border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(135deg, #3b0a0a, #b71c1c);
+      transform:
+        translate3d(0, calc(-1 * var(--lift)), 0)
+        translate3d(var(--tx), var(--ty), 0)
+        rotateX(var(--rx)) rotateY(var(--ry))
+        scale(var(--scale));
+      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+      will-change:transform;
+    ">
+      <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+
+      <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#ef9a9a;padding:4px 9px;border-radius:999px;margin-bottom:10px;">2ºDAM</span>
+      <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">🛍️ SGE</h3>
+      <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Documentación de Sistemas de Gestión Empresarial.</p>
+      <a href="https://sge-erciapps.sytes.net/" aria-label="Abrir SGE" style="
+        display:inline-flex;align-items:center;gap:8px;
+        text-decoration:none;color:#0b1220;background:#d32f2f;
+        padding:10px 14px;border-radius:12px;font-weight:800;
+        box-shadow:0 6px 14px rgba(211,47,47,.4);
+      ">Abrir <span style="transition:transform .18s;">→</span></a>
     </article>
 
-    <!-- DEMO · Verde -->
-    <article class="card" style="--from:#0b2f0b; --to:#2e7d32; --btn:#388e3c;">
-      <span class="tag">Demo</span>
-      <h3 class="title">DAMX</h3>
-      <p class="desc">Ejemplo extra (si lo usas).</p>
-      <a class="btn" href="https://profe-dam2.github.io/damx/" aria-label="Abrir DAMX">
-        Abrir <span class="arr">→</span>
-      </a>
+    <!-- Tarjeta 3 · DEMO verde -->
+    <article class="card" style="
+      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
+      position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
+      border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(135deg, #0b2f0b, #2e7d32);
+      transform:
+        translate3d(0, calc(-1 * var(--lift)), 0)
+        translate3d(var(--tx), var(--ty), 0)
+        rotateX(var(--rx)) rotateY(var(--ry))
+        scale(var(--scale));
+      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+      will-change:transform;
+    ">
+      <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+
+      <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#a5d6a7;padding:4px 9px;border-radius:999px;margin-bottom:10px;">Demo</span>
+      <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">DAMX</h3>
+      <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Ejemplo extra (si lo usas).</p>
+      <a href="https://profe-dam2.github.io/damx/" aria-label="Abrir DAMX" style="
+        display:inline-flex;align-items:center;gap:8px;
+        text-decoration:none;color:#0b1220;background:#388e3c;
+        padding:10px 14px;border-radius:12px;font-weight:800;
+        box-shadow:0 6px 14px rgba(56,142,60,.45);
+      ">Abrir <span style="transition:transform .18s;">→</span></a>
     </article>
 
-    <!-- Naranja -->
-    <article class="card" style="--from:#4a2500; --to:#e65100; --btn:#fb8c00;">
-      <span class="tag">Demo</span>
-      <h3 class="title">Naranja</h3>
-      <p class="desc">Ejemplo con degradado naranja oscuro.</p>
-      <a class="btn" href="#" aria-label="Abrir tarjeta naranja">
-        Abrir <span class="arr">→</span>
-      </a>
+    <!-- Tarjeta 4 · Naranja -->
+    <article class="card" style="
+      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
+      position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
+      border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(135deg, #4a2500, #e65100);
+      transform:
+        translate3d(0, calc(-1 * var(--lift)), 0)
+        translate3d(var(--tx), var(--ty), 0)
+        rotateX(var(--rx)) rotateY(var(--ry))
+        scale(var(--scale));
+      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+      will-change:transform;
+    ">
+      <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+
+      <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#ffcc80;padding:4px 9px;border-radius:999px;margin-bottom:10px;">Demo</span>
+      <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Naranja</h3>
+      <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Ejemplo con degradado naranja oscuro.</p>
+      <a href="#" aria-label="Abrir tarjeta naranja" style="
+        display:inline-flex;align-items:center;gap:8px;
+        text-decoration:none;color:#0b1220;background:#fb8c00;
+        padding:10px 14px;border-radius:12px;font-weight:800;
+        box-shadow:0 6px 14px rgba(251,140,0,.45);
+      ">Abrir <span style="transition:transform .18s;">→</span></a>
     </article>
 
-    <!-- Morado -->
-    <article class="card" style="--from:#2a003f; --to:#6a1b9a; --btn:#8e24aa;">
-      <span class="tag">Demo</span>
-      <h3 class="title">Morado</h3>
-      <p class="desc">Ejemplo con degradado morado oscuro.</p>
-      <a class="btn" href="#" aria-label="Abrir tarjeta morada">
-        Abrir <span class="arr">→</span>
-      </a>
+    <!-- Tarjeta 5 · Morado -->
+    <article class="card" style="
+      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
+      position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
+      border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(135deg, #2a003f, #6a1b9a);
+      transform:
+        translate3d(0, calc(-1 * var(--lift)), 0)
+        translate3d(var(--tx), var(--ty), 0)
+        rotateX(var(--rx)) rotateY(var(--ry))
+        scale(var(--scale));
+      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+      will-change:transform;
+    ">
+      <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+
+      <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#ce93d8;padding:4px 9px;border-radius:999px;margin-bottom:10px;">Demo</span>
+      <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Morado</h3>
+      <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Ejemplo con degradado morado oscuro.</p>
+      <a href="#" aria-label="Abrir tarjeta morada" style="
+        display:inline-flex;align-items:center;gap:8px;
+        text-decoration:none;color:#0b1220;background:#8e24aa;
+        padding:10px 14px;border-radius:12px;font-weight:800;
+        box-shadow:0 6px 14px rgba(142,36,170,.45);
+      ">Abrir <span style="transition:transform .18s;">→</span></a>
     </article>
 
-    <!-- Turquesa -->
-    <article class="card" style="--from:#004d4d; --to:#00acc1; --btn:#26c6da;">
-      <span class="tag">Demo</span>
-      <h3 class="title">Turquesa</h3>
-      <p class="desc">Ejemplo con degradado turquesa oscuro.</p>
-      <a class="btn" href="#" aria-label="Abrir tarjeta turquesa">
-        Abrir <span class="arr">→</span>
-      </a>
+    <!-- Tarjeta 6 · Turquesa -->
+    <article class="card" style="
+      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
+      position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
+      border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(135deg, #004d4d, #00acc1);
+      transform:
+        translate3d(0, calc(-1 * var(--lift)), 0)
+        translate3d(var(--tx), var(--ty), 0)
+        rotateX(var(--rx)) rotateY(var(--ry))
+        scale(var(--scale));
+      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+      will-change:transform;
+    ">
+      <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+
+      <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#80deea;padding:4px 9px;border-radius:999px;margin-bottom:10px;">Demo</span>
+      <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Turquesa</h3>
+      <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Ejemplo con degradado turquesa oscuro.</p>
+      <a href="#" aria-label="Abrir tarjeta turquesa" style="
+        display:inline-flex;align-items:center;gap:8px;
+        text-decoration:none;color:#0b1220;background:#26c6da;
+        padding:10px 14px;border-radius:12px;font-weight:800;
+        box-shadow:0 6px 14px rgba(38,198,218,.45);
+      ">Abrir <span style="transition:transform .18s;">→</span></a>
     </article>
+
   </section>
 
-  <footer>© <span id="y"></span> ErciApps</footer>
+  <footer style="max-width:1100px;margin:0 auto 40px;padding:0 16px;text-align:center;color:#94a3b8;font-size:14px;">
+    © <span id="y"></span> ErciApps
+  </footer>
 
   <script>
-    // Año en footer
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Tilt + desplazamiento + elevación + luz centrada al cursor
     const cards = document.querySelectorAll('.card');
-    const MAX_TILT = 10;    // grados
-    const MAX_MOVE = 10;    // px (seguimiento lateral)
-    const HOVER_LIFT = 14;  // px (elevación vertical clara)
+    const MAX_TILT = 10;     // grados
+    const MAX_MOVE = 10;     // px (seguimiento lateral)
+    const HOVER_LIFT = 24;   // px (elevación vertical)
+    const SCALE = 1.03;
 
     cards.forEach(card => {
-      function move(e){
+      const glow = card.querySelector('.glow');
+
+      function onMove(e){
         const r = card.getBoundingClientRect();
         const x = e.clientX - r.left;
         const y = e.clientY - r.top;
-        const px = x / r.width;
-        const py = y / r.height;
+        const cx = r.width / 2;
+        const cy = r.height / 2;
+        const dx = x - cx;
+        const dy = y - cy;
 
-        // Posición exacta del halo
-        card.style.setProperty('--mx', x + 'px');
-        card.style.setProperty('--my', y + 'px');
+        // Tilt + desplazamiento
+        const rx = (-dy / cy) * MAX_TILT;   // rotateX
+        const ry = (dx / cx) * MAX_TILT;    // rotateY
+        const tx = (dx / cx) * MAX_MOVE;
+        const ty = (dy / cy) * MAX_MOVE;
 
-        // Tilt (rotación) + desplazamiento lateral
-        const ry = (px - 0.5) * (MAX_TILT * 2);   // rotateY
-        const rx = -(py - 0.5) * (MAX_TILT * 2);  // rotateX
-        const tx = (px - 0.5) * (MAX_MOVE * 2);
-        const ty = (py - 0.5) * (MAX_MOVE * 2);
-
-        card.style.setProperty('--ry', ry.toFixed(2) + 'deg');
         card.style.setProperty('--rx', rx.toFixed(2) + 'deg');
+        card.style.setProperty('--ry', ry.toFixed(2) + 'deg');
         card.style.setProperty('--tx', tx.toFixed(2) + 'px');
         card.style.setProperty('--ty', ty.toFixed(2) + 'px');
-      }
-      function enter(){
-        card.style.setProperty('--lift', HOVER_LIFT + 'px'); // ↑ eleva toda la tarjeta
-      }
-      function leave(){
-        card.style.setProperty('--ry','0deg');
-        card.style.setProperty('--rx','0deg');
-        card.style.setProperty('--tx','0px');
-        card.style.setProperty('--ty','0px');
-        card.style.setProperty('--lift','0px');  // ↓ vuelve a su sitio
-        // Centra halo al salir
-        card.style.setProperty('--mx','50%');
-        card.style.setProperty('--my','50%');
+        card.style.setProperty('--lift', HOVER_LIFT + 'px');
+        card.style.setProperty('--scale', SCALE);
+
+        // Luz centrada al cursor
+        glow.style.opacity = 0.65;
+        glow.style.background =
+          `radial-gradient(220px 140px at ${x}px ${y}px, rgba(255,255,255,.20), rgba(255,255,255,0) 65%)`;
+        // Micro interacción del botón (flecha) si existe
+        const arrow = card.querySelector('a span');
+        if (arrow) arrow.style.transform = 'translateX(2px)';
+        // Sombra y borde más notorio al interactuar
+        card.style.boxShadow = '0 20px 46px rgba(0,0,0,.48)';
+        card.style.borderColor = 'rgba(255,255,255,.18)';
       }
 
-      card.addEventListener('mousemove', move);
-      card.addEventListener('mouseenter', enter);
-      card.addEventListener('mouseleave', leave);
+      function onEnter(){
+        card.style.setProperty('--lift', HOVER_LIFT + 'px');
+        card.style.setProperty('--scale', SCALE);
+      }
 
-      // Estado inicial del halo
-      card.style.setProperty('--mx','50%');
-      card.style.setProperty('--my','50%');
+      function onLeave(){
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+        card.style.setProperty('--tx', '0px');
+        card.style.setProperty('--ty', '0px');
+        card.style.setProperty('--lift', '0px');
+        card.style.setProperty('--scale', 1);
+        glow.style.opacity = 0;
+        glow.style.background =
+          'radial-gradient(220px 140px at 50% 50%, rgba(255,255,255,.20), rgba(255,255,255,0) 65%)';
+        const arrow = card.querySelector('a span');
+        if (arrow) arrow.style.transform = 'translateX(0)';
+        card.style.boxShadow = 'none';
+        card.style.borderColor = 'rgba(255,255,255,.08)';
+      }
+
+      card.addEventListener('mousemove', onMove);
+      card.addEventListener('mouseenter', onEnter);
+      card.addEventListener('mouseleave', onLeave);
+      // Estado inicial
+      onLeave();
     });
   </script>
 </body>
