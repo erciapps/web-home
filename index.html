@@ -187,6 +187,32 @@
   ">Abrir <span style="transition:transform .18s;">→</span></a>
 </article>
 
+<article class="card" style="
+  --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
+  position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
+  border:1px solid rgba(255,255,255,.08);
+  background: linear-gradient(135deg, #38004d, #9a00b5); /* degradado amarillo oscuro */
+  transform:
+    translate3d(0, calc(-1 * var(--lift)), 0)
+    translate3d(var(--tx), var(--ty), 0)
+    rotateX(var(--rx)) rotateY(var(--ry))
+    scale(var(--scale));
+  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
+  will-change:transform;
+">
+  <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+
+  <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#B58900;padding:4px 9px;border-radius:999px;margin-bottom:10px;">1ºDAM</span>
+  <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">DISCORD</h3>
+  <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Enlace a nuestro canal</p>
+  <a href="https://discord.gg/wa8yjtMc" aria-label="Abrir Proyecto 1" style="
+    display:inline-flex;align-items:center;gap:8px;
+    text-decoration:none;color:#0b1220;background:#2a041f;
+    padding:10px 14px;border-radius:12px;font-weight:800;
+    box-shadow:0 6px 14px rgba(49, 25, 56, 0.45);
+  ">Abrir <span style="transition:transform .18s;">→</span></a>
+</article>
+
   </section>
 
   <footer style="max-width:1100px;margin:0 auto 40px;padding:0 16px;text-align:center;color:#94a3b8;font-size:14px;">
