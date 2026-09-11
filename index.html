@@ -1,334 +1,630 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ErciApps · Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ERCI Apps · DAM</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-</head>
-<body style="
-  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:#e2e8f0;
-  background:
-    radial-gradient(1200px 800px at 15% -10%, #2a3772 0%, rgba(42,55,114,0) 60%),
-    linear-gradient(180deg, #0a0f21, #0c1230 60%, #0a0f21 100%);
-">
-  <header style="
-  max-width:1100px;
-  margin:48px auto 8px;
-  padding:0 16px;
-  text-align:center;
-">
-  <img src="ercilogo2.png" alt="ErciApps logo" style="
-    width:160px;
-    max-width:60%;
-    margin-bottom:18px;
-    filter:drop-shadow(0 4px 10px rgba(0,0,0,.4));
-  ">
-  <h1 style="
-    margin:0 0 6px;
-    font-size:clamp(26px,3vw,38px);
-    letter-spacing:.3px;
-    font-weight:800;
-  ">
-    Desarrollo de Aplicaciones Multiplataforma
-  </h1>
-  <p style="margin:0;color:#9aa4b2;">
-    Portal de acceso a la documentación de los módulos del ciclo 2025-2026.
-  </p>
-</header>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@500;600&display=swap" rel="stylesheet">
 
-  <!-- GRID -->
-  <section style="
-    max-width:1100px; margin:24px auto 64px; padding:0 16px;
-    display:grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap:20px;
-    perspective:1000px;
-  ">
+  <style>
+    :root {
+      --orange: #ff6600;
+      --orange-light: #ff8533;
+      --green: #00ff88;
+      --background: #080d18;
+      --surface: #101827;
+      --text: #edf2f7;
+      --muted: #9aa7b8;
+    }
 
-    <!-- Tarjeta 1 · DDI (azul) -->
-<article class="card" style="
-  --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
-  position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
-  border:1px solid rgba(255,255,255,.08);
-  background: linear-gradient(135deg, #0a1930, #0d47a1);
-  transform:
-    translate3d(0, calc(-1 * var(--lift)), 0)
-    translate3d(var(--tx), var(--ty), 0)
-    rotateX(var(--rx)) rotateY(var(--ry))
-    scale(var(--scale));
-  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
-  will-change:transform;
-">
-  <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+    * {
+      box-sizing: border-box;
+    }
 
-  <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#38bdf8;padding:4px 9px;border-radius:999px;margin-bottom:10px;">2ºDAM</span>
-  <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">📱🖌️ DDI</h3>
-  <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Documentación de Desarrollo de Interfaces.</p>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      background:
+        radial-gradient(900px 600px at 10% -10%, rgba(255, 102, 0, .18), transparent 65%),
+        radial-gradient(800px 600px at 100% 90%, rgba(0, 255, 136, .08), transparent 65%),
+        var(--background);
+    }
 
-  <!-- 🔹 Contenedor centrado -->
-  <div style="text-align:center;">
-    <a href="https://ddi-erciapps.sytes.net/" aria-label="Abrir DDI" style="
-      display:inline-flex;align-items:center;gap:8px;
-      text-decoration:none;color:#0b1220;background:#1976d2;
-      padding:10px 14px;border-radius:12px;font-weight:800;
-      box-shadow:0 6px 14px rgba(25,118,210,.4);
-    ">Abrir <span style="transition:transform .18s;">→</span></a>
-  </div>
-</article>
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      opacity: .15;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+    }
 
-<!-- Tarjeta 2 · SGE (rojo) -->
-<article class="card" style="
-  --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
-  position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
-  border:1px solid rgba(255,255,255,.08);
-  background: linear-gradient(135deg, #3b0a0a, #b71c1c);
-  transform:
-    translate3d(0, calc(-1 * var(--lift)), 0)
-    translate3d(var(--tx), var(--ty), 0)
-    rotateX(var(--rx)) rotateY(var(--ry))
-    scale(var(--scale));
-  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
-  will-change:transform;
-">
-  <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: auto;
+    }
 
-  <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#ef9a9a;padding:4px 9px;border-radius:999px;margin-bottom:10px;">2ºDAM</span>
-  <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">🛍️ SGE</h3>
-  <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Documentación de Sistemas de Gestión Empresarial.</p>
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+    }
 
-  <!-- 🔹 Contenedor centrado -->
-  <div style="text-align:center;">
-    <a href="https://sge-erciapps.sytes.net/" aria-label="Abrir SGE" style="
-      display:inline-flex;align-items:center;gap:8px;
-      text-decoration:none;color:#0b1220;background:#d32f2f;
-      padding:10px 14px;border-radius:12px;font-weight:800;
-      box-shadow:0 6px 14px rgba(211,47,47,.4);
-    ">Abrir <span style="transition:transform .18s;">→</span></a>
-  </div>
-</article>
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: inherit;
+      text-decoration: none;
+    }
 
-    
+    .brand img {
+      width: 58px;
+      max-height: 58px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,.4));
+    }
 
-    <!-- Tarjeta 3 · Proyecto 2 (verde) 
-    <article class="card" style="
-      --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
-      position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
-      border:1px solid rgba(255,255,255,.08);
-      background: linear-gradient(135deg, #0b2f0b, #2e7d32);
+    .brand-text strong,
+    .brand-text span {
+      display: block;
+    }
+
+    .brand-text strong {
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+
+    .brand-text span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .course {
+      padding: 8px 13px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      color: #aeb9c8;
+      font-size: 11px;
+      letter-spacing: .7px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .course strong {
+      color: var(--orange-light);
+    }
+
+    .hero {
+      max-width: 820px;
+      padding: 85px 0 72px;
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--orange-light);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+    }
+
+    .kicker span {
+      width: 30px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    h1 {
+      margin: 20px 0;
+      font-size: clamp(45px, 7vw, 78px);
+      line-height: .98;
+      letter-spacing: -3px;
+    }
+
+    h1 em {
+      color: var(--orange);
+      font-style: normal;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+      margin-top: 34px;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stat strong {
+      color: var(--orange-light);
+      font-size: 26px;
+    }
+
+    .stat span {
+      color: #8290a2;
+      font-size: 12px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 23px;
+    }
+
+    .section-title div:first-child span {
+      color: #8290a2;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
+
+    .section-title h2 {
+      margin: 8px 0 0;
+      font-size: 28px;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      margin-bottom: 8px;
+      background: rgba(255,255,255,.1);
+    }
+
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      padding-bottom: 75px;
+    }
+
+    .card {
+      --accent: #ff6600;
+      --rx: 0deg;
+      --ry: 0deg;
+      --tx: 0px;
+      --ty: 0px;
+      --scale: 1;
+
+      position: relative;
+      display: flex;
+      min-height: 285px;
+      flex-direction: column;
+      padding: 26px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 21px;
+      background:
+        linear-gradient(145deg, color-mix(in srgb, var(--accent) 15%, transparent), rgba(255,255,255,.035) 60%),
+        rgba(255,255,255,.035);
       transform:
-        translate3d(0, calc(-1 * var(--lift)), 0)
         translate3d(var(--tx), var(--ty), 0)
-        rotateX(var(--rx)) rotateY(var(--ry))
+        rotateX(var(--rx))
+        rotateY(var(--ry))
         scale(var(--scale));
-      transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
-      will-change:transform;
-    ">
-      <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+      transition:
+        transform .2s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+      will-change: transform;
+    }
 
-      <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#a5d6a7;padding:4px 9px;border-radius:999px;margin-bottom:10px;">2ºDAM</span>
-      <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Proyecto 2</h3>
-      <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Ejemplo extra (si lo usas).</p>
-      <a href="https://project2-erciapps.sytes.net" aria-label="Abrir Proyecto 2" style="
-        display:inline-flex;align-items:center;gap:8px;
-        text-decoration:none;color:#0b1220;background:#388e3c;
-        padding:10px 14px;border-radius:12px;font-weight:800;
-        box-shadow:0 6px 14px rgba(56,142,60,.45);
-      ">Abrir <span style="transition:transform .18s;">→</span></a>
-    </article>-->
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+    }
 
-    <!-- Tarjeta 4 · Sistemas Informáticos (naranja) -->
-<article class="card" style="
-  --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
-  position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
-  border:1px solid rgba(255,255,255,.08);
-  background: linear-gradient(135deg, #4a2500, #e65100);
-  transform:
-    translate3d(0, calc(-1 * var(--lift)), 0)
-    translate3d(var(--tx), var(--ty), 0)
-    rotateX(var(--rx)) rotateY(var(--ry))
-    scale(var(--scale));
-  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
-  will-change:transform;
-">
-  <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
+    .card:hover {
+      border-color: color-mix(in srgb, var(--accent) 70%, white);
+      box-shadow: 0 24px 55px rgba(0,0,0,.28);
+    }
 
-  <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#ffcc80;padding:4px 9px;border-radius:999px;margin-bottom:10px;">1ºDAM</span>
-  <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Sistemas Informáticos</h3>
-  <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Hardware, sistemas operativos, redes</p>
+    .card-top,
+    .card-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
 
-  <!-- 🔹 Contenedor centrado -->
-  <div style="text-align:center;">
-    <a href="https://si-erciapps.sytes.net" aria-label="Abrir Sistemas Informáticos" style="
-      display:inline-flex;align-items:center;gap:8px;
-      text-decoration:none;color:#0b1220;background:#fb8c00;
-      padding:10px 14px;border-radius:12px;font-weight:800;
-      box-shadow:0 6px 14px rgba(251,140,0,.45);
-    ">Abrir <span style="transition:transform .18s;">→</span></a>
+    .module-code {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+    }
+
+    .course-badge {
+      padding: 6px 9px;
+      border-radius: 999px;
+      color: #b7c1ce;
+      font-size: 11px;
+      background: rgba(255,255,255,.07);
+    }
+
+    .module-icon {
+      margin: 29px 0 12px;
+      color: var(--accent);
+      font-family: "Fira Code", monospace;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .card p {
+      flex: 1;
+      margin: 0 0 25px;
+      color: #aab6c5;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #8793a5;
+      font-size: 11px;
+    }
+
+    .status::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #657284;
+      content: "";
+    }
+
+    .available .status {
+      color: #8ee5b5;
+    }
+
+    .available .status::before {
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    .open-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 13px;
+      border-radius: 9px;
+      color: #101722;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      background: var(--accent);
+      transition: gap .2s ease, filter .2s ease;
+    }
+
+    .open-button:hover {
+      gap: 16px;
+      color: #101722;
+      filter: brightness(1.15);
+    }
+
+    .pending {
+      opacity: .7;
+    }
+
+    .pending-button {
+      color: #718096;
+      font-size: 11px;
+    }
+
+    footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 22px 0 30px;
+      border-top: 1px solid rgba(255,255,255,.09);
+      color: #718096;
+      font-size: 12px;
+    }
+
+    footer strong {
+      color: var(--orange-light);
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(100% - 28px, 560px);
+      }
+
+      .course {
+        display: none;
+      }
+
+      .hero {
+        padding: 70px 0 58px;
+      }
+
+      h1 {
+        font-size: 53px;
+      }
+
+      .stats {
+        gap: 17px;
+      }
+
+      .stat {
+        width: 100%;
+      }
+
+      .modules {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-line {
+        display: block;
+        margin-top: 17px;
+      }
+
+      .card-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card {
+        transform: none !important;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <a class="brand" href="https://erciapps.sytes.net">
+        <img src="ercilogo2.png" alt="Logo de ErciApps">
+
+        <div class="brand-text">
+          <strong>ERCI Apps</strong>
+          <span>Entorno educativo digital</span>
+        </div>
+      </a>
+
+      <div class="course">
+        CURSO <strong>2026-2027</strong>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="kicker">
+          <span></span>
+          CICLO FORMATIVO · DAM
+        </div>
+
+        <h1>
+          Desarrollo de Aplicaciones
+          <br>
+          <em>Multiplataforma</em>
+        </h1>
+
+        <p>
+          Accede a la documentación, recursos y entornos de trabajo
+          de los módulos impartidos durante este curso.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>04</strong>
+            <span>Módulos</span>
+          </div>
+
+          <div class="stat">
+            <strong>02</strong>
+            <span>Cursos</span>
+          </div>
+
+          <div class="stat">
+            <strong>ERCI</strong>
+            <span>Aula digital</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <div>
+            <span>ÁREAS FORMATIVAS</span>
+            <h2>Módulos del curso</h2>
+          </div>
+
+          <div class="section-line"></div>
+        </div>
+
+        <div class="modules">
+          <article class="card available" style="--accent:#ff6600">
+            <div class="card-top">
+              <span class="module-code">SI</span>
+              <span class="course-badge">1.º DAM</span>
+            </div>
+
+            <div class="module-icon">&gt;_</div>
+
+            <h3>Sistemas Informáticos</h3>
+
+            <p>
+              Hardware, sistemas operativos, Linux, redes, virtualización,
+              Docker y administración de sistemas.
+            </p>
+
+            <div class="card-bottom">
+              <span class="status">Disponible</span>
+
+              <a
+                class="open-button"
+                href="https://si-erciapps.sytes.net"
+              >
+                Abrir <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="card available" style="--accent:#38bdf8">
+            <div class="card-top">
+              <span class="module-code">DDI</span>
+              <span class="course-badge">2.º DAM</span>
+            </div>
+
+            <div class="module-icon">{ }</div>
+
+            <h3>Desarrollo de Interfaces</h3>
+
+            <p>
+              Diseño, desarrollo y evaluación de interfaces gráficas
+              para aplicaciones multiplataforma.
+            </p>
+
+            <div class="card-bottom">
+              <span class="status">Disponible</span>
+
+              <a
+                class="open-button"
+                href="https://ddi-erciapps.sytes.net/"
+              >
+                Abrir <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="card available" style="--accent:#a78bfa">
+            <div class="card-top">
+              <span class="module-code">P-II</span>
+              <span class="course-badge">2.º DAM</span>
+            </div>
+
+            <div class="module-icon">&lt;/&gt;</div>
+
+            <h3>Proyecto II</h3>
+
+            <p>
+              Planificación, desarrollo, documentación y presentación
+              de proyectos profesionales.
+            </p>
+
+            <div class="card-bottom">
+              <span class="status">Disponible</span>
+
+              <a
+                class="open-button"
+                href="https://project2-erciapps.sytes.net"
+              >
+                Abrir <span>→</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="card pending" style="--accent:#00ff88">
+            <div class="card-top">
+              <span class="module-code">PMDM</span>
+              <span class="course-badge">2.º DAM</span>
+            </div>
+
+            <div class="module-icon">◈</div>
+
+            <h3>Programación Multimedia y Dispositivos Móviles</h3>
+
+            <p>
+              Desarrollo de aplicaciones multimedia, videojuegos y
+              aplicaciones para dispositivos móviles.
+            </p>
+
+            <div class="card-bottom">
+              <span class="status">Próximamente</span>
+              <span class="pending-button">Entorno en preparación</span>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <strong>ERCI Apps</strong>
+      <span>·</span>
+      <span>IES Alonso de Ercilla</span>
+      <span>·</span>
+      <span>Toledo</span>
+    </footer>
   </div>
-</article>
-
-<!-- Tarjeta 6 · Proyecto 1 (turquesa) -->
-<article class="card" style="
-  --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
-  position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
-  border:1px solid rgba(255,255,255,.08);
-  background: linear-gradient(135deg, #004d4d, #00acc1);
-  transform:
-    translate3d(0, calc(-1 * var(--lift)), 0)
-    translate3d(var(--tx), var(--ty), 0)
-    rotateX(var(--rx)) rotateY(var(--ry))
-    scale(var(--scale));
-  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
-  will-change:transform;
-">
-  <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
-
-  <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#80deea;padding:4px 9px;border-radius:999px;margin-bottom:10px;">1ºDAM</span>
-  <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Proyecto 1</h3>
-  <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Instrucciones para el desarrollo del proyecto en 1º DAM.</p>
-
-  <!-- 🔹 Contenedor centrado -->
-  <div style="text-align:center;">
-    <a href="https://project1-erciapps.sytes.net" aria-label="Abrir Proyecto 1" style="
-      display:inline-flex;align-items:center;gap:8px;
-      text-decoration:none;color:#0b1220;background:#26c6da;
-      padding:10px 14px;border-radius:12px;font-weight:800;
-      box-shadow:0 6px 14px rgba(38,198,218,.45);
-    ">Abrir <span style="transition:transform .18s;">→</span></a>
-  </div>
-</article>
-
-<!-- Tarjeta · Digitalización (amarillo oscuro) -->
-<article class="card" style="
-  --rx:0deg; --ry:0deg; --tx:0px; --ty:0px; --lift:0px; --scale:1;
-  position:relative; overflow:hidden; border-radius:18px; padding:20px; color:#fff;
-  border:1px solid rgba(255,255,255,.08);
-  background: linear-gradient(135deg, #4d3a00, #B58900);
-  transform:
-    translate3d(0, calc(-1 * var(--lift)), 0)
-    translate3d(var(--tx), var(--ty), 0)
-    rotateX(var(--rx)) rotateY(var(--ry))
-    scale(var(--scale));
-  transition: transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s ease, border-color .25s ease;
-  will-change:transform;
-">
-  <div class="glow" style="position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .2s ease;"></div>
-
-  <span style="display:inline-block;font-size:12px;font-weight:700;color:#0b1220;background:#B58900;padding:4px 9px;border-radius:999px;margin-bottom:10px;">1ºDAM</span>
-  <h3 style="font-size:20px;font-weight:800;margin:6px 0 6px;">Digitalización</h3>
-  <p style="margin:0 0 14px;color:rgba(255,255,255,.9);min-height:42px;">Digitalización aplicada al sector productivo.</p>
-
-  <!-- 🔹 Contenedor centrado -->
-  <div style="text-align:center;">
-    <a href="https://digi-erciapps.sytes.net" aria-label="Abrir Digitalización" style="
-      display:inline-flex;align-items:center;gap:8px;
-      text-decoration:none;color:#0b1220;background:#B58900;
-      padding:10px 14px;border-radius:12px;font-weight:800;
-      box-shadow:0 6px 14px rgba(181,137,0,.45);
-    ">Abrir <span style="transition:transform .18s;">→</span></a>
-  </div>
-</article>
-
-    
-
-
-  </section>
-
-  <footer style="max-width:1100px;margin:0 auto 40px;padding:0 16px;text-align:center;color:#94a3b8;font-size:14px;">
-  
-  <br>
-  © <span id="y"></span> ErciApps
-</footer>
-
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-
     const cards = document.querySelectorAll('.card');
-    const MAX_TILT = 10;     // grados
-    const MAX_MOVE = 10;     // px (seguimiento lateral)
-    const HOVER_LIFT = 24;   // px (elevación vertical)
-    const SCALE = 1.03;
-
-    const resetCard = (card) => {
-      card.style.setProperty('--rx', '0deg');
-      card.style.setProperty('--ry', '0deg');
-      card.style.setProperty('--tx', '0px');
-      card.style.setProperty('--ty', '0px');
-      card.style.setProperty('--lift', '0px');
-      card.style.setProperty('--scale', 1);
-      const glow = card.querySelector('.glow');
-      if (glow) {
-        glow.style.opacity = 0;
-        glow.style.background =
-          'radial-gradient(220px 140px at 50% 50%, rgba(255,255,255,.20), rgba(255,255,255,0) 65%)';
-      }
-      card.style.boxShadow = 'none';
-      card.style.borderColor = 'rgba(255,255,255,.08)';
-      const arrow = card.querySelector('a span');
-      if (arrow) arrow.style.transform = 'translateX(0)';
-    };
-    const resetAll = () => cards.forEach(resetCard);
 
     cards.forEach(card => {
-      const glow = card.querySelector('.glow');
+      card.addEventListener('mousemove', event => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          return;
+        }
 
-      function onMove(e){
-        const r = card.getBoundingClientRect();
-        const x = e.clientX - r.left;
-        const y = e.clientY - r.top;
-        const cx = r.width / 2;
-        const cy = r.height / 2;
-        const dx = x - cx;
-        const dy = y - cy;
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
 
-        const rx = (-dy / cy) * MAX_TILT;   // rotateX
-        const ry = (dx / cx) * MAX_TILT;    // rotateY
-        const tx = (dx / cx) * MAX_MOVE;
-        const ty = (dy / cy) * MAX_MOVE;
+        const rotateX = ((y / rect.height) - .5) * -5;
+        const rotateY = ((x / rect.width) - .5) * 5;
+        const moveX = ((x / rect.width) - .5) * 4;
+        const moveY = ((y / rect.height) - .5) * 4;
 
-        card.style.setProperty('--rx', rx.toFixed(2) + 'deg');
-        card.style.setProperty('--ry', ry.toFixed(2) + 'deg');
-        card.style.setProperty('--tx', tx.toFixed(2) + 'px');
-        card.style.setProperty('--ty', ty.toFixed(2) + 'px');
-        card.style.setProperty('--lift', HOVER_LIFT + 'px');
-        card.style.setProperty('--scale', SCALE);
+        card.style.setProperty('--rx', `${rotateX}deg`);
+        card.style.setProperty('--ry', `${rotateY}deg`);
+        card.style.setProperty('--tx', `${moveX}px`);
+        card.style.setProperty('--ty', `${moveY}px`);
+        card.style.setProperty('--scale', '1.015');
+      });
 
-        // Luz centrada al cursor
-        glow.style.opacity = 0.65;
-        glow.style.background =
-          `radial-gradient(220px 140px at ${x}px ${y}px, rgba(255,255,255,.20), rgba(255,255,255,0) 65%)`;
-
-        // Micro interacción del botón (flecha) si existe
-        const arrow = card.querySelector('a span');
-        if (arrow) arrow.style.transform = 'translateX(2px)';
-
-        // Sombra y borde más notorio al interactuar
-        card.style.boxShadow = '0 20px 46px rgba(0,0,0,.48)';
-        card.style.borderColor = 'rgba(255,255,255,.18)';
-      }
-
-      function onEnter(){
-        card.style.setProperty('--lift', HOVER_LIFT + 'px');
-        card.style.setProperty('--scale', SCALE);
-      }
-
-      function onLeave(){
-        resetCard(card);
-      }
-
-      card.addEventListener('mousemove', onMove);
-      card.addEventListener('mouseenter', onEnter);
-      card.addEventListener('mouseleave', onLeave);
-
-      // Estado inicial limpio
-      resetCard(card);
+      card.addEventListener('mouseleave', () => {
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+        card.style.setProperty('--tx', '0px');
+        card.style.setProperty('--ty', '0px');
+        card.style.setProperty('--scale', '1');
+      });
     });
-
-    // 🔁 Reset al volver desde atrás (bfcache), navegar con historial o volver a foco
-    window.addEventListener('pageshow', resetAll); // incluye e.persisted=true (bfcache)
-    window.addEventListener('popstate', resetAll);
-    window.addEventListener('focus', resetAll);
   </script>
 </body>
 </html>
