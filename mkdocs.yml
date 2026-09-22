@@ -1,0 +1,105 @@
+site_name: ERCI Apps · DAM
+site_description: Documentación y recursos de los módulos de Desarrollo de Aplicaciones Multiplataforma
+site_url: https://erciapps.sytes.net/
+repo_url: https://github.com/erciapps/web-home
+repo_name: erciapps/web-home
+
+# El CNAME se encuentra en docs/CNAME para que MkDocs lo copie a la raíz del sitio generado.
+
+nav:
+  - Inicio: index.md
+
+  - PMDM:
+      - Inicio: pmdm/index.md
+      - Videojuegos 2D con Unity:
+          - Ruta de aprendizaje: pmdm/videojuegos/index.md
+          - 1. Crear el proyecto: pmdm/videojuegos/01-primer-proyecto.md
+          - 2. Entorno de Unity: pmdm/videojuegos/02-entorno-unity.md
+          - 3. Assets y sprites: pmdm/videojuegos/03-assets-sprites.md
+          - 4. Primer script: pmdm/videojuegos/04-primer-script.md
+          - 5. Movimiento y salto: pmdm/videojuegos/05-movimiento-salto.md
+      - Recursos: pmdm/recursos.md
+
+  # De momento estos módulos siguen en sus GitHub Pages actuales.
+  # Cuando los migres a MkDocs, sustituyes la URL por sus páginas locales.
+  - Sistemas Informáticos ↗: https://si-erciapps.sytes.net
+  - Desarrollo de Interfaces ↗: https://ddi-erciapps.sytes.net/
+  - Proyecto II ↗: https://project2-erciapps.sytes.net
+
+theme:
+  name: material
+  language: es
+  logo: assets/images/ercilogo2.png
+  favicon: assets/images/favicon.ico
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: Cambiar a modo claro
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Cambiar a modo oscuro
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.tabs.link
+
+plugins:
+  - search:
+      lang: es
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+  - assets/javascripts/home.js
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/erciapps
+      name: ERCI Apps en GitHub
+
+copyright: IES Alonso de Ercilla · Curso 2026-2027

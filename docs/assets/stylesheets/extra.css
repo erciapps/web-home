@@ -1,0 +1,260 @@
+:root {
+  --erci-orange: #ff6600;
+  --erci-orange-light: #ff8533;
+  --erci-green: #00ff88;
+}
+
+/* Integra Material con la estética original de web-home */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #080d18;
+  --md-default-fg-color: #edf2f7;
+  --md-primary-fg-color: #101827;
+  --md-accent-fg-color: var(--erci-orange);
+}
+
+.md-header {
+  backdrop-filter: blur(10px);
+}
+
+.erci-home {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.erci-hero {
+  max-width: 850px;
+  padding: 4.5rem 0 3.5rem;
+}
+
+.erci-kicker {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  color: var(--erci-orange-light);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .12rem;
+}
+
+.erci-kicker span {
+  width: 2rem;
+  height: 2px;
+  background: var(--erci-orange);
+}
+
+.erci-hero h1 {
+  margin: 1rem 0;
+  font-size: clamp(2.7rem, 7vw, 4.8rem);
+  line-height: .98;
+  letter-spacing: -.16rem;
+}
+
+.erci-hero h1 em {
+  color: var(--erci-orange);
+  font-style: normal;
+}
+
+.erci-hero > p {
+  max-width: 680px;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  opacity: .72;
+}
+
+.erci-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  margin-top: 2rem;
+}
+
+.erci-stats > div {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+}
+
+.erci-stats strong {
+  color: var(--erci-orange-light);
+  font-size: 1.55rem;
+}
+
+.erci-stats span {
+  opacity: .55;
+  font-size: .72rem;
+}
+
+.erci-section-heading {
+  display: flex;
+  align-items: end;
+  gap: 1.5rem;
+  margin-bottom: 1.4rem;
+}
+
+.erci-section-heading span {
+  opacity: .55;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .12rem;
+}
+
+.erci-section-heading h2 {
+  margin: .35rem 0 0;
+}
+
+.erci-section-line {
+  flex: 1;
+  height: 1px;
+  margin-bottom: .55rem;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.erci-modules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding-bottom: 3rem;
+}
+
+.erci-card {
+  --accent: var(--erci-orange);
+  --rx: 0deg;
+  --ry: 0deg;
+  --tx: 0px;
+  --ty: 0px;
+  --scale: 1;
+  position: relative;
+  display: flex;
+  min-height: 285px;
+  flex-direction: column;
+  padding: 1.45rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 13%, transparent), transparent 70%);
+  transform: translate3d(var(--tx), var(--ty), 0) rotateX(var(--rx)) rotateY(var(--ry)) scale(var(--scale));
+  transition: transform .2s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.erci-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--accent);
+}
+
+.erci-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 70%, white);
+  box-shadow: 0 1.2rem 2.6rem rgba(0,0,0,.2);
+}
+
+.erci-card.local {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--erci-green) 20%, transparent);
+}
+
+.erci-card-top,
+.erci-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.erci-card .code {
+  color: var(--accent);
+  font-weight: 900;
+  letter-spacing: .08rem;
+}
+
+.erci-card .badge {
+  padding: .3rem .5rem;
+  border-radius: 999px;
+  font-size: .65rem;
+  background: color-mix(in srgb, currentColor 8%, transparent);
+}
+
+.erci-icon {
+  margin: 1.6rem 0 .65rem;
+  color: var(--accent);
+  font-family: monospace;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.erci-card h3 {
+  margin: 0 0 .6rem;
+  font-size: 1.2rem;
+}
+
+.erci-card p {
+  flex: 1;
+  opacity: .68;
+  font-size: .82rem;
+  line-height: 1.65;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  opacity: .68;
+  font-size: .68rem;
+}
+
+.status::before {
+  width: .4rem;
+  height: .4rem;
+  border-radius: 50%;
+  background: #7b8798;
+  content: "";
+}
+
+.status.local {
+  color: #8ee5b5;
+  opacity: 1;
+}
+
+.status.local::before {
+  background: var(--erci-green);
+  box-shadow: 0 0 .65rem var(--erci-green);
+}
+
+.erci-button {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .5rem .7rem;
+  border-radius: .5rem;
+  color: #101722 !important;
+  font-size: .72rem;
+  font-weight: 800;
+  text-decoration: none;
+  background: var(--accent);
+  transition: gap .2s ease, filter .2s ease;
+}
+
+.erci-button:hover {
+  gap: .85rem;
+  filter: brightness(1.12);
+}
+
+.module-intro {
+  padding: 1rem 1.2rem;
+  margin: 1rem 0 1.5rem;
+  border-left: 4px solid var(--erci-orange);
+  border-radius: .5rem;
+  background: color-mix(in srgb, var(--erci-orange) 8%, transparent);
+}
+
+@media (max-width: 760px) {
+  .erci-hero { padding-top: 2.6rem; }
+  .erci-modules { grid-template-columns: 1fr; }
+  .erci-section-heading { display: block; }
+  .erci-section-line { margin-top: .8rem; }
+  .erci-card-bottom { align-items: flex-start; flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erci-card { transform: none !important; transition: none; }
+}
