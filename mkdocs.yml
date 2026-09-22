@@ -13,6 +13,7 @@ nav:
       - Portada: pmdm/index.md
       - Videojuegos 2D con Unity:
           - Ruta de aprendizaje: pmdm/videojuegos/index.md
+          - ERCIGAME 2D · Primeros pasos: pmdm/videojuegos/ercigame-2d-primeros-pasos.md
           - 1. Crear el proyecto: pmdm/videojuegos/01-primer-proyecto.md
           - 2. Entorno de Unity: pmdm/videojuegos/02-entorno-unity.md
           - 3. Assets y sprites: pmdm/videojuegos/03-assets-sprites.md
