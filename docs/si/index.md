@@ -44,7 +44,6 @@ hide:
         <div class="si-ra"><span>RA4</span><span>RA7</span></div>
         <div class="si-actions">
           <a class="si-button" href="ud1/">Acceder <span>→</span></a>
-          <a class="si-text-link" href="certificado/">Certificado CA</a>
         </div>
       </div>
     </article>

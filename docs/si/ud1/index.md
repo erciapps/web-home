@@ -28,4 +28,8 @@ rm
 
 ## Recursos de la unidad
 
-- [Certificado CA](../certificado/)
+### Presentación · Introducción a Linux
+
+<div class="resource-embed">
+  <iframe src="https://view.genial.ly/61ed48646b85b90013222284/presentation-presentacion-basica" width="100%" height="600px" frameborder="0" allowfullscreen="true" loading="lazy"></iframe>
+</div>

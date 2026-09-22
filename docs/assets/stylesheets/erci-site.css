@@ -554,3 +554,27 @@
     grid-column: auto !important;
   }
 }
+
+
+/* Recursos incrustados */
+.resource-embed {
+  width: 100%;
+  margin: 1.2rem 0 2rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  border-radius: .8rem;
+  background: color-mix(in srgb, currentColor 2%, transparent);
+}
+
+.resource-embed iframe {
+  display: block;
+  width: 100%;
+  min-height: 600px;
+}
+
+@media (max-width: 760px) {
+  .resource-embed iframe {
+    min-height: 460px;
+    height: 70vh;
+  }
+}
