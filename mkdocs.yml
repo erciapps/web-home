@@ -1,20 +1,17 @@
 site_name: ERCI Apps · DAM
-site_description: Documentación y recursos de los módulos de Desarrollo de Aplicaciones Multiplataforma
+site_description: Recursos educativos de los módulos de Desarrollo de Aplicaciones Multiplataforma
 site_url: https://erciapps.sytes.net/
-repo_url: https://github.com/erciapps/web-home
-repo_name: erciapps/web-home
-
-# El CNAME se encuentra en docs/CNAME para que MkDocs lo copie a la raíz del sitio generado.
 
 nav:
   - Inicio: index.md
 
   - Sistemas Informáticos:
-      - Inicio: si/index.md
+      - Portada: si/index.md
       - UD1 · Introducción al entorno Linux: si/ud1/index.md
+      - Certificado CA: si/certificado/index.md
 
   - PMDM:
-      - Inicio: pmdm/index.md
+      - Portada: pmdm/index.md
       - Videojuegos 2D con Unity:
           - Ruta de aprendizaje: pmdm/videojuegos/index.md
           - 1. Crear el proyecto: pmdm/videojuegos/01-primer-proyecto.md
@@ -24,9 +21,11 @@ nav:
           - 5. Movimiento y salto: pmdm/videojuegos/05-movimiento-salto.md
       - Recursos: pmdm/recursos.md
 
-  # De momento estos módulos siguen en sus GitHub Pages actuales.
-  - Desarrollo de Interfaces ↗: https://ddi-erciapps.sytes.net/
-  - Proyecto II ↗: https://project2-erciapps.sytes.net
+  - Desarrollo de Interfaces:
+      - Portada: ddi/index.md
+
+  - Proyecto II:
+      - Portada: proyecto2/index.md
 
 theme:
   name: material
@@ -92,16 +91,12 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_css:
-  - assets/stylesheets/extra.css
+  - assets/stylesheets/erci-site.css
 
 extra_javascript:
   - assets/javascripts/home.js
 
 extra:
   generator: false
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/erciapps
-      name: ERCI Apps en GitHub
 
 copyright: IES Alonso de Ercilla · Curso 2026-2027

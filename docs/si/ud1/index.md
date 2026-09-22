@@ -1,32 +1,31 @@
 # UD1 · Introducción al entorno Linux
 
-<div class="module-intro" markdown>
+Esta unidad introduce el trabajo básico con GNU/Linux desde terminal y prepara las herramientas que utilizaremos durante el módulo.
 
-## Contenido disponible
+## Contenidos
 
-Esta unidad ya está integrada en la estructura de **web-home**. Mientras migramos los apuntes desde la web anterior, puedes seguir accediendo al contenido actual desde aquí.
+- Estructura básica del sistema y rutas.
+- Navegación por directorios.
+- Creación, copia, movimiento y eliminación de archivos y carpetas.
+- Permisos y uso básico de `sudo`.
+- Instalación y actualización de paquetes.
+- Introducción a scripts de shell.
 
-</div>
+## Primeros comandos
 
-<div class="grid cards" markdown>
+```bash
+pwd
+ls
+cd
+mkdir
+cp
+mv
+rm
+```
 
--   :material-linux:{ .lg .middle } **Linux · contenido actual**
+!!! tip "Objetivo"
+    Al finalizar esta parte debes poder moverte con soltura por el sistema de archivos y realizar las operaciones habituales sin depender del entorno gráfico.
 
-    ---
+## Recursos de la unidad
 
-    Terminal, comandos básicos y gestión de paquetes.
-
-    [:octicons-arrow-right-24: Abrir contenidos](https://si-erciapps.sytes.net/docs/category/linux)
-
--   :material-certificate:{ .lg .middle } **Certificado CA**
-
-    ---
-
-    Instrucciones y recursos relacionados con el certificado del aula.
-
-    [:octicons-arrow-right-24: Abrir certificado](https://si-erciapps.sytes.net/docs/certificado)
-
-</div>
-
-!!! note "Migración progresiva"
-    Los contenidos de esta unidad se pueden ir trasladando poco a poco a `docs/si/ud1/` sin cambiar la URL principal del módulo.
+- [Certificado CA](../certificado/)

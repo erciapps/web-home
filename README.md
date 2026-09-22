@@ -1,22 +1,12 @@
-# web-home · MkDocs + Material
+# ERCI Apps · DAM
 
-Portal único de ERCI Apps para los módulos de DAM.
+Sitio de recursos educativos para los módulos de Desarrollo de Aplicaciones Multiplataforma.
 
-## Módulos integrados
-
-- **Sistemas Informáticos** → `docs/si/`
-- **PMDM** → `docs/pmdm/`
-
-## Módulos todavía externos
-
-- Desarrollo de Interfaces
-- Proyecto II
-
-## Ejecutar en local
+## Desarrollo local
 
 ### Windows
 
-Doble clic en `iniciar.bat`.
+Ejecuta `iniciar.bat`.
 
 ### Linux/macOS
 
@@ -25,13 +15,18 @@ chmod +x iniciar.sh
 ./iniciar.sh
 ```
 
-## Publicación
+La web se sirve por defecto en `http://127.0.0.1:8000`.
 
-Cada `push` a `main` o `master` ejecuta GitHub Actions y publica el sitio generado en la rama `gh-pages`.
+## Organización
 
-GitHub Pages debe configurarse como:
+Los contenidos están dentro de `docs/`, separados por módulo:
 
-- **Source:** Deploy from a branch
-- **Branch:** `gh-pages`
-- **Folder:** `/ (root)`
-- **Custom domain:** `erciapps.sytes.net`
+```text
+docs/
+├── si/
+├── pmdm/
+├── ddi/
+└── proyecto2/
+```
+
+La navegación general se configura en `mkdocs.yml`.

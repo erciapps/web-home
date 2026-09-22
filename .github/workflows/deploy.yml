@@ -1,4 +1,4 @@
-name: Publicar web-home
+name: Publicar sitio educativo
 
 on:
   push:
