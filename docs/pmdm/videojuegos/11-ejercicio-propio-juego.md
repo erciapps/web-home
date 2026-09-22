@@ -1,4 +1,4 @@
-# Ejercicio · Crea tu propio videojuego 2D
+# 12. Ejercicio · Crea tu propio videojuego 2D
 
 ## Propuesta
 
@@ -37,9 +37,9 @@ El juego debe tener una identidad propia. Puedes modificar, entre otras cosas:
 - obstáculos;
 - objetivo del nivel.
 
-## Ideas para ampliar
+## Siguientes etapas
 
-Cuando los requisitos mínimos funcionen, puedes incorporar mejoras como:
+Cuando los requisitos mínimos funcionen, deberás incorporar mejoras como (se verán en clase):
 
 - contador de monedas o puntuación;
 - enemigos;
@@ -59,7 +59,7 @@ Cuando los requisitos mínimos funcionen, puedes incorporar mejoras como:
 La entrega debe contener:
 
 1. El proyecto de Unity funcionando.
-2. Una captura o pequeño vídeo donde se vea el nivel en funcionamiento.
+2. Pequeño vídeo donde se vea el nivel en funcionamiento.
 3. Un breve `README.md` con:
    - nombre del juego;
    - objetivo;
@@ -67,15 +67,3 @@ La entrega debe contener:
    - assets utilizados y su procedencia;
    - mejoras añadidas respecto al ejemplo de clase.
 
-## Antes de entregar
-
-Comprueba:
-
-- [ ] El personaje se mueve correctamente.
-- [ ] El personaje no atraviesa el suelo.
-- [ ] El salto solo se produce cuando corresponde.
-- [ ] Las animaciones cambian correctamente.
-- [ ] El personaje mira hacia la dirección en la que se mueve.
-- [ ] Los objetos recogibles funcionan.
-- [ ] Existe una meta o condición de finalización.
-- [ ] No hay errores en la consola de Unity.

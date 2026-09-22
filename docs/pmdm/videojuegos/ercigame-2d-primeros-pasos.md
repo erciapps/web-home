@@ -1,4 +1,4 @@
-# ERCIGAME 2D · Ejemplo completo
+# 11. ERCIGAME 2D · Ejemplo completo
 
 Este ejemplo reúne en un único proyecto los contenidos trabajados en los apartados anteriores. Puede utilizarse como referencia para comprobar el proceso completo antes de realizar la práctica individual.
 
