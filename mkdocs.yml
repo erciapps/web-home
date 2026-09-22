@@ -13,12 +13,18 @@ nav:
       - Portada: pmdm/index.md
       - Videojuegos 2D con Unity:
           - Ruta de aprendizaje: pmdm/videojuegos/index.md
-          - ERCIGAME 2D · Primeros pasos: pmdm/videojuegos/ercigame-2d-primeros-pasos.md
           - 1. Crear el proyecto: pmdm/videojuegos/01-primer-proyecto.md
           - 2. Entorno de Unity: pmdm/videojuegos/02-entorno-unity.md
           - 3. Assets y sprites: pmdm/videojuegos/03-assets-sprites.md
           - 4. Primer script: pmdm/videojuegos/04-primer-script.md
           - 5. Movimiento y salto: pmdm/videojuegos/05-movimiento-salto.md
+          - Ejemplo · ERCIGAME 2D: pmdm/videojuegos/ercigame-2d-primeros-pasos.md
+          - 6. Escenario con Tilemap: pmdm/videojuegos/06-tilemap-escenario.md
+          - 7. Colisiones y físicas: pmdm/videojuegos/07-colisiones-fisicas.md
+          - 8. Animaciones: pmdm/videojuegos/08-animaciones.md
+          - 9. Orientación del personaje: pmdm/videojuegos/09-orientacion-personaje.md
+          - 10. Objetos recogibles: pmdm/videojuegos/10-objetos-recogibles.md
+          - Ejercicio · Tu propio videojuego: pmdm/videojuegos/11-ejercicio-propio-juego.md
       - Recursos: pmdm/recursos.md
 
   - Desarrollo de Interfaces:

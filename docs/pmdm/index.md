@@ -11,7 +11,7 @@ Material de clase, prácticas y recursos del módulo de **Programación Multimed
 
     ---
 
-    Creación de escenas, sprites, físicas 2D, scripts, movimiento, salto y mecánicas básicas.
+    Creación de escenarios, sprites, físicas 2D, scripts, movimiento, salto, animaciones y mecánicas básicas.
 
     [:octicons-arrow-right-24: Empezar](videojuegos/)
 

@@ -1,4 +1,6 @@
-# ERCIGAME 2D - Primeros pasos con Unity
+# ERCIGAME 2D · Ejemplo completo
+
+Este ejemplo reúne en un único proyecto los contenidos trabajados en los apartados anteriores. Puede utilizarse como referencia para comprobar el proceso completo antes de realizar la práctica individual.
 
 En esta práctica vamos a crear la base de un videojuego de plataformas 2D en Unity.
 

@@ -1,6 +1,6 @@
 # 2. Entorno de Unity
 
-Los paneles que utilizaremos con más frecuencia son:
+Antes de construir el juego conviene identificar las zonas principales del editor.
 
 | Panel | Para qué sirve |
 |---|---|
@@ -11,17 +11,44 @@ Los paneles que utilizaremos con más frecuencia son:
 | **Project** | Archivos y recursos del proyecto. |
 | **Console** | Mensajes, avisos y errores. |
 
-## Una idea importante
+## La escena
 
-Un **GameObject** es un objeto de la escena. Sus capacidades aparecen mediante **componentes**.
+En la **Hierarchy** aparecen todos los objetos que forman la escena. Por ejemplo:
 
-Por ejemplo, un personaje puede tener:
+```text
+SampleScene
+├── Main Camera
+├── Global Light 2D
+├── Grid
+├── Player
+└── Coins
+```
+
+### SampleScene
+
+Es la escena actual. Una escena puede representar un nivel, un menú, una pantalla de victoria o cualquier otra parte del juego.
+
+### Main Camera
+
+Determina qué parte del escenario verá el jugador.
+
+### Global Light 2D
+
+Controla la iluminación general de la escena 2D.
+
+## GameObject y componentes
+
+Un **GameObject** es un objeto de la escena. Sus capacidades se añaden mediante **componentes**.
+
+Por ejemplo:
 
 ```text
 Player
 ├── Transform
 ├── Sprite Renderer
 ├── Rigidbody2D
-├── Collider2D
+├── Box Collider 2D
 └── Player.cs
 ```
+
+El objeto es el mismo, pero cada componente añade una responsabilidad distinta: posición, imagen, físicas, colisiones o comportamiento programado.
