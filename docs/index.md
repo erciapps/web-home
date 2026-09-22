@@ -32,14 +32,14 @@ hide:
   </div>
 
   <section class="erci-modules">
-    <article class="erci-card" style="--accent:#ff6600">
+    <article class="erci-card local" style="--accent:#ff6600">
       <div class="erci-card-top"><span class="code">SI</span><span class="badge">1.º DAM</span></div>
       <div class="erci-icon">&gt;_</div>
       <h3>Sistemas Informáticos</h3>
       <p>Hardware, sistemas operativos, Linux, redes, virtualización, Docker y administración de sistemas.</p>
       <div class="erci-card-bottom">
-        <span class="status external">Docusaurus actual</span>
-        <a class="erci-button" href="https://si-erciapps.sytes.net">Abrir <span>→</span></a>
+        <span class="status local">Integrado en web-home</span>
+        <a class="erci-button" href="si/">Entrar <span>→</span></a>
       </div>
     </article>
 

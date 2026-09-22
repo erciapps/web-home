@@ -258,3 +258,253 @@
 @media (prefers-reduced-motion: reduce) {
   .erci-card { transform: none !important; transition: none; }
 }
+
+/* =========================================================
+   SISTEMAS INFORMÁTICOS · portada por tarjetas
+   ========================================================= */
+.si-home {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.si-hero {
+  max-width: 760px;
+  padding: 3.6rem 0 3.8rem;
+}
+
+.si-kicker {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  color: #ff8a1d;
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .14rem;
+}
+
+.si-kicker span {
+  width: 2rem;
+  height: 2px;
+  background: #ff7a00;
+}
+
+.si-hero h1 {
+  margin: 1rem 0 1.15rem;
+  font-size: clamp(3rem, 7vw, 5rem);
+  line-height: .92;
+  letter-spacing: -.18rem;
+}
+
+.si-hero h1 em {
+  color: #ff7a00;
+  font-style: normal;
+}
+
+.si-hero > p {
+  max-width: 700px;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  opacity: .74;
+}
+
+.si-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  margin-top: 2.1rem;
+}
+
+.si-stats > div {
+  display: flex;
+  align-items: baseline;
+  gap: .55rem;
+}
+
+.si-stats strong {
+  color: #ff8a1d;
+  font-size: 1.45rem;
+  font-weight: 900;
+}
+
+.si-stats span {
+  font-size: .67rem;
+  opacity: .55;
+}
+
+.si-section-heading {
+  display: flex;
+  align-items: end;
+  gap: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.si-section-heading > div:first-child > span {
+  font-size: .67rem;
+  font-weight: 900;
+  letter-spacing: .12rem;
+  opacity: .58;
+}
+
+.si-section-heading h2 {
+  margin: .35rem 0 0;
+  font-size: 1.55rem;
+}
+
+.si-section-line {
+  flex: 1;
+  height: 1px;
+  margin-bottom: .48rem;
+  background: color-mix(in srgb, currentColor 13%, transparent);
+}
+
+.si-units {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding-bottom: 3rem;
+}
+
+.si-card {
+  --accent: #ff7a00;
+  position: relative;
+  display: flex;
+  min-height: 245px;
+  flex-direction: column;
+  padding: 1.35rem 1.4rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 5%, transparent), color-mix(in srgb, currentColor 2%, transparent));
+  transition: transform .2s ease, border-color .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.si-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 42%, currentColor 20%);
+  box-shadow: 0 1rem 2.2rem rgba(0,0,0,.18);
+}
+
+.si-card-featured {
+  grid-column: 1 / -1;
+  min-height: 300px;
+  border-color: color-mix(in srgb, var(--accent) 72%, transparent);
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 14%, transparent), color-mix(in srgb, currentColor 3%, transparent) 58%);
+}
+
+.si-card-top,
+.si-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+}
+
+.si-code {
+  color: var(--accent);
+  font-size: .72rem;
+  font-weight: 900;
+  letter-spacing: .09rem;
+}
+
+.si-state {
+  padding: .28rem .55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 7%, transparent);
+  font-size: .61rem;
+  opacity: .58;
+}
+
+.si-state.available {
+  color: #8ff0ba;
+  background: rgba(0, 255, 136, .09);
+  opacity: 1;
+}
+
+.si-unit-icon {
+  margin: 1.55rem 0 .7rem;
+  color: var(--accent);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.si-card h3 {
+  margin: 0 0 .55rem;
+  font-size: 1.12rem;
+  font-weight: 500;
+}
+
+.si-card > p {
+  flex: 1;
+  margin: 0 0 1.2rem;
+  font-size: .77rem;
+  line-height: 1.6;
+  opacity: .6;
+}
+
+.si-ra {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+
+.si-ra span {
+  padding: .25rem .42rem;
+  border: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+  border-radius: .35rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .59rem;
+  opacity: .72;
+}
+
+.si-actions {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+.si-button {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .52rem .78rem;
+  border-radius: .5rem;
+  color: #111827 !important;
+  background: var(--accent);
+  font-size: .68rem;
+  font-weight: 900;
+  text-decoration: none;
+  transition: gap .2s ease, filter .2s ease;
+}
+
+.si-button:hover {
+  gap: .75rem;
+  filter: brightness(1.12);
+}
+
+.si-text-link {
+  color: var(--accent) !important;
+  font-size: .64rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.si-text-link:hover {
+  text-decoration: underline;
+}
+
+.si-soon {
+  font-size: .61rem;
+  opacity: .38;
+}
+
+@media (max-width: 760px) {
+  .si-hero { padding-top: 2.5rem; }
+  .si-units { grid-template-columns: 1fr; }
+  .si-card-featured { grid-column: auto; }
+  .si-section-heading { display: block; }
+  .si-section-line { margin-top: .8rem; }
+  .si-card-bottom { align-items: flex-start; flex-direction: column; }
+  .si-actions { align-items: flex-start; flex-direction: column; }
+}

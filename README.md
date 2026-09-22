@@ -1,62 +1,37 @@
 # web-home · MkDocs + Material
 
-Este repositorio es la web principal de ERCI Apps y ahora utiliza **MkDocs + Material**.
+Portal único de ERCI Apps para los módulos de DAM.
 
-## Estado de los módulos
+## Módulos integrados
 
-- **PMDM**: integrado dentro de este mismo proyecto.
-- **SI**: sigue enlazando temporalmente a su Docusaurus actual.
-- **DDI**: sigue enlazando temporalmente a su Docusaurus actual.
-- **Proyecto II**: sigue enlazando temporalmente a su Docusaurus actual.
+- **Sistemas Informáticos** → `docs/si/`
+- **PMDM** → `docs/pmdm/`
 
-La idea es migrar los demás módulos poco a poco a carpetas dentro de `docs/`.
+## Módulos todavía externos
+
+- Desarrollo de Interfaces
+- Proyecto II
 
 ## Ejecutar en local
 
 ### Windows
 
-Doble clic en `iniciar.bat` o:
-
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-mkdocs serve
-```
+Doble clic en `iniciar.bat`.
 
 ### Linux/macOS
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-mkdocs serve
+chmod +x iniciar.sh
+./iniciar.sh
 ```
 
-Abre: http://127.0.0.1:8000
+## Publicación
 
-## Publicar
+Cada `push` a `main` o `master` ejecuta GitHub Actions y publica el sitio generado en la rama `gh-pages`.
 
-Copia la carpeta `.git` de tu repositorio `web-home` dentro de este proyecto y ejecuta:
+GitHub Pages debe configurarse como:
 
-```bash
-git add .
-git commit -m "Migrar web-home a MkDocs Material e integrar PMDM"
-git push
-```
-
-El workflow de GitHub Actions construye la web y actualiza la rama `gh-pages`.
-
-En GitHub, deja **Settings → Pages → Deploy from a branch → gh-pages / root**.
-
-El dominio personalizado se conserva mediante `docs/CNAME`.
-
-## Migrar otro módulo más adelante
-
-Ejemplo para Sistemas Informáticos:
-
-1. Crear `docs/si/index.md` y sus unidades.
-2. Cambiar en `mkdocs.yml` la entrada externa de SI por una navegación local.
-3. Cambiar en `docs/index.md` el enlace de la tarjeta de SI a `si/`.
-
-Consulta también `PLANTILLA_MODULO.md`.
+- **Source:** Deploy from a branch
+- **Branch:** `gh-pages`
+- **Folder:** `/ (root)`
+- **Custom domain:** `erciapps.sytes.net`

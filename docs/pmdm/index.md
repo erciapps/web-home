@@ -43,12 +43,13 @@ web-home/
     ├── index.md
     ├── pmdm/          ← ya integrado
     │   └── ...
-    ├── si/            ← futuro
-    │   └── ...
+    ├── si/            ← ya integrado
+    │   ├── index.md
+    │   └── ud1/
     ├── ddi/           ← futuro
     │   └── ...
     └── proyecto-ii/   ← futuro
         └── ...
 ```
 
-Mientras un módulo no esté migrado, su tarjeta de la portada seguirá apuntando a su Docusaurus actual.
+Sistemas Informáticos y PMDM ya están integrados. Mientras DDI o Proyecto II no estén migrados, sus tarjetas seguirán apuntando a sus Docusaurus actuales.

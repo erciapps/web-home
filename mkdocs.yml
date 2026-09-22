@@ -9,6 +9,10 @@ repo_name: erciapps/web-home
 nav:
   - Inicio: index.md
 
+  - Sistemas Informáticos:
+      - Inicio: si/index.md
+      - UD1 · Introducción al entorno Linux: si/ud1/index.md
+
   - PMDM:
       - Inicio: pmdm/index.md
       - Videojuegos 2D con Unity:
@@ -21,8 +25,6 @@ nav:
       - Recursos: pmdm/recursos.md
 
   # De momento estos módulos siguen en sus GitHub Pages actuales.
-  # Cuando los migres a MkDocs, sustituyes la URL por sus páginas locales.
-  - Sistemas Informáticos ↗: https://si-erciapps.sytes.net
   - Desarrollo de Interfaces ↗: https://ddi-erciapps.sytes.net/
   - Proyecto II ↗: https://project2-erciapps.sytes.net
 
