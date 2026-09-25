@@ -7,7 +7,10 @@ nav:
 
   - Sistemas Informáticos:
       - Portada: si/index.md
-      - UD1 · Introducción al entorno Linux: si/ud1/index.md
+      - UD1 · Introducción al entorno Linux:
+          - Contenidos: si/ud1/index.md
+          - Ejercicios:
+              - UD1.2 · Rutas, ficheros y directorios: si/ud1/ejercicios/ud1_2.md
 
   - PMDM:
       - Portada: pmdm/index.md
@@ -26,6 +29,11 @@ nav:
           - 10. Objetos recogibles: pmdm/videojuegos/10-objetos-recogibles.md
           - Ejercicio · Tu propio videojuego: pmdm/videojuegos/11-ejercicio-propio-juego.md
       - Recursos: pmdm/recursos.md
+
+  - Recursos transversales:
+      - Portada: recursos/index.md
+      - Git · Control de versiones: recursos/git/index.md
+      - Markdown: recursos/markdown/index.md
 
   - Desarrollo de Interfaces:
       - Portada: ddi/index.md

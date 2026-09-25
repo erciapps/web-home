@@ -578,3 +578,12 @@
     height: 70vh;
   }
 }
+
+/* Recursos transversales de la portada */
+.erci-resources-heading {
+  margin-top: 1rem;
+}
+
+.erci-resources .erci-card {
+  min-height: 245px;
+}

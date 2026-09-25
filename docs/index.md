@@ -75,4 +75,36 @@ hide:
       </div>
     </article>
   </section>
+
+  <div class="erci-section-heading erci-resources-heading">
+    <div>
+      <span>APOYO PARA TODOS LOS MÓDULOS</span>
+      <h2>Recursos transversales</h2>
+    </div>
+    <div class="erci-section-line"></div>
+  </div>
+
+  <section class="erci-modules erci-resources">
+    <article class="erci-card" style="--accent:#f97316">
+      <div class="erci-card-top"><span class="code">GIT</span><span class="badge">Transversal</span></div>
+      <div class="erci-icon">git</div>
+      <h3>Git · Control de versiones</h3>
+      <p>Repositorios, commits, GitErcilla/GitHub, sincronización, ramas, .gitignore y conflictos.</p>
+      <div class="erci-card-bottom">
+        <span class="status available">Disponible</span>
+        <a class="erci-button" href="recursos/git/">Entrar <span>→</span></a>
+      </div>
+    </article>
+
+    <article class="erci-card" style="--accent:#38bdf8">
+      <div class="erci-card-top"><span class="code">MD</span><span class="badge">Transversal</span></div>
+      <div class="erci-icon">#</div>
+      <h3>Markdown</h3>
+      <p>Guía rápida para documentar proyectos, crear README y escribir contenido técnico de forma sencilla.</p>
+      <div class="erci-card-bottom">
+        <span class="status available">Disponible</span>
+        <a class="erci-button" href="recursos/markdown/">Entrar <span>→</span></a>
+      </div>
+    </article>
+  </section>
 </div>
