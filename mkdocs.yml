@@ -10,7 +10,8 @@ nav:
       - UD1 · Introducción al entorno Linux:
           - Contenidos: si/ud1/index.md
           - Ejercicios:
-              - UD1.2 · Rutas, ficheros y directorios: si/ud1/ejercicios/ud1_2.md
+              - UD1.2 · Creación de directorios: si/ud1/ejercicios/ud1_2.md
+              - UD1.3 · Rutas, ficheros y directorios: si/ud1/ejercicios/ud1_3.md
 
   - PMDM:
       - Portada: pmdm/index.md
