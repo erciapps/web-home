@@ -11,7 +11,8 @@ nav:
           - Contenidos: si/ud1/index.md
           - Ejercicios:
               - UD1.2 · Creación de directorios: si/ud1/ejercicios/ud1_2.md
-              - UD1.3 · Rutas, ficheros y directorios: si/ud1/ejercicios/ud1_3.md
+              - UD1.3 · Rutas absolutas y relativas: si/ud1/ejercicios/ud1_3.md
+              - UD1.4 · Scripts y gestión de estructuras: si/ud1/ejercicios/ud1_4.md
 
   - PMDM:
       - Portada: pmdm/index.md

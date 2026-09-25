@@ -45,11 +45,19 @@ rm
     <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>mkdir</span><span>tree</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_2/">Ver ejercicio <span>→</span></a></div></div>
   </article>
 
-  <article class="si-card si-card-featured available" style="--accent:#ff7a00">
+  <article class="si-card available" style="--accent:#ff7a00">
     <div class="si-card-top"><span class="si-code">UD1.3</span><span class="si-state available">Disponible</span></div>
     <div class="si-unit-icon">$</div>
-    <h3>Rutas, ficheros y directorios</h3>
-    <p>Menú, funciones, rutas absolutas y relativas, copia, movimiento y borrado sobre una estructura de pruebas.</p>
-    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>Linux</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_3/">Ver ejercicio <span>→</span></a></div></div>
+    <h3>Rutas absolutas y relativas</h3>
+    <p>Continúa sobre la estructura de UD1.2 y practica navegación, rutas absolutas y relativas, ficheros, copias y <code>tree</code>.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>Rutas</span><span>tree</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_3/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
+
+  <article class="si-card si-card-featured available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD1.4</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Scripts y gestión de estructuras</h3>
+    <p>Menú, funciones, scripts auxiliares, rutas, copias, movimientos y borrado sobre una estructura de pruebas.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>Funciones</span><span>Linux</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_4/">Ver ejercicio <span>→</span></a></div></div>
   </article>
 </div>
