@@ -23,12 +23,13 @@ nav:
           - 3. Assets y sprites: pmdm/videojuegos/03-assets-sprites.md
           - 4. Primer script: pmdm/videojuegos/04-primer-script.md
           - 5. Movimiento y salto: pmdm/videojuegos/05-movimiento-salto.md
-          - Ejemplo · ERCIGAME 2D: pmdm/videojuegos/ercigame-2d-primeros-pasos.md
           - 6. Escenario con Tilemap: pmdm/videojuegos/06-tilemap-escenario.md
           - 7. Colisiones y físicas: pmdm/videojuegos/07-colisiones-fisicas.md
           - 8. Animaciones: pmdm/videojuegos/08-animaciones.md
           - 9. Orientación del personaje: pmdm/videojuegos/09-orientacion-personaje.md
           - 10. Objetos recogibles: pmdm/videojuegos/10-objetos-recogibles.md
+          - 11. Ataque y enemigos: pmdm/videojuegos/11-ataque-enemigos.md
+          - Ejemplo · ERCIGAME 2D: pmdm/videojuegos/ercigame-2d-primeros-pasos.md
           - Ejercicio · Tu propio videojuego: pmdm/videojuegos/11-ejercicio-propio-juego.md
       - Recursos: pmdm/recursos.md
 
