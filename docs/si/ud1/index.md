@@ -32,6 +32,22 @@ rm
 
 <div class="resource-embed">
   <iframe src="https://view.genial.ly/61ed48646b85b90013222284/presentation-presentacion-basica" width="100%" height="600px" frameborder="0" allowfullscreen="true" loading="lazy"></iframe>
+
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD1.5</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Edición de ficheros con sed</h3>
+    <p>Consulta, edita y elimina líneas de un fichero de texto desde un script Bash utilizando <code>sed</code>.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>sed</span><span>Ficheros</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_5/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
+
+  <article class="si-card si-card-featured available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UT1.6</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Cuestionario con Bash y sed</h3>
+    <p>Desarrolla un cuestionario completo a partir de ficheros de preguntas, respuestas y soluciones.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>sed</span><span>Scripts</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ut1_6/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
 </div>
 
 ## Ejercicios
