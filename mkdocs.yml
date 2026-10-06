@@ -1,6 +1,6 @@
 site_name: ERCI Apps · DAM
 site_description: Recursos educativos de los módulos de Desarrollo de Aplicaciones Multiplataforma
-site_url: https://erciapps.sytes.net/
+site_url: https://erciapps.es/
 
 nav:
   - Inicio: index.md
@@ -14,6 +14,7 @@ nav:
               - UD1.3 · Rutas absolutas y relativas: si/ud1/ejercicios/ud1_3.md
               - UD1.4 · Scripts y gestión de estructuras: si/ud1/ejercicios/ud1_4.md
               - UD1.5 · Edición de ficheros con sed: si/ud1/ejercicios/ud1_5.md
+              - UD1.6 · Estructuras desde un fichero de instrucciones: si/ud1/ejercicios/ud1_6.md
               - UT1.6 · Cuestionario con Bash y sed: si/ud1/ejercicios/ut1_6.md
 
   - PMDM:
