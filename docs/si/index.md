@@ -41,7 +41,7 @@ hide:
       <h3>Introducción al entorno Linux</h3>
       <p>Terminal, comandos básicos y gestión de paquetes.</p>
       <div class="si-card-bottom">
-        <div class="si-ra"><span>RA4</span><span>RA7</span></div>
+        <div class="si-ra"><span>RA4</span><span>RA3</span></div>
         <div class="si-actions">
           <a class="si-button" href="ud1/">Acceder <span>→</span></a>
         </div>

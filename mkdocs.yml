@@ -14,8 +14,10 @@ nav:
               - UD1.3 · Rutas absolutas y relativas: si/ud1/ejercicios/ud1_3.md
               - UD1.4 · Scripts y gestión de estructuras: si/ud1/ejercicios/ud1_4.md
               - UD1.5 · Edición de ficheros con sed: si/ud1/ejercicios/ud1_5.md
-              - UD1.6 · Estructuras desde un fichero de instrucciones: si/ud1/ejercicios/ud1_6.md
-              - UT1.6 · Cuestionario con Bash y sed: si/ud1/ejercicios/ut1_6.md
+              - UD1.6 · Cuestionario con Bash y sed: si/ud1/ejercicios/ud1_6.md
+              - UD1.7 · Generación de estructuras desde un fichero: si/ud1/ejercicios/ud1_7.md
+              - UD1.8 · Gestión automatizada de archivos: si/ud1/ejercicios/ud1_8.md
+              - UD1.9 · Validador automático de entregas: si/ud1/ejercicios/ud1_9.md
 
   - PMDM:
       - Portada: pmdm/index.md

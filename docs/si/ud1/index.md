@@ -32,56 +32,67 @@ rm
 
 <div class="resource-embed">
   <iframe src="https://view.genial.ly/61ed48646b85b90013222284/presentation-presentacion-basica" width="100%" height="600px" frameborder="0" allowfullscreen="true" loading="lazy"></iframe>
-
-  <article class="si-card available" style="--accent:#ff7a00">
-    <div class="si-card-top"><span class="si-code">UD1.5</span><span class="si-state available">Disponible</span></div>
-    <div class="si-unit-icon">$</div>
-    <h3>Edición de ficheros con sed</h3>
-    <p>Consulta, edita y elimina líneas de un fichero de texto desde un script Bash utilizando <code>sed</code>.</p>
-    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>sed</span><span>Ficheros</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_5/">Ver ejercicio <span>→</span></a></div></div>
-  </article>
-
-  <article class="si-card available" style="--accent:#ff7a00">
-    <div class="si-card-top"><span class="si-code">UD1.6</span><span class="si-state available">Disponible</span></div>
-    <div class="si-unit-icon">$</div>
-    <h3>Estructuras desde un fichero de instrucciones</h3>
-    <p>Lee órdenes desde un fichero, separa sus campos en un array y genera automáticamente directorios y archivos.</p>
-    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>Arrays</span><span>sed</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_6/">Ver ejercicio <span>→</span></a></div></div>
-  </article>
-
-  <article class="si-card si-card-featured available" style="--accent:#ff7a00">
-    <div class="si-card-top"><span class="si-code">UT1.6</span><span class="si-state available">Disponible</span></div>
-    <div class="si-unit-icon">$</div>
-    <h3>Cuestionario con Bash y sed</h3>
-    <p>Desarrolla un cuestionario completo a partir de ficheros de preguntas, respuestas y soluciones.</p>
-    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>sed</span><span>Scripts</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ut1_6/">Ver ejercicio <span>→</span></a></div></div>
-  </article>
 </div>
 
 ## Ejercicios
+
+Los ejercicios están ordenados de menor a mayor complejidad. Se trabaja principalmente el **RA4, CE 4.e**, y se introducen actividades del **RA3 (CE 3.b, 3.c y parcialmente 3.f)**. La relación curricular no implica que los criterios estén automáticamente superados.
 
 <div class="si-units">
   <article class="si-card available" style="--accent:#ff7a00">
     <div class="si-card-top"><span class="si-code">UD1.2</span><span class="si-state available">Disponible</span></div>
     <div class="si-unit-icon">$</div>
     <h3>Creación de directorios con Bash</h3>
-    <p>Crea mediante un script una estructura de directorios, ejecútalo desde cualquier ruta y guarda el resultado de <code>tree</code>.</p>
-    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>mkdir</span><span>tree</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_2/">Ver ejercicio <span>→</span></a></div></div>
+    <p>Crea una estructura mediante scripts y comprueba el resultado.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>mkdir · tree</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_2/">Ver ejercicio <span>→</span></a></div></div>
   </article>
-
   <article class="si-card available" style="--accent:#ff7a00">
     <div class="si-card-top"><span class="si-code">UD1.3</span><span class="si-state available">Disponible</span></div>
     <div class="si-unit-icon">$</div>
     <h3>Rutas absolutas y relativas</h3>
-    <p>Continúa sobre la estructura de UD1.2 y practica navegación, rutas absolutas y relativas, ficheros, copias y <code>tree</code>.</p>
-    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>Rutas</span><span>tree</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_3/">Ver ejercicio <span>→</span></a></div></div>
+    <p>Practica el acceso a archivos y carpetas utilizando ambos tipos de rutas.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Rutas · tree</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_3/">Ver ejercicio <span>→</span></a></div></div>
   </article>
-
-  <article class="si-card si-card-featured available" style="--accent:#ff7a00">
+  <article class="si-card available" style="--accent:#ff7a00">
     <div class="si-card-top"><span class="si-code">UD1.4</span><span class="si-state available">Disponible</span></div>
     <div class="si-unit-icon">$</div>
     <h3>Scripts y gestión de estructuras</h3>
-    <p>Menú, funciones, scripts auxiliares, rutas, copias, movimientos y borrado sobre una estructura de pruebas.</p>
-    <div class="si-card-bottom"><div class="si-ra"><span>Bash</span><span>Funciones</span><span>Linux</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_4/">Ver ejercicio <span>→</span></a></div></div>
+    <p>Menús, funciones, copias, movimientos y borrado.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Bash · funciones</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_4/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD1.5</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Edición de ficheros con sed</h3>
+    <p>Consulta, modifica y elimina líneas de un fichero.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>sed · ficheros</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_5/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD1.6</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Cuestionario con Bash y sed</h3>
+    <p>Lee preguntas y respuestas desde ficheros y crea un cuestionario.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Bash · sed</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_6/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD1.7</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Generación de estructuras desde un fichero de instrucciones</h3>
+    <p>Interpreta operaciones y rutas separadas por punto y coma mediante arrays.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>IFS · arrays</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_7/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD1.8</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Gestión automatizada de archivos y directorios</h3>
+    <p>Interpreta tres campos para copiar, mover y buscar con find.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>cp · mv · find</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_8/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD1.9</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Validador automático de entregas</h3>
+    <p>Comprueba requisitos de archivos y directorios y genera un informe.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>grep · wc · find</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud1_9/">Ver ejercicio <span>→</span></a></div></div>
   </article>
 </div>
