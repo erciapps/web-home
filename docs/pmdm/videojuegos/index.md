@@ -87,7 +87,7 @@ flowchart LR
 
     ---
 
-    Grid, Tile Palette, Ground, Decoration y fondo.
+    Grid, Tile Palette, Escenario, Decoracion y fondo.
 
     [:octicons-arrow-right-24: Abrir](06-tilemap-escenario.md)
 

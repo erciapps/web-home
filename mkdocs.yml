@@ -121,6 +121,7 @@ extra_css:
 
 extra_javascript:
   - assets/javascripts/home.js
+  - assets/javascripts/image-viewer.js
 
 extra:
   generator: false

@@ -15,7 +15,7 @@ Ajusta el collider con **Edit Collider** para que se aproxime al cuerpo del pers
 
 ## Colisiones del escenario
 
-Selecciona el Tilemap `Ground` y añade:
+Selecciona el Tilemap `Escenario` (el suelo que creamos en la [página de Tilemap](06-tilemap-escenario.md)) y añade:
 
 ```text
 Tilemap Collider 2D
