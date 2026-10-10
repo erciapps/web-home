@@ -1,0 +1,3087 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recursos educativos de los módulos de Desarrollo de Aplicaciones Multiplataforma">
+      
+      
+      
+        <link rel="canonical" href="https://erciapps.es/pmdm/videojuegos/11-ataque-enemigos/">
+      
+      
+        <link rel="prev" href="../10-objetos-recogibles/">
+      
+      
+        <link rel="next" href="../12_proyectiles_y_vida_enemigos_unity/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>11. Ataque y enemigos - ERCI Apps · DAM</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/erci-site.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11-ataque-y-enemigos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="ERCI Apps · DAM" class="md-header__button md-logo" aria-label="ERCI Apps · DAM" data-md-component="logo">
+      
+  <img src="../../../assets/images/ercilogo2.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ERCI Apps · DAM
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              11. Ataque y enemigos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../si/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Sistemas Informáticos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PMDM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../recursos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Recursos transversales
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ddi/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Desarrollo de Interfaces
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../proyecto2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Proyecto II
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ERCI Apps · DAM" class="md-nav__button md-logo" aria-label="ERCI Apps · DAM" data-md-component="logo">
+      
+  <img src="../../../assets/images/ercilogo2.png" alt="logo">
+
+    </a>
+    ERCI Apps · DAM
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../si/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sistemas Informáticos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sistemas Informáticos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../si/ud1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1 · Introducción al entorno Linux
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD1 · Introducción al entorno Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.2 · Creación de directorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.3 · Rutas absolutas y relativas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.4 · Scripts y gestión de estructuras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.5 · Edición de ficheros con sed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.6 · Cuestionario con Bash y sed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.7 · Generación de estructuras desde un fichero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.8 · Gestión automatizada de archivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.9 · Validador automático de entregas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/entregable_ud1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable UD1 · Gestor de archivos (45 min)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMDM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PMDM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Videojuegos 2D con Unity
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Videojuegos 2D con Unity
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-primer-proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Crear el proyecto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-entorno-unity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Entorno de Unity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-assets-sprites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Assets y sprites
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-primer-script/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Primer script
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-movimiento-salto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Movimiento y salto
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-tilemap-escenario/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Escenario con Tilemap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-colisiones-fisicas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Colisiones y físicas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-animaciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Animaciones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-orientacion-personaje/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Orientación del personaje
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-objetos-recogibles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Objetos recogibles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Ataque y enemigos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Ataque y enemigos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-crear-la-animacion-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Crear la animación de ataque
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Crear la animación de ataque">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadir-el-estado-al-animator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Añadir el estado al Animator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-crear-el-punto-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Crear el punto de ataque
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-crear-la-layer-enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Crear la Layer Enemy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-detectar-un-enemigo-dentro-del-alcance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Detectar un enemigo dentro del alcance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ver-la-zona-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Ver la zona de ataque
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-crear-el-script-enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Crear el script Enemy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-animacion-de-muerte-del-enemigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Animación de muerte del enemigo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-destruir-el-enemigo-al-terminar-la-animacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Destruir el enemigo al terminar la animación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-evitar-que-el-enemigo-arrastre-al-player" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Evitar que el enemigo arrastre al Player
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-hacer-que-el-player-muera-al-tocar-al-enemigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Hacer que el Player muera al tocar al enemigo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-animacion-de-muerte-del-player" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Animación de muerte del Player
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-hacer-que-el-enemigo-patrulle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Hacer que el enemigo patrulle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-detener-la-patrulla-cuando-el-enemigo-muere" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Detener la patrulla cuando el enemigo muere
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-ajustar-attackpoint-al-cambio-de-direccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Ajustar AttackPoint al cambio de dirección
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-playercs-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Player.cs completo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-enemycs-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Enemy.cs completo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-configuracion-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Configuración final
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Configuración final">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#player" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Player
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enemy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comprobacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobación
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_proyectiles_y_vida_enemigos_unity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Proyectiles y vida enemigos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ercigame-2d-primeros-pasos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejemplo · ERCIGAME 2D
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-ejercicio-propio-juego/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio · Tu propio videojuego
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../recursos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos transversales
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recursos transversales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../recursos/git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git · Control de versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../recursos/markdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ddi/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desarrollo de Interfaces
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desarrollo de Interfaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../proyecto2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyecto II
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proyecto II
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-crear-la-animacion-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Crear la animación de ataque
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Crear la animación de ataque">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadir-el-estado-al-animator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Añadir el estado al Animator
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-crear-el-punto-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Crear el punto de ataque
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-crear-la-layer-enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Crear la Layer Enemy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-detectar-un-enemigo-dentro-del-alcance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Detectar un enemigo dentro del alcance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ver-la-zona-de-ataque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Ver la zona de ataque
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-crear-el-script-enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Crear el script Enemy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-animacion-de-muerte-del-enemigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Animación de muerte del enemigo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-destruir-el-enemigo-al-terminar-la-animacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Destruir el enemigo al terminar la animación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-evitar-que-el-enemigo-arrastre-al-player" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Evitar que el enemigo arrastre al Player
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-hacer-que-el-player-muera-al-tocar-al-enemigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Hacer que el Player muera al tocar al enemigo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-animacion-de-muerte-del-player" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Animación de muerte del Player
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-hacer-que-el-enemigo-patrulle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Hacer que el enemigo patrulle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-detener-la-patrulla-cuando-el-enemigo-muere" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Detener la patrulla cuando el enemigo muere
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-ajustar-attackpoint-al-cambio-de-direccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Ajustar AttackPoint al cambio de dirección
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-playercs-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Player.cs completo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-enemycs-completo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Enemy.cs completo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-configuracion-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Configuración final
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Configuración final">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#player" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Player
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enemy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comprobacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comprobación
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="11-ataque-y-enemigos">11. Ataque y enemigos<a class="headerlink" href="#11-ataque-y-enemigos" title="Permanent link">&para;</a></h1>
+<p>En este apartado vamos a incorporar un enemigo al escenario y una mecánica básica de combate.</p>
+<p>Al terminar tendremos:</p>
+<ul>
+<li>una animación de ataque para el Player;</li>
+<li>una zona de ataque delante del personaje;</li>
+<li>detección de enemigos mediante una <code>Layer</code>;</li>
+<li>una animación de muerte para el enemigo;</li>
+<li>eliminación del enemigo cuando termina la animación;</li>
+<li>muerte del Player al tocar un enemigo;</li>
+<li>un enemigo que patrulla entre dos puntos.</li>
+</ul>
+<hr />
+<h2 id="1-crear-la-animacion-de-ataque">1. Crear la animación de ataque<a class="headerlink" href="#1-crear-la-animacion-de-ataque" title="Permanent link">&para;</a></h2>
+<p>Selecciona <code>Player</code> y abre:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Window
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>→ Animation
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>→ Animation
+</code></pre></div>
+<p>Crea la animación:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Attack.anim
+</code></pre></div>
+<p>Añade los frames correspondientes al ataque.</p>
+<p>Como el ataque debe reproducirse una sola vez, selecciona el clip <code>Attack</code> en <strong>Project</strong> y comprueba que:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Loop Time: desactivado
+</code></pre></div>
+<h3 id="anadir-el-estado-al-animator">Añadir el estado al Animator<a class="headerlink" href="#anadir-el-estado-al-animator" title="Permanent link">&para;</a></h3>
+<p>Abre:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Window
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>→ Animation
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>→ Animator
+</code></pre></div>
+<p>Añade el estado <code>Attack</code>.</p>
+<p>En <strong>Parameters</strong> crea:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Trigger → attack
+</code></pre></div>
+<p>La transición de entrada queda:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Idle → Attack
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Condition: attack
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Has Exit Time: desactivado
+</code></pre></div>
+<p>La transición de vuelta:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Attack → Idle
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Has Exit Time: activado
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Conditions: ninguna
+</code></pre></div>
+<p>De esta forma el código inicia el ataque y, cuando termina la animación, el Animator vuelve a <code>Idle</code>.</p>
+<p>En <code>Player.cs</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="n">GetKeyDown</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">X</span><span class="p">))</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">anim</span><span class="p">.</span><span class="n">SetTrigger</span><span class="p">(</span><span class="s">"attack"</span><span class="p">);</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Mayúsculas y minúsculas</p>
+<p>El parámetro se llama <code>attack</code>. El texto utilizado en <code>SetTrigger()</code> debe coincidir exactamente con el nombre creado en el Animator.</p>
+</div>
+<hr />
+<h2 id="2-crear-el-punto-de-ataque">2. Crear el punto de ataque<a class="headerlink" href="#2-crear-el-punto-de-ataque" title="Permanent link">&para;</a></h2>
+<p>Para decidir desde qué posición comprobamos si hay un enemigo, crea un objeto vacío como hijo del Player:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Player
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>├── GroundCheck
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>└── AttackPoint
+</code></pre></div>
+<p>Selecciona <code>AttackPoint</code> y colócalo delante del personaje, aproximadamente en la zona que alcanza el golpe.</p>
+<p>No necesita ningún componente adicional. Utilizaremos únicamente su posición.</p>
+<p>En <code>Player.cs</code> añade:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">public</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">attackPoint</span><span class="p">;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">attackRadius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">public</span><span class="w"> </span><span class="n">LayerMask</span><span class="w"> </span><span class="n">enemyLayer</span><span class="p">;</span>
+</code></pre></div>
+<p>Después selecciona <code>Player</code> y, en el Inspector:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Attack Point  → AttackPoint
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Attack Radius → ajustarlo al alcance del golpe
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Enemy Layer   → Enemy
+</code></pre></div>
+<hr />
+<h2 id="3-crear-la-layer-enemy">3. Crear la Layer Enemy<a class="headerlink" href="#3-crear-la-layer-enemy" title="Permanent link">&para;</a></h2>
+<p>Necesitamos distinguir a los enemigos del resto de objetos del escenario.</p>
+<p>Selecciona el objeto que hará de enemigo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Layer
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>→ Add Layer...
+</code></pre></div>
+<p>Crea:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Enemy
+</code></pre></div>
+<p>Vuelve a seleccionar el enemigo y asígnale:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Layer: Enemy
+</code></pre></div>
+<p>El enemigo también necesita un <code>Collider2D</code>. Por ejemplo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Box Collider 2D
+</code></pre></div>
+<p>La <code>Layer</code> se utilizará como filtro para que el ataque no detecte el suelo, monedas u otros objetos.</p>
+<hr />
+<h2 id="4-detectar-un-enemigo-dentro-del-alcance">4. Detectar un enemigo dentro del alcance<a class="headerlink" href="#4-detectar-un-enemigo-dentro-del-alcance" title="Permanent link">&para;</a></h2>
+<p>Amplía el código que ejecutamos al pulsar <span class="keys"><kbd class="key-x">X</kbd></span>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="n">GetKeyDown</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">X</span><span class="p">))</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="p">{</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="n">anim</span><span class="p">.</span><span class="n">SetTrigger</span><span class="p">(</span><span class="s">"attack"</span><span class="p">);</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="n">Collider2D</span><span class="w"> </span><span class="n">enemyCollider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Physics2D</span><span class="p">.</span><span class="n">OverlapCircle</span><span class="p">(</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">        </span><span class="n">attackPoint</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">        </span><span class="n">attackRadius</span><span class="p">,</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">        </span><span class="n">enemyLayer</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">    </span><span class="p">);</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">enemyCollider</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">        </span><span class="n">Enemy</span><span class="w"> </span><span class="n">enemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enemyCollider</span><span class="p">.</span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Enemy</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">enemy</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">            </span><span class="n">enemy</span><span class="p">.</span><span class="n">Morir</span><span class="p">();</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>Physics2D.OverlapCircle()</code> comprueba si existe un <code>Collider2D</code> dentro de un círculo.</p>
+<p>En este caso recibe:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>attackPoint.position → centro del círculo
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>attackRadius         → radio del círculo
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>enemyLayer           → objetos que queremos detectar
+</code></pre></div>
+<p>Por tanto, solo nos interesa un collider que pertenezca a la <code>Layer Enemy</code>.</p>
+<hr />
+<h2 id="5-ver-la-zona-de-ataque">5. Ver la zona de ataque<a class="headerlink" href="#5-ver-la-zona-de-ataque" title="Permanent link">&para;</a></h2>
+<p>Para poder ajustar el alcance desde la escena, añade al final de <code>Player.cs</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnDrawGizmosSelected</span><span class="p">()</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="p">{</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">attackPoint</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">        </span><span class="n">Gizmos</span><span class="p">.</span><span class="n">DrawWireSphere</span><span class="p">(</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">            </span><span class="n">attackPoint</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">            </span><span class="n">attackRadius</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">        </span><span class="p">);</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="p">}</span>
+</code></pre></div>
+<p>No hay que llamar manualmente a <code>OnDrawGizmosSelected()</code>. Unity lo ejecuta automáticamente cuando el objeto está seleccionado.</p>
+<p>Para verlo:</p>
+<ol>
+<li>Selecciona <code>Player</code>.</li>
+<li>Comprueba que <strong>Gizmos</strong> está activado en la ventana <strong>Scene</strong>.</li>
+<li>Modifica <code>Attack Radius</code> desde el Inspector hasta obtener el alcance que necesites.</li>
+<li>Si el círculo aparece desplazado, mueve el objeto <code>AttackPoint</code>.</li>
+</ol>
+<hr />
+<h2 id="6-crear-el-script-enemy">6. Crear el script Enemy<a class="headerlink" href="#6-crear-el-script-enemy" title="Permanent link">&para;</a></h2>
+<p>Dentro de la carpeta de scripts crea:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>Enemy.cs
+</code></pre></div>
+<p>De momento el enemigo tendrá su propio método para morir. El Player no lo destruye directamente: le indica al enemigo que debe morir y es <code>Enemy</code> quien controla el proceso.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="p">{</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">Animator</span><span class="w"> </span><span class="n">animator</span><span class="p">;</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">        </span><span class="n">animator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Animator</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Morir</span><span class="p">()</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">        </span><span class="n">animator</span><span class="p">.</span><span class="n">SetTrigger</span><span class="p">(</span><span class="s">"Death"</span><span class="p">);</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Destruir</span><span class="p">()</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="w">        </span><span class="n">Destroy</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="p">}</span>
+</code></pre></div>
+<p>Añade <code>Enemy.cs</code> al mismo objeto que contiene el <code>Animator</code> y el <code>Collider2D</code> del enemigo.</p>
+<hr />
+<h2 id="7-animacion-de-muerte-del-enemigo">7. Animación de muerte del enemigo<a class="headerlink" href="#7-animacion-de-muerte-del-enemigo" title="Permanent link">&para;</a></h2>
+<p>Crea una animación:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Death.anim
+</code></pre></div>
+<p>En el clip:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Loop Time: desactivado
+</code></pre></div>
+<p>En el Animator del enemigo crea:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Trigger → Death
+</code></pre></div>
+<p>y la transición:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Idle → Death
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>Condition: Death
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>Has Exit Time: desactivado
+</code></pre></div>
+<p>No necesitamos una transición de vuelta a <code>Idle</code>, ya que el enemigo se eliminará al terminar la animación.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>En este proyecto el parámetro del enemigo se llama <code>Death</code>, con <code>D</code> mayúscula. Por eso el código utiliza <code>animator.SetTrigger("Death")</code>.</p>
+</div>
+<hr />
+<h2 id="8-destruir-el-enemigo-al-terminar-la-animacion">8. Destruir el enemigo al terminar la animación<a class="headerlink" href="#8-destruir-el-enemigo-al-terminar-la-animacion" title="Permanent link">&para;</a></h2>
+<p>No llamamos a <code>Destroy()</code> al recibir el golpe porque desaparecería inmediatamente y no llegaríamos a ver la animación.</p>
+<p>Utilizaremos un <strong>Animation Event</strong>.</p>
+<ol>
+<li>Selecciona el enemigo.</li>
+<li>Abre <code>Window → Animation → Animation</code>.</li>
+<li>Selecciona el clip <code>Death</code>.</li>
+<li>Sitúate en el último fotograma de la animación.</li>
+<li>Pulsa <strong>Add Animation Event</strong>.</li>
+<li>Selecciona el marcador creado.</li>
+<li>En el Inspector, en <code>Function</code>, selecciona:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>Enemy/Methods/Destruir()
+</code></pre></div>
+<p>El flujo queda:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Player pulsa X
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>        ↓
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>se detecta Enemy
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>        ↓
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>Enemy.Morir()
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>        ↓
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>Trigger Death
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>        ↓
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>animación Death
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>        ↓
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>Animation Event
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>        ↓
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>Destruir()
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>        ↓
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>Destroy(gameObject)
+</code></pre></div>
+<p>El método que recibe el evento debe ser público:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Destruir</span><span class="p">()</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="p">{</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="n">Destroy</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="9-evitar-que-el-enemigo-arrastre-al-player">9. Evitar que el enemigo arrastre al Player<a class="headerlink" href="#9-evitar-que-el-enemigo-arrastre-al-player" title="Permanent link">&para;</a></h2>
+<p>Si el collider del enemigo produce una colisión física, puede empujar al Player mientras este está muriendo.</p>
+<p>Para este comportamiento sencillo, selecciona el <code>Collider2D</code> del enemigo y activa:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Is Trigger
+</code></pre></div>
+<p>Así seguirá detectándose el contacto, pero el enemigo no empujará físicamente al Player.</p>
+<p>El Player ya dispone de <code>Rigidbody2D</code>, por lo que podemos detectar la entrada en el trigger.</p>
+<hr />
+<h2 id="10-hacer-que-el-player-muera-al-tocar-al-enemigo">10. Hacer que el Player muera al tocar al enemigo<a class="headerlink" href="#10-hacer-que-el-player-muera-al-tocar-al-enemigo" title="Permanent link">&para;</a></h2>
+<p>En <code>Player.cs</code> añade:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">muerto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+</code></pre></div>
+<p>Después crea:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Morir</span><span class="p">()</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="p">{</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">muerto</span><span class="p">)</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">    </span><span class="n">muerto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="w">    </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="w">    </span><span class="n">anim</span><span class="p">.</span><span class="n">SetTrigger</span><span class="p">(</span><span class="s">"death"</span><span class="p">);</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="p">}</span>
+</code></pre></div>
+<p>Y detecta el contacto con el enemigo:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnTriggerEnter2D</span><span class="p">(</span><span class="n">Collider2D</span><span class="w"> </span><span class="n">collision</span><span class="p">)</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="p">{</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">    </span><span class="n">Enemy</span><span class="w"> </span><span class="n">enemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collision</span><span class="p">.</span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Enemy</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">enemy</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">        </span><span class="n">Morir</span><span class="p">();</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>muerto</code> es una variable que hemos creado nosotros. No pertenece a Unity.</p>
+<p>Su función es indicar el estado actual del Player:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>muerto = false → puede moverse, saltar y atacar
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>muerto = true  → está ejecutando su muerte
+</code></pre></div>
+<p>Al principio de <code>Update()</code> añadimos:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">muerto</span><span class="p">)</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+</code></pre></div>
+<p>De esta forma, cuando comienza la muerte, dejamos de ejecutar el movimiento, el salto y el ataque.</p>
+<hr />
+<h2 id="11-animacion-de-muerte-del-player">11. Animación de muerte del Player<a class="headerlink" href="#11-animacion-de-muerte-del-player" title="Permanent link">&para;</a></h2>
+<p>En el Animator del Player crea:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>Trigger → death
+</code></pre></div>
+<p>Añade el estado <code>Death</code>.</p>
+<p>Una forma sencilla de permitir que el Player muera independientemente de lo que estuviera haciendo es:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>Any State → Death
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>Condition: death
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>Has Exit Time: desactivado
+</code></pre></div>
+<p>El clip <code>Death</code> no debe estar en bucle:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>Loop Time: desactivado
+</code></pre></div>
+<p>Si quieres eliminar el Player cuando termine la animación, añade un <strong>Animation Event</strong> al último fotograma que llame a:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Destruir</span><span class="p">()</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="p">{</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="n">Destroy</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="12-hacer-que-el-enemigo-patrulle">12. Hacer que el enemigo patrulle<a class="headerlink" href="#12-hacer-que-el-enemigo-patrulle" title="Permanent link">&para;</a></h2>
+<p>Vamos a hacer que el enemigo se desplace entre dos posiciones fijas.</p>
+<p>Crea dos objetos vacíos en la escena:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>PuntoA
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>PuntoB
+</code></pre></div>
+<p>No los hagas hijos del enemigo. Deben permanecer fijos mientras el enemigo se mueve.</p>
+<p>La jerarquía puede quedar así:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>SampleScene
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>├── Player
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>├── Enemy
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>├── PuntoA
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>└── PuntoB
+</code></pre></div>
+<p>Coloca ambos puntos en los extremos de la zona de patrulla.</p>
+<p>Amplía <code>Enemy.cs</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2f</span><span class="p">;</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="k">public</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">puntoA</span><span class="p">;</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="k">public</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">puntoB</span><span class="p">;</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="k">private</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">objetivo</span><span class="p">;</span>
+</code></pre></div>
+<p>En <code>Start()</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="n">objetivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puntoB</span><span class="p">;</span>
+</code></pre></div>
+<p>Y en <code>Update()</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">MoveTowards</span><span class="p">(</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="w">    </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="w">    </span><span class="n">objetivo</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="w">    </span><span class="n">speed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="p">);</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">Distance</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">objetivo</span><span class="p">.</span><span class="n">position</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">)</span>
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a><span class="p">{</span>
+<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">objetivo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">puntoA</span><span class="p">)</span>
+<a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a><span class="w">        </span><span class="n">objetivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puntoB</span><span class="p">;</span>
+<a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a><span class="w">    </span><span class="k">else</span>
+<a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a><span class="w">        </span><span class="n">objetivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puntoA</span><span class="p">;</span>
+<a id="__codelineno-41-16" name="__codelineno-41-16" href="#__codelineno-41-16"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-41-17" name="__codelineno-41-17" href="#__codelineno-41-17"></a><span class="p">}</span>
+</code></pre></div>
+<p>En el Inspector del enemigo asigna:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>Punto A → PuntoA
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>Punto B → PuntoB
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>Speed   → 2
+</code></pre></div>
+<hr />
+<h2 id="13-detener-la-patrulla-cuando-el-enemigo-muere">13. Detener la patrulla cuando el enemigo muere<a class="headerlink" href="#13-detener-la-patrulla-cuando-el-enemigo-muere" title="Permanent link">&para;</a></h2>
+<p>Ahora que el enemigo se mueve, conviene detener su <code>Update()</code> mientras reproduce <code>Death</code>.</p>
+<p>Añade a <code>Enemy.cs</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">muerto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+</code></pre></div>
+<p>Al principio de <code>Update()</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">muerto</span><span class="p">)</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+</code></pre></div>
+<p>Y modifica <code>Morir()</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Morir</span><span class="p">()</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="p">{</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">muerto</span><span class="p">)</span>
+<a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>
+<a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a><span class="w">    </span><span class="n">muerto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>
+<a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a><span class="w">    </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Collider2D</span><span class="o">&gt;</span><span class="p">().</span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+<a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a><span class="w">    </span><span class="n">animator</span><span class="p">.</span><span class="n">SetTrigger</span><span class="p">(</span><span class="s">"Death"</span><span class="p">);</span>
+<a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a><span class="p">}</span>
+</code></pre></div>
+<p>Además de detener el movimiento, desactivamos el collider para que el enemigo que ya está muriendo no vuelva a golpear al Player ni pueda recibir otro ataque.</p>
+<hr />
+<h2 id="14-ajustar-attackpoint-al-cambio-de-direccion">14. Ajustar AttackPoint al cambio de dirección<a class="headerlink" href="#14-ajustar-attackpoint-al-cambio-de-direccion" title="Permanent link">&para;</a></h2>
+<p>En el apartado anterior orientamos el personaje con:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="n">spriteRenderer</span><span class="p">.</span><span class="n">flipX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">move</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</code></pre></div>
+<p><code>flipX</code> gira únicamente el sprite. Los objetos hijos no cambian de posición, por lo que <code>AttackPoint</code> se quedaría en el mismo lado.</p>
+<p>Para que el punto de ataque acompañe a la dirección del Player, declara:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">attackPointX</span><span class="p">;</span>
+</code></pre></div>
+<p>En <code>Start()</code> guarda su distancia horizontal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">attackPointX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="n">attackPoint</span><span class="p">.</span><span class="n">localPosition</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+</code></pre></div>
+<p>Y sustituye el bloque de orientación por:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">move</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="p">{</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">miraIzquierda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">move</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a><span class="w">    </span><span class="n">spriteRenderer</span><span class="p">.</span><span class="n">flipX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">miraIzquierda</span><span class="p">;</span>
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a>
+<a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="w">    </span><span class="n">Vector3</span><span class="w"> </span><span class="n">attackPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">attackPoint</span><span class="p">.</span><span class="n">localPosition</span><span class="p">;</span>
+<a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a>
+<a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a><span class="w">    </span><span class="n">attackPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">miraIzquierda</span>
+<a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a><span class="w">        </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="n">attackPointX</span>
+<a id="__codelineno-49-11" name="__codelineno-49-11" href="#__codelineno-49-11"></a><span class="w">        </span><span class="p">:</span><span class="w"> </span><span class="n">attackPointX</span><span class="p">;</span>
+<a id="__codelineno-49-12" name="__codelineno-49-12" href="#__codelineno-49-12"></a>
+<a id="__codelineno-49-13" name="__codelineno-49-13" href="#__codelineno-49-13"></a><span class="w">    </span><span class="n">attackPoint</span><span class="p">.</span><span class="n">localPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">attackPosition</span><span class="p">;</span>
+<a id="__codelineno-49-14" name="__codelineno-49-14" href="#__codelineno-49-14"></a><span class="p">}</span>
+</code></pre></div>
+<p>Ahora:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>mira a la derecha → AttackPoint a la derecha
+<a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>mira a la izquierda → AttackPoint a la izquierda
+</code></pre></div>
+<hr />
+<h2 id="15-playercs-completo">15. Player.cs completo<a class="headerlink" href="#15-playercs-completo" title="Permanent link">&para;</a></h2>
+<p>El script final reúne el movimiento, salto, animaciones, orientación, ataque y muerte:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="p">{</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6f</span><span class="p">;</span>
+<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">jumpForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6f</span><span class="p">;</span>
+<a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a>
+<a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">groundCheck</span><span class="p">;</span>
+<a id="__codelineno-51-9" name="__codelineno-51-9" href="#__codelineno-51-9"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">groundRadius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">;</span>
+<a id="__codelineno-51-10" name="__codelineno-51-10" href="#__codelineno-51-10"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">LayerMask</span><span class="w"> </span><span class="n">groundLayer</span><span class="p">;</span>
+<a id="__codelineno-51-11" name="__codelineno-51-11" href="#__codelineno-51-11"></a>
+<a id="__codelineno-51-12" name="__codelineno-51-12" href="#__codelineno-51-12"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">attackPoint</span><span class="p">;</span>
+<a id="__codelineno-51-13" name="__codelineno-51-13" href="#__codelineno-51-13"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">attackRadius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">;</span>
+<a id="__codelineno-51-14" name="__codelineno-51-14" href="#__codelineno-51-14"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">LayerMask</span><span class="w"> </span><span class="n">enemyLayer</span><span class="p">;</span>
+<a id="__codelineno-51-15" name="__codelineno-51-15" href="#__codelineno-51-15"></a>
+<a id="__codelineno-51-16" name="__codelineno-51-16" href="#__codelineno-51-16"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">Rigidbody2D</span><span class="w"> </span><span class="n">rb2D</span><span class="p">;</span>
+<a id="__codelineno-51-17" name="__codelineno-51-17" href="#__codelineno-51-17"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">Animator</span><span class="w"> </span><span class="n">anim</span><span class="p">;</span>
+<a id="__codelineno-51-18" name="__codelineno-51-18" href="#__codelineno-51-18"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">SpriteRenderer</span><span class="w"> </span><span class="n">spriteRenderer</span><span class="p">;</span>
+<a id="__codelineno-51-19" name="__codelineno-51-19" href="#__codelineno-51-19"></a>
+<a id="__codelineno-51-20" name="__codelineno-51-20" href="#__codelineno-51-20"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">move</span><span class="p">;</span>
+<a id="__codelineno-51-21" name="__codelineno-51-21" href="#__codelineno-51-21"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">isGrounded</span><span class="p">;</span>
+<a id="__codelineno-51-22" name="__codelineno-51-22" href="#__codelineno-51-22"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">muerto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+<a id="__codelineno-51-23" name="__codelineno-51-23" href="#__codelineno-51-23"></a>
+<a id="__codelineno-51-24" name="__codelineno-51-24" href="#__codelineno-51-24"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">attackPointX</span><span class="p">;</span>
+<a id="__codelineno-51-25" name="__codelineno-51-25" href="#__codelineno-51-25"></a>
+<a id="__codelineno-51-26" name="__codelineno-51-26" href="#__codelineno-51-26"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<a id="__codelineno-51-27" name="__codelineno-51-27" href="#__codelineno-51-27"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-51-28" name="__codelineno-51-28" href="#__codelineno-51-28"></a><span class="w">        </span><span class="n">rb2D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Rigidbody2D</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-51-29" name="__codelineno-51-29" href="#__codelineno-51-29"></a><span class="w">        </span><span class="n">anim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Animator</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-51-30" name="__codelineno-51-30" href="#__codelineno-51-30"></a><span class="w">        </span><span class="n">spriteRenderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">SpriteRenderer</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-51-31" name="__codelineno-51-31" href="#__codelineno-51-31"></a>
+<a id="__codelineno-51-32" name="__codelineno-51-32" href="#__codelineno-51-32"></a><span class="w">        </span><span class="n">attackPointX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="n">attackPoint</span><span class="p">.</span><span class="n">localPosition</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+<a id="__codelineno-51-33" name="__codelineno-51-33" href="#__codelineno-51-33"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-51-34" name="__codelineno-51-34" href="#__codelineno-51-34"></a>
+<a id="__codelineno-51-35" name="__codelineno-51-35" href="#__codelineno-51-35"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<a id="__codelineno-51-36" name="__codelineno-51-36" href="#__codelineno-51-36"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-51-37" name="__codelineno-51-37" href="#__codelineno-51-37"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">muerto</span><span class="p">)</span>
+<a id="__codelineno-51-38" name="__codelineno-51-38" href="#__codelineno-51-38"></a><span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-51-39" name="__codelineno-51-39" href="#__codelineno-51-39"></a>
+<a id="__codelineno-51-40" name="__codelineno-51-40" href="#__codelineno-51-40"></a><span class="w">        </span><span class="n">move</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Input</span><span class="p">.</span><span class="n">GetAxisRaw</span><span class="p">(</span><span class="s">"Horizontal"</span><span class="p">);</span>
+<a id="__codelineno-51-41" name="__codelineno-51-41" href="#__codelineno-51-41"></a>
+<a id="__codelineno-51-42" name="__codelineno-51-42" href="#__codelineno-51-42"></a><span class="w">        </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
+<a id="__codelineno-51-43" name="__codelineno-51-43" href="#__codelineno-51-43"></a><span class="w">            </span><span class="n">move</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">speed</span><span class="p">,</span>
+<a id="__codelineno-51-44" name="__codelineno-51-44" href="#__codelineno-51-44"></a><span class="w">            </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="p">.</span><span class="n">y</span>
+<a id="__codelineno-51-45" name="__codelineno-51-45" href="#__codelineno-51-45"></a><span class="w">        </span><span class="p">);</span>
+<a id="__codelineno-51-46" name="__codelineno-51-46" href="#__codelineno-51-46"></a>
+<a id="__codelineno-51-47" name="__codelineno-51-47" href="#__codelineno-51-47"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="n">GetButtonDown</span><span class="p">(</span><span class="s">"Jump"</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isGrounded</span><span class="p">)</span>
+<a id="__codelineno-51-48" name="__codelineno-51-48" href="#__codelineno-51-48"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-51-49" name="__codelineno-51-49" href="#__codelineno-51-49"></a><span class="w">            </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
+<a id="__codelineno-51-50" name="__codelineno-51-50" href="#__codelineno-51-50"></a><span class="w">                </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+<a id="__codelineno-51-51" name="__codelineno-51-51" href="#__codelineno-51-51"></a><span class="w">                </span><span class="n">jumpForce</span>
+<a id="__codelineno-51-52" name="__codelineno-51-52" href="#__codelineno-51-52"></a><span class="w">            </span><span class="p">);</span>
+<a id="__codelineno-51-53" name="__codelineno-51-53" href="#__codelineno-51-53"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-51-54" name="__codelineno-51-54" href="#__codelineno-51-54"></a>
+<a id="__codelineno-51-55" name="__codelineno-51-55" href="#__codelineno-51-55"></a><span class="w">        </span><span class="n">anim</span><span class="p">.</span><span class="n">SetFloat</span><span class="p">(</span><span class="s">"Speed"</span><span class="p">,</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="n">move</span><span class="p">));</span>
+<a id="__codelineno-51-56" name="__codelineno-51-56" href="#__codelineno-51-56"></a><span class="w">        </span><span class="n">anim</span><span class="p">.</span><span class="n">SetFloat</span><span class="p">(</span><span class="s">"VerticalVelocity"</span><span class="p">,</span><span class="w"> </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+<a id="__codelineno-51-57" name="__codelineno-51-57" href="#__codelineno-51-57"></a><span class="w">        </span><span class="n">anim</span><span class="p">.</span><span class="n">SetBool</span><span class="p">(</span><span class="s">"IsGrounded"</span><span class="p">,</span><span class="w"> </span><span class="n">isGrounded</span><span class="p">);</span>
+<a id="__codelineno-51-58" name="__codelineno-51-58" href="#__codelineno-51-58"></a>
+<a id="__codelineno-51-59" name="__codelineno-51-59" href="#__codelineno-51-59"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">move</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-51-60" name="__codelineno-51-60" href="#__codelineno-51-60"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-51-61" name="__codelineno-51-61" href="#__codelineno-51-61"></a><span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">miraIzquierda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">move</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-51-62" name="__codelineno-51-62" href="#__codelineno-51-62"></a>
+<a id="__codelineno-51-63" name="__codelineno-51-63" href="#__codelineno-51-63"></a><span class="w">            </span><span class="n">spriteRenderer</span><span class="p">.</span><span class="n">flipX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">miraIzquierda</span><span class="p">;</span>
+<a id="__codelineno-51-64" name="__codelineno-51-64" href="#__codelineno-51-64"></a>
+<a id="__codelineno-51-65" name="__codelineno-51-65" href="#__codelineno-51-65"></a><span class="w">            </span><span class="n">Vector3</span><span class="w"> </span><span class="n">attackPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">attackPoint</span><span class="p">.</span><span class="n">localPosition</span><span class="p">;</span>
+<a id="__codelineno-51-66" name="__codelineno-51-66" href="#__codelineno-51-66"></a>
+<a id="__codelineno-51-67" name="__codelineno-51-67" href="#__codelineno-51-67"></a><span class="w">            </span><span class="n">attackPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">miraIzquierda</span>
+<a id="__codelineno-51-68" name="__codelineno-51-68" href="#__codelineno-51-68"></a><span class="w">                </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="n">attackPointX</span>
+<a id="__codelineno-51-69" name="__codelineno-51-69" href="#__codelineno-51-69"></a><span class="w">                </span><span class="p">:</span><span class="w"> </span><span class="n">attackPointX</span><span class="p">;</span>
+<a id="__codelineno-51-70" name="__codelineno-51-70" href="#__codelineno-51-70"></a>
+<a id="__codelineno-51-71" name="__codelineno-51-71" href="#__codelineno-51-71"></a><span class="w">            </span><span class="n">attackPoint</span><span class="p">.</span><span class="n">localPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">attackPosition</span><span class="p">;</span>
+<a id="__codelineno-51-72" name="__codelineno-51-72" href="#__codelineno-51-72"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-51-73" name="__codelineno-51-73" href="#__codelineno-51-73"></a>
+<a id="__codelineno-51-74" name="__codelineno-51-74" href="#__codelineno-51-74"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="n">GetKeyDown</span><span class="p">(</span><span class="n">KeyCode</span><span class="p">.</span><span class="n">X</span><span class="p">))</span>
+<a id="__codelineno-51-75" name="__codelineno-51-75" href="#__codelineno-51-75"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-51-76" name="__codelineno-51-76" href="#__codelineno-51-76"></a><span class="w">            </span><span class="n">anim</span><span class="p">.</span><span class="n">SetTrigger</span><span class="p">(</span><span class="s">"attack"</span><span class="p">);</span>
+<a id="__codelineno-51-77" name="__codelineno-51-77" href="#__codelineno-51-77"></a>
+<a id="__codelineno-51-78" name="__codelineno-51-78" href="#__codelineno-51-78"></a><span class="w">            </span><span class="n">Collider2D</span><span class="w"> </span><span class="n">enemyCollider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Physics2D</span><span class="p">.</span><span class="n">OverlapCircle</span><span class="p">(</span>
+<a id="__codelineno-51-79" name="__codelineno-51-79" href="#__codelineno-51-79"></a><span class="w">                </span><span class="n">attackPoint</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-51-80" name="__codelineno-51-80" href="#__codelineno-51-80"></a><span class="w">                </span><span class="n">attackRadius</span><span class="p">,</span>
+<a id="__codelineno-51-81" name="__codelineno-51-81" href="#__codelineno-51-81"></a><span class="w">                </span><span class="n">enemyLayer</span>
+<a id="__codelineno-51-82" name="__codelineno-51-82" href="#__codelineno-51-82"></a><span class="w">            </span><span class="p">);</span>
+<a id="__codelineno-51-83" name="__codelineno-51-83" href="#__codelineno-51-83"></a>
+<a id="__codelineno-51-84" name="__codelineno-51-84" href="#__codelineno-51-84"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">enemyCollider</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-51-85" name="__codelineno-51-85" href="#__codelineno-51-85"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-51-86" name="__codelineno-51-86" href="#__codelineno-51-86"></a><span class="w">                </span><span class="n">Enemy</span><span class="w"> </span><span class="n">enemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enemyCollider</span><span class="p">.</span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Enemy</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-51-87" name="__codelineno-51-87" href="#__codelineno-51-87"></a>
+<a id="__codelineno-51-88" name="__codelineno-51-88" href="#__codelineno-51-88"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">enemy</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-51-89" name="__codelineno-51-89" href="#__codelineno-51-89"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-51-90" name="__codelineno-51-90" href="#__codelineno-51-90"></a><span class="w">                    </span><span class="n">enemy</span><span class="p">.</span><span class="n">Morir</span><span class="p">();</span>
+<a id="__codelineno-51-91" name="__codelineno-51-91" href="#__codelineno-51-91"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-51-92" name="__codelineno-51-92" href="#__codelineno-51-92"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-51-93" name="__codelineno-51-93" href="#__codelineno-51-93"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-51-94" name="__codelineno-51-94" href="#__codelineno-51-94"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-51-95" name="__codelineno-51-95" href="#__codelineno-51-95"></a>
+<a id="__codelineno-51-96" name="__codelineno-51-96" href="#__codelineno-51-96"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">FixedUpdate</span><span class="p">()</span>
+<a id="__codelineno-51-97" name="__codelineno-51-97" href="#__codelineno-51-97"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-51-98" name="__codelineno-51-98" href="#__codelineno-51-98"></a><span class="w">        </span><span class="n">isGrounded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Physics2D</span><span class="p">.</span><span class="n">OverlapCircle</span><span class="p">(</span>
+<a id="__codelineno-51-99" name="__codelineno-51-99" href="#__codelineno-51-99"></a><span class="w">            </span><span class="n">groundCheck</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-51-100" name="__codelineno-51-100" href="#__codelineno-51-100"></a><span class="w">            </span><span class="n">groundRadius</span><span class="p">,</span>
+<a id="__codelineno-51-101" name="__codelineno-51-101" href="#__codelineno-51-101"></a><span class="w">            </span><span class="n">groundLayer</span>
+<a id="__codelineno-51-102" name="__codelineno-51-102" href="#__codelineno-51-102"></a><span class="w">        </span><span class="p">);</span>
+<a id="__codelineno-51-103" name="__codelineno-51-103" href="#__codelineno-51-103"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-51-104" name="__codelineno-51-104" href="#__codelineno-51-104"></a>
+<a id="__codelineno-51-105" name="__codelineno-51-105" href="#__codelineno-51-105"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnTriggerEnter2D</span><span class="p">(</span><span class="n">Collider2D</span><span class="w"> </span><span class="n">collision</span><span class="p">)</span>
+<a id="__codelineno-51-106" name="__codelineno-51-106" href="#__codelineno-51-106"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-51-107" name="__codelineno-51-107" href="#__codelineno-51-107"></a><span class="w">        </span><span class="n">Enemy</span><span class="w"> </span><span class="n">enemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collision</span><span class="p">.</span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Enemy</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-51-108" name="__codelineno-51-108" href="#__codelineno-51-108"></a>
+<a id="__codelineno-51-109" name="__codelineno-51-109" href="#__codelineno-51-109"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">enemy</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-51-110" name="__codelineno-51-110" href="#__codelineno-51-110"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-51-111" name="__codelineno-51-111" href="#__codelineno-51-111"></a><span class="w">            </span><span class="n">Morir</span><span class="p">();</span>
+<a id="__codelineno-51-112" name="__codelineno-51-112" href="#__codelineno-51-112"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-51-113" name="__codelineno-51-113" href="#__codelineno-51-113"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-51-114" name="__codelineno-51-114" href="#__codelineno-51-114"></a>
+<a id="__codelineno-51-115" name="__codelineno-51-115" href="#__codelineno-51-115"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Morir</span><span class="p">()</span>
+<a id="__codelineno-51-116" name="__codelineno-51-116" href="#__codelineno-51-116"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-51-117" name="__codelineno-51-117" href="#__codelineno-51-117"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">muerto</span><span class="p">)</span>
+<a id="__codelineno-51-118" name="__codelineno-51-118" href="#__codelineno-51-118"></a><span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-51-119" name="__codelineno-51-119" href="#__codelineno-51-119"></a>
+<a id="__codelineno-51-120" name="__codelineno-51-120" href="#__codelineno-51-120"></a><span class="w">        </span><span class="n">muerto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-51-121" name="__codelineno-51-121" href="#__codelineno-51-121"></a>
+<a id="__codelineno-51-122" name="__codelineno-51-122" href="#__codelineno-51-122"></a><span class="w">        </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">;</span>
+<a id="__codelineno-51-123" name="__codelineno-51-123" href="#__codelineno-51-123"></a><span class="w">        </span><span class="n">anim</span><span class="p">.</span><span class="n">SetTrigger</span><span class="p">(</span><span class="s">"death"</span><span class="p">);</span>
+<a id="__codelineno-51-124" name="__codelineno-51-124" href="#__codelineno-51-124"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-51-125" name="__codelineno-51-125" href="#__codelineno-51-125"></a>
+<a id="__codelineno-51-126" name="__codelineno-51-126" href="#__codelineno-51-126"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Destruir</span><span class="p">()</span>
+<a id="__codelineno-51-127" name="__codelineno-51-127" href="#__codelineno-51-127"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-51-128" name="__codelineno-51-128" href="#__codelineno-51-128"></a><span class="w">        </span><span class="n">Destroy</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+<a id="__codelineno-51-129" name="__codelineno-51-129" href="#__codelineno-51-129"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-51-130" name="__codelineno-51-130" href="#__codelineno-51-130"></a>
+<a id="__codelineno-51-131" name="__codelineno-51-131" href="#__codelineno-51-131"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnDrawGizmosSelected</span><span class="p">()</span>
+<a id="__codelineno-51-132" name="__codelineno-51-132" href="#__codelineno-51-132"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-51-133" name="__codelineno-51-133" href="#__codelineno-51-133"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">attackPoint</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-51-134" name="__codelineno-51-134" href="#__codelineno-51-134"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-51-135" name="__codelineno-51-135" href="#__codelineno-51-135"></a><span class="w">            </span><span class="n">Gizmos</span><span class="p">.</span><span class="n">DrawWireSphere</span><span class="p">(</span>
+<a id="__codelineno-51-136" name="__codelineno-51-136" href="#__codelineno-51-136"></a><span class="w">                </span><span class="n">attackPoint</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-51-137" name="__codelineno-51-137" href="#__codelineno-51-137"></a><span class="w">                </span><span class="n">attackRadius</span>
+<a id="__codelineno-51-138" name="__codelineno-51-138" href="#__codelineno-51-138"></a><span class="w">            </span><span class="p">);</span>
+<a id="__codelineno-51-139" name="__codelineno-51-139" href="#__codelineno-51-139"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-51-140" name="__codelineno-51-140" href="#__codelineno-51-140"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-51-141" name="__codelineno-51-141" href="#__codelineno-51-141"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="16-enemycs-completo">16. Enemy.cs completo<a class="headerlink" href="#16-enemycs-completo" title="Permanent link">&para;</a></h2>
+<p>El enemigo patrulla, puede recibir el ataque y se elimina al terminar su animación de muerte:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="p">{</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2f</span><span class="p">;</span>
+<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>
+<a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">puntoA</span><span class="p">;</span>
+<a id="__codelineno-52-8" name="__codelineno-52-8" href="#__codelineno-52-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">puntoB</span><span class="p">;</span>
+<a id="__codelineno-52-9" name="__codelineno-52-9" href="#__codelineno-52-9"></a>
+<a id="__codelineno-52-10" name="__codelineno-52-10" href="#__codelineno-52-10"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">objetivo</span><span class="p">;</span>
+<a id="__codelineno-52-11" name="__codelineno-52-11" href="#__codelineno-52-11"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">Animator</span><span class="w"> </span><span class="n">animator</span><span class="p">;</span>
+<a id="__codelineno-52-12" name="__codelineno-52-12" href="#__codelineno-52-12"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">Collider2D</span><span class="w"> </span><span class="n">enemyCollider</span><span class="p">;</span>
+<a id="__codelineno-52-13" name="__codelineno-52-13" href="#__codelineno-52-13"></a>
+<a id="__codelineno-52-14" name="__codelineno-52-14" href="#__codelineno-52-14"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">muerto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+<a id="__codelineno-52-15" name="__codelineno-52-15" href="#__codelineno-52-15"></a>
+<a id="__codelineno-52-16" name="__codelineno-52-16" href="#__codelineno-52-16"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<a id="__codelineno-52-17" name="__codelineno-52-17" href="#__codelineno-52-17"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-52-18" name="__codelineno-52-18" href="#__codelineno-52-18"></a><span class="w">        </span><span class="n">animator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Animator</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-52-19" name="__codelineno-52-19" href="#__codelineno-52-19"></a><span class="w">        </span><span class="n">enemyCollider</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Collider2D</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-52-20" name="__codelineno-52-20" href="#__codelineno-52-20"></a>
+<a id="__codelineno-52-21" name="__codelineno-52-21" href="#__codelineno-52-21"></a><span class="w">        </span><span class="n">objetivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puntoB</span><span class="p">;</span>
+<a id="__codelineno-52-22" name="__codelineno-52-22" href="#__codelineno-52-22"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-52-23" name="__codelineno-52-23" href="#__codelineno-52-23"></a>
+<a id="__codelineno-52-24" name="__codelineno-52-24" href="#__codelineno-52-24"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<a id="__codelineno-52-25" name="__codelineno-52-25" href="#__codelineno-52-25"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-52-26" name="__codelineno-52-26" href="#__codelineno-52-26"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">muerto</span><span class="p">)</span>
+<a id="__codelineno-52-27" name="__codelineno-52-27" href="#__codelineno-52-27"></a><span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-52-28" name="__codelineno-52-28" href="#__codelineno-52-28"></a>
+<a id="__codelineno-52-29" name="__codelineno-52-29" href="#__codelineno-52-29"></a><span class="w">        </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">MoveTowards</span><span class="p">(</span>
+<a id="__codelineno-52-30" name="__codelineno-52-30" href="#__codelineno-52-30"></a><span class="w">            </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-52-31" name="__codelineno-52-31" href="#__codelineno-52-31"></a><span class="w">            </span><span class="n">objetivo</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-52-32" name="__codelineno-52-32" href="#__codelineno-52-32"></a><span class="w">            </span><span class="n">speed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span>
+<a id="__codelineno-52-33" name="__codelineno-52-33" href="#__codelineno-52-33"></a><span class="w">        </span><span class="p">);</span>
+<a id="__codelineno-52-34" name="__codelineno-52-34" href="#__codelineno-52-34"></a>
+<a id="__codelineno-52-35" name="__codelineno-52-35" href="#__codelineno-52-35"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">Distance</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">objetivo</span><span class="p">.</span><span class="n">position</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">)</span>
+<a id="__codelineno-52-36" name="__codelineno-52-36" href="#__codelineno-52-36"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-52-37" name="__codelineno-52-37" href="#__codelineno-52-37"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">objetivo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">puntoA</span><span class="p">)</span>
+<a id="__codelineno-52-38" name="__codelineno-52-38" href="#__codelineno-52-38"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-52-39" name="__codelineno-52-39" href="#__codelineno-52-39"></a><span class="w">                </span><span class="n">objetivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puntoB</span><span class="p">;</span>
+<a id="__codelineno-52-40" name="__codelineno-52-40" href="#__codelineno-52-40"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-52-41" name="__codelineno-52-41" href="#__codelineno-52-41"></a><span class="w">            </span><span class="k">else</span>
+<a id="__codelineno-52-42" name="__codelineno-52-42" href="#__codelineno-52-42"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-52-43" name="__codelineno-52-43" href="#__codelineno-52-43"></a><span class="w">                </span><span class="n">objetivo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puntoA</span><span class="p">;</span>
+<a id="__codelineno-52-44" name="__codelineno-52-44" href="#__codelineno-52-44"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-52-45" name="__codelineno-52-45" href="#__codelineno-52-45"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-52-46" name="__codelineno-52-46" href="#__codelineno-52-46"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-52-47" name="__codelineno-52-47" href="#__codelineno-52-47"></a>
+<a id="__codelineno-52-48" name="__codelineno-52-48" href="#__codelineno-52-48"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Morir</span><span class="p">()</span>
+<a id="__codelineno-52-49" name="__codelineno-52-49" href="#__codelineno-52-49"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-52-50" name="__codelineno-52-50" href="#__codelineno-52-50"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">muerto</span><span class="p">)</span>
+<a id="__codelineno-52-51" name="__codelineno-52-51" href="#__codelineno-52-51"></a><span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-52-52" name="__codelineno-52-52" href="#__codelineno-52-52"></a>
+<a id="__codelineno-52-53" name="__codelineno-52-53" href="#__codelineno-52-53"></a><span class="w">        </span><span class="n">muerto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-52-54" name="__codelineno-52-54" href="#__codelineno-52-54"></a>
+<a id="__codelineno-52-55" name="__codelineno-52-55" href="#__codelineno-52-55"></a><span class="w">        </span><span class="n">enemyCollider</span><span class="p">.</span><span class="n">enabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+<a id="__codelineno-52-56" name="__codelineno-52-56" href="#__codelineno-52-56"></a><span class="w">        </span><span class="n">animator</span><span class="p">.</span><span class="n">SetTrigger</span><span class="p">(</span><span class="s">"Death"</span><span class="p">);</span>
+<a id="__codelineno-52-57" name="__codelineno-52-57" href="#__codelineno-52-57"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-52-58" name="__codelineno-52-58" href="#__codelineno-52-58"></a>
+<a id="__codelineno-52-59" name="__codelineno-52-59" href="#__codelineno-52-59"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Destruir</span><span class="p">()</span>
+<a id="__codelineno-52-60" name="__codelineno-52-60" href="#__codelineno-52-60"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-52-61" name="__codelineno-52-61" href="#__codelineno-52-61"></a><span class="w">        </span><span class="n">Destroy</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+<a id="__codelineno-52-62" name="__codelineno-52-62" href="#__codelineno-52-62"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-52-63" name="__codelineno-52-63" href="#__codelineno-52-63"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="17-configuracion-final">17. Configuración final<a class="headerlink" href="#17-configuracion-final" title="Permanent link">&para;</a></h2>
+<h3 id="player">Player<a class="headerlink" href="#player" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a>Player
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>├── Sprite Renderer
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>├── Rigidbody 2D
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a>├── Box Collider 2D
+<a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a>├── Animator
+<a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>├── Player (Script)
+<a id="__codelineno-53-7" name="__codelineno-53-7" href="#__codelineno-53-7"></a>├── GroundCheck
+<a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a>└── AttackPoint
+</code></pre></div>
+<p>En <code>Player (Script)</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>Ground Check  → GroundCheck
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>Ground Layer  → Floor
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a>Attack Point  → AttackPoint
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a>Enemy Layer   → Enemy
+</code></pre></div>
+<h3 id="enemy">Enemy<a class="headerlink" href="#enemy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>Enemy
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>├── Sprite Renderer
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>├── Box Collider 2D
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>│   └── Is Trigger: activado
+<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a>├── Animator
+<a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a>└── Enemy (Script)
+</code></pre></div>
+<p>En <code>Enemy (Script)</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>Punto A → PuntoA
+<a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>Punto B → PuntoB
+</code></pre></div>
+<p>Y el objeto debe pertenecer a:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>Layer: Enemy
+</code></pre></div>
+<hr />
+<h2 id="comprobacion">Comprobación<a class="headerlink" href="#comprobacion" title="Permanent link">&para;</a></h2>
+<p>Antes de continuar, comprueba:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El Player reproduce <code>Attack</code> al pulsar <span class="keys"><kbd class="key-x">X</kbd></span>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>Attack</code> vuelve a <code>Idle</code> al terminar.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>AttackPoint</code> está situado delante del personaje.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El círculo de ataque se ve al seleccionar el Player.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El enemigo pertenece a la <code>Layer Enemy</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El enemigo tiene un <code>Collider2D</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El golpe solo afecta al enemigo cuando está dentro del radio.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El enemigo reproduce <code>Death</code> antes de desaparecer.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <code>Animation Event</code> llama a <code>Destruir()</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El enemigo no empuja al Player.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El Player muere al entrar en contacto con el enemigo.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El Player deja de aceptar movimiento cuando comienza su muerte.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El enemigo patrulla entre <code>PuntoA</code> y <code>PuntoB</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El enemigo deja de moverse cuando comienza <code>Death</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>AttackPoint</code> cambia de lado cuando cambia la orientación del Player.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      IES Alonso de Ercilla · Curso 2026-2027
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/javascripts/home.js"></script>
+      
+        <script src="../../../assets/javascripts/image-viewer.js"></script>
+      
+    
+  </body>
+</html>
