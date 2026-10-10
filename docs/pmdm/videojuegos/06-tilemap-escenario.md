@@ -131,7 +131,7 @@ Cambia **Active Tilemap** a **`Decoracion`**, elige árboles, arbustos u otras p
 <figcaption>Árboles y arbustos añadidos con Decoracion seleccionado como destino.</figcaption>
 </figure>
 
-Para controlar qué queda delante, puedes usar **Order in Layer** en el componente **Tilemap Renderer**: por ejemplo, `Escenario = 0` y `Decoracion = -1` para que la decoración quede detrás. Si alguna decoración debe quedar delante, dale un orden mayor o sepárala en otro Tilemap.
+Para controlar qué queda delante, mantén los objetos en la misma **Sorting Layer**, por ejemplo `Default`, y usa **Order in Layer** en el componente **Tilemap Renderer**: por ejemplo, `Escenario = 0` y `Decoracion = -1` para que la decoración quede detrás. Si alguna decoración debe quedar delante, dale un orden mayor o sepárala en otro Tilemap.
 
 Dibujar agua u otros elementos no les añade comportamiento por sí solo. Si son solo visuales, colócalos en `Decoracion`; si deben causar daño o tener otra interacción, lo programaremos por separado.
 

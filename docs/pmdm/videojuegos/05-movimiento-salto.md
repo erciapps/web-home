@@ -2,23 +2,11 @@
 
 Vamos a convertir el personaje en un objeto controlable mediante físicas 2D.
 
-## Preparar el Player
+## Antes de programar
 
-Selecciona `Player` y añade:
+Completa primero [el escenario con Tilemap](06-tilemap-escenario.md) y [la preparación del Player y sus físicas](07-colisiones-fisicas.md). El personaje debe caer y apoyarse en el suelo al pulsar Play. Aquí utilizaremos su `Rigidbody 2D` y su `Box Collider 2D`, que ya están añadidos.
 
-```text
-Rigidbody 2D
-Box Collider 2D
-```
-
-En `Rigidbody 2D` activa:
-
-```text
-Constraints
-→ Freeze Rotation Z
-```
-
-Así evitamos que el personaje gire al chocar.
+Crea **`Player.cs`** en **Assets → Gamercilla → Scripts**, añade el código de movimiento horizontal y arrastra el script al objeto **`Player`** de la Hierarchy.
 
 ## Movimiento horizontal
 
@@ -88,11 +76,11 @@ Después crea una `Layer` llamada:
 Floor
 ```
 
-y asígnala al suelo, no al Player.
+y asígnala al Tilemap **`Escenario`**, que contiene el suelo sólido. `Player` y `Decoracion` deben permanecer fuera de esa layer. Esta es una **Layer de físicas**, distinta de la **Sorting Layer** utilizada para ordenar los sprites.
 
 ## Añadir el salto
 
-Amplía el script:
+Sustituye el contenido de **`Player.cs`** por esta versión, que incorpora el salto; no crees un segundo script con la misma clase:
 
 ```csharp
 using UnityEngine;

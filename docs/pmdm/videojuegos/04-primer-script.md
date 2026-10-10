@@ -5,7 +5,7 @@ Un script permite programar el comportamiento de un `GameObject`.
 Crea una carpeta:
 
 ```text
-Assets/MiJuego/Scripts
+Assets/Gamercilla/Scripts
 ```
 
 Dentro crea un script llamado, por ejemplo, `PrimerScript.cs`:
@@ -34,7 +34,7 @@ public class PrimerScript : MonoBehaviour
 
 Para probarlo:
 
-1. Arrastra el script a un `GameObject` de la escena.
+1. Arrastra el script a un `GameObject` de la escena, por ejemplo el `Player` que preparamos en [Colisiones y físicas](07-colisiones-fisicas.md).
 2. Pulsa **Play**.
 3. Abre la ventana **Console**.
 4. Comprueba que aparece el mensaje.

@@ -4,20 +4,16 @@ En este bloque construiremos paso a paso un videojuego de plataformas 2D con **U
 
 ## Ruta de aprendizaje
 
-```mermaid
-flowchart LR
-    A[Crear proyecto] --> B[Entorno de Unity]
-    B --> C[Assets y sprites]
-    C --> D[Primer script]
-    D --> E[Movimiento y salto]
-    E --> F[Ejemplo ERCIGAME]
-    F --> G[Tilemap y escenario]
-    G --> H[Colisiones y físicas]
-    H --> I[Animaciones]
-    I --> J[Orientación]
-    J --> K[Objetos recogibles]
-    K --> L[Tu propio videojuego]
-```
+Para esta práctica, sigue este orden: primero preparamos los recursos y el mapa; después comprobamos las físicas y añadimos el comportamiento mediante scripts.
+
+1. [Crear el proyecto](01-primer-proyecto.md) y conocer [el entorno de Unity](02-entorno-unity.md).
+2. Preparar [assets y sprites](03-assets-sprites.md).
+3. Dibujar [el escenario con Tilemap](06-tilemap-escenario.md).
+4. Crear el Player y comprobar [colisiones y físicas](07-colisiones-fisicas.md).
+5. Escribir [el primer script](04-primer-script.md) y añadir [movimiento y salto](05-movimiento-salto.md).
+6. Continuar con [animaciones](08-animaciones.md), [orientación](09-orientacion-personaje.md) y [objetos recogibles](10-objetos-recogibles.md), y aplicarlo en [tu propio videojuego](11-ejercicio-propio-juego.md).
+
+Las páginas conservan su numeración para facilitar las referencias a los apuntes. El [ejemplo ERCIGAME 2D](ercigame-2d-primeros-pasos.md) reúne el resultado de lo trabajado.
 
 ## Primeros pasos
 
@@ -95,7 +91,7 @@ flowchart LR
 
     ---
 
-    Colliders, Composite Collider y Physics Material 2D.
+    Player, colliders, Rigidbody 2D, Composite Collider y prueba con Play.
 
     [:octicons-arrow-right-24: Abrir](07-colisiones-fisicas.md)
 

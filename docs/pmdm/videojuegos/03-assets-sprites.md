@@ -80,9 +80,9 @@ En **Inspector**, ajusta:
 **Pixels Per Unit (PPU) es un número: escribimos `16`, no `16×16`.** Indica cuántos píxeles de la imagen equivalen a una unidad de distancia en la escena.
 
 - Un recorte de **16×16 píxeles**, con **16 PPU**, ocupa **1×1 unidades**.
-- Un recorte de **32×32 píxeles**, con los mismos **16 PPU**, ocupa **2×2 unidades**, aunque parte de la imagen sea transparente.
+- Un recorte de **32×32 píxeles**, con **20 PPU**, ocupa **1,6×1,6 unidades**, aunque parte de la imagen sea transparente.
 
-Si aumentas los PPU, el sprite se verá más pequeño en la escena; si los reduces, se verá más grande. Para que todas las piezas mantengan la misma escala, **conservaremos 16 PPU en los recursos de este paquete**. El tamaño del recorte se configura por separado.
+Si aumentas los PPU, el sprite se verá más pequeño en la escena; si los reduces, se verá más grande. **Conservaremos 16 PPU en el terreno y las plataformas, y utilizaremos 20 PPU para el personaje** para ajustar su tamaño respecto al mapa. El tamaño del recorte se configura por separado.
 
 ## Trocear la spritesheet
 
@@ -113,9 +113,24 @@ Repite la configuración y el recorte con cada hoja que vayas a usar. Para este 
 | --- | --- | --- |
 | `world_tileset` · terreno y decoración | `16` | `16×16` píxeles |
 | `platforms` · plataformas | `16` | `16×16` píxeles |
-| `knight` · personaje que usaremos como Player | `16` | `32×32` píxeles |
+| `knight` · personaje que usaremos como Player | `20` | `32×32` píxeles |
 
-Para **`knight`**, utiliza **Sprite Mode → Multiple** y **Grid By Cell Size**, pero cambia **Pixel Size** a **X = 32, Y = 32**. Los PPU siguen siendo `16`.
+### Preparar el personaje
+
+Selecciona **`knight`** en la carpeta `sprites`. Mantén los ajustes de pixel art de la tabla anterior, con **Sprite Mode → Multiple**, pero cambia **Pixels Per Unit a `20`** y pulsa **Apply en el Inspector**.
+
+Abre **Open Sprite Editor → Slice → Type → Grid By Cell Size** y escribe **Pixel Size: X = 32, Y = 32**, con **Offset** y **Padding** en `0`. Pulsa **Slice** y después **Apply en el Sprite Editor**.
+
+<figure class="unity-shot" markdown="1">
+
+[![Recorte de knight con Grid By Cell Size y celdas de 32×32 píxeles.](../../assets/images/pmdm/unity/26-unity-slice-personaje-32.png){ loading=lazy }](../../assets/images/pmdm/unity/26-unity-slice-personaje-32.png){ aria-label="Ampliar imagen" }
+
+<figcaption>knight: celdas de 32×32. Pulsa Slice y después Apply para guardar los fotogramas.</figcaption>
+</figure>
+
+Si quieres cambiar su tamaño más adelante, ajusta **Pixels Per Unit** y aplica el cambio: un valor menor lo agranda y uno mayor lo reduce. El recorte sigue siendo **32×32 píxeles**.
+
+### Comprobar los recortes
 
 Para monedas, frutas, enemigos u otras hojas, comprueba el tamaño real de cada fotograma antes de recortar: no todas las imágenes se dividen en 16×16. Los tamaños de otros paquetes también pueden ser distintos; por ejemplo, el Pixel Platformer de Kenney usa tiles de 18×18.
 
