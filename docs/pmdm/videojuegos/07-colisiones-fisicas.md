@@ -134,6 +134,17 @@ Añade **Rigidbody 2D** con **Add Component** y configura:
 <figcaption>Rigidbody 2D del Player: Dynamic, Simulated y Gravity Scale 1; despliega Constraints para bloquear Rotation Z</figcaption>
 </figure>
 
+### Evitar que el jugador gire
+
+Con **Player** seleccionado, despliega **Rigidbody 2D → Constraints** y marca **Freeze Rotation → Z**. Esto impide que el personaje gire o vuelque al chocar. Deja **Freeze Position X e Y sin marcar**, para poder desplazarse y saltar.
+
+<figure class="unity-shot" markdown="1">
+
+[![Rigidbody 2D del Player: Freeze Rotation Z activado y posición X/Y libre](../../assets/images/pmdm/unity/50-unity-freeze-rotation-z.png){ loading=lazy }](../../assets/images/pmdm/unity/50-unity-freeze-rotation-z.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Rigidbody 2D del Player: Freeze Rotation Z activado y posición X/Y libre</figcaption>
+</figure>
+
 !!! important "Dos Rigidbody, dos comportamientos"
     El **Rigidbody 2D de Escenario es Static**. El **Rigidbody 2D de Player es Dynamic**. Comprueba qué objeto está seleccionado antes de cambiar el Body Type.
 
@@ -178,15 +189,49 @@ Sal de **Play** antes de seguir editando: los cambios realizados durante la ejec
 
 ## Reducir la fricción con las paredes
 
-Si, al incorporar el movimiento, el personaje se queda pegado a una pared, podemos ajustar la fricción. Es un ajuste distinto de combinar las juntas del Tilemap.
+Si, al incorporar el movimiento, el personaje se queda pegado al lateral de una plataforma mientras intentamos moverlo contra ella, podemos reducir la fricción de contacto. Este ajuste complementa la combinación de las juntas del Tilemap.
 
-1. En **Assets → Gamercilla**, crea un **Physics Material 2D** desde **botón derecho → Create → 2D → Physics Material 2D**.
-2. Llámalo **`PlayerPhysics`**.
-3. Establece **Friction → 0** y **Bounciness → 0**.
-4. Asígnalo al campo **Material** del **Box Collider 2D del Player**.
+### Crear el material físico
+
+1. En **Project**, selecciona **Assets** —o una carpeta de materiales dentro de tu juego— y pulsa **botón derecho → Create → 2D → Physics Material 2D**.
+2. Renombra el asset como **`PlayerPhysics`** para identificarlo.
+
+<figure class="unity-shot" markdown="1">
+
+[![Create → 2D → Physics Material 2D crea el material para las físicas 2D](../../assets/images/pmdm/unity/51-unity-crear-material-fisico.png){ loading=lazy }](../../assets/images/pmdm/unity/51-unity-crear-material-fisico.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Create → 2D → Physics Material 2D crea el material para las físicas 2D</figcaption>
+</figure>
+
+3. Selecciona el material y establece **Friction → 0**. Deja **Bounciness → 0** para que no añada rebote.
+
+<figure class="unity-shot" markdown="1">
+
+[![Material físico con Friction en 0 y Bounciness en 0](../../assets/images/pmdm/unity/52-unity-friction-cero.png){ loading=lazy }](../../assets/images/pmdm/unity/52-unity-friction-cero.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Material físico con Friction en 0 y Bounciness en 0</figcaption>
+</figure>
+
+### Asignarlo al Player
+
+Selecciona **Player** y localiza **Box Collider 2D → Material**. Arrastra **PlayerPhysics** desde Project hasta ese campo. También puedes utilizar el selector circular y elegirlo en la pestaña **Assets**.
+
+**Crear el material no lo aplica por sí solo:** comprueba que el campo Material muestra el asset que acabas de configurar.
+
+<figure class="unity-shot" markdown="1">
+
+[![La captura muestra la alternativa de asignar el material desde Rigidbody 2D → Material](../../assets/images/pmdm/unity/53-unity-material-rigidbody.png){ loading=lazy }](../../assets/images/pmdm/unity/53-unity-material-rigidbody.png){ aria-label="Ampliar imagen" }
+
+<figcaption>La captura muestra la alternativa de asignar el material desde Rigidbody 2D → Material</figcaption>
+</figure>
+
+!!! note "La asignación que aparece en la captura"
+    En esta captura el selector pertenece a **Rigidbody 2D → Material**. Ese material se utiliza para sus colliders cuando no tienen un material propio asignado. En los pasos de esta práctica lo asignamos directamente a **Box Collider 2D → Material**, para dejar explícito qué collider lo utiliza.
+
+Guarda la escena fuera de **Play** y prueba de nuevo el contacto con el lateral de las plataformas. La fricción final depende también de la superficie con la que choca y de cómo se combinan los materiales.
 
 ## Continuar con el comportamiento
 
 Con el suelo sólido y el personaje preparado, podemos escribir [el primer script](04-primer-script.md) y después añadir [movimiento y salto](05-movimiento-salto.md), reutilizando los componentes que ya hemos configurado.
 
-Referencias: [Tilemap Collider 2D](https://docs.unity3d.com/6000.0/Documentation/Manual/tilemaps/work-with-tilemaps/tilemap-collider-2d-reference.html) y [Rigidbody 2D de tipo Dynamic](https://docs.unity3d.com/6000.0/Documentation/Manual/2d-physics/rigidbody/body-types/dynamic/dynamic-body-type-fundamentals.html).
+Referencias: [Physics Material 2D](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/PhysicsMaterial2D.html), [material compartido de Rigidbody 2D](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody2D-sharedMaterial.html), [Tilemap Collider 2D](https://docs.unity3d.com/6000.0/Documentation/Manual/tilemaps/work-with-tilemaps/tilemap-collider-2d-reference.html) y [Rigidbody 2D de tipo Dynamic](https://docs.unity3d.com/6000.0/Documentation/Manual/2d-physics/rigidbody/body-types/dynamic/dynamic-body-type-fundamentals.html).

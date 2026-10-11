@@ -107,7 +107,7 @@ Las páginas conservan su numeración para facilitar las referencias a los apunt
 
     ---
 
-    Cambio de dirección utilizando `SpriteRenderer.flipX`.
+    Cambio de orientación al invertir la escala X del personaje.
 
     [:octicons-arrow-right-24: Abrir](09-orientacion-personaje.md)
 
