@@ -1,4 +1,4 @@
-# 4. Primer script
+# 6. Primer script
 
 Un script es el punto de partida para dar instrucciones a un objeto de nuestro juego. Podemos decirle a un personaje que se mueva, salte o muestre un mensaje. En esta práctica crearemos **`Player.cs`** y entenderemos su estructura antes de añadir el movimiento.
 

@@ -1,4 +1,4 @@
-# 10. Objetos recogibles
+# 9. Objetos recogibles
 
 Vamos a crear una moneda que desaparezca cuando el jugador la recoja.
 
@@ -62,3 +62,5 @@ En lugar de limitarse a destruir la moneda, podemos añadir después:
 - puntuación;
 - animación o partículas;
 - condición para abrir una puerta o completar el nivel.
+
+Continúa con [Ataque y enemigos](11-ataque-enemigos.md).

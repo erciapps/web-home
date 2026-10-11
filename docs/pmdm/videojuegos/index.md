@@ -1,136 +1,105 @@
 # Videojuegos 2D con Unity
 
-En este bloque construiremos paso a paso un videojuego de plataformas 2D con **Unity 6**. Iremos incorporando las distintas partes del juego a medida que avancemos en clase.
+Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyecto de principio a fin. Completa las páginas en este orden: cada una utiliza lo preparado en la anterior.
 
-## Ruta de aprendizaje
-
-Para esta práctica, sigue este orden: primero preparamos los recursos y el mapa; después comprobamos las físicas y añadimos el comportamiento mediante scripts.
-
-1. [Crear el proyecto](01-primer-proyecto.md) y conocer [el entorno de Unity](02-entorno-unity.md).
-2. Preparar [assets y sprites](03-assets-sprites.md).
-3. Dibujar [el escenario con Tilemap](06-tilemap-escenario.md).
-4. Crear el Player y comprobar [colisiones y físicas](07-colisiones-fisicas.md).
-5. Escribir [el primer script](04-primer-script.md) y añadir [movimiento y salto](05-movimiento-salto.md).
-6. Continuar con [animaciones](08-animaciones.md), [orientación](09-orientacion-personaje.md) y [objetos recogibles](10-objetos-recogibles.md), y aplicarlo en [tu propio videojuego](11-ejercicio-propio-juego.md).
-
-Las páginas conservan su numeración para facilitar las referencias a los apuntes. El [ejemplo ERCIGAME 2D](ercigame-2d-primeros-pasos.md) reúne el resultado de lo trabajado.
-
-## Primeros pasos
+## Tutorial paso a paso
 
 <div class="grid cards" markdown>
 
--   :material-numeric-1-box:{ .lg .middle } **Crear el proyecto**
+-   :material-folder-plus:{ .lg .middle } **1. Crear el proyecto**
 
     ---
 
-    Unity Hub, proyecto Universal 2D, Rider y organización inicial.
+    Proyecto Universal 2D, editor de código y organización inicial.
 
     [:octicons-arrow-right-24: Abrir](01-primer-proyecto.md)
 
--   :material-numeric-2-box:{ .lg .middle } **Entorno de Unity**
+-   :material-monitor:{ .lg .middle } **2. Entorno de Unity**
 
     ---
 
-    Hierarchy, Scene, Game, Inspector, Project, Console y componentes.
+    Hierarchy, Scene, Game, Inspector y Project.
 
     [:octicons-arrow-right-24: Abrir](02-entorno-unity.md)
 
--   :material-numeric-3-box:{ .lg .middle } **Assets y sprites**
+-   :material-image-multiple:{ .lg .middle } **3. Assets y sprites**
 
     ---
 
-    Importación, configuración de pixel art y spritesheets.
+    Descarga de recursos, Pixels Per Unit y recorte de spritesheets.
 
     [:octicons-arrow-right-24: Abrir](03-assets-sprites.md)
 
--   :material-numeric-4-box:{ .lg .middle } **Primer script**
+-   :material-grid:{ .lg .middle } **4. Escenario con Tilemap**
 
     ---
 
-    MonoBehaviour, `Start()`, `Update()` y primeros mensajes en consola.
-
-    [:octicons-arrow-right-24: Abrir](04-primer-script.md)
-
--   :material-numeric-5-box:{ .lg .middle } **Movimiento y salto**
-
-    ---
-
-    Rigidbody2D, movimiento horizontal, GroundCheck y salto.
-
-    [:octicons-arrow-right-24: Abrir](05-movimiento-salto.md)
-
-</div>
-
-## Ejemplo de clase
-
-<div class="grid cards" markdown>
-
--   :material-gamepad-variant:{ .lg .middle } **ERCIGAME 2D**
-
-    ---
-
-    Ejemplo completo que reúne en un único proyecto lo que vamos construyendo en clase: escenario, físicas, movimiento, salto, animaciones y objetos recogibles.
-
-    [:octicons-arrow-right-24: Ver ejemplo](ercigame-2d-primeros-pasos.md)
-
-</div>
-
-## Seguimos construyendo el juego
-
-<div class="grid cards" markdown>
-
--   :material-grid:{ .lg .middle } **6. Escenario con Tilemap**
-
-    ---
-
-    Grid, Tile Palette, Escenario, Decoracion y fondo.
+    Grid, Tile Palette, suelo, decoración y fondo.
 
     [:octicons-arrow-right-24: Abrir](06-tilemap-escenario.md)
 
--   :material-vector-square:{ .lg .middle } **7. Colisiones y físicas**
+-   :material-vector-square:{ .lg .middle } **5. Player, colisiones y físicas**
 
     ---
 
-    Player, colliders, Rigidbody 2D, Composite Collider y prueba con Play.
+    Colliders del mapa y del jugador, Rigidbody 2D y material sin fricción.
 
     [:octicons-arrow-right-24: Abrir](07-colisiones-fisicas.md)
+
+-   :material-code-braces:{ .lg .middle } **6. Primer script**
+
+    ---
+
+    Player.cs, clases, Start, Update y comentarios.
+
+    [:octicons-arrow-right-24: Abrir](04-primer-script.md)
+
+-   :material-run:{ .lg .middle } **7. Movimiento, orientación y salto**
+
+    ---
+
+    Teclado, cambio de orientación, GroundCheck y detección de suelo.
+
+    [:octicons-arrow-right-24: Abrir](05-movimiento-salto.md)
 
 -   :material-animation-play:{ .lg .middle } **8. Animaciones**
 
     ---
 
-    Idle, Run, Jump, Animator Controller y parámetros.
+    Clips, Animator Controller y transiciones de reposo, carrera y salto.
 
     [:octicons-arrow-right-24: Abrir](08-animaciones.md)
 
--   :material-flip-horizontal:{ .lg .middle } **9. Orientación del personaje**
+-   :material-star-circle:{ .lg .middle } **9. Objetos recogibles**
 
     ---
 
-    Cambio de orientación al invertir la escala X del personaje.
-
-    [:octicons-arrow-right-24: Abrir](09-orientacion-personaje.md)
-
--   :material-star-circle:{ .lg .middle } **10. Objetos recogibles**
-
-    ---
-
-    Triggers, tags y una primera mecánica de monedas.
+    Triggers, tags y recogida de monedas.
 
     [:octicons-arrow-right-24: Abrir](10-objetos-recogibles.md)
 
-</div>
-
-## Práctica
-
-<div class="grid cards" markdown>
-
--   :material-hammer-wrench:{ .lg .middle } **Crea tu propio videojuego 2D**
+-   :material-sword:{ .lg .middle } **10. Ataque y enemigos**
 
     ---
 
-    Reproduce lo trabajado en clase utilizando otros assets, otro tileset y un nivel diseñado por ti.
+    Ataque, detección de enemigos, patrulla y animación de muerte.
 
-    [:octicons-arrow-right-24: Ver ejercicio](11-ejercicio-propio-juego.md)
+    [:octicons-arrow-right-24: Abrir](11-ataque-enemigos.md)
+
+-   :material-bullseye-arrow:{ .lg .middle } **11. Proyectiles y vida de los enemigos**
+
+    ---
+
+    Prefabs, lanzamiento de proyectiles y daño.
+
+    [:octicons-arrow-right-24: Abrir](12_proyectiles_y_vida_enemigos_unity.md)
+
+-   :material-hammer-wrench:{ .lg .middle } **12. Ejercicio · Tu propio videojuego**
+
+    ---
+
+    Aplica lo aprendido con otros recursos y un nivel diseñado por ti.
+
+    [:octicons-arrow-right-24: Abrir](11-ejercicio-propio-juego.md)
 
 </div>

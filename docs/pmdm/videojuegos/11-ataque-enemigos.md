@@ -1,4 +1,4 @@
-# 11. Ataque y enemigos
+# 10. Ataque y enemigos
 
 En este apartado vamos a incorporar un enemigo al escenario y una mecánica básica de combate.
 
@@ -16,7 +16,7 @@ Al terminar tendremos:
 
 ## 1. Crear la animación de ataque
 
-Selecciona `Player` y abre:
+Si ya preparaste **attack** en [Animaciones](08-animaciones.md), reutiliza ese clip. Si todavía no existe, selecciona `Player` y abre:
 
 ```text
 Window
@@ -564,51 +564,20 @@ Además de detener el movimiento, desactivamos el collider para que el enemigo q
 
 ## 14. Ajustar AttackPoint al cambio de dirección
 
-En el apartado anterior orientamos el personaje con:
-
-```csharp
-spriteRenderer.flipX = move < 0;
-```
-
-`flipX` gira únicamente el sprite. Los objetos hijos no cambian de posición, por lo que `AttackPoint` se quedaría en el mismo lado.
-
-Para que el punto de ataque acompañe a la dirección del Player, declara:
-
-```csharp
-private float attackPointX;
-```
-
-En `Start()` guarda su distancia horizontal:
-
-```csharp
-attackPointX = Mathf.Abs(attackPoint.localPosition.x);
-```
-
-Y sustituye el bloque de orientación por:
+Continuamos con la orientación mediante **la escala X del Transform**, que añadimos en [Movimiento, orientación y salto](05-movimiento-salto.md#orientacion-del-personaje):
 
 ```csharp
 if (move != 0)
 {
-    bool miraIzquierda = move < 0;
-
-    spriteRenderer.flipX = miraIzquierda;
-
-    Vector3 attackPosition = attackPoint.localPosition;
-
-    attackPosition.x = miraIzquierda
-        ? -attackPointX
-        : attackPointX;
-
-    attackPoint.localPosition = attackPosition;
+    transform.localScale = new Vector3(Mathf.Sign(move), 1, 1);
 }
 ```
 
-Ahora:
+Como **AttackPoint es hijo del Player**, también se refleja al cambiar el signo de X. Colócalo delante del personaje, con posición local X positiva cuando el sprite original mira a la derecha. GroundCheck debe seguir centrado en X = 0.
 
-```text
-mira a la derecha → AttackPoint a la derecha
-mira a la izquierda → AttackPoint a la izquierda
-```
+No inviertas además la posición local de AttackPoint ni apliques SpriteRenderer.flipX: reflejarlo dos veces dejaría el punto de ataque en el lado equivocado. Conserva un único bloque de orientación en Update.
+
+Prueba a caminar a izquierda y derecha y comprueba el círculo de ataque con el Player seleccionado.
 
 ---
 
@@ -633,22 +602,16 @@ public class Player : MonoBehaviour
     public LayerMask enemyLayer;
 
     private Rigidbody2D rb2D;
-    private Animator anim;
-    private SpriteRenderer spriteRenderer;
+    public Animator anim;
 
     private float move;
     private bool isGrounded;
     private bool muerto = false;
 
-    private float attackPointX;
-
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-        attackPointX = Mathf.Abs(attackPoint.localPosition.x);
     }
 
     void Update()
@@ -669,6 +632,7 @@ public class Player : MonoBehaviour
                 rb2D.linearVelocity.x,
                 jumpForce
             );
+            isGrounded = false;
         }
 
         anim.SetFloat("Speed", Mathf.Abs(move));
@@ -677,17 +641,7 @@ public class Player : MonoBehaviour
 
         if (move != 0)
         {
-            bool miraIzquierda = move < 0;
-
-            spriteRenderer.flipX = miraIzquierda;
-
-            Vector3 attackPosition = attackPoint.localPosition;
-
-            attackPosition.x = miraIzquierda
-                ? -attackPointX
-                : attackPointX;
-
-            attackPoint.localPosition = attackPosition;
+            transform.localScale = new Vector3(Mathf.Sign(move), 1, 1);
         }
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -718,7 +672,7 @@ public class Player : MonoBehaviour
             groundCheck.position,
             groundRadius,
             groundLayer
-        );
+        ) != null && rb2D.linearVelocity.y <= 0.1f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -903,3 +857,5 @@ Antes de continuar, comprueba:
 - [ ] El enemigo patrulla entre `PuntoA` y `PuntoB`.
 - [ ] El enemigo deja de moverse cuando comienza `Death`.
 - [ ] `AttackPoint` cambia de lado cuando cambia la orientación del Player.
+
+Continúa con [Proyectiles y vida de los enemigos](12_proyectiles_y_vida_enemigos_unity.md).

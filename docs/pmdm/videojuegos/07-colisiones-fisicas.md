@@ -1,4 +1,4 @@
-# 7. Colisiones y físicas
+# 5. Player, colisiones y físicas
 
 Partimos del [mapa dibujado con Tilemap](06-tilemap-escenario.md) y de los [sprites preparados](03-assets-sprites.md). Ahora haremos que el suelo sea sólido, colocaremos al personaje y comprobaremos las físicas antes de programar su movimiento.
 

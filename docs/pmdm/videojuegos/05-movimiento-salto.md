@@ -1,4 +1,4 @@
-# 5. Movimiento y salto
+# 7. Movimiento, orientación y salto
 
 Vamos a convertir el personaje en un objeto controlable mediante físicas 2D.
 
@@ -149,6 +149,45 @@ Puedes ajustar **Speed** desde **Player (Script)** en el Inspector. Para conserv
 
 Si no se mueve, comprueba que **Player (Script)** está en el objeto correcto, que **Speed** es mayor que cero, que **Active Input Handling** está en **Both**, que Game tiene el foco y que no hay errores de compilación en **Console**. Si falta Rigidbody 2D en ese mismo objeto, el script no podrá obtenerlo.
 
+## Orientación del personaje
+
+Cuando el jugador cambia de dirección, debe mirar hacia el lado al que se mueve. En esta práctica el sprite original mira a la derecha y el **Player tiene Scale = (1, 1, 1)**.
+
+Añade este bloque **dentro del Update existente, justo después de leer move**:
+
+```csharp
+// ORIENTACIÓN
+if (move != 0)
+{
+    transform.localScale = new Vector3(Mathf.Sign(move), 1, 1);
+}
+```
+
+| Valor de move | Escala X | Resultado |
+| --- | --- | --- |
+| `1` | `1` | Mira a la derecha. |
+| `-1` | `-1` | Mira a la izquierda. |
+| `0` | Se conserva | Mantiene la última orientación al detenerse. |
+
+**Mathf.Sign(move)** devuelve `-1` si el número es negativo y `1` si es cero o positivo. La condición **move != 0** evita cambiar la orientación al soltar las teclas. Y y Z se mantienen en 1. No crees otro método Update.
+
+!!! note "La escala también afecta a los hijos y los colliders"
+    Este código utiliza una escala inicial **(1, 1, 1)**. Si necesitas otro tamaño, ajusta los [Pixels Per Unit](03-assets-sprites.md#que-significa-pixels-per-unit) o adapta el código para conservar esa escala. Al crear GroundCheck en el siguiente paso, déjalo centrado en **X = 0** para que no cambie de posición al reflejar el Player.
+
+Guarda Player.cs, espera a que Unity compile y prueba **A/D o las flechas** en Game. El personaje debe mirar hacia donde camina y conservar su orientación al detenerse.
+
+<figure class="unity-shot" markdown="1">
+
+[![El Player cambia su orientación al desplazarse a izquierda y derecha](../../assets/images/pmdm/unity/56-unity-prueba-orientacion.gif){ loading=lazy }](../../assets/images/pmdm/unity/56-unity-prueba-orientacion.gif){ aria-label="Ampliar imagen" }
+
+<figcaption>El Player cambia su orientación al desplazarse a izquierda y derecha</figcaption>
+</figure>
+
+Si mira al lado contrario, comprueba hacia dónde mira el sprite original y si existe otro código que también modifica la escala o **SpriteRenderer.flipX**.
+
+!!! tip "Alternativa para reflejar solo la imagen"
+    `SpriteRenderer.flipX` permite invertir únicamente el sprite. En estos pasos utilizamos la **escala X del Transform**; elige un único método para controlar la orientación.
+
 ## Detectar el suelo
 
 Para permitir el salto cuando el personaje está apoyado, necesitamos un punto de comprobación junto a sus pies y una layer que identifique las plataformas sólidas.
@@ -253,6 +292,12 @@ public class Player : MonoBehaviour
     {
         move = Input.GetAxisRaw("Horizontal");
 
+        // Conservamos la orientación añadida en el paso anterior.
+        if (move != 0)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(move), 1, 1);
+        }
+
         rb2D.linearVelocity = new Vector2(
             move * speed,
             rb2D.linearVelocity.y
@@ -264,6 +309,8 @@ public class Player : MonoBehaviour
                 rb2D.linearVelocity.x,
                 jumpForce
             );
+            // Al despegar dejamos de estar apoyados.
+            isGrounded = false;
         }
     }
 
@@ -273,14 +320,14 @@ public class Player : MonoBehaviour
             groundCheck.position,
             groundRadius,
             groundLayer
-        ) != null;
+        ) != null && rb2D.linearVelocity.y <= 0.1f;
     }
 }
 ```
 
 ### Cómo sabe el script si puede saltar
 
-En **FixedUpdate**, `Physics2D.OverlapCircle` busca un collider dentro de un círculo centrado en **GroundCheck**, con el radio de **Ground Radius**, y solo en las layers de **Ground Layer**. Si encuentra uno, `isGrounded` vale `true`.
+En **FixedUpdate**, `Physics2D.OverlapCircle` busca un collider dentro de un círculo centrado en **GroundCheck**, con el radio de **Ground Radius**, y solo en las layers de **Ground Layer**. Si encuentra uno y el personaje no está ascendiendo (`linearVelocity.y <= 0.1f`), `isGrounded` vale `true`. Al iniciar el salto lo ponemos en `false` para no considerar que sigue apoyado mientras despega.
 
 En **Update**, `Input.GetButtonDown("Jump")` detecta la pulsación de salto —por defecto, la **barra espaciadora**—. Solo cambiamos la velocidad vertical cuando se pulsa y el personaje tiene suelo cerca. La velocidad horizontal se conserva.
 
@@ -335,6 +382,6 @@ Pulsa **Play**, haz clic en **Game** y combina **A/D o las flechas** con la **ba
 
 Si no salta, detén Play y comprueba que **Ground Check está asignado**, que **Escenario tiene Layer Floor**, que **Ground Layer incluye Floor** y que el punto de comprobación está cerca del suelo al apoyar los pies. Revisa también **Console** y los colliders del escenario. Si permite saltar cuando no está apoyado, revisa la posición y el radio de GroundCheck y que el Player no pertenezca a Floor.
 
-Para que mire hacia la dirección en la que se mueve, continúa con [Orientación del personaje](09-orientacion-personaje.md).
+Con el movimiento, la orientación y el salto funcionando, continúa con [Animaciones](08-animaciones.md).
 
 Referencias: [Physics2D.OverlapCircle](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Physics2D.OverlapCircle.html), [Rigidbody2D.linearVelocity](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Rigidbody2D-linearVelocity.html) y [activación de los sistemas de entrada](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.11/manual/Installation.html).

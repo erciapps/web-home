@@ -1,4 +1,4 @@
-# 12. Ejercicio · Crea tu propio videojuego 2D
+# 12. Ejercicio · Tu propio videojuego
 
 ## Propuesta
 

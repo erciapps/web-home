@@ -1,4 +1,4 @@
-# 6. Escenario con Tilemap
+# 4. Escenario con Tilemap
 
 Las **Tilemaps** permiten construir escenarios 2D a partir de piezas reutilizables. Antes de empezar, [importa y recorta los sprites](03-assets-sprites.md): aquí utilizaremos `world_tileset` y, si las necesitamos, las piezas de `platforms`.
 
