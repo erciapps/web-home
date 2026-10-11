@@ -139,16 +139,31 @@ Añade **Rigidbody 2D** con **Add Component** y configura:
 
 ## Probar las físicas con Play
 
-Guarda la escena con **Ctrl+S** y pulsa **Play**. El personaje debe caer por la gravedad y **quedarse apoyado sobre el suelo sólido**, como en la captura.
+Guarda la escena con **Ctrl+S** y pulsa **Play**. Podemos comparar dos situaciones:
+
+### Sin Tilemap Collider 2D
+
+**Si el Tilemap Escenario no tiene Tilemap Collider 2D, el suelo dibujado no genera colisiones.** Aunque el Player tenga Box Collider 2D y Rigidbody 2D, caerá por la gravedad y **atravesará el escenario**, como en esta captura de Game.
 
 <figure class="unity-shot" markdown="1">
 
-[![Prueba en Game: el Player queda apoyado en una plataforma del escenario](../../assets/images/pmdm/unity/33-unity-player-prueba-play.png){ loading=lazy }](../../assets/images/pmdm/unity/33-unity-player-prueba-play.png){ aria-label="Ampliar imagen" }
+[![Sin las colisiones del Tilemap, el Player atraviesa el suelo dibujado](../../assets/images/pmdm/unity/33-unity-player-prueba-play.png){ loading=lazy }](../../assets/images/pmdm/unity/33-unity-player-prueba-play.png){ aria-label="Ampliar imagen" }
 
-<figcaption>Prueba en Game: el Player queda apoyado en una plataforma del escenario</figcaption>
+<figcaption>Sin las colisiones del Tilemap, el Player atraviesa el suelo dibujado</figcaption>
 </figure>
 
-**No necesitamos un script para impedir que atraviese el suelo:** esa respuesta la proporcionan los colliders y los Rigidbody 2D. El script que añadiremos después permitirá **mover al personaje y saltar**. Por ahora no responderá a las teclas.
+### Con los colliders configurados
+
+Con los componentes y ajustes de esta página, el personaje debe caer y **quedarse apoyado sobre la superficie del suelo sólido**. La nueva captura muestra el resultado correcto:
+
+<figure class="unity-shot" markdown="1">
+
+[![Con los colliders configurados, el Player queda sobre el suelo y se ven los contornos de colisión del escenario](../../assets/images/pmdm/unity/34-unity-colisiones-correctas.png){ loading=lazy }](../../assets/images/pmdm/unity/34-unity-colisiones-correctas.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Con los colliders configurados, el Player queda sobre el suelo y se ven los contornos de colisión del escenario</figcaption>
+</figure>
+
+La respuesta al choque con el suelo la proporcionan **los colliders y los Rigidbody 2D**. El script que añadiremos después permitirá **mover al personaje y saltar**. Por ahora no responderá a las teclas.
 
 Si atraviesa una plataforma, detén Play y revisa:
 
