@@ -1,6 +1,6 @@
-# 11. Ataque y enemigos
+# 12. Ataque y enemigos
 
-Después de los [peligros que reinician el nivel](10-peligros-reinicio.md), incorporaremos un enemigo y una mecánica básica de combate. Aquí añadiremos animaciones de ataque y muerte.
+Después de [crear el enemigo y su patrulla](11-enemigo-patrulla.md), añadiremos el combate. Conservamos Player.Morir(), su animación y el reinicio del nivel preparados en [Peligros y reinicio](10-peligros-reinicio.md). Ahora programaremos el ataque y la muerte del enemigo.
 
 Al terminar tendremos:
 
@@ -10,7 +10,7 @@ Al terminar tendremos:
 - una animación de muerte para el enemigo;
 - eliminación del enemigo cuando termina la animación;
 - muerte del Player al tocar un enemigo;
-- un enemigo que patrulla entre dos puntos.
+- la patrulla que ya tenemos se detendrá cuando muera el enemigo.
 
 ---
 
@@ -27,12 +27,12 @@ Window
 Crea la animación:
 
 ```text
-Attack.anim
+attack.anim
 ```
 
 Añade los frames correspondientes al ataque.
 
-Como el ataque debe reproducirse una sola vez, selecciona el clip `Attack` en **Project** y comprueba que:
+Como el ataque debe reproducirse una sola vez, selecciona el clip `attack` en **Project** y comprueba que:
 
 ```text
 Loop Time: desactivado
@@ -48,7 +48,7 @@ Window
 → Animator
 ```
 
-Añade el estado `Attack`.
+Añade el estado `attack`.
 
 En **Parameters** crea:
 
@@ -59,20 +59,22 @@ Trigger → attack
 La transición de entrada queda:
 
 ```text
-Idle → Attack
+idle → attack
 Condition: attack
 Has Exit Time: desactivado
+Transition Duration: 0
 ```
 
 La transición de vuelta:
 
 ```text
-Attack → Idle
+attack → idle
 Has Exit Time: activado
+Transition Duration: 0
 Conditions: ninguna
 ```
 
-De esta forma el código inicia el ataque y, cuando termina la animación, el Animator vuelve a `Idle`.
+De esta forma el código inicia el ataque y, cuando termina la animación, el Animator vuelve a `idle`.
 
 En `Player.cs`:
 
@@ -222,50 +224,36 @@ Para verlo:
 
 ---
 
-## 6. Crear el script Enemy
+## 6. Ampliar el script Enemy
 
-Dentro de la carpeta de scripts crea:
+Abre **Enemy.cs**, que ya está asignado al enemigo. Conserva speed, los puntos, objetivo, animator, Start y la patrulla de Update.
 
-```text
-Enemy.cs
-```
-
-De momento el enemigo tendrá su propio método para morir. El Player no lo destruye directamente: le indica al enemigo que debe morir y es `Enemy` quien controla el proceso.
+Añade dentro de la clase estos dos métodos; más abajo incorporaremos la comprobación que impide repetir la muerte y detiene la patrulla:
 
 ```csharp
-using UnityEngine;
-
-public class Enemy : MonoBehaviour
+public void Morir()
 {
-    private Animator animator;
+    // Activamos el trigger de muerte del Animator del enemigo.
+    animator.SetTrigger("Death");
+}
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
-
-    public void Morir()
-    {
-        animator.SetTrigger("Death");
-    }
-
-    public void Destruir()
-    {
-        Destroy(gameObject);
-    }
+public void Destruir()
+{
+    // Se llamará cuando termine la animación de muerte.
+    Destroy(gameObject);
 }
 ```
 
-Añade `Enemy.cs` al mismo objeto que contiene el `Animator` y el `Collider2D` del enemigo.
+El Player no destruye al enemigo directamente: llama a Enemy.Morir(). Enemy controla su animación y se elimina al terminarla.
 
 ---
 
 ## 7. Animación de muerte del enemigo
 
-Crea una animación:
+Selecciona los fotogramas de muerte del enemigo y crea un clip distinto del death del Player:
 
 ```text
-Death.anim
+EnemyDeath.anim
 ```
 
 En el clip:
@@ -283,12 +271,13 @@ Trigger → Death
 y la transición:
 
 ```text
-Idle → Death
+enemy → Death
 Condition: Death
 Has Exit Time: desactivado
+Transition Duration: 0
 ```
 
-No necesitamos una transición de vuelta a `Idle`, ya que el enemigo se eliminará al terminar la animación.
+El estado inicial **enemy** reproduce la patrulla animada que creamos antes. Arrastra EnemyDeath.anim al controlador **del enemigo** y renombra el nuevo estado como **Death**, sin modificar el del Player. No necesitamos una transición de vuelta a `enemy`, ya que el enemigo se eliminará al terminar la animación.
 
 !!! warning
     En este proyecto el parámetro del enemigo se llama `Death`, con `D` mayúscula. Por eso el código utiliza `animator.SetTrigger("Death")`.
@@ -303,7 +292,7 @@ Utilizaremos un **Animation Event**.
 
 1. Selecciona el enemigo.
 2. Abre `Window → Animation → Animation`.
-3. Selecciona el clip `Death`.
+3. Selecciona el clip `EnemyDeath`.
 4. Sitúate en el último fotograma de la animación.
 5. Pulsa **Add Animation Event**.
 6. Selecciona el marcador creado.
@@ -313,25 +302,7 @@ Utilizaremos un **Animation Event**.
 Enemy/Methods/Destruir()
 ```
 
-El flujo queda:
-
-```text
-Player pulsa X
-        ↓
-se detecta Enemy
-        ↓
-Enemy.Morir()
-        ↓
-Trigger Death
-        ↓
-animación Death
-        ↓
-Animation Event
-        ↓
-Destruir()
-        ↓
-Destroy(gameObject)
-```
+Al pulsar X, el Player detecta al Enemy y llama a Morir(). El trigger Death inicia el clip; su evento final llama a Destruir(), que elimina el objeto.
 
 El método que recibe el evento debe ser público:
 
@@ -362,171 +333,27 @@ El Player ya dispone de `Rigidbody2D`, por lo que podemos detectar la entrada en
 
 ## 10. Hacer que el Player muera al tocar al enemigo
 
-En `Player.cs` añade:
-
-```csharp
-private bool muerto = false;
-```
-
-Después crea:
-
-```csharp
-public void Morir()
-{
-    if (muerto)
-        return;
-
-    muerto = true;
-
-    rb2D.linearVelocity = Vector2.zero;
-    anim.SetTrigger("death");
-}
-```
-
-Y detecta el contacto con el enemigo:
+El Player ya tiene **muerto**, **Morir()**, la comprobación al principio de Update y **ReiniciarNivel()**, preparados en [Peligros y reinicio](10-peligros-reinicio.md#muerte-player). **No los declares otra vez**. Añade únicamente este método dentro de Player:
 
 ```csharp
 private void OnTriggerEnter2D(Collider2D collision)
 {
+    // Comprobamos si el objeto que entra es un enemigo.
     Enemy enemy = collision.GetComponent<Enemy>();
 
     if (enemy != null)
     {
+        // Reutilizamos la misma muerte que provocan Killzone y Spikes.
         Morir();
     }
 }
 ```
 
-`muerto` es una variable que hemos creado nosotros. No pertenece a Unity.
-
-Su función es indicar el estado actual del Player:
-
-```text
-muerto = false → puede moverse, saltar y atacar
-muerto = true  → está ejecutando su muerte
-```
-
-Al principio de `Update()` añadimos:
-
-```csharp
-if (muerto)
-    return;
-```
-
-De esta forma, cuando comienza la muerte, dejamos de ejecutar el movimiento, el salto y el ataque.
+El trigger del enemigo permite detectar el contacto sin empujar al jugador. Este conserva su Rigidbody 2D. Al morir, deja de aceptar controles y su Animation Event reinicia la escena al terminar death, igual que al tocar los otros peligros.
 
 ---
 
-## 11. Animación de muerte del Player
-
-En el Animator del Player crea:
-
-```text
-Trigger → death
-```
-
-Añade el estado `Death`.
-
-Una forma sencilla de permitir que el Player muera independientemente de lo que estuviera haciendo es:
-
-```text
-Any State → Death
-Condition: death
-Has Exit Time: desactivado
-```
-
-El clip `Death` no debe estar en bucle:
-
-```text
-Loop Time: desactivado
-```
-
-Si quieres eliminar el Player cuando termine la animación, añade un **Animation Event** al último fotograma que llame a:
-
-```csharp
-public void Destruir()
-{
-    Destroy(gameObject);
-}
-```
-
----
-
-## 12. Hacer que el enemigo patrulle
-
-Vamos a hacer que el enemigo se desplace entre dos posiciones fijas.
-
-Crea dos objetos vacíos en la escena:
-
-```text
-PuntoA
-PuntoB
-```
-
-No los hagas hijos del enemigo. Deben permanecer fijos mientras el enemigo se mueve.
-
-La jerarquía puede quedar así:
-
-```text
-SampleScene
-├── Player
-├── Enemy
-├── PuntoA
-└── PuntoB
-```
-
-Coloca ambos puntos en los extremos de la zona de patrulla.
-
-Amplía `Enemy.cs`:
-
-```csharp
-public float speed = 2f;
-
-public Transform puntoA;
-public Transform puntoB;
-
-private Transform objetivo;
-```
-
-En `Start()`:
-
-```csharp
-objetivo = puntoB;
-```
-
-Y en `Update()`:
-
-```csharp
-transform.position = Vector2.MoveTowards(
-    transform.position,
-    objetivo.position,
-    speed * Time.deltaTime
-);
-
-if (Vector2.Distance(transform.position, objetivo.position) < 0.1f)
-{
-    if (objetivo == puntoA)
-    {
-        objetivo = puntoB;
-    }
-    else
-    {
-        objetivo = puntoA;
-    }
-}
-```
-
-En el Inspector del enemigo asigna:
-
-```text
-Punto A → PuntoA
-Punto B → PuntoB
-Speed   → 2
-```
-
----
-
-## 13. Detener la patrulla cuando el enemigo muere
+## 11. Detener la patrulla cuando el enemigo muere
 
 Ahora que el enemigo se mueve, conviene detener su `Update()` mientras reproduce `Death`.
 
@@ -562,7 +389,7 @@ Además de detener el movimiento, desactivamos el collider para que el enemigo q
 
 ---
 
-## 14. Ajustar AttackPoint al cambio de dirección
+## 12. Ajustar AttackPoint al cambio de dirección
 
 Continuamos con la orientación mediante **la escala X del Transform**, que añadimos en [Movimiento, orientación y salto](05-movimiento-salto.md#orientacion-del-personaje):
 
@@ -581,12 +408,13 @@ Prueba a caminar a izquierda y derecha y comprueba el círculo de ataque con el 
 
 ---
 
-## 15. Player.cs completo
+## 13. Player.cs completo
 
-El script final reúne el movimiento, salto, animaciones, orientación, ataque y muerte:
+El script final reúne el movimiento, salto, animaciones, orientación, ataque, muerte y reinicio. En Morir también limpiamos el trigger attack: un ataque pendiente no debe interrumpir la muerte. Mantén el evento ReiniciarNivel() en el clip death del Player:
 
 ```csharp
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -693,12 +521,15 @@ public class Player : MonoBehaviour
         muerto = true;
 
         rb2D.linearVelocity = Vector2.zero;
-        anim.SetTrigger("death");
+        anim.SetFloat("Speed", 0f);
+        anim.SetFloat("VerticalVelocity", 0f);
+        anim.ResetTrigger("attack");
+        anim.SetTrigger("Death");
     }
 
-    public void Destruir()
+    public void ReiniciarNivel()
     {
-        Destroy(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnDrawGizmosSelected()
@@ -716,7 +547,7 @@ public class Player : MonoBehaviour
 
 ---
 
-## 16. Enemy.cs completo
+## 14. Enemy.cs completo
 
 El enemigo patrulla, puede recibir el ataque y se elimina al terminar su animación de muerte:
 
@@ -725,7 +556,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 2f;
+    public float speed = 1f;
 
     public Transform puntoA;
     public Transform puntoB;
@@ -788,7 +619,7 @@ public class Enemy : MonoBehaviour
 
 ---
 
-## 17. Configuración final
+## 15. Configuración final
 
 ### Player
 
@@ -842,8 +673,8 @@ Layer: Enemy
 
 Antes de continuar, comprueba:
 
-- [ ] El Player reproduce `Attack` al pulsar ++x++.
-- [ ] `Attack` vuelve a `Idle` al terminar.
+- [ ] El Player reproduce `attack` al pulsar ++x++.
+- [ ] `attack` vuelve a `idle` al terminar.
 - [ ] `AttackPoint` está situado delante del personaje.
 - [ ] El círculo de ataque se ve al seleccionar el Player.
 - [ ] El enemigo pertenece a la `Layer Enemy`.
@@ -854,6 +685,7 @@ Antes de continuar, comprueba:
 - [ ] El enemigo no empuja al Player.
 - [ ] El Player muere al entrar en contacto con el enemigo.
 - [ ] El Player deja de aceptar movimiento cuando comienza su muerte.
+- [ ] El evento ReiniciarNivel() del Player recarga la escena al terminar death.
 - [ ] El enemigo patrulla entre `PuntoA` y `PuntoB`.
 - [ ] El enemigo deja de moverse cuando comienza `Death`.
 - [ ] `AttackPoint` cambia de lado cuando cambia la orientación del Player.

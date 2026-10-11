@@ -34,9 +34,10 @@ nav:
           - 8. Animaciones: pmdm/videojuegos/08-animaciones.md
           - 9. Monedas y objetos recogibles: pmdm/videojuegos/10-objetos-recogibles.md
           - 10. Peligros y reinicio del nivel: pmdm/videojuegos/10-peligros-reinicio.md
-          - 11. Ataque y enemigos: pmdm/videojuegos/11-ataque-enemigos.md
-          - 12. Proyectiles y vida de los enemigos: pmdm/videojuegos/12_proyectiles_y_vida_enemigos_unity.md
-          - 13. Ejercicio · Tu propio videojuego: pmdm/videojuegos/11-ejercicio-propio-juego.md
+          - 11. Crear un enemigo y su patrulla: pmdm/videojuegos/11-enemigo-patrulla.md
+          - 12. Ataque y enemigos: pmdm/videojuegos/11-ataque-enemigos.md
+          - 13. Proyectiles y vida de los enemigos: pmdm/videojuegos/12_proyectiles_y_vida_enemigos_unity.md
+          - 14. Ejercicio · Tu propio videojuego: pmdm/videojuegos/11-ejercicio-propio-juego.md
       - Recursos: pmdm/recursos.md
 
   - Recursos transversales:

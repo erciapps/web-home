@@ -1,6 +1,6 @@
 # 10. Peligros y reinicio del nivel
 
-Ya podemos recoger [monedas](10-objetos-recogibles.md). Ahora añadiremos una **zona de caída debajo del mapa** y **obstáculos que reinician el nivel al tocar al Player**. Utilizaremos triggers, como en la moneda, pero esta vez recargaremos la escena.
+Ya podemos recoger [monedas](10-objetos-recogibles.md). Ahora añadiremos una **zona de caída debajo del mapa** y **obstáculos que hacen morir al Player**. El peligro detectará el contacto y llamará a **Player.Morir()**. El jugador detendrá sus controles, reproducirá su animación de muerte y reiniciará el nivel al terminarla.
 
 ## 1. Crear la zona de caída
 
@@ -54,7 +54,147 @@ En **Unity 6**, abre **File → Build Profiles → Platforms → Scene List**. P
 
 **SceneManager.LoadScene necesita que la escena que cargamos esté incluida en la lista de escenas de la compilación.** Esta configuración sirve tanto para la zona de caída como para los pinchos que añadiremos después.
 
-## 3. Crear Killzone.cs
+## 3. Controlar la muerte desde Player.cs { #muerte-player }
+
+Trabajamos sobre **Player.cs**, que ya tiene movimiento, salto y Animator. Conserva ese código: añadiremos un estado y dos métodos dentro de la misma clase, sin crear otro Start ni otro Update.
+
+### Declarar el estado muerto
+
+Junto a las variables de Player.cs, añade:
+
+```csharp
+// false: el jugador puede actuar. true: ya ha comenzado su muerte.
+private bool muerto = false;
+```
+
+**bool** guarda uno de dos valores: true o false. **muerto es una variable nuestra**, no una propiedad que Unity añada automáticamente. La dejamos privada porque Player controla su propio estado.
+
+Al principio de tu **Update**, antes de leer teclas o modificar la velocidad, coloca:
+
+```csharp
+void Update()
+{
+    // Salimos de Update mientras el jugador está muerto.
+    if (muerto)
+    {
+        return;
+    }
+
+    // Debajo continúa el código que ya tenemos:
+    // entrada, movimiento, orientación, salto y parámetros del Animator.
+}
+```
+
+Este fragmento muestra **dónde insertar la comprobación**; no sustituyas el resto de Update por los comentarios. **return** termina esta llamada al método, de modo que las teclas ya no producen movimiento ni saltos. Más adelante también bloqueará el ataque, porque lo añadiremos dentro del mismo Update.
+
+### Crear Morir()
+
+Añade este método dentro de la clase Player y fuera de Update:
+
+```csharp
+public void Morir()
+{
+    // Si otro peligro ya inició la muerte, no volvemos a iniciarla.
+    if (muerto)
+    {
+        return;
+    }
+
+    // Cambiamos el estado: Update dejará de procesar los controles.
+    muerto = true;
+
+    // Detenemos la velocidad horizontal y vertical en este instante.
+    rb2D.linearVelocity = Vector2.zero;
+
+    // Limpiamos los valores de movimiento del Animator.
+    // Así la transición de salto no reutiliza una velocidad anterior.
+    anim.SetFloat("Speed", 0f);
+    anim.SetFloat("VerticalVelocity", 0f);
+
+    // Iniciamos la animación de muerte mediante el trigger Death.
+    anim.SetTrigger("Death");
+}
+```
+
+| Instrucción | Explicación |
+| --- | --- |
+| **public void Morir()** | Permite que otros componentes, como Killzone, pidan al jugador que muera. |
+| **if (muerto) / return** | Evita iniciar varias veces la muerte al tocar varios peligros. |
+| **muerto = true** | Recuerda el nuevo estado y bloquea los controles desde Update. |
+| **rb2D.linearVelocity = Vector2.zero** | Pone a cero la velocidad del Rigidbody 2D que guardamos en Start. |
+| **SetFloat** | Deja los parámetros de movimiento a cero antes de activar la muerte. |
+| **anim.SetTrigger("Death")** | Activa el parámetro Death del Animator del Player. |
+
+**rb2D es una referencia al componente Rigidbody 2D del jugador**. Ese componente gestiona su velocidad y las físicas; no es otro personaje. La animación sigue funcionando aunque salgamos de nuestro Update. También sigue actuando la gravedad: poner la velocidad a cero una vez no desactiva las físicas.
+
+### Configurar la animación de muerte
+
+Reutiliza el clip **death** preparado en [Animaciones](08-animaciones.md). Comprueba que **Loop Time está desactivado**. Abre el Animator Controller del Player y arrastra el clip si todavía falta su estado.
+
+1. En **Parameters**, pulsa **+ → Trigger**.
+
+<figure class="unity-shot" markdown="1">
+
+[![En Parameters, crea un parámetro de tipo Trigger para la muerte](../../assets/images/pmdm/unity/98-unity-crear-trigger-death.png){ loading=lazy }](../../assets/images/pmdm/unity/98-unity-crear-trigger-death.png){ aria-label="Ampliar imagen" }
+
+<figcaption>En Parameters, crea un parámetro de tipo Trigger para la muerte</figcaption>
+</figure>
+
+2. Llámalo **Death**, con D mayúscula: debe coincidir exactamente con el texto de SetTrigger.
+
+<figure class="unity-shot" markdown="1">
+
+[![El parámetro Death utiliza D mayúscula, igual que anim.SetTrigger("Death")](../../assets/images/pmdm/unity/99-unity-parametro-death.png){ loading=lazy }](../../assets/images/pmdm/unity/99-unity-parametro-death.png){ aria-label="Ampliar imagen" }
+
+<figcaption>El parámetro Death utiliza D mayúscula, igual que anim.SetTrigger("Death")</figcaption>
+</figure>
+
+3. Haz clic derecho en **Any State → Make Transition** y une la transición al estado **death**.
+4. Selecciona la flecha. Añade la condición **Death**, desmarca **Has Exit Time**, pon **Transition Duration = 0** y desmarca **Can Transition To Self**.
+
+<figure class="unity-shot" markdown="1">
+
+[![Any State → death usa Death como condición; desactiva también Can Transition To Self](../../assets/images/pmdm/unity/100-unity-transicion-death.png){ loading=lazy }](../../assets/images/pmdm/unity/100-unity-transicion-death.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Any State → death usa Death como condición; desactiva también Can Transition To Self</figcaption>
+</figure>
+
+5. Deja el estado death **sin transiciones de salida**. El nivel se recargará al terminar el clip.
+
+El nombre del **parámetro** es Death; el nombre del **clip o estado** puede ser death, como en la captura. Son elementos diferentes. Las transiciones de movimiento y salto se conservan; Morir limpia VerticalVelocity para que Any State → jump no interrumpa la muerte.
+
+### Reiniciar cuando termina la animación
+
+Al principio del archivo Player.cs, junto a using UnityEngine, añade:
+
+```csharp
+using UnityEngine.SceneManagement;
+```
+
+Dentro de Player añade también:
+
+```csharp
+// Este método se llamará desde el último fotograma de death.
+public void ReiniciarNivel()
+{
+    // Recargamos la escena activa para recuperar su estado inicial.
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+}
+```
+
+1. Guarda Player.cs y espera a que Unity compile sin errores.
+2. Selecciona **Player** en Hierarchy y abre **Window → Animation → Animation**.
+3. Selecciona su clip **death** y coloca el cursor en el último fotograma.
+4. Pulsa **Add Animation Event** y selecciona el marcador creado.
+5. En el Inspector, en **Function**, elige **ReiniciarNivel()** del componente Player.
+
+El **Animation Event** llama a ese método en el momento indicado del clip. Player.cs y Animator deben estar en el mismo objeto Player. No añadas un evento que destruya al jugador antes de reiniciar.
+
+La secuencia es: **contacto con un peligro → Morir() → animación death → evento ReiniciarNivel() → recarga de la escena**. Por eso Morir no carga la escena inmediatamente: necesitamos tiempo para ver la animación.
+
+Al recargar, **el Player vuelve a su posición guardada y las monedas recogidas vuelven a aparecer**. La escena debe estar incluida en Scene List, como acabamos de preparar.
+
+## 4. Crear Killzone.cs
 
 En la misma carpeta **Scripts** donde están Player.cs y Coin.cs, crea un **MonoBehaviour Script** llamado **Killzone**.
 
@@ -69,16 +209,23 @@ En la misma carpeta **Scripts** donde están Player.cs y Coin.cs, crea un **Mono
 
 ```csharp
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Killzone : MonoBehaviour
 {
+    // Unity llama a este método cuando otro collider entra en el trigger.
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Solo reaccionamos si el objeto que entra tiene el Tag Player.
         if (collision.transform.CompareTag("Player"))
         {
-            // Reinicia el nivel cargando de nuevo la escena activa.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // Buscamos el componente Player en ese mismo objeto.
+            Player player = collision.GetComponent<Player>();
+
+            // Si lo tiene, le pedimos que inicie su proceso de muerte.
+            if (player != null)
+            {
+                player.Morir();
+            }
         }
     }
 }
@@ -86,24 +233,25 @@ public class Killzone : MonoBehaviour
 
 <figure class="unity-shot" markdown="1">
 
-[![Killzone.cs recarga la escena activa al detectar un objeto con Tag Player](../../assets/images/pmdm/unity/94-unity-killzone-codigo.png){ loading=lazy }](../../assets/images/pmdm/unity/94-unity-killzone-codigo.png){ aria-label="Ampliar imagen" }
+[![Captura de la versión inicial: ahora sustituimos la recarga directa por Player.Morir(), como en el código anterior](../../assets/images/pmdm/unity/94-unity-killzone-codigo.png){ loading=lazy }](../../assets/images/pmdm/unity/94-unity-killzone-codigo.png){ aria-label="Ampliar imagen" }
 
-<figcaption>Killzone.cs recarga la escena activa al detectar un objeto con Tag Player</figcaption>
+<figcaption>Captura de la versión inicial: ahora sustituimos la recarga directa por Player.Morir(), como en el código anterior</figcaption>
 </figure>
 
 El archivo se llama **Killzone.cs** y su clase **Killzone**, con la misma escritura. En Hierarchy, el objeto de la captura aparece como KillZone; el nombre del objeto puede variar, pero el del archivo y el de la clase deben coincidir.
 
 | Instrucción | Función |
 | --- | --- |
-| **using UnityEngine.SceneManagement** | Permite utilizar las clases de gestión de escenas. |
-| **OnTriggerEnter2D** | Detecta que otro collider entra en la zona. |
-| **CompareTag("Player")** | Limita el reinicio al contacto con el jugador. |
-| **SceneManager.GetActiveScene().name** | Obtiene el nombre de la escena activa, la del nivel que estamos jugando. |
-| **SceneManager.LoadScene(...)** | Carga esa escena de nuevo. |
+| **OnTriggerEnter2D(Collider2D collision)** | Unity avisa de la entrada; collision es el collider del objeto que acaba de entrar. |
+| **CompareTag("Player")** | Comprueba su Tag para ignorar monedas y otros objetos. |
+| **Player player** | Declara una variable que guardará una referencia al componente Player. |
+| **collision.GetComponent<Player>()** | Busca ese componente en el mismo GameObject que tiene el collider. |
+| **if (player != null)** | Comprueba que encontró el script antes de llamar a su método. |
+| **player.Morir()** | Pide al jugador que muera; Player decide cómo animar la muerte y cuándo reiniciar. |
 
-Al recargar la escena, **el Player vuelve a su posición guardada y las monedas recogidas vuelven a aparecer**, porque recuperamos el estado inicial de los objetos de este nivel.
+El **Tag Player y Player (Script) deben estar en el mismo objeto que tiene el collider del jugador**. La variable player apunta a ese componente: no crea otro jugador. Killzone ya no necesita using UnityEngine.SceneManagement porque la recarga la hace Player.
 
-## 4. Asignar el script y probar la caída
+## 5. Asignar el script y probar la caída
 
 1. Guarda Killzone.cs y espera a que Unity compile.
 2. Arrastra **Killzone.cs desde Project hasta Killzone en Hierarchy**.
@@ -118,11 +266,18 @@ Al recargar la escena, **el Player vuelve a su posición guardada y las monedas 
 3. Selecciona la zona y comprueba **Box Collider 2D → Is Trigger** y el componente **Killzone (Script)**.
 4. El Player debe conservar **Tag Player**, Rigidbody 2D Dynamic y su collider, como configuramos al recoger monedas.
 5. Guarda la escena, pulsa Play y haz clic en Game.
-6. Deja caer al jugador por un hueco: al entrar en la zona inferior, el nivel debe reiniciarse.
+6. Deja caer al jugador por un hueco: al entrar en la zona inferior, debe comenzar la muerte y después reiniciarse el nivel. Si cae fuera de cámara, quizá no veas la animación; el reinicio debe producirse igualmente.
 
-En esta fase el contacto produce **un reinicio directo**. En el apartado de combate trabajaremos la animación de muerte antes de eliminar al personaje.
+<figure class="unity-shot" markdown="1">
 
-## 5. Añadir pinchos u otros obstáculos
+[![Prueba la animación de muerte del Player al tocar el peligro](../../assets/images/pmdm/unity/101-unity-muerte-player.gif){ loading=lazy }](../../assets/images/pmdm/unity/101-unity-muerte-player.gif){ aria-label="Ampliar imagen" }
+
+<figcaption>Prueba la animación de muerte del Player al tocar el peligro</figcaption>
+</figure>
+
+Comprueba que durante la muerte ya no responde a A, D, las flechas ni al salto. Al llegar al evento del clip, el nivel se reinicia.
+
+## 6. Añadir pinchos u otros obstáculos
 
 1. Detén Play y abre **sprites** en Project.
 2. Elige un sprite de pinchos u otro elemento que vayas a utilizar como peligro y arrástralo a Scene.
@@ -153,16 +308,23 @@ En Scripts, crea un **MonoBehaviour Script** llamado **Spikes**. Utilizaremos el
 
 ```csharp
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Spikes : MonoBehaviour
 {
+    // Unity llama a este método cuando otro collider entra en el trigger.
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Solo reaccionamos si el objeto que entra tiene el Tag Player.
         if (collision.transform.CompareTag("Player"))
         {
-            // Reinicia el nivel al tocar el obstáculo.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // Buscamos el componente Player en ese mismo objeto.
+            Player player = collision.GetComponent<Player>();
+
+            // Si lo tiene, le pedimos que inicie su proceso de muerte.
+            if (player != null)
+            {
+                player.Morir();
+            }
         }
     }
 }
@@ -170,13 +332,13 @@ public class Spikes : MonoBehaviour
 
 Guarda y vuelve a Unity. **Arrastra Spikes.cs al objeto Spikes** para añadirlo como componente. Comprueba que **Spikes (Script)** aparece junto al collider, guarda la escena y prueba el contacto con el personaje.
 
-Si prefieres reutilizar el comportamiento ya creado, puedes asignar **Killzone.cs al obstáculo** en lugar de crear Spikes.cs. Añade **uno de los dos scripts** al objeto: ambos realizan el mismo reinicio.
+Si prefieres reutilizar el comportamiento ya creado, puedes asignar **Killzone.cs al obstáculo** en lugar de crear Spikes.cs. Añade **uno de los dos scripts** al objeto: ambos llaman a Player.Morir().
 
-## 6. Comprobar el conjunto
+## 7. Comprobar el conjunto
 
 | Objeto | Componentes y ajustes que debemos comprobar |
 | --- | --- |
-| **Player** | Tag Player, Rigidbody 2D Dynamic, Box Collider 2D con Is Trigger desactivado y Player (Script). |
+| **Player** | Tag Player, Rigidbody 2D Dynamic, Box Collider 2D con Is Trigger desactivado y Player (Script), además del Animator con Death y el evento ReiniciarNivel(). |
 | **Coin** | Animator de la moneda, Circle Collider 2D con Is Trigger activado y Coin (Script). |
 | **Killzone** | Zona bajo el mapa, Box Collider 2D con Is Trigger activado y Killzone (Script). |
 | **Spikes** | Obstáculo sobre una plataforma, Box Collider 2D con Is Trigger activado y Spikes (Script), o Killzone (Script) si lo reutilizas. |
@@ -187,8 +349,10 @@ Prueba una recogida, una caída y el contacto con el obstáculo. Después de cad
 
 Revisa **Console**, la inclusión de la escena en **Scene List**, el **Tag Player**, la asignación del script al peligro y **Is Trigger** en su collider. Para recibir eventos de trigger 2D, al menos uno de los objetos necesita Rigidbody 2D: en este proyecto lo lleva el Player. Comprueba también que las layers pueden interactuar en **Project Settings → Physics 2D**.
 
+Si reproduce la muerte pero no reinicia, revisa el **Animation Event** del último fotograma: debe llamar a ReiniciarNivel() en el Player. Si no aparece la animación, comprueba el parámetro Death, su condición y la asignación del Animator Controller.
+
 Si el nivel se reinicia nada más empezar, revisa la posición inicial del Player y el tamaño de los triggers: el personaje debe comenzar fuera de la zona de caída y de los obstáculos.
 
-Continúa con [Ataque y enemigos](11-ataque-enemigos.md).
+Continúa con [Crear un enemigo y su patrulla](11-enemigo-patrulla.md).
 
-Referencias: [SceneManager.LoadScene](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/SceneManagement.SceneManager.LoadScene.html), [Scene List en Unity 6](https://docs.unity3d.com/6000.0/Documentation/Manual/build-profile-scene-list.html) y [eventos de trigger 2D](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html).
+Referencias: [SceneManager.LoadScene](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/SceneManagement.SceneManager.LoadScene.html), [Scene List en Unity 6](https://docs.unity3d.com/6000.0/Documentation/Manual/build-profile-scene-list.html), [Animation Events](https://docs.unity3d.com/6000.0/Documentation/Manual/script-AnimationWindowEvent.html) y [eventos de trigger 2D](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html).

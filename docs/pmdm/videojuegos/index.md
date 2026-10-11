@@ -82,19 +82,27 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     ---
 
-    Zona de caída, pinchos, Scene List y recarga de la escena.
+    Zona de caída, pinchos, muerte del Player y reinicio al terminar la animación.
 
     [:octicons-arrow-right-24: Abrir](10-peligros-reinicio.md)
 
--   :material-sword:{ .lg .middle } **11. Ataque y enemigos**
+-   :material-swap-horizontal:{ .lg .middle } **11. Crear un enemigo y su patrulla**
 
     ---
 
-    Ataque, detección de enemigos, patrulla y animación de muerte.
+    Sprites del enemigo, animación y recorrido entre PuntoA y PuntoB.
+
+    [:octicons-arrow-right-24: Abrir](11-enemigo-patrulla.md)
+
+-   :material-sword:{ .lg .middle } **12. Ataque y enemigos**
+
+    ---
+
+    Ataque, detección de enemigos, contacto y muerte del enemigo.
 
     [:octicons-arrow-right-24: Abrir](11-ataque-enemigos.md)
 
--   :material-bullseye-arrow:{ .lg .middle } **12. Proyectiles y vida de los enemigos**
+-   :material-bullseye-arrow:{ .lg .middle } **13. Proyectiles y vida de los enemigos**
 
     ---
 
@@ -102,7 +110,7 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     [:octicons-arrow-right-24: Abrir](12_proyectiles_y_vida_enemigos_unity.md)
 
--   :material-hammer-wrench:{ .lg .middle } **13. Ejercicio · Tu propio videojuego**
+-   :material-hammer-wrench:{ .lg .middle } **14. Ejercicio · Tu propio videojuego**
 
     ---
 

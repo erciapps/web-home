@@ -1,4 +1,4 @@
-# 12. Proyectiles y vida de los enemigos
+# 13. Proyectiles y vida de los enemigos
 
 En este apartado vamos a añadir un ataque a distancia al personaje. El jugador podrá lanzar un objeto horizontalmente hacia la dirección en la que está mirando y ese proyectil podrá golpear a los enemigos.
 
@@ -394,7 +394,7 @@ Se mueve
 
 ## 10. Destruir el proyectil al tocar el escenario
 
-También podemos eliminarlo si toca el suelo o una pared que pertenezca a la capa `Ground`.
+También podemos eliminarlo si toca el suelo o una pared que pertenezca a la capa `Floor`.
 
 Modifica `OnTriggerEnter2D()`:
 
@@ -410,7 +410,7 @@ private void OnTriggerEnter2D(Collider2D collision)
         return;
     }
 
-    if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+    if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
     {
         Destroy(gameObject);
     }
@@ -431,7 +431,7 @@ Projectile
 └── No
     │
     ▼
-¿Toca Layer Ground?
+¿Toca Layer Floor?
 ├── Sí → Destroy(Projectile)
 └── No  → continúa
 ```
@@ -459,6 +459,10 @@ Creamos:
 ```csharp
 public void RecibirGolpe()
 {
+    // Un enemigo que ya está muriendo no recibe más daño.
+    if (muerto)
+        return;
+
     vida--;
 
     if (vida <= 0)
@@ -512,7 +516,7 @@ private void OnTriggerEnter2D(Collider2D collision)
         return;
     }
 
-    if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+    if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
     {
         Destroy(gameObject);
     }
@@ -608,7 +612,7 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
             Destroy(gameObject);
         }
@@ -625,6 +629,10 @@ public int vida = 2;
 
 public void RecibirGolpe()
 {
+    // Un enemigo que ya está muriendo no recibe más daño.
+    if (muerto)
+        return;
+
     vida--;
 
     if (vida <= 0)
@@ -634,21 +642,9 @@ public void RecibirGolpe()
 }
 ```
 
-Los métodos que ya teníamos continúan funcionando:
+Conserva **Morir() y Destruir() del [apartado de combate](11-ataque-enemigos.md)**. Morir comprueba muerto, detiene la patrulla y desactiva el collider antes de activar Death. No sustituyas ese método por una versión que solo llame a SetTrigger.
 
-```csharp
-public void Morir()
-{
-    animator.SetTrigger("Death");
-}
-
-public void Destruir()
-{
-    Destroy(gameObject);
-}
-```
-
-`Destruir()` sigue siendo llamado mediante el `Animation Event` situado al final de la animación `Death`.
+**Destruir()** sigue siendo llamado mediante el Animation Event situado al final de EnemyDeath. El Player conserva su propio método ReiniciarNivel() y su evento de muerte.
 
 ---
 
@@ -715,7 +711,7 @@ private void LanzarObjeto()
           ┌─────────┴─────────┐
           │                   │
           ▼                   ▼
-       Ground               Enemy
+       Floor                Enemy
           │                   │
           ▼                   ▼
        Destroy()       RecibirGolpe()
