@@ -1,6 +1,6 @@
-# 10. Ataque y enemigos
+# 11. Ataque y enemigos
 
-En este apartado vamos a incorporar un enemigo al escenario y una mecánica básica de combate.
+Después de los [peligros que reinician el nivel](10-peligros-reinicio.md), incorporaremos un enemigo y una mecánica básica de combate. Aquí añadiremos animaciones de ataque y muerte.
 
 Al terminar tendremos:
 

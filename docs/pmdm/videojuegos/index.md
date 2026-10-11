@@ -70,15 +70,23 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     [:octicons-arrow-right-24: Abrir](08-animaciones.md)
 
--   :material-star-circle:{ .lg .middle } **9. Objetos recogibles**
+-   :material-star-circle:{ .lg .middle } **9. Monedas y objetos recogibles**
 
     ---
 
-    Triggers, tags y recogida de monedas.
+    Monedas animadas, triggers, Tag Player y recogida de objetos.
 
     [:octicons-arrow-right-24: Abrir](10-objetos-recogibles.md)
 
--   :material-sword:{ .lg .middle } **10. Ataque y enemigos**
+-   :material-restart:{ .lg .middle } **10. Peligros y reinicio del nivel**
+
+    ---
+
+    Zona de caída, pinchos, Scene List y recarga de la escena.
+
+    [:octicons-arrow-right-24: Abrir](10-peligros-reinicio.md)
+
+-   :material-sword:{ .lg .middle } **11. Ataque y enemigos**
 
     ---
 
@@ -86,7 +94,7 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     [:octicons-arrow-right-24: Abrir](11-ataque-enemigos.md)
 
--   :material-bullseye-arrow:{ .lg .middle } **11. Proyectiles y vida de los enemigos**
+-   :material-bullseye-arrow:{ .lg .middle } **12. Proyectiles y vida de los enemigos**
 
     ---
 
@@ -94,7 +102,7 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     [:octicons-arrow-right-24: Abrir](12_proyectiles_y_vida_enemigos_unity.md)
 
--   :material-hammer-wrench:{ .lg .middle } **12. Ejercicio · Tu propio videojuego**
+-   :material-hammer-wrench:{ .lg .middle } **13. Ejercicio · Tu propio videojuego**
 
     ---
 

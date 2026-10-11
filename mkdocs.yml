@@ -32,10 +32,11 @@ nav:
           - 6. Primer script: pmdm/videojuegos/04-primer-script.md
           - 7. Movimiento, orientación y salto: pmdm/videojuegos/05-movimiento-salto.md
           - 8. Animaciones: pmdm/videojuegos/08-animaciones.md
-          - 9. Objetos recogibles: pmdm/videojuegos/10-objetos-recogibles.md
-          - 10. Ataque y enemigos: pmdm/videojuegos/11-ataque-enemigos.md
-          - 11. Proyectiles y vida de los enemigos: pmdm/videojuegos/12_proyectiles_y_vida_enemigos_unity.md
-          - 12. Ejercicio · Tu propio videojuego: pmdm/videojuegos/11-ejercicio-propio-juego.md
+          - 9. Monedas y objetos recogibles: pmdm/videojuegos/10-objetos-recogibles.md
+          - 10. Peligros y reinicio del nivel: pmdm/videojuegos/10-peligros-reinicio.md
+          - 11. Ataque y enemigos: pmdm/videojuegos/11-ataque-enemigos.md
+          - 12. Proyectiles y vida de los enemigos: pmdm/videojuegos/12_proyectiles_y_vida_enemigos_unity.md
+          - 13. Ejercicio · Tu propio videojuego: pmdm/videojuegos/11-ejercicio-propio-juego.md
       - Recursos: pmdm/recursos.md
 
   - Recursos transversales:

@@ -1,4 +1,4 @@
-# 12. Ejercicio · Tu propio videojuego
+# 13. Ejercicio · Tu propio videojuego
 
 ## Propuesta
 
@@ -22,6 +22,7 @@ Tu proyecto debe incluir:
 - al menos las animaciones **Idle**, **Run** y **Jump**;
 - orientación del personaje según la dirección del movimiento;
 - al menos un tipo de objeto recogible;
+- una zona de caída que reinicie el nivel y un obstáculo con trigger;
 - una meta o condición clara para terminar el nivel.
 
 ## Elementos para personalizar el juego

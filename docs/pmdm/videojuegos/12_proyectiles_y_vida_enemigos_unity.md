@@ -1,4 +1,4 @@
-# 11. Proyectiles y vida de los enemigos
+# 12. Proyectiles y vida de los enemigos
 
 En este apartado vamos a añadir un ataque a distancia al personaje. El jugador podrá lanzar un objeto horizontalmente hacia la dirección en la que está mirando y ese proyectil podrá golpear a los enemigos.
 
