@@ -32,12 +32,25 @@ rm
 
 <div class="resource-embed">
   <iframe src="https://view.genial.ly/61ed48646b85b90013222284/presentation-presentacion-basica" width="100%" height="600px" frameborder="0" allowfullscreen="true" loading="lazy"></iframe>
+
+</div>
+
+## Entregables
+
+<div class="si-units">
   <article class="si-card available" style="--accent:#ff7a00">
     <div class="si-card-top"><span class="si-code">ENTREGABLE UD1</span><span class="si-state available">Disponible</span></div>
     <div class="si-unit-icon">$</div>
     <h3>Gestor de archivos con Bash · 45 minutos</h3>
     <p>Actividad individual: crea una estructura y procesa instrucciones COPY y MOVE desde un fichero.</p>
     <div class="si-card-bottom"><div class="si-ra"><span>RA4 · CE 4.e</span></div><div class="si-actions"><a class="si-button" href="ejercicios/entregable_ud1/">Ver entregable <span>→</span></a></div></div>
+  </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">SEGUNDO ENTREGABLE UD1</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Preparar y comprobar una entrega · 60 minutos</h3>
+    <p>Redacta el TXT de una estructura, interpreta operaciones y comprueba el resultado con un informe y un registro.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Bash · sed · IFS · tail</span></div><div class="si-actions"><a class="si-button" href="ejercicios/entregable_ud1_2/">Ver entregable <span>→</span></a></div></div>
   </article>
 </div>
 
