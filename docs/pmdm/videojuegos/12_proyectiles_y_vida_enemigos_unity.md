@@ -1,214 +1,216 @@
 # 13. Proyectiles y vida de los enemigos
 
-En este apartado vamos a añadir un ataque a distancia al personaje. El jugador podrá lanzar un objeto horizontalmente hacia la dirección en la que está mirando y ese proyectil podrá golpear a los enemigos.
+Después de [Ataque y enemigos](11-ataque-enemigos.md), el enemigo ya patrulla, mata al Player al tocarlo y reproduce **deathenemy** antes de desaparecer. Ahora lanzaremos un proyectil al pulsar **C** y haremos que el enemigo necesite **dos golpes** para morir.
 
-Partimos del proyecto anterior, donde ya tenemos:
+Conservamos los scripts y la escena: ampliaremos Player y Enemy, y crearemos Projectile.cs. El código utiliza las físicas 2D de **Unity 6**.
 
-- El personaje con movimiento.
-- El personaje puede mirar a izquierda y derecha.
-- Los enemigos tienen un script `Enemy`.
-- Los enemigos pueden ejecutar una animación de muerte.
-- Al finalizar la animación `Death`, un `Animation Event` llama a `Destruir()`.
+## 1. Preparar el sprite del proyectil
 
----
+1. Detén Play. En **Project → sprites**, selecciona la imagen que utilizarás como proyectil. En las capturas elegimos una fruta.
+2. Revisa sus propiedades antes de arrastrarla a Scene:
 
-## 1. Crear el proyectil a partir de un sprite
+| Propiedad | Valor |
+| --- | --- |
+| **Texture Type** | Sprite (2D and UI) |
+| **Sprite Mode** | Multiple |
+| **Pixels Per Unit** | 16 |
+| **Filter Mode** | Point (no filter) |
+| **Compression** | None |
 
-Busca en `Assets` el sprite que quieras utilizar como proyectil y arrástralo directamente a la escena.
+<figure class="unity-shot" markdown="1">
 
-Unity creará automáticamente un `GameObject` con un componente `SpriteRenderer`.
+[![Antes de crear el proyectil, configura Pixels Per Unit 16, Point y Compression None](../../assets/images/pmdm/unity/114-unity-proyectil-importacion.png){ loading=lazy }](../../assets/images/pmdm/unity/114-unity-proyectil-importacion.png){ aria-label="Ampliar imagen" }
 
-Renombra el objeto como:
+<figcaption>Antes de crear el proyectil, configura Pixels Per Unit 16, Point y Compression None</figcaption>
+</figure>
 
-```text
-Projectile
-```
+3. Pulsa **Apply** en el Inspector y abre **Sprite Editor**.
+4. En **Slice**, selecciona **Type → Automatic**, pulsa **Slice** y después **Apply**.
 
-Tendremos inicialmente:
+<figure class="unity-shot" markdown="1">
 
-```text
-Projectile
-├── Transform
-└── SpriteRenderer
-```
+[![Recorta la hoja de frutas con Automatic: pulsa Slice y después Apply](../../assets/images/pmdm/unity/115-unity-proyectil-slice-auto.png){ loading=lazy }](../../assets/images/pmdm/unity/115-unity-proyectil-slice-auto.png){ aria-label="Ampliar imagen" }
 
-Ahora añade desde el Inspector:
+<figcaption>Recorta la hoja de frutas con Automatic: pulsa Slice y después Apply</figcaption>
+</figure>
 
-```text
-Rigidbody2D
-CircleCollider2D
-```
+5. Despliega la imagen en Project y arrastra **un solo recorte** de la fruta a Scene. No arrastres toda la hoja ni varios sprites: este proyectil usará una imagen fija.
+6. Renombra el objeto como **Projectile**.
 
-La configuración básica será:
+<figure class="unity-shot" markdown="1">
 
-```text
-Projectile
-├── Transform
-├── SpriteRenderer
-├── Rigidbody2D
-└── CircleCollider2D
-```
+[![Arrastra un recorte de la fruta a Scene y llama Projectile al objeto](../../assets/images/pmdm/unity/116-unity-proyectil-escena.png){ loading=lazy }](../../assets/images/pmdm/unity/116-unity-proyectil-escena.png){ aria-label="Ampliar imagen" }
 
-En `Rigidbody2D` establece:
+<figcaption>Arrastra un recorte de la fruta a Scene y llama Projectile al objeto</figcaption>
+</figure>
 
-```text
-Gravity Scale = 0
-```
+Unity crea un GameObject con Transform y Sprite Renderer. El primero guarda posición, rotación y escala; el segundo dibuja el sprite.
 
-Así el proyectil no caerá y podrá desplazarse horizontalmente.
+## 2. Añadir Rigidbody 2D y Circle Collider 2D
 
-En `CircleCollider2D` activa:
+Selecciona Projectile y utiliza **Add Component** para añadir:
 
-```text
-Is Trigger
-```
+| Componente | Para qué sirve | Ajustes |
+| --- | --- | --- |
+| **Rigidbody 2D** | Permite moverlo mediante su velocidad y participar en las físicas 2D. | Body Type **Dynamic**, **Gravity Scale = 0** y Simulated activado. |
+| **Circle Collider 2D** | Define una zona circular para detectar el contacto con enemigos y escenario. | Ajusta **Edit Collider / Radius** al sprite y activa **Is Trigger**. |
 
-Esto nos permitirá detectar cuándo el proyectil toca a un enemigo sin producir una colisión física.
+<figure class="unity-shot" markdown="1">
 
----
+[![Projectile utiliza Rigidbody 2D con gravedad 0 y Circle Collider 2D con Is Trigger](../../assets/images/pmdm/unity/117-unity-proyectil-fisicas.png){ loading=lazy }](../../assets/images/pmdm/unity/117-unity-proyectil-fisicas.png){ aria-label="Ampliar imagen" }
 
-## 2. Convertir el proyectil en un Prefab
+<figcaption>Projectile utiliza Rigidbody 2D con gravedad 0 y Circle Collider 2D con Is Trigger</figcaption>
+</figure>
 
-Crea una carpeta para los prefabs si todavía no existe:
+**Gravity Scale = 0** evita que caiga. **Is Trigger** permite detectar el contacto sin que el proyectil empuje físicamente al enemigo. El script decidirá qué hacer al tocar algo. Un collider por sí solo no proporciona movimiento: Rigidbody y Collider cumplen funciones distintas.
 
-```text
-Assets
-└── Prefabs
-```
+Mantén Projectile en **Layer Default**. El Tilemap sólido conserva Floor y los enemigos conservan Enemy. No cambies el Tag del proyectil a Player.
 
-Arrastra `Projectile` desde la jerarquía hasta la carpeta `Prefabs`.
+## 3. Crear y asignar Projectile.cs
 
-Tendremos:
-
-```text
-Assets
-└── Prefabs
-    └── Projectile
-```
-
-Una vez creado el prefab, podemos eliminar el `Projectile` de la escena.
-
-No necesitamos dejar ningún proyectil colocado de antemano. El jugador irá creando copias del prefab cuando pulse la tecla de lanzamiento.
-
----
-
-## 3. Crear el punto de lanzamiento
-
-Dentro del objeto `Player` crea un objeto vacío:
-
-```text
-Player
-├── GroundCheck
-├── AttackPoint
-└── ThrowPoint
-```
-
-`ThrowPoint` no necesita ningún componente adicional. Vamos a utilizar únicamente su posición.
-
-Colócalo delante del personaje, aproximadamente desde donde queremos que aparezca el proyectil.
-
-```text
-             ● ThrowPoint
-Player ──────►
-```
-
----
-
-## 4. Crear `Projectile.cs`
-
-Crea el script:
-
-```text
-Projectile.cs
-```
-
-y añádelo al prefab `Projectile`.
-
-El código inicial será:
+En **Scripts**, crea un **MonoBehaviour Script** llamado **Projectile**, abre Projectile.cs y sustituye la plantilla por:
 
 ```csharp
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    // Velocidad en unidades de Unity por segundo.
     public float speed = 8f;
 
     private Rigidbody2D rb2D;
 
     void Awake()
     {
+        // Guardamos el Rigidbody antes de que Player llame a Lanzar().
         rb2D = GetComponent<Rigidbody2D>();
     }
 
     public void Lanzar(float direccion)
     {
-        rb2D.linearVelocity = new Vector2(
-            direccion * speed,
-            0
-        );
+        // 1: derecha. -1: izquierda. La velocidad vertical es cero.
+        rb2D.linearVelocity = new Vector2(direccion * speed, 0f);
     }
 }
 ```
 
-El método:
+<figure class="unity-shot" markdown="1">
+
+[![Projectile.cs guarda el Rigidbody en Awake y cambia su velocidad en Lanzar](../../assets/images/pmdm/unity/121-unity-projectile-script.png){ loading=lazy }](../../assets/images/pmdm/unity/121-unity-projectile-script.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Projectile.cs guarda el Rigidbody en Awake y cambia su velocidad en Lanzar</figcaption>
+</figure>
+
+Guarda el archivo, espera a que Unity compile y **arrastra Projectile.cs al objeto Projectile de Hierarchy**. Comprueba que aparece **Projectile (Script)** junto al Rigidbody y al collider.
+
+**Lanzar recibe la dirección:** 1 para derecha y -1 para izquierda. Con speed = 8, establece una velocidad horizontal de 8 o -8 unidades por segundo.
+
+Guardamos rb2D en **Awake**, porque el Player llamará a Lanzar inmediatamente después de crear la copia. Awake se ejecuta al crear el objeto activo; Start puede no haberse ejecutado todavía en ese momento.
+
+## 4. Guardar el proyectil como prefab
+
+Un **prefab es una plantilla reutilizable de un GameObject**: guarda sus componentes, propiedades y posibles hijos como un recurso del proyecto. Cada copia creada a partir de esa plantilla es una **instancia**.
+
+En nuestro caso, el prefab guardará el sprite, Rigidbody 2D, Circle Collider 2D y Projectile (Script). Así cada lanzamiento puede crear un proyectil preparado, sin configurar sus componentes otra vez.
+
+1. Dentro de **Assets/ErciGame**, crea **Prefabs** si no existe.
+
+<figure class="unity-shot" markdown="1">
+
+[![Crea Prefabs dentro de la carpeta del proyecto, junto a Scripts y Animations](../../assets/images/pmdm/unity/118-unity-carpeta-prefabs.png){ loading=lazy }](../../assets/images/pmdm/unity/118-unity-carpeta-prefabs.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Crea Prefabs dentro de la carpeta del proyecto, junto a Scripts y Animations</figcaption>
+</figure>
+
+2. Arrastra **Projectile desde Hierarchy hasta Prefabs en Project**.
+
+<figure class="unity-shot" markdown="1">
+
+[![Arrastra Projectile desde Hierarchy a Prefabs para guardar la plantilla reutilizable](../../assets/images/pmdm/unity/120-unity-crear-prefab-proyectil.gif){ loading=lazy }](../../assets/images/pmdm/unity/120-unity-crear-prefab-proyectil.gif){ aria-label="Ampliar imagen" }
+
+<figcaption>Arrastra Projectile desde Hierarchy a Prefabs para guardar la plantilla reutilizable</figcaption>
+</figure>
+
+3. Selecciona el prefab en Project y comprueba que tiene **Projectile (Script)** y **Speed = 8**, además del Rigidbody con gravedad 0 y del collider con Is Trigger.
+
+<figure class="unity-shot" markdown="1">
+
+[![El recurso Projectile debe conservar Projectile (Script), su collider y el Rigidbody](../../assets/images/pmdm/unity/123-unity-prefab-projectile-componente.png){ loading=lazy }](../../assets/images/pmdm/unity/123-unity-prefab-projectile-componente.png){ aria-label="Ampliar imagen" }
+
+<figcaption>El recurso Projectile debe conservar Projectile (Script), su collider y el Rigidbody</figcaption>
+</figure>
+
+4. Elimina **solo la instancia Projectile de Hierarchy**. Conserva el recurso Projectile en Project: el Player creará sus copias al pulsar C.
+
+Si olvidaste añadir el script antes de crear el prefab, **abre el prefab con doble clic o con Open Prefab**, añade Projectile.cs al objeto raíz y guarda. No hace falta arrastrarlo otra vez a Scene. Cambiar solo una instancia de la escena no garantiza que el recurso utilizado para lanzar contenga ese componente.
+
+## 5. Crear ThrowPoint
+
+1. Selecciona Player en Hierarchy, pulsa el botón derecho y crea un **Empty Object como hijo**.
+2. Llámalo **ThrowPoint** y colócalo delante del personaje, a la altura desde la que saldrá el proyectil.
+
+<figure class="unity-shot" markdown="1">
+
+[![ThrowPoint es un objeto vacío hijo del Player y se coloca delante de él](../../assets/images/pmdm/unity/119-unity-throwpoint-player.png){ loading=lazy }](../../assets/images/pmdm/unity/119-unity-throwpoint-player.png){ aria-label="Ampliar imagen" }
+
+<figcaption>ThrowPoint es un objeto vacío hijo del Player y se coloca delante de él</figcaption>
+</figure>
+
+ThrowPoint utiliza únicamente su Transform. El Player conserva GroundCheck y AttackPoint; añadimos este nuevo punto para el lanzamiento.
+
+Con el sprite original mirando a la derecha, usa una **posición local X positiva**. Como ThrowPoint es hijo del Player, cambiar la escala X del jugador también lo lleva al otro lado. No inviertas su X por segunda vez. Ajusta su posición para que el proyectil no nazca dentro del suelo o de una pared.
+
+## 6. Asignar el prefab y el punto al Player
+
+Junto a las variables de Player.cs, añade:
 
 ```csharp
-Lanzar(float direccion)
-```
-
-recibe la dirección en la que debe desplazarse el proyectil.
-
-```text
-direccion = 1     → derecha
-direccion = -1    → izquierda
-```
-
-Por ejemplo:
-
-```csharp
-Lanzar(1);
-```
-
-lo mueve hacia la derecha.
-
-```csharp
-Lanzar(-1);
-```
-
-lo mueve hacia la izquierda.
-
----
-
-## 5. Preparar el `Player`
-
-En `Player.cs` añadimos:
-
-```csharp
+// Recurso del que crearemos cada copia del proyectil.
 public GameObject projectilePrefab;
+
+// Objeto hijo del Player que indica dónde debe aparecer.
 public Transform throwPoint;
 ```
 
-Selecciona el `Player` en Unity.
+Guarda y vuelve a Unity. Selecciona **Player → Player (Script)** y completa los campos:
 
-En el Inspector aparecerán los nuevos campos:
+| Campo | Qué arrastrar |
+| --- | --- |
+| **Projectile Prefab** | El recurso **Projectile de Project → Prefabs**. |
+| **Throw Point** | El objeto **ThrowPoint de Hierarchy**, hijo del Player. |
 
-```text
-Projectile Prefab
-Throw Point
+<figure class="unity-shot" markdown="1">
+
+[![Arrastra el prefab desde Project y ThrowPoint desde Hierarchy a los campos del Player](../../assets/images/pmdm/unity/122-unity-asignar-prefab-throwpoint.png){ loading=lazy }](../../assets/images/pmdm/unity/122-unity-asignar-prefab-throwpoint.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Arrastra el prefab desde Project y ThrowPoint desde Hierarchy a los campos del Player</figcaption>
+</figure>
+
+**Los dos campos deben quedar asignados**, sin None. Arrastrar el sprite de la fruta a Projectile Prefab no sirve: necesitamos el GameObject del prefab con su script y sus físicas. Guarda la escena después de asignarlos.
+
+## 7. Lanzar hacia donde mira el jugador
+
+En Player.cs añade:
+
+```csharp
+// El sprite original mira a la derecha.
+private float ultimaDireccion = 1f;
 ```
 
-Asigna:
+En el **bloque de orientación que ya existe en Update**, incorpora la dirección:
 
-```text
-Projectile Prefab → prefab Projectile
-Throw Point       → ThrowPoint
+```csharp
+if (move != 0)
+{
+    // Conservamos la última dirección cuando el jugador se detiene.
+    ultimaDireccion = Mathf.Sign(move);
+    transform.localScale = new Vector3(Mathf.Sign(move), 1, 1);
+}
 ```
 
----
+No crees otro bloque de orientación. No podemos utilizar move directamente para lanzar: cuando el personaje está quieto vale 0 y el proyectil no avanzaría.
 
-## 6. Crear el proyectil al pulsar una tecla
-
-En `Update()` utilizamos, por ejemplo, la tecla `C`:
+En Update, **después de la comprobación if (muerto)**, añade:
 
 ```csharp
 if (Input.GetKeyDown(KeyCode.C))
@@ -217,362 +219,64 @@ if (Input.GetKeyDown(KeyCode.C))
 }
 ```
 
-Creamos el método:
+Así tampoco puede lanzar mientras reproduce su muerte. Añade el método siguiente **dentro de Player, pero fuera de Update**:
 
 ```csharp
 private void LanzarObjeto()
 {
+    // Creamos una copia del prefab en la posición de ThrowPoint.
     GameObject projectile = Instantiate(
         projectilePrefab,
         throwPoint.position,
         Quaternion.identity
     );
 
-    projectile.GetComponent<Projectile>().Lanzar(1);
-}
-```
-
-`Instantiate()` crea una copia del prefab en la posición de `ThrowPoint`.
-
-```text
-Prefab Projectile
-       │
-       │ Instantiate()
-       ▼
-Player ● ─────────► Projectile
-       ↑
-   ThrowPoint
-```
-
-En este momento el proyectil se lanzará siempre hacia la derecha.
-
----
-
-## 7. Lanzar hacia izquierda y derecha
-
-El movimiento horizontal del personaje ya nos proporciona una dirección:
-
-```text
-move = 1     → derecha
-move = -1    → izquierda
-move = 0     → quieto
-```
-
-No podemos utilizar directamente `move` al lanzar porque, si el personaje está quieto, su valor será `0` y el proyectil no se moverá.
-
-Guardamos por tanto la última dirección distinta de cero.
-
-En `Player.cs` añade:
-
-```csharp
-private float ultimaDireccion = 1;
-```
-
-Después de:
-
-```csharp
-move = Input.GetAxisRaw("Horizontal");
-```
-
-añade:
-
-```csharp
-if (move != 0)
-{
-    ultimaDireccion = move;
-}
-```
-
-De esta forma:
-
-```text
-Movimiento            ultimaDireccion
-
-derecha     1   →           1
-quieto      0   →           1
-
-izquierda  -1   →          -1
-quieto      0   →          -1
-```
-
-Ahora modifica `LanzarObjeto()`:
-
-```csharp
-private void LanzarObjeto()
-{
-    GameObject projectile = Instantiate(
-        projectilePrefab,
-        throwPoint.position,
-        Quaternion.identity
-    );
-
+    // Obtenemos el script de esa copia y le indicamos la dirección.
     projectile.GetComponent<Projectile>().Lanzar(ultimaDireccion);
 }
 ```
 
-El proyectil se moverá hacia la última dirección en la que se haya movido el personaje.
+| Instrucción | Función |
+| --- | --- |
+| **Instantiate(...)** | Crea una instancia del prefab indicado. |
+| **throwPoint.position** | Utiliza la posición del punto en la escena. |
+| **Quaternion.identity** | Crea la copia sin rotación. |
+| **GetComponent<Projectile>()** | Obtiene el componente que asignamos al prefab. |
+| **Lanzar(ultimaDireccion)** | Establece su velocidad hacia la última dirección del jugador. |
 
----
+## 8. Añadir vida al enemigo
 
-## 8. Detectar al enemigo
+Abre Enemy.cs y añade **public int vida = 2;** junto a sus variables. Conserva su patrulla, su contacto con Player, muerto, Morir y Destruir del capítulo anterior.
 
-Añade en `Projectile.cs`:
-
-```csharp
-private void OnTriggerEnter2D(Collider2D collision)
-{
-    Enemy enemigo = collision.GetComponent<Enemy>();
-
-    if (enemigo != null)
-    {
-        enemigo.Morir();
-        Destroy(gameObject);
-    }
-}
-```
-
-Como el `CircleCollider2D` del proyectil tiene activado:
-
-```text
-Is Trigger
-```
-
-Unity ejecutará `OnTriggerEnter2D()` cuando el proyectil entre en contacto con otro `Collider2D`.
-
-El funcionamiento es:
-
-```text
-Projectile
-    │
-    ▼
-toca un objeto
-    │
-    ▼
-¿Tiene Enemy?
-    │
-   Sí
-    │
-    ├── enemigo.Morir()
-    └── Destroy(Projectile)
-```
-
----
-
-## 9. Destruir proyectiles que no golpean a nadie
-
-Si el proyectil no toca ningún objeto podría continuar desplazándose indefinidamente.
-
-Añadimos en `Projectile.cs`:
-
-```csharp
-void Start()
-{
-    Destroy(gameObject, 3f);
-}
-```
-
-La instrucción:
-
-```csharp
-Destroy(gameObject, 3f);
-```
-
-indica que Unity debe destruir el proyectil pasados tres segundos.
-
-```text
-Se crea
-   │
-   ▼
-Se mueve
-   │
-   ├── toca Enemy → se destruye
-   │
-   └── no toca nada → se destruye a los 3 segundos
-```
-
----
-
-## 10. Destruir el proyectil al tocar el escenario
-
-También podemos eliminarlo si toca el suelo o una pared que pertenezca a la capa `Floor`.
-
-Modifica `OnTriggerEnter2D()`:
-
-```csharp
-private void OnTriggerEnter2D(Collider2D collision)
-{
-    Enemy enemigo = collision.GetComponent<Enemy>();
-
-    if (enemigo != null)
-    {
-        enemigo.Morir();
-        Destroy(gameObject);
-        return;
-    }
-
-    if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
-    {
-        Destroy(gameObject);
-    }
-}
-```
-
-El `return` hace que, después de golpear a un enemigo, se termine la ejecución del método.
-
-```text
-Projectile
-    │
-    ▼
-¿Toca Enemy?
-├── Sí
-│   ├── Enemy.Morir()
-│   └── Destroy(Projectile)
-│
-└── No
-    │
-    ▼
-¿Toca Layer Floor?
-├── Sí → Destroy(Projectile)
-└── No  → continúa
-```
-
----
-
-## 11. Hacer que el enemigo aguante dos golpes
-
-Hasta ahora cualquier impacto llama directamente a:
-
-```csharp
-enemigo.Morir();
-```
-
-Vamos a añadir vida al enemigo.
-
-En `Enemy.cs`:
-
-```csharp
-public int vida = 2;
-```
-
-Creamos:
+Añade este método dentro de Enemy:
 
 ```csharp
 public void RecibirGolpe()
 {
-    // Un enemigo que ya está muriendo no recibe más daño.
+    // Ignoramos golpes si la muerte ya ha comenzado.
     if (muerto)
+    {
         return;
+    }
 
+    // Cada impacto resta una vida.
     vida--;
 
     if (vida <= 0)
     {
+        // Reutilizamos la muerte: detener, animar y después destruir.
         Morir();
     }
 }
 ```
 
-El funcionamiento será:
+Con Vida = 2 en el Inspector, **el primer golpe deja 1 vida** y el enemigo sigue patrullando. **El segundo deja 0 y llama a Morir()**. El proyectil comunicará el impacto; Enemy decidirá cuándo morir según su vida.
 
-```text
-vida = 2
+No sustituyas Morir por un método que solo active Death. La versión del capítulo anterior comprueba muerto, detiene la patrulla y desactiva el collider. El evento final de **deathenemy debe seguir llamando a Destruir()**, como explicamos en [la animación de muerte del enemigo](11-ataque-enemigos.md#muerte-enemigo).
 
-Primer golpe
-2 → 1
-sigue vivo
+## 9. Detectar impactos y limpiar el proyectil
 
-Segundo golpe
-1 → 0
-Morir()
-```
-
----
-
-## 12. Modificar el proyectil para quitar vida
-
-En `Projectile.cs` sustituimos:
-
-```csharp
-enemigo.Morir();
-```
-
-por:
-
-```csharp
-enemigo.RecibirGolpe();
-```
-
-El método queda:
-
-```csharp
-private void OnTriggerEnter2D(Collider2D collision)
-{
-    Enemy enemigo = collision.GetComponent<Enemy>();
-
-    if (enemigo != null)
-    {
-        enemigo.RecibirGolpe();
-        Destroy(gameObject);
-        return;
-    }
-
-    if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
-    {
-        Destroy(gameObject);
-    }
-}
-```
-
-Ahora el proyectil no decide cuándo muere el enemigo.
-
-El proyectil únicamente comunica que ha recibido un golpe:
-
-```text
-Projectile
-     │
-     ▼
-Enemy.RecibirGolpe()
-     │
-     ▼
-vida--
-     │
-     ▼
-¿vida <= 0?
-├── No → continúa vivo
-└── Sí → Morir()
-```
-
----
-
-## 13. Aplicar el mismo sistema al ataque cuerpo a cuerpo
-
-Si en el ataque cuerpo a cuerpo teníamos:
-
-```csharp
-enemigo.Morir();
-```
-
-lo sustituimos también por:
-
-```csharp
-enemigo.RecibirGolpe();
-```
-
-Así ambos ataques utilizan el mismo sistema:
-
-```text
-Ataque cuerpo a cuerpo ──┐
-                         │
-                         ▼
-                  Enemy.RecibirGolpe()
-                         ▲
-                         │
-Proyectil ───────────────┘
-```
-
----
-
-# Código final de `Projectile.cs`
+Ahora que Enemy tiene RecibirGolpe, **sustituye Projectile.cs por este código completo**. Añade la detección de enemigos y Floor, y elimina los proyectiles que no impactan al cabo de tres segundos.
 
 ```csharp
 using UnityEngine;
@@ -582,158 +286,252 @@ public class Projectile : MonoBehaviour
     public float speed = 8f;
 
     private Rigidbody2D rb2D;
+    private bool consumido = false;
 
     void Awake()
     {
+        // Instantiate ejecuta Awake antes de devolver la copia activa.
         rb2D = GetComponent<Rigidbody2D>();
     }
 
     void Start()
     {
+        // Limpieza: desaparece aunque no llegue a tocar ningún objeto.
         Destroy(gameObject, 3f);
     }
 
     public void Lanzar(float direccion)
     {
-        rb2D.linearVelocity = new Vector2(
-            direccion * speed,
-            0
-        );
+        rb2D.linearVelocity = new Vector2(direccion * speed, 0f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Destroy elimina al final del fotograma: evitamos otro impacto.
+        if (consumido)
+        {
+            return;
+        }
+
         Enemy enemigo = collision.GetComponent<Enemy>();
 
         if (enemigo != null)
         {
+            consumido = true;
             enemigo.RecibirGolpe();
             Destroy(gameObject);
             return;
         }
 
+        // Reutilizamos Floor, la Layer del Tilemap sólido del escenario.
         if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
         {
+            consumido = true;
             Destroy(gameObject);
         }
     }
 }
 ```
 
----
+**OnTriggerEnter2D** recibe el collider del objeto que entra en contacto. Si tiene Enemy, llama a RecibirGolpe y destruye el proyectil. Si pertenece a Floor, destruye el proyectil sin quitar vida a nadie.
 
-# Parte añadida a `Enemy.cs`
+La variable **consumido** impide que un proyectil procese dos impactos durante el mismo fotograma, porque Destroy no elimina el objeto inmediatamente en esa línea. **Destroy(gameObject, 3f)** programa su limpieza aunque no llegue a tocar nada.
+
+Guarda y comprueba que el **prefab** conserva Projectile (Script). Para detectar al Enemy, su collider y Enemy.cs deben estar en el mismo GameObject, como lo hemos configurado.
+
+## 10. Aplicar la vida al ataque cuerpo a cuerpo
+
+En el ataque con X de Player.cs, donde tenemos:
 
 ```csharp
-public int vida = 2;
+enemy.Morir();
+```
 
-public void RecibirGolpe()
-{
-    // Un enemigo que ya está muriendo no recibe más daño.
-    if (muerto)
-        return;
+sustitúyelo por:
 
-    vida--;
+```csharp
+enemy.RecibirGolpe();
+```
 
-    if (vida <= 0)
+Ahora **X y C comparten el mismo sistema de vida**. El Player conserva Morir() para su propia muerte; esa llamada no se cambia.
+
+??? example "Player.cs completo al terminar este apartado"
+
+    ```csharp
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
+
+    public class Player : MonoBehaviour
     {
-        Morir();
+        public float speed = 6f;
+        public float jumpForce = 6f;
+
+        public Transform groundCheck;
+        public float groundRadius = 0.1f;
+        public LayerMask groundLayer;
+
+        public Transform attackPoint;
+        public float attackRadius = 0.5f;
+        public LayerMask enemyLayer;
+
+        public GameObject projectilePrefab;
+        public Transform throwPoint;
+        private float ultimaDireccion = 1f;
+
+        private Rigidbody2D rb2D;
+        public Animator anim;
+
+        private float move;
+        private bool isGrounded;
+        private bool muerto = false;
+
+        void Start()
+        {
+            rb2D = GetComponent<Rigidbody2D>();
+            anim = GetComponent<Animator>();
+        }
+
+        void Update()
+        {
+            if (muerto)
+                return;
+
+            move = Input.GetAxisRaw("Horizontal");
+
+            rb2D.linearVelocity = new Vector2(
+                move * speed,
+                rb2D.linearVelocity.y
+            );
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                rb2D.linearVelocity = new Vector2(
+                    rb2D.linearVelocity.x,
+                    jumpForce
+                );
+                isGrounded = false;
+            }
+
+            anim.SetFloat("Speed", Mathf.Abs(move));
+            anim.SetFloat("VerticalVelocity", rb2D.linearVelocity.y);
+            anim.SetBool("IsGrounded", isGrounded);
+
+            if (move != 0)
+            {
+                ultimaDireccion = Mathf.Sign(move);
+                transform.localScale = new Vector3(Mathf.Sign(move), 1, 1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                anim.SetTrigger("attack");
+
+                Collider2D enemyCollider = Physics2D.OverlapCircle(
+                    attackPoint.position,
+                    attackRadius,
+                    enemyLayer
+                );
+
+                if (enemyCollider != null)
+                {
+                    Enemy enemy = enemyCollider.GetComponent<Enemy>();
+
+                    if (enemy != null)
+                    {
+                        enemy.RecibirGolpe();
+                    }
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                LanzarObjeto();
+            }
+        }
+
+        private void LanzarObjeto()
+        {
+            GameObject projectile = Instantiate(
+                projectilePrefab,
+                throwPoint.position,
+                Quaternion.identity
+            );
+
+            projectile.GetComponent<Projectile>().Lanzar(ultimaDireccion);
+        }
+
+        private void FixedUpdate()
+        {
+            isGrounded = Physics2D.OverlapCircle(
+                groundCheck.position,
+                groundRadius,
+                groundLayer
+            ) != null && rb2D.linearVelocity.y <= 0.1f;
+        }
+
+        public void Morir()
+        {
+            if (muerto)
+                return;
+
+            muerto = true;
+
+            rb2D.linearVelocity = Vector2.zero;
+            anim.SetFloat("Speed", 0f);
+            anim.SetFloat("VerticalVelocity", 0f);
+            anim.ResetTrigger("attack");
+            anim.SetTrigger("Death");
+        }
+
+        public void ReiniciarNivel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (attackPoint != null)
+            {
+                Gizmos.DrawWireSphere(
+                    attackPoint.position,
+                    attackRadius
+                );
+            }
+        }
     }
-}
-```
+    ```
 
-Conserva **Morir() y Destruir() del [apartado de combate](11-ataque-enemigos.md)**. Morir comprueba muerto, detiene la patrulla y desactiva el collider antes de activar Death. No sustituyas ese método por una versión que solo llame a SetTrigger.
+## 11. Ejecutar y comprobar
 
-**Destruir()** sigue siendo llamado mediante el Animation Event situado al final de EnemyDeath. El Player conserva su propio método ReiniciarNivel() y su evento de muerte.
+1. Guarda el código y la escena. Revisa que Console no tenga errores de compilación.
+2. Comprueba **Vida = 2** en Enemy (Script), los dos puntos de patrulla y el Box Collider 2D con Is Trigger.
+3. En Player (Script), revisa **Projectile Prefab** y **Throw Point**.
+4. Pulsa Play y haz clic en Game. Lanza con **C** mirando a derecha e izquierda, también después de detenerte.
 
----
+<figure class="unity-shot" markdown="1">
 
-# Parte añadida a `Player.cs`
+[![Prueba en Game el lanzamiento de proyectiles y la muerte del enemigo](../../assets/images/pmdm/unity/131-unity-proyectil-matar-enemigo.gif){ loading=lazy }](../../assets/images/pmdm/unity/131-unity-proyectil-matar-enemigo.gif){ aria-label="Ampliar imagen" }
 
-Variables:
+<figcaption>Prueba en Game el lanzamiento de proyectiles y la muerte del enemigo</figcaption>
+</figure>
 
-```csharp
-public GameObject projectilePrefab;
-public Transform throwPoint;
+5. Con dos impactos, el enemigo debe detenerse, reproducir deathenemy una vez y desaparecer por el evento Destruir.
+6. Comprueba que el proyectil desaparece al tocar Floor o después de tres segundos sin impacto.
+7. Toca al enemigo con el Player: debe morir, dejar de aceptar teclas y reiniciar el nivel al terminar su animación.
 
-private float ultimaDireccion = 1;
-```
+### Si algo falla
 
-Después de obtener el movimiento:
+| Problema | Qué revisar |
+| --- | --- |
+| **No se crea el proyectil** | Campo Projectile Prefab asignado, tecla C dentro del Update del Player y foco en Game. |
+| **NullReferenceException al lanzar** | Throw Point asignado; Projectile (Script) y Rigidbody 2D en el objeto raíz del prefab. |
+| **El proyectil cae** | Gravity Scale = 0 en el Rigidbody del prefab. |
+| **Sale por el lado incorrecto al estar quieto** | ultimaDireccion solo cambia cuando move es distinto de 0; ThrowPoint es hijo del Player. |
+| **No detecta el impacto** | Is Trigger, Rigidbody 2D activo y layers que puedan interactuar en Project Settings → Physics 2D. |
+| **La vida no coincide con el ejemplo** | El Inspector puede conservar un valor anterior; establece Vida = 2 antes de Play. |
+| **El enemigo sigue patrullando al morir** | La comprobación de muerto debe ser la primera instrucción de su Update. |
+| **Reproduce la muerte y se queda en escena** | Evento final en deathenemy con Function Destruir(), no Morir(), y Enemy.cs junto a Animator. |
+| **No aparece la animación de muerte** | Trigger Death con D mayúscula, condición Death en enemy → deathenemy, Loop Time desactivado y Animator Controller correcto. |
 
-```csharp
-move = Input.GetAxisRaw("Horizontal");
+Continúa con el [ejercicio de tu propio videojuego](11-ejercicio-propio-juego.md).
 
-if (move != 0)
-{
-    ultimaDireccion = move;
-}
-```
-
-Para lanzar:
-
-```csharp
-if (Input.GetKeyDown(KeyCode.C))
-{
-    LanzarObjeto();
-}
-```
-
-Método:
-
-```csharp
-private void LanzarObjeto()
-{
-    GameObject projectile = Instantiate(
-        projectilePrefab,
-        throwPoint.position,
-        Quaternion.identity
-    );
-
-    projectile.GetComponent<Projectile>().Lanzar(ultimaDireccion);
-}
-```
-
----
-
-## Resultado
-
-```text
-                 PLAYER
-                    │
-                    │ C
-                    ▼
-            Instantiate()
-                    │
-                    ▼
-              PROJECTILE
-                    │
-          ┌─────────┴─────────┐
-          │                   │
-          ▼                   ▼
-       Floor                Enemy
-          │                   │
-          ▼                   ▼
-       Destroy()       RecibirGolpe()
-                              │
-                              ▼
-                            vida--
-                              │
-                       ┌──────┴──────┐
-                       │             │
-                    vida > 0      vida <= 0
-                       │             │
-                       ▼             ▼
-                  sigue vivo      Morir()
-                                      │
-                                      ▼
-                               animación Death
-                                      │
-                                      ▼
-                              Animation Event
-                                      │
-                                      ▼
-                                  Destruir()
-```
-
-Aplica lo trabajado en el [ejercicio de tu propio videojuego](11-ejercicio-propio-juego.md).
+Referencias: [Prefabs](https://docs.unity3d.com/6000.0/Documentation/Manual/Prefabs.html), [editar un prefab](https://docs.unity3d.com/6000.0/Documentation/Manual/EditingInPrefabMode.html), [Awake](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/MonoBehaviour.Awake.html) y [OnTriggerEnter2D](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html).

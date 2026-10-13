@@ -224,172 +224,215 @@ Para verlo:
 
 ---
 
-## 6. Ampliar el script Enemy
+## 6. Preparar la muerte y detener la patrulla
 
-Abre **Enemy.cs**, que ya está asignado al enemigo. Conserva speed, los puntos, objetivo, animator, Start y la patrulla de Update.
+Abre **Enemy.cs**, que ya está asignado al enemigo. Conserva speed, los puntos, objetivo, animator y el recorrido. Dentro de la clase, junto a sus variables, añade:
 
-Añade dentro de la clase estos dos métodos; más abajo incorporaremos la comprobación que impide repetir la muerte y detiene la patrulla:
+```csharp
+// Evita repetir la muerte y permite detener la patrulla.
+private bool muerto = false;
+private Collider2D enemyCollider;
+```
+
+En el **Start que ya tenemos**, añade esta línea para guardar el collider del propio enemigo:
+
+```csharp
+enemyCollider = GetComponent<Collider2D>();
+```
+
+Al principio de su **Update**, antes de MoveTowards, añade:
+
+```csharp
+if (muerto)
+{
+    return;
+}
+```
+
+Ahora añade estos métodos dentro de la clase y fuera de Start y Update:
 
 ```csharp
 public void Morir()
 {
-    // Activamos el trigger de muerte del Animator del enemigo.
+    // Otro golpe no debe volver a iniciar la muerte.
+    if (muerto)
+    {
+        return;
+    }
+
+    muerto = true;
+
+    // El enemigo deja de detectar contactos y de recibir nuevos golpes.
+    enemyCollider.enabled = false;
+
+    // Iniciamos su animación; todavía no eliminamos el objeto.
     animator.SetTrigger("Death");
 }
 
-public void Destruir()
-{
-    // Se llamará cuando termine la animación de muerte.
-    Destroy(gameObject);
-}
-```
-
-El Player no destruye al enemigo directamente: llama a Enemy.Morir(). Enemy controla su animación y se elimina al terminarla.
-
----
-
-## 7. Animación de muerte del enemigo
-
-Selecciona los fotogramas de muerte del enemigo y crea un clip distinto del death del Player:
-
-```text
-EnemyDeath.anim
-```
-
-En el clip:
-
-```text
-Loop Time: desactivado
-```
-
-En el Animator del enemigo crea:
-
-```text
-Trigger → Death
-```
-
-y la transición:
-
-```text
-enemy → Death
-Condition: Death
-Has Exit Time: desactivado
-Transition Duration: 0
-```
-
-El estado inicial **enemy** reproduce la patrulla animada que creamos antes. Arrastra EnemyDeath.anim al controlador **del enemigo** y renombra el nuevo estado como **Death**, sin modificar el del Player. No necesitamos una transición de vuelta a `enemy`, ya que el enemigo se eliminará al terminar la animación.
-
-!!! warning
-    En este proyecto el parámetro del enemigo se llama `Death`, con `D` mayúscula. Por eso el código utiliza `animator.SetTrigger("Death")`.
-
----
-
-## 8. Destruir el enemigo al terminar la animación
-
-No llamamos a `Destroy()` al recibir el golpe porque desaparecería inmediatamente y no llegaríamos a ver la animación.
-
-Utilizaremos un **Animation Event**.
-
-1. Selecciona el enemigo.
-2. Abre `Window → Animation → Animation`.
-3. Selecciona el clip `EnemyDeath`.
-4. Sitúate en el último fotograma de la animación.
-5. Pulsa **Add Animation Event**.
-6. Selecciona el marcador creado.
-7. En el Inspector, en `Function`, selecciona:
-
-```text
-Enemy/Methods/Destruir()
-```
-
-Al pulsar X, el Player detecta al Enemy y llama a Morir(). El trigger Death inicia el clip; su evento final llama a Destruir(), que elimina el objeto.
-
-El método que recibe el evento debe ser público:
-
-```csharp
+// Lo llamará el evento del último fotograma de deathenemy.
 public void Destruir()
 {
     Destroy(gameObject);
 }
 ```
 
----
+**Morir() inicia el proceso**: cambia el estado, bloquea la patrulla y activa la animación. **Destruir() elimina el objeto cuando esa animación ha terminado**. Si destruyéramos al enemigo dentro de Morir, desaparecería antes de mostrarla.
 
-## 9. Evitar que el enemigo arrastre al Player
-
-Si el collider del enemigo produce una colisión física, puede empujar al Player mientras este está muriendo.
-
-Para este comportamiento sencillo, selecciona el `Collider2D` del enemigo y activa:
-
-```text
-Is Trigger
-```
-
-Así seguirá detectándose el contacto, pero el enemigo no empujará físicamente al Player.
-
-El Player ya dispone de `Rigidbody2D`, por lo que podemos detectar la entrada en el trigger.
+Si ya tenías una versión anterior de estos métodos, **sustitúyela**, sin declarar dos Morir ni dos Destruir. Más abajo tienes Enemy.cs completo con la patrulla y el contacto integrados.
 
 ---
 
-## 10. Hacer que el Player muera al tocar al enemigo
+## 7. Crear la animación deathenemy { #muerte-enemigo }
 
-El Player ya tiene **muerto**, **Morir()**, la comprobación al principio de Update y **ReiniciarNivel()**, preparados en [Peligros y reinicio](10-peligros-reinicio.md#muerte-player). **No los declares otra vez**. Añade únicamente este método dentro de Player:
+1. Detén Play y despliega la imagen del enemigo en **Project → sprites**. Debe estar recortada, con **16 Pixels Per Unit**, **Point (no filter)** y **Compression None**, como en [Crear un enemigo y su patrulla](11-enemigo-patrulla.md).
+
+<figure class="unity-shot" markdown="1">
+
+[![Prepara los sprites de muerte del mismo enemigo; la captura muestra slime_purple](../../assets/images/pmdm/unity/124-unity-sprites-muerte-enemigo.png){ loading=lazy }](../../assets/images/pmdm/unity/124-unity-sprites-muerte-enemigo.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Prepara los sprites de muerte del mismo enemigo; la captura muestra slime_purple</figcaption>
+</figure>
+
+2. Selecciona **los cuatro últimos sprites**, que forman su muerte, en el orden en el que deben reproducirse. Las capturas utilizan slime_purple; si tu Enemy utiliza slime_green, elige sus fotogramas equivalentes.
+3. Como al crear las animaciones anteriores, arrástralos juntos a Scene y guarda el clip como **deathenemy.anim** en **Animations**.
+4. Unity puede crear un objeto y un controlador adicionales. Conserva **el Enemy original y su controlador de patrulla**; elimina el objeto temporal y su controlador sobrante, conservando deathenemy.anim.
+5. Selecciona el clip **deathenemy.anim en Project** y desmarca **Loop Time**: la muerte se reproduce una sola vez.
+
+<figure class="unity-shot" markdown="1">
+
+[![En deathenemy, desmarca Loop Time para reproducir la muerte una sola vez](../../assets/images/pmdm/unity/127-unity-deathenemy-loop-time.png){ loading=lazy }](../../assets/images/pmdm/unity/127-unity-deathenemy-loop-time.png){ aria-label="Ampliar imagen" }
+
+<figcaption>En deathenemy, desmarca Loop Time para reproducir la muerte una sola vez</figcaption>
+</figure>
+
+6. Abre el controlador del **Enemy original** y arrastra deathenemy.anim para añadir su estado. Mantén **enemy** como estado inicial, conectado a Entry.
+7. En **Parameters**, crea un **Trigger** llamado **Death**, con D mayúscula. Si ya existe, reutilízalo.
+8. Crea **Make Transition** desde **enemy** hasta **deathenemy** y selecciona la flecha.
+
+| Ajuste de la transición | Valor |
+| --- | --- |
+| **Condition** | Death |
+| **Has Exit Time** | Desactivado |
+| **Transition Duration** | 0 |
+
+<figure class="unity-shot" markdown="1">
+
+[![La transición enemy → deathenemy utiliza el trigger Death, sin Has Exit Time y con duración 0](../../assets/images/pmdm/unity/125-unity-transicion-deathenemy.png){ loading=lazy }](../../assets/images/pmdm/unity/125-unity-transicion-deathenemy.png){ aria-label="Ampliar imagen" }
+
+<figcaption>La transición enemy → deathenemy utiliza el trigger Death, sin Has Exit Time y con duración 0</figcaption>
+</figure>
+
+No añadas una transición de vuelta a enemy. Al terminar la muerte, eliminaremos ese objeto mediante un evento.
+
+**deathenemy es el nombre del clip y del estado; Death es el parámetro que activa la transición.** El código debe conservar animator.SetTrigger("Death"). Si tenías el clip anterior EnemyDeath.anim, puedes renombrarlo a deathenemy y ajustar el nombre del estado; reutiliza su contenido.
+
+## 8. Añadir el evento que llama a Destruir()
+
+1. Selecciona **Enemy en Hierarchy**, el objeto que tiene Animator y Enemy (Script).
+2. Abre **Window → Animation → Animation**.
+
+<figure class="unity-shot" markdown="1">
+
+[![Selecciona el Enemy original y abre Window → Animation → Animation](../../assets/images/pmdm/unity/128-unity-abrir-animation-enemigo.png){ loading=lazy }](../../assets/images/pmdm/unity/128-unity-abrir-animation-enemigo.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Selecciona el Enemy original y abre Window → Animation → Animation</figcaption>
+</figure>
+
+3. En el desplegable de clips de la ventana Animation, selecciona **deathenemy**. No basta con seleccionar el rectángulo del estado en Animator.
+4. Lleva el cursor de la línea de tiempo **al final del clip**, después de que se hayan mostrado los cuatro sprites.
+5. Pulsa el botón **Add Event / Add Animation Event**.
+
+<figure class="unity-shot" markdown="1">
+
+[![Este botón añade el evento: para el enemigo selecciona primero el clip deathenemy](../../assets/images/pmdm/unity/126-unity-animation-add-event.png){ loading=lazy }](../../assets/images/pmdm/unity/126-unity-animation-add-event.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Este botón añade el evento: para el enemigo selecciona primero el clip deathenemy</figcaption>
+</figure>
+
+<figure class="unity-shot" markdown="1">
+
+[![Coloca el evento al final del clip deathenemy, después de sus cuatro fotogramas](../../assets/images/pmdm/unity/129-unity-deathenemy-evento-final.png){ loading=lazy }](../../assets/images/pmdm/unity/129-unity-deathenemy-evento-final.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Coloca el evento al final del clip deathenemy, después de sus cuatro fotogramas</figcaption>
+</figure>
+
+6. Selecciona el marcador del evento. En **Inspector → Function**, elige **Enemy → Methods → Destruir()**.
+
+<figure class="unity-shot" markdown="1">
+
+[![En Function, selecciona Enemy → Methods → Destruir(), como muestra la captura](../../assets/images/pmdm/unity/130-unity-evento-destruir-enemigo.png){ loading=lazy }](../../assets/images/pmdm/unity/130-unity-evento-destruir-enemigo.png){ aria-label="Ampliar imagen" }
+
+<figcaption>En Function, selecciona Enemy → Methods → Destruir(), como muestra la captura</figcaption>
+</figure>
+
+**Selecciona Destruir(), no Morir().** Morir ya se ejecutó al recibir el golpe. Volver a llamarlo desde el evento no eliminaría el enemigo y, con la comprobación de muerto, saldría inmediatamente.
+
+El método Destruir debe ser **public**, estar dentro de Enemy.cs y ese script debe estar en **el mismo GameObject que reproduce la animación**. Guarda el clip y comprueba que el evento aparece en su línea de tiempo.
+
+La secuencia queda: **golpe → Enemy.Morir() → trigger Death → clip deathenemy → evento Destruir() → eliminación del enemigo**. La muerte del Player sigue siendo independiente: su evento llama a ReiniciarNivel().
+
+---
+
+## 9. Configurar el collider del enemigo
+
+1. Selecciona **Enemy** y comprueba que tiene **Box Collider 2D**. Si ya lo añadiste al crear la Layer Enemy, reutilízalo; no añadas otro.
+2. Pulsa **Edit Collider** y ajusta el rectángulo a su cuerpo.
+3. Marca **Is Trigger**.
+
+<figure class="unity-shot" markdown="1">
+
+[![Ajusta el Box Collider 2D del Enemy y activa Is Trigger para detectar al Player](../../assets/images/pmdm/unity/113-unity-enemy-contacto-trigger.png){ loading=lazy }](../../assets/images/pmdm/unity/113-unity-enemy-contacto-trigger.png){ aria-label="Ampliar imagen" }
+
+<figcaption>Ajusta el Box Collider 2D del Enemy y activa Is Trigger para detectar al Player</figcaption>
+</figure>
+
+El collider delimita la zona de contacto. Is Trigger permite detectar la entrada del jugador sin empujarlo físicamente. **Al menos uno de los objetos necesita Rigidbody 2D**: el Player ya lo tiene, con Body Type Dynamic.
+
+## 10. Hacer que Enemy mate al Player
+
+Añade este método dentro de **Enemy.cs**, fuera de Update y Morir:
 
 ```csharp
 private void OnTriggerEnter2D(Collider2D collision)
 {
-    // Comprobamos si el objeto que entra es un enemigo.
-    Enemy enemy = collision.GetComponent<Enemy>();
-
-    if (enemy != null)
+    // Un enemigo que ya está muriendo no debe matar al jugador.
+    if (muerto)
     {
-        // Reutilizamos la misma muerte que provocan Killzone y Spikes.
-        Morir();
+        return;
+    }
+
+    // Solo reaccionamos al objeto que tiene el Tag Player.
+    if (collision.transform.CompareTag("Player"))
+    {
+        // Buscamos Player.cs en el mismo objeto que tiene ese collider.
+        Player player = collision.GetComponent<Player>();
+
+        if (player != null)
+        {
+            // Player decide cómo animar su muerte y reiniciar el nivel.
+            player.Morir();
+        }
     }
 }
 ```
 
-El trigger del enemigo permite detectar el contacto sin empujar al jugador. Este conserva su Rigidbody 2D. Al morir, deja de aceptar controles y su Animation Event reinicia la escena al terminar death, igual que al tocar los otros peligros.
+| Parte | Función |
+| --- | --- |
+| **OnTriggerEnter2D** | Unity avisa cuando un collider entra en el trigger del enemigo. |
+| **collision** | Es el collider del objeto que acaba de entrar. |
+| **if (muerto) / return** | Ignora el contacto si el enemigo ya está muriendo. |
+| **CompareTag("Player")** | Comprueba que el contacto corresponde al jugador. |
+| **GetComponent<Player>()** | Obtiene su componente Player, sin crear otro personaje. |
+| **if (player != null)** | Comprueba que se encontró el componente antes de utilizarlo. |
+| **player.Morir()** | Pide al Player que inicie la muerte que ya programamos. |
+
+El **Player debe tener Tag Player**, su collider, Rigidbody 2D y Player (Script) en el mismo objeto. Conserva su variable muerto, la comprobación inicial de Update, Morir() y el evento ReiniciarNivel() de [Peligros y reinicio](10-peligros-reinicio.md#muerte-player).
+
+**El contacto con el enemigo se gestiona en Enemy.cs.** Si conservabas la versión anterior de OnTriggerEnter2D en Player.cs que buscaba Enemy y llamaba a Morir, elimina ese método: este contacto ya lo detecta el enemigo. Killzone y Spikes siguen utilizando sus propios scripts.
 
 ---
 
-## 11. Detener la patrulla cuando el enemigo muere
-
-Ahora que el enemigo se mueve, conviene detener su `Update()` mientras reproduce `Death`.
-
-Añade a `Enemy.cs`:
-
-```csharp
-private bool muerto = false;
-```
-
-Al principio de `Update()`:
-
-```csharp
-if (muerto)
-    return;
-```
-
-Y modifica `Morir()`:
-
-```csharp
-public void Morir()
-{
-    if (muerto)
-        return;
-
-    muerto = true;
-
-    GetComponent<Collider2D>().enabled = false;
-    animator.SetTrigger("Death");
-}
-```
-
-Además de detener el movimiento, desactivamos el collider para que el enemigo que ya está muriendo no vuelva a golpear al Player ni pueda recibir otro ataque.
-
----
-
-## 12. Ajustar AttackPoint al cambio de dirección
+## 11. Ajustar AttackPoint al cambio de dirección
 
 Continuamos con la orientación mediante **la escala X del Transform**, que añadimos en [Movimiento, orientación y salto](05-movimiento-salto.md#orientacion-del-personaje):
 
@@ -408,7 +451,7 @@ Prueba a caminar a izquierda y derecha y comprueba el círculo de ataque con el 
 
 ---
 
-## 13. Player.cs completo
+## 12. Player.cs completo
 
 El script final reúne el movimiento, salto, animaciones, orientación, ataque, muerte y reinicio. En Morir también limpiamos el trigger attack: un ataque pendiente no debe interrumpir la muerte. Mantén el evento ReiniciarNivel() en el clip death del Player:
 
@@ -503,16 +546,6 @@ public class Player : MonoBehaviour
         ) != null && rb2D.linearVelocity.y <= 0.1f;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Enemy enemy = collision.GetComponent<Enemy>();
-
-        if (enemy != null)
-        {
-            Morir();
-        }
-    }
-
     public void Morir()
     {
         if (muerto)
@@ -547,7 +580,7 @@ public class Player : MonoBehaviour
 
 ---
 
-## 14. Enemy.cs completo
+## 13. Enemy.cs completo
 
 El enemigo patrulla, puede recibir el ataque y se elimina al terminar su animación de muerte:
 
@@ -599,6 +632,28 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Un enemigo que ya está muriendo no debe matar al jugador.
+        if (muerto)
+        {
+            return;
+        }
+
+        // Solo reaccionamos al objeto que tiene el Tag Player.
+        if (collision.transform.CompareTag("Player"))
+        {
+            // Buscamos Player.cs en el mismo objeto que tiene ese collider.
+            Player player = collision.GetComponent<Player>();
+
+            if (player != null)
+            {
+                // Player decide cómo animar su muerte y reiniciar el nivel.
+                player.Morir();
+            }
+        }
+    }
+
     public void Morir()
     {
         if (muerto)
@@ -619,7 +674,7 @@ public class Enemy : MonoBehaviour
 
 ---
 
-## 15. Configuración final
+## 14. Configuración final
 
 ### Player
 
@@ -680,14 +735,16 @@ Antes de continuar, comprueba:
 - [ ] El enemigo pertenece a la `Layer Enemy`.
 - [ ] El enemigo tiene un `Collider2D`.
 - [ ] El golpe solo afecta al enemigo cuando está dentro del radio.
-- [ ] El enemigo reproduce `Death` antes de desaparecer.
+- [ ] El enemigo reproduce `deathenemy` antes de desaparecer.
 - [ ] El `Animation Event` llama a `Destruir()`.
 - [ ] El enemigo no empuja al Player.
 - [ ] El Player muere al entrar en contacto con el enemigo.
 - [ ] El Player deja de aceptar movimiento cuando comienza su muerte.
 - [ ] El evento ReiniciarNivel() del Player recarga la escena al terminar death.
 - [ ] El enemigo patrulla entre `PuntoA` y `PuntoB`.
-- [ ] El enemigo deja de moverse cuando comienza `Death`.
+- [ ] El enemigo deja de moverse cuando comienza `deathenemy`.
 - [ ] `AttackPoint` cambia de lado cuando cambia la orientación del Player.
 
 Continúa con [Proyectiles y vida de los enemigos](12_proyectiles_y_vida_enemigos_unity.md).
+
+Referencias: [OnTriggerEnter2D](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html) y [Animation Events](https://docs.unity3d.com/6000.0/Documentation/Manual/script-AnimationWindowEvent.html).
