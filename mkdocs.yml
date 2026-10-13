@@ -19,7 +19,8 @@ nav:
               - UD1.8 · Gestión automatizada de archivos: si/ud1/ejercicios/ud1_8.md
               - UD1.9 · Validador automático de entregas: si/ud1/ejercicios/ud1_9.md
               - Entregable UD1 · Gestor de archivos (45 min): si/ud1/ejercicios/entregable_ud1.md
-              - Segundo entregable UD1 · Preparar y comprobar (60 min): si/ud1/ejercicios/entregable_ud1_2.md
+              # Oculto temporalmente; volver a activar al publicar el segundo entregable.
+              # - Segundo entregable UD1 · Preparar y comprobar (60 min): si/ud1/ejercicios/entregable_ud1_2.md
 
   - PMDM:
       - Portada: pmdm/index.md
@@ -134,3 +135,9 @@ copyright: IES Alonso de Ercilla · Curso 2026-2027
 not_in_nav: |
   /pmdm/videojuegos/09-orientacion-personaje.md
   /pmdm/videojuegos/ercigame-2d-primeros-pasos.md
+
+# Segundo entregable conservado en el repositorio, fuera de la web y del buscador.
+exclude_docs: |
+  /si/ud1/ejercicios/entregable_ud1_2.md
+  /assets/si/ud1/entregable2/
+  /assets/images/si/entregable_ud1_2_estructura.svg
