@@ -178,7 +178,7 @@ Crear el archivo es el primer paso. Para aplicar su comportamiento a la moneda:
 <figcaption>Prueba en Game: la moneda desaparece cuando el Player entra en su trigger</figcaption>
 </figure>
 
-En este paso recoger la moneda **solo la elimina**. El contador, el sonido o la puntuación se añadirán como mejoras posteriores.
+En este paso recoger la moneda **solo la elimina**. En la página siguiente añadiremos el [contador de monedas en pantalla](10-contador-monedas.md), ampliando este mismo Coin.cs.
 
 ### Colocar más monedas
 
@@ -188,6 +188,6 @@ Puedes duplicar Coin con **Ctrl+D** y mover las copias por Scene. Si vas a reuti
 
 Detén Play y revisa que **Coin (Script) está en Coin**, que Circle Collider 2D tiene **Is Trigger activado**, que el objeto Player tiene **Tag Player** y que conserva Rigidbody 2D y Box Collider 2D. Comprueba también los errores de **Console** y que las layers de ambos objetos pueden interactuar en **Project Settings → Physics 2D**.
 
-Continúa con [Peligros y reinicio del nivel](10-peligros-reinicio.md).
+Continúa con [Contador de monedas en pantalla](10-contador-monedas.md).
 
 Referencias: [OnTriggerEnter2D](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/MonoBehaviour.OnTriggerEnter2D.html), [CompareTag](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Component.CompareTag.html) y [Destroy](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Object.Destroy.html).

@@ -1,4 +1,4 @@
-# 13. Proyectiles y vida de los enemigos
+# 14. Proyectiles y vida de los enemigos
 
 Después de [Ataque y enemigos](11-ataque-enemigos.md), el enemigo ya patrulla, mata al Player al tocarlo y reproduce **deathenemy** antes de desaparecer. Ahora lanzaremos un proyectil al pulsar **C** y haremos que el enemigo necesite **dos golpes** para morir.
 

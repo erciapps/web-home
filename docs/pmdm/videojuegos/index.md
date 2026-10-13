@@ -78,7 +78,15 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     [:octicons-arrow-right-24: Abrir](10-objetos-recogibles.md)
 
--   :material-restart:{ .lg .middle } **10. Peligros y reinicio del nivel**
+-   :material-counter:{ .lg .middle } **10. Contador de monedas en pantalla**
+
+    ---
+
+    TextMeshPro, Canvas, anclaje del texto y comunicación con Coin.cs.
+
+    [:octicons-arrow-right-24: Abrir](10-contador-monedas.md)
+
+-   :material-restart:{ .lg .middle } **11. Peligros y reinicio del nivel**
 
     ---
 
@@ -86,7 +94,7 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     [:octicons-arrow-right-24: Abrir](10-peligros-reinicio.md)
 
--   :material-swap-horizontal:{ .lg .middle } **11. Crear un enemigo y su patrulla**
+-   :material-swap-horizontal:{ .lg .middle } **12. Crear un enemigo y su patrulla**
 
     ---
 
@@ -94,7 +102,7 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     [:octicons-arrow-right-24: Abrir](11-enemigo-patrulla.md)
 
--   :material-sword:{ .lg .middle } **12. Ataque y enemigos**
+-   :material-sword:{ .lg .middle } **13. Ataque y enemigos**
 
     ---
 
@@ -102,7 +110,7 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     [:octicons-arrow-right-24: Abrir](11-ataque-enemigos.md)
 
--   :material-bullseye-arrow:{ .lg .middle } **13. Proyectiles y vida de los enemigos**
+-   :material-bullseye-arrow:{ .lg .middle } **14. Proyectiles y vida de los enemigos**
 
     ---
 
@@ -110,7 +118,7 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     [:octicons-arrow-right-24: Abrir](12_proyectiles_y_vida_enemigos_unity.md)
 
--   :material-hammer-wrench:{ .lg .middle } **14. Ejercicio · Tu propio videojuego**
+-   :material-hammer-wrench:{ .lg .middle } **15. Ejercicio · Tu propio videojuego**
 
     ---
 

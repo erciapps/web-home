@@ -1,4 +1,4 @@
-# 11. Crear un enemigo y su patrulla
+# 12. Crear un enemigo y su patrulla
 
 Ya recogemos monedas y controlamos la [muerte y el reinicio del Player](10-peligros-reinicio.md). Ahora crearemos un enemigo animado y lo moveremos entre dos puntos. En la siguiente página añadiremos el contacto y el ataque.
 

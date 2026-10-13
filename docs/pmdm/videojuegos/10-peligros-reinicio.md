@@ -1,6 +1,6 @@
-# 10. Peligros y reinicio del nivel
+# 11. Peligros y reinicio del nivel
 
-Ya podemos recoger [monedas](10-objetos-recogibles.md). Ahora añadiremos una **zona de caída debajo del mapa** y **obstáculos que hacen morir al Player**. El peligro detectará el contacto y llamará a **Player.Morir()**. El jugador detendrá sus controles, reproducirá su animación de muerte y reiniciará el nivel al terminarla.
+Ya recogemos [monedas](10-objetos-recogibles.md) y mostramos su [contador en pantalla](10-contador-monedas.md). Ahora añadiremos una **zona de caída debajo del mapa** y **obstáculos que hacen morir al Player**. El peligro detectará el contacto y llamará a **Player.Morir()**. El jugador detendrá sus controles, reproducirá su animación de muerte y reiniciará el nivel al terminarla.
 
 ## 1. Crear la zona de caída
 
@@ -192,7 +192,7 @@ El **Animation Event** llama a ese método en el momento indicado del clip. Play
 
 La secuencia es: **contacto con un peligro → Morir() → animación death → evento ReiniciarNivel() → recarga de la escena**. Por eso Morir no carga la escena inmediatamente: necesitamos tiempo para ver la animación.
 
-Al recargar, **el Player vuelve a su posición guardada y las monedas recogidas vuelven a aparecer**. La escena debe estar incluida en Scene List, como acabamos de preparar.
+Al recargar, **el Player vuelve a su posición guardada y las monedas recogidas vuelven a aparecer**. El contador vuelve a 0 y calcula de nuevo el total. La escena debe estar incluida en Scene List, como acabamos de preparar.
 
 ## 4. Crear Killzone.cs
 

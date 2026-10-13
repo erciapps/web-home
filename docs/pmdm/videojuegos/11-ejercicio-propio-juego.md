@@ -1,4 +1,4 @@
-# 14. Ejercicio · Tu propio videojuego
+# 15. Ejercicio · Tu propio videojuego
 
 ## Propuesta
 
@@ -22,6 +22,7 @@ Tu proyecto debe incluir:
 - al menos las animaciones **Idle**, **Run** y **Jump**;
 - orientación del personaje según la dirección del movimiento;
 - al menos un tipo de objeto recogible;
+- un contador en pantalla de objetos recogidos y totales;
 - una zona de caída que reinicie el nivel y un obstáculo con trigger;
 - una meta o condición clara para terminar el nivel.
 
@@ -42,7 +43,7 @@ El juego debe tener una identidad propia. Puedes modificar, entre otras cosas:
 
 Cuando los requisitos mínimos funcionen, deberás incorporar mejoras como (se verán en clase):
 
-- contador de monedas o puntuación;
+- ampliar el contador con puntuación o nuevas condiciones de victoria;
 - enemigos;
 - pinchos o trampas;
 - plataformas móviles;

@@ -1,4 +1,4 @@
-# 12. Ataque y enemigos
+# 13. Ataque y enemigos
 
 Después de [crear el enemigo y su patrulla](11-enemigo-patrulla.md), añadiremos el combate. Conservamos Player.Morir(), su animación y el reinicio del nivel preparados en [Peligros y reinicio](10-peligros-reinicio.md). Ahora programaremos el ataque y la muerte del enemigo.
 
