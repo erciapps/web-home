@@ -122,7 +122,7 @@ Construiremos un juego de plataformas con **Unity 6**, siguiendo el mismo proyec
 
     ---
 
-    Aplica lo aprendido con otros recursos y un nivel diseñado por ti.
+    Juego propio con tres niveles, contadores, enemigos y menú. Entrega el 27 de octubre.
 
     [:octicons-arrow-right-24: Abrir](11-ejercicio-propio-juego.md)
 
