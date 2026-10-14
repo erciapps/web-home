@@ -194,6 +194,54 @@ Al pulsar Play, el panel debe desaparecer; al caer la bola, aparecerá la victor
 El control por inclinación puede hacerse más cómodo incorporando calibración, inversión de ejes y límite de velocidad. También falta ajustar el encuadre para distintas relaciones de aspecto y mejorar el diseño del panel. No forman parte de la versión que hemos probado en estas capturas.
 
 
+
+??? info "Capturas adicionales del proceso"
+
+    Estas imágenes documentan pruebas y ajustes realizados en clase. No son pasos nuevos del tutorial.
+
+    <figure class="unity-shot" markdown="1">
+
+    [![Vista adicional del tablero durante la construcción](../../assets/images/pmdm/androicilla/20261013-204007.png){ loading=lazy }](../../assets/images/pmdm/androicilla/20261013-204007.png){ aria-label="Ampliar captura" }
+
+    <figcaption>Vista adicional del tablero durante la construcción.</figcaption>
+    </figure>
+
+    <figure class="unity-shot" markdown="1">
+
+    [![Ajustes de la esfera durante las primeras pruebas](../../assets/images/pmdm/androicilla/20261013-204554.png){ loading=lazy }](../../assets/images/pmdm/androicilla/20261013-204554.png){ aria-label="Ampliar captura" }
+
+    <figcaption>Ajustes de la esfera durante las primeras pruebas.</figcaption>
+    </figure>
+
+    <figure class="unity-shot" markdown="1">
+
+    [![Comprobación del estado inicial de la escena](../../assets/images/pmdm/androicilla/20261013-204711.png){ loading=lazy }](../../assets/images/pmdm/androicilla/20261013-204711.png){ aria-label="Ampliar captura" }
+
+    <figcaption>Comprobación del estado inicial de la escena.</figcaption>
+    </figure>
+
+    <figure class="unity-shot" markdown="1">
+
+    [![Prueba del movimiento antes de instalarlo en Android](../../assets/images/pmdm/androicilla/20261013-205101.png){ loading=lazy }](../../assets/images/pmdm/androicilla/20261013-205101.png){ aria-label="Ampliar captura" }
+
+    <figcaption>Prueba del movimiento antes de instalarlo en Android.</figcaption>
+    </figure>
+
+    <figure class="unity-shot" markdown="1">
+
+    [![Revisión de los componentes y configuración](../../assets/images/pmdm/androicilla/20261013-205351.png){ loading=lazy }](../../assets/images/pmdm/androicilla/20261013-205351.png){ aria-label="Ampliar captura" }
+
+    <figcaption>Revisión de los componentes y configuración.</figcaption>
+    </figure>
+
+    <figure class="unity-shot" markdown="1">
+
+    [![Estado del proyecto durante la corrección del agujero](../../assets/images/pmdm/androicilla/20261014-064226.png){ loading=lazy }](../../assets/images/pmdm/androicilla/20261014-064226.png){ aria-label="Ampliar captura" }
+
+    <figcaption>Estado del proyecto durante la corrección del agujero.</figcaption>
+    </figure>
+
+
 ---
 
 [← 5. Laberinto y materiales](05-laberinto-materiales.md) · [Volver al índice](index.md)
