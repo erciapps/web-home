@@ -19,13 +19,12 @@ nav:
               - UD1.8 · Gestión automatizada de archivos: si/ud1/ejercicios/ud1_8.md
               - UD1.9 · Validador automático de entregas: si/ud1/ejercicios/ud1_9.md
               - Entregable UD1 · Gestor de archivos (45 min): si/ud1/ejercicios/entregable_ud1.md
-              - Actividad propuesta 2 · Preparar y comprobar (60 min): si/ud1/ejercicios/entregable_ud1_2.md
+              - ENTREGABLE 2 UD1 · Preparar y comprobar (60 min): si/ud1/ejercicios/entregable_ud1_2.md
 
   - PMDM:
       - Portada: pmdm/index.md
       - Videojuegos 2D con Unity: pmdm/videojuegos/index.md
-      - Videojuegos 3D y Android:
-          - Androicilla · Laberinto con sensores: pmdm/androicilla/index.md
+      - Androicilla · Unity 3D y Android: pmdm/androicilla/index.md
       - Recursos: pmdm/recursos.md
 
   - Recursos transversales:
