@@ -1,4 +1,4 @@
-# Actividad propuesta 2 · Preparar y comprobar una entrega
+# Entregable 2 UD1 · Preparar y comprobar una entrega
 
 **Módulo:** Sistemas Informáticos · 1.º DAM  
 **Duración:** 60 minutos  
@@ -21,7 +21,7 @@ Descarga [operaciones.txt](../../../assets/si/ud1/entregable2/operaciones.txt) y
 El programa debe mostrar este menú y volver a él después de cada opción:
 
 ```text
-ACTIVIDAD PROPUESTA 2
+ENTREGABLE 2 UD1
 
 1. Generar estructura
 2. Ejecutar operaciones
