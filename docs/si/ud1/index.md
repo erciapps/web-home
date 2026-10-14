@@ -45,6 +45,13 @@ rm
     <p>Actividad individual: crea una estructura y procesa instrucciones COPY y MOVE desde un fichero.</p>
     <div class="si-card-bottom"><div class="si-ra"><span>RA4 · CE 4.e</span></div><div class="si-actions"><a class="si-button" href="ejercicios/entregable_ud1/">Ver entregable <span>→</span></a></div></div>
   </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">ENTREGABLE 2 UD1</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Preparar y comprobar una entrega · 60 minutos</h3>
+    <p>Actividad individual con Bash: estructura desde un TXT, operaciones con archivos, registro y comprobación automática de la entrega.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Bash · sed · grep · tail</span></div><div class="si-actions"><a class="si-button" href="ejercicios/entregable_ud1_2/">Ver entregable <span>→</span></a></div></div>
+  </article>
 </div>
 
 ## Ejercicios
