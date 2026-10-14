@@ -19,8 +19,7 @@ nav:
               - UD1.8 · Gestión automatizada de archivos: si/ud1/ejercicios/ud1_8.md
               - UD1.9 · Validador automático de entregas: si/ud1/ejercicios/ud1_9.md
               - Entregable UD1 · Gestor de archivos (45 min): si/ud1/ejercicios/entregable_ud1.md
-              # Oculto temporalmente; volver a activar al publicar el segundo entregable.
-              # - Segundo entregable UD1 · Preparar y comprobar (60 min): si/ud1/ejercicios/entregable_ud1_2.md
+              - Actividad propuesta 2 · Preparar y comprobar (60 min): si/ud1/ejercicios/entregable_ud1_2.md
 
   - PMDM:
       - Portada: pmdm/index.md
@@ -41,6 +40,8 @@ nav:
           - 13. Ataque y enemigos: pmdm/videojuegos/11-ataque-enemigos.md
           - 14. Proyectiles y vida de los enemigos: pmdm/videojuegos/12_proyectiles_y_vida_enemigos_unity.md
           - 15. Ejercicio · Tu propio videojuego: pmdm/videojuegos/11-ejercicio-propio-juego.md
+      - Videojuegos 3D y Android:
+          - Androicilla · Laberinto con sensores: pmdm/androicilla/index.md
       - Recursos: pmdm/recursos.md
 
   - Recursos transversales:
@@ -136,8 +137,3 @@ not_in_nav: |
   /pmdm/videojuegos/09-orientacion-personaje.md
   /pmdm/videojuegos/ercigame-2d-primeros-pasos.md
 
-# Segundo entregable conservado en el repositorio, fuera de la web y del buscador.
-exclude_docs: |
-  /si/ud1/ejercicios/entregable_ud1_2.md
-  /assets/si/ud1/entregable2/
-  /assets/images/si/entregable_ud1_2_estructura.svg
