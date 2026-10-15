@@ -20,6 +20,10 @@ nav:
               - UD1.9 · Validador automático de entregas: si/ud1/ejercicios/ud1_9.md
               - Entregable UD1 · Gestor de archivos (45 min): si/ud1/ejercicios/entregable_ud1.md
               - ENTREGABLE 2 UD1 · Preparar y comprobar (60 min): si/ud1/ejercicios/entregable_ud1_2.md
+      - UD2 · Usuarios, permisos y procesos:
+          - Contenidos · Permisos y propietarios: si/ud2/index.md
+          - Ejercicios:
+              - UD2.1 · chmod y chown: si/ud2/ejercicios/ud2_1.md
 
   - PMDM:
       - Portada: pmdm/index.md
