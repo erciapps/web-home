@@ -6,7 +6,7 @@ Esta unidad está dedicada a la administración básica de GNU/Linux. Comenzamos
 
 Al terminar deberás poder:
 
-- Interpretar los permisos mostrados por `ls -l` y `ls -ld`.
+- Interpretar los permisos mostrados por `ls -l` y `ls -la`.
 - Distinguir propietario, grupo propietario y resto de usuarios.
 - Entender qué significa `r`, `w` y `x` en **archivos** y en **directorios**.
 - Modificar permisos con `chmod` en modo simbólico y octal.
@@ -35,11 +35,11 @@ Y examinar un archivo y un directorio con:
 
 ```bash
 ls -l archivo.txt
-ls -ld carpeta
+ls -la carpeta
 ```
 
-!!! tip "¿Por qué `ls -ld`?"
-    Con `ls -l carpeta` se listan normalmente los elementos **dentro** de la carpeta. Con `ls -ld carpeta` se muestran los permisos de **la propia carpeta**.
+!!! tip "¿Qué muestra `ls -la`?"
+    `ls -la carpeta` muestra todos los elementos de la carpeta, también los ocultos. La entrada `.` corresponde a **la propia carpeta** y muestra sus permisos; `..` corresponde al directorio superior. En cambio, `ls -l carpeta` no muestra las entradas ocultas.
 
 Ejemplo de salida de `ls -l`:
 
@@ -163,11 +163,11 @@ Por regla general, cambiar el **usuario propietario** requiere privilegios de ad
 
 ```bash
 ls -l archivo.txt
-ls -ld directorio
+ls -la directorio
 stat -c '%A %a %U:%G %n' archivo.txt
 ```
 
-La salida de `stat` permite comprobar a la vez permisos simbólicos, permisos numéricos, usuario y grupo. Si aparece una `+` al final de los permisos de `ls`, puede haber ACL adicionales que debes revisar aparte.
+Con `ls -la directorio`, fíjate en la línea `.` para ver los permisos del propio directorio. La salida de `stat` permite comprobar a la vez permisos simbólicos, permisos numéricos, usuario y grupo. Si aparece una `+` al final de los permisos de `ls`, puede haber ACL adicionales que debes revisar aparte.
 
 ## 6. Crear usuarios y grupos
 
@@ -203,4 +203,4 @@ A continuación, utilizarás estos comandos en una práctica guiada con un TXT.
 </div>
 
 !!! tip "Entorno de trabajo"
-    Utiliza Debian y el terminal integrado de VS Code. Los scripts estarán en `/workspace/ud2/`. Para crear cuentas reales en UD2.2 utiliza exclusivamente una máquina virtual o contenedor **de pruebas con autorización administrativa**, no un servidor compartido.
+    Utiliza Debian y el terminal integrado de VS Code. Los scripts estarán en `/workspace/ud2/`. La práctica de creación de cuentas requiere un entorno de pruebas donde tengas autorización para administrar usuarios.
