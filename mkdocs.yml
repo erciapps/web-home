@@ -24,6 +24,7 @@ nav:
           - Contenidos · Permisos y propietarios: si/ud2/index.md
           - Ejercicios:
               - UD2.1 · chmod y chown: si/ud2/ejercicios/ud2_1.md
+              - UD2.2 · Usuarios y grupos desde TXT: si/ud2/ejercicios/ud2_2.md
 
   - PMDM:
       - Portada: pmdm/index.md
