@@ -169,6 +169,20 @@ stat -c '%A %a %U:%G %n' archivo.txt
 
 La salida de `stat` permite comprobar a la vez permisos simbólicos, permisos numéricos, usuario y grupo. Si aparece una `+` al final de los permisos de `ls`, puede haber ACL adicionales que debes revisar aparte.
 
+## 6. Crear usuarios y grupos
+
+Linux también permite administrar **cuentas de usuario** y **grupos** desde la terminal:
+
+- `groupadd`: crea un grupo.
+- `useradd -m -g grupo -s /bin/bash usuario`: crea una cuenta, su directorio personal y asigna grupo y shell.
+- `chpasswd`: establece contraseñas mediante entrada estándar.
+- `id usuario` y `groups usuario`: muestran su identidad y grupos.
+- `su - usuario`: intenta iniciar una sesión como ese usuario.
+
+El fichero `/etc/passwd` contiene datos públicos de las cuentas, como nombre y shell; `/etc/group` contiene los grupos. **No contienen las contraseñas en texto claro**: Linux guarda sus hashes normalmente en `/etc/shadow`, un fichero protegido.
+
+A continuación, utilizarás estos comandos en una práctica guiada con un TXT.
+
 ## Ejercicios
 
 <div class="si-units">
@@ -179,7 +193,14 @@ La salida de `stat` permite comprobar a la vez permisos simbólicos, permisos nu
     <p>Interpreta y modifica los permisos de archivos y directorios con chmod, comprueba sus efectos y practica chown de forma controlada.</p>
     <div class="si-card-bottom"><div class="si-ra"><span>chmod · chown · ls · stat</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_1/">Ver ejercicio <span>→</span></a></div></div>
   </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD2.2</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Crear usuarios y grupos desde un TXT</h3>
+    <p>Lee usuarios, grupos, contraseñas y shells mediante Bash. Comprueba las cuentas y realiza pruebas de acceso por grupo.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>useradd · groupadd · chpasswd</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_2/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
 </div>
 
 !!! tip "Entorno de trabajo"
-    Realiza las pruebas desde el terminal integrado de VS Code, en Debian, y exclusivamente dentro de `/workspace/ud2/`.
+    Utiliza Debian y el terminal integrado de VS Code. Los scripts estarán en `/workspace/ud2/`. Para crear cuentas reales en UD2.2 utiliza exclusivamente una máquina virtual o contenedor **de pruebas con autorización administrativa**, no un servidor compartido.
