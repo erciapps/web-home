@@ -23,6 +23,22 @@ Material de clase, prácticas y recursos del módulo de **Programación Multimed
 
     [:octicons-arrow-right-24: Abrir tutorial](androicilla/)
 
+-   :material-shape:{ .lg .middle } **Ejercicio 2 · Clasificador de figuras 3D**
+
+    ---
+
+    Arrastrar figuras hasta su agujero: ProBuilder, Colliders, Rigidbody y controles de ratón o pantalla táctil. Incluye el script comentado.
+
+    [:octicons-arrow-right-24: Abrir ejercicio](ejercicio-2-figuras.md)
+
+-   :material-paw:{ .lg .middle } **Ejercicio 3 · Clasificador de animales 3D**
+
+    ---
+
+    Preparación de las cestas de mamíferos, reptiles y aves. Descarga de Cube Pets Vol. 3, arrastre de animales y ejemplo de movimiento del Corgi.
+
+    [:octicons-arrow-right-24: Abrir ejercicio](ejercicio-3-animales.md)
+
 -   :material-folder-multiple-image:{ .lg .middle } **Recursos**
 
     ---

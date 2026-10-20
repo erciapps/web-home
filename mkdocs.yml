@@ -30,6 +30,8 @@ nav:
       - Portada: pmdm/index.md
       - Videojuegos 2D con Unity: pmdm/videojuegos/index.md
       - Androicilla · Unity 3D y Android: pmdm/androicilla/index.md
+      - Ejercicio 2 · Clasificador de figuras: pmdm/ejercicio-2-figuras.md
+      - Ejercicio 3 · Clasificador de animales: pmdm/ejercicio-3-animales.md
       - Recursos: pmdm/recursos.md
 
   - Recursos transversales:
