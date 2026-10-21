@@ -4,6 +4,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody))]
 public class ArrastrarFigura3D : MonoBehaviour
 {
+    // Opcionales: si el objeto se mueve solo o tiene animaciones.
+    public MonoBehaviour movimientoAutomatico;
+    public bool usarAnimaciones = false;
+
     private Camera camara;
     private Rigidbody rb;
     private Animator animator;
@@ -13,11 +17,9 @@ public class ArrastrarFigura3D : MonoBehaviour
     private bool arrastrando;
     private bool tactil;
 
-    // Actívalo en el Inspector solo si el Animator tiene los triggers Run e Idle.
-    public bool usarAnimaciones = false;
-
     void Start()
     {
+        // Buscamos la cámara y los componentes del objeto.
         camara = Camera.main;
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
@@ -25,7 +27,7 @@ public class ArrastrarFigura3D : MonoBehaviour
 
     void Update()
     {
-        // Comenzar a arrastrar con el dedo o el botón izquierdo del ratón.
+        // Si no tenemos cogido el objeto, esperamos un clic o un toque.
         if (!arrastrando)
         {
             if (Touchscreen.current != null &&
@@ -38,7 +40,7 @@ public class ArrastrarFigura3D : MonoBehaviour
             return;
         }
 
-        // Mientras mantenemos pulsado, mover el objeto; al soltar, recuperar la física.
+        // Si lo tenemos cogido, seguimos el dedo o el ratón.
         if (tactil)
         {
             if (Touchscreen.current == null ||
@@ -58,8 +60,10 @@ public class ArrastrarFigura3D : MonoBehaviour
 
     void Coger(Vector2 posicion, bool esTactil)
     {
-        // El Raycast identifica el objeto pulsado (también si su Collider está en un hijo).
+        // Un rayo invisible indica qué Collider hemos pulsado.
         Ray rayo = camara.ScreenPointToRay(posicion);
+
+        // Solo cogemos ESTE objeto o uno de sus hijos.
         if (!Physics.Raycast(rayo, out RaycastHit hit) ||
             !hit.collider.transform.IsChildOf(transform))
             return;
@@ -67,12 +71,18 @@ public class ArrastrarFigura3D : MonoBehaviour
         arrastrando = true;
         tactil = esTactil;
 
-        // Plano horizontal invisible: desplazamos la figura sin cambiar su altura.
+        // Detener cualquier script de movimiento asignado en el Inspector.
+        if (movimientoAutomatico != null)
+            movimientoAutomatico.enabled = false;
+
+        // Plano horizontal para arrastrar sin cambiar la altura.
         plano = new Plane(Vector3.up, transform.position);
         plano.Raycast(rayo, out float distancia);
+
+        // Guardamos la separación entre el clic y el centro del objeto.
         desplazamiento = transform.position - rayo.GetPoint(distancia);
 
-        // Suspender temporalmente la gravedad y las fuerzas durante el arrastre.
+        // Paramos las físicas mientras sujetamos el objeto.
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.isKinematic = true;
@@ -86,6 +96,7 @@ public class ArrastrarFigura3D : MonoBehaviour
 
     void Mover(Vector2 posicion)
     {
+        // Calculamos dónde toca el rayo el plano horizontal.
         Ray rayo = camara.ScreenPointToRay(posicion);
 
         if (plano.Raycast(rayo, out float distancia))
@@ -96,13 +107,20 @@ public class ArrastrarFigura3D : MonoBehaviour
     {
         arrastrando = false;
 
-        // Volver a activar las físicas: si está sobre un agujero real, caerá.
+        // El objeto vuelve a responder a la gravedad y las colisiones.
         rb.isKinematic = false;
+
+        // Si patrullaba antes, vuelve a moverse automáticamente.
+        if (movimientoAutomatico != null)
+            movimientoAutomatico.enabled = true;
 
         if (usarAnimaciones && animator != null)
         {
             animator.ResetTrigger("Run");
-            animator.SetTrigger("Idle");
+            animator.ResetTrigger("Idle");
+
+            // Un objeto con patrulla sigue corriendo; el resto queda en reposo.
+            animator.SetTrigger(movimientoAutomatico != null ? "Run" : "Idle");
         }
     }
 }

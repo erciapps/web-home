@@ -1,46 +1,120 @@
 # Ejercicio 3 · Clasificador de animales 3D
 
-Prepararemos un juego para arrastrar animales hasta la **cesta de su grupo**: **mamíferos, reptiles o aves**.
+Vamos a preparar un juego para clasificar animales en tres cestas: **mamíferos, reptiles y aves**. Los animales podrán moverse por la plataforma y podremos cogerlos con el ratón o con el dedo para llevarlos a una cesta.
 
-!!! info "De momento, solo la preparación"
-    En esta primera fase descargaremos los animales, colocaremos las cestas y podremos arrastrar los modelos en Unity. **La detección de la cesta correcta, las puntuaciones y los mensajes de acierto/error se programarán más adelante.**
+!!! info "Qué vamos a hacer ahora"
+    Empezaremos con los modelos, las cestas, el movimiento automático y el arrastre. **Todavía no vamos a comprobar si elegimos la cesta correcta**; esa parte la añadiremos después.
 
-## 1. Descargar los animales
+## 1. Descargar y colocar los animales
 
-Usaremos estos modelos 3D:
+Descarga los modelos de **[Cube Pets Vol. 3 (itch.io)](https://sneznyj.itch.io/cube-pets-vol-3?download)** e impórtalos en Unity.
 
-**[Descargar assets · Cube Pets Vol. 3 (itch.io)](https://sneznyj.itch.io/cube-pets-vol-3?download)**
+Crea una escena `Animals` y prepara:
 
-Descarga el paquete desde esa página e importa los modelos que necesites en el proyecto Unity.
+1. Una plataforma con Collider.
+2. Tres cestas o zonas llamadas `CestaMamiferos`, `CestaReptiles` y `CestaAves`.
+3. Los animales que vayas a utilizar, cada uno con su **Rigidbody** y su **Collider**.
+4. Dos objetos vacíos llamados `PuntoA` y `PuntoB` para probar el desplazamiento.
 
-## 2. Preparar las cestas y los animales
+!!! warning "Comprobar el Box Collider"
+    El modelo 3D se ve en pantalla gracias a su malla, pero para seleccionarlo con un clic necesitamos que el rayo toque un **Collider**. Añade un `Box Collider` al animal y ajusta su tamaño con **Edit Collider**, sin incluir demasiado espacio vacío. Si el perro corre pero no podemos cogerlo, lo primero que debemos revisar es esto. Si usamos Mesh Collider en un objeto con Rigidbody dinámico, debe ser **Convex**.
 
-1. Crea tres zonas o cestas llamadas `CestaMamiferos`, `CestaReptiles` y `CestaAves`.
-2. Importa algunos animales, colócalos en la escena y ajusta su tamaño.
-3. A cada animal añádele un **Rigidbody** y un Collider adecuado. Si tiene **Mesh Collider** y Rigidbody dinámico, activa **Convex**; normalmente un **Box Collider** ajustado resulta más sencillo.
-4. Añade a los animales el script **ArrastrarFigura3D.cs** del ejercicio 2. **Es el mismo sistema de arrastre**: funciona con ratón y pantalla táctil, así que no necesitamos duplicar el código.
+## 2. Script · MovimientoAnimales.cs
 
-**[Abrir el script de arrastre y su explicación](ejercicio-2-figuras.md#script-arrastrarfigura3dcs)** · [Ver el archivo .cs en GitHub](https://github.com/erciapps/web-home/blob/main/docs/pmdm/scripts/ArrastrarFigura3D.cs)
+Queremos que un animal se mueva de `PuntoA` a `PuntoB` y, cuando llegue, regrese a `PuntoA`. Después repetirá el recorrido continuamente.
 
-Si un animal utiliza Animator y tiene transiciones por triggers `Run` e `Idle`, puedes activar `Usar Animaciones` en el script de arrastre. En caso contrario, déjalo desactivado.
+El nombre es **MovimientoAnimales** porque el script sirve para un perro, un gato o cualquier otro animal.
 
-## 3. Script opcional · MovimientoCorgi.cs
+**[Abrir o descargar MovimientoAnimales.cs desde GitHub](https://github.com/erciapps/web-home/blob/main/docs/pmdm/scripts/MovimientoAnimales.cs)**
 
-Para practicar con un animal animado, también tenemos el movimiento automático del Corgi entre dos puntos. **No es necesario para clasificar**; es una prueba adicional de movimiento y Animator.
+### Paso 1. Indicar los puntos y la velocidad
 
-Crea dos objetos vacíos (`PuntoA` y `PuntoB`), asígnalos en el Inspector y añade este script al Corgi:
+```csharp
+public Transform puntoA;
+public Transform puntoB;
+public float velocidad = 2f;
+```
 
-[Ver o guardar MovimientoCorgi.cs en GitHub](https://github.com/erciapps/web-home/blob/main/docs/pmdm/scripts/MovimientoCorgi.cs)
+`Transform` nos permite conocer la posición de cada punto. Como las variables son públicas, aparecerán en el **Inspector** para arrastrar los objetos `PuntoA` y `PuntoB`. Podemos cambiar la velocidad de cada animal sin modificar el código.
+
+### Paso 2. Empezar en A y dirigirnos a B
+
+```csharp
+rb.position = puntoA.position;
+destino = puntoB;
+```
+
+Al comenzar, colocamos al animal en `PuntoA`. La variable `destino` indica **hacia dónde tiene que ir ahora**; inicialmente será `PuntoB`.
+
+### Paso 3. Calcular hacia dónde debe caminar
+
+```csharp
+Vector3 direccion = destino.position - rb.position;
+direccion.y = 0;
+```
+
+Restamos la posición del animal a la posición del destino para obtener la dirección del movimiento.
+
+Ponemos `direccion.y = 0` porque queremos desplazarnos **sobre la plataforma**, sin utilizar el movimiento automático para subir o bajar. La gravedad se sigue encargando del eje vertical.
+
+### Paso 4. Cambiar de destino cuando llegue
+
+```csharp
+if (direccion.magnitude < 0.15f)
+{
+    destino = destino == puntoB ? puntoA : puntoB;
+    return;
+}
+```
+
+`magnitude` es la distancia que queda hasta el destino. Cuando estamos suficientemente cerca, cambiamos al otro punto.
+
+La línea con `?` y `:` significa lo mismo que escribir:
+
+```csharp
+if (destino == puntoB)
+    destino = puntoA;
+else
+    destino = puntoB;
+```
+
+Así conseguimos el recorrido **A → B → A → B...**.
+
+### Paso 5. Mover y girar al animal
+
+```csharp
+direccion.Normalize();
+
+rb.linearVelocity = new Vector3(
+    direccion.x * velocidad,
+    rb.linearVelocity.y,
+    direccion.z * velocidad
+);
+
+rb.MoveRotation(Quaternion.LookRotation(direccion));
+```
+
+`Normalize()` deja la dirección con longitud 1 para poder multiplicarla por la velocidad elegida.
+
+Modificamos la velocidad horizontal del **Rigidbody**, pero conservamos su velocidad vertical (`rb.linearVelocity.y`), para no anular la gravedad.
+
+Por último, `MoveRotation` hace que el animal mire hacia donde camina.
+
+### Código completo
+
+Crea `Assets/Scripts/MovimientoAnimales.cs` y pega este código:
 
 ```csharp
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MovimientoCorgi : MonoBehaviour
+public class MovimientoAnimales : MonoBehaviour
 {
+    // Podemos usar este script en cualquier animal, no solo en el Corgi.
     public Transform puntoA;
     public Transform puntoB;
     public float velocidad = 2f;
+    public bool usarAnimaciones = false;
 
     private Rigidbody rb;
     private Animator animator;
@@ -51,13 +125,18 @@ public class MovimientoCorgi : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
 
-        if (puntoA == null || puntoB == null) return;
+        // Es necesario asignar los dos puntos en el Inspector.
+        if (puntoA == null || puntoB == null)
+        {
+            enabled = false;
+            return;
+        }
 
-        // Comenzar en A y dirigirse hacia B.
+        // Empezamos en A y vamos hacia B.
         rb.position = puntoA.position;
         destino = puntoB;
 
-        if (animator != null)
+        if (usarAnimaciones && animator != null)
             animator.SetTrigger("Run");
     }
 
@@ -65,12 +144,12 @@ public class MovimientoCorgi : MonoBehaviour
     {
         if (destino == null) return;
 
-        // Dirección horizontal: no modificamos la velocidad vertical de la gravedad.
+        // Calculamos hacia dónde debe desplazarse.
         Vector3 direccion = destino.position - rb.position;
-        direccion.y = 0;
+        direccion.y = 0; // La gravedad sigue funcionando en el eje Y.
 
-        // Al llegar a un extremo, cambiar de destino: A -> B -> A -> B...
-        if (direccion.magnitude < 0.1f)
+        // Al llegar a B vamos a A, y al llegar a A volvemos a B.
+        if (direccion.magnitude < 0.15f)
         {
             destino = destino == puntoB ? puntoA : puntoB;
             return;
@@ -78,26 +157,58 @@ public class MovimientoCorgi : MonoBehaviour
 
         direccion.Normalize();
 
-        // Avanzar manteniendo la velocidad vertical del Rigidbody.
+        // Movemos al animal sin modificar su velocidad vertical.
         rb.linearVelocity = new Vector3(
             direccion.x * velocidad,
             rb.linearVelocity.y,
             direccion.z * velocidad
         );
 
-        // Mirar hacia la dirección del desplazamiento.
+        // Giramos al animal hacia donde está caminando.
         rb.MoveRotation(Quaternion.LookRotation(direccion));
     }
 }
 ```
 
-El perro recorre **A → B → A → B…** continuamente. En el Animator, configura `Idle → Run` mediante el trigger `Run` (sin `Has Exit Time`) y el clip `Run` en bucle. Desactiva **Apply Root Motion**.
+Añade el componente `MovimientoAnimales` al animal y asigna `PuntoA` y `PuntoB` en el Inspector. Coloca los puntos a una altura adecuada para que el animal no aparezca bajo el suelo.
 
-!!! warning "No mezclar controles durante la prueba"
-    Si utilizas `MovimientoCorgi` para patrullar, **desactiva `ArrastrarFigura3D` en ese mismo animal** mientras haces la prueba. Los dos scripts intentan controlar su posición de formas diferentes.
+Si el modelo tiene animaciones y un trigger `Run`, activa `Usar Animaciones`. En el Animator, el clip de correr debe estar en bucle y la transición `Idle → Run` no debe esperar a `Has Exit Time`. Desactiva también **Apply Root Motion**.
+
+## 3. Añadir el arrastre al animal
+
+No necesitamos escribir otro script: reutilizamos **ArrastrarFigura3D.cs** del ejercicio 2.
+
+**[Ver el código completo y la explicación paso a paso](ejercicio-2-figuras.md#3-script-arrastrarfigura3dcs)** · [Abrir archivo .cs](https://github.com/erciapps/web-home/blob/main/docs/pmdm/scripts/ArrastrarFigura3D.cs)
+
+Añade los **dos componentes al mismo animal**:
+
+- `MovimientoAnimales`, para que corra de A a B.
+- `ArrastrarFigura3D`, para poder cogerlo y soltarlo.
+
+En el Inspector de **ArrastrarFigura3D**, arrastra su componente **MovimientoAnimales** al campo **Movimiento Automatico**. Así un script podrá pausar al otro.
+
+### ¿Qué pasa cuando pulsamos sobre el animal?
+
+1. `ArrastrarFigura3D` lanza un **Raycast**, un rayo invisible desde la cámara, para comprobar si hemos tocado su Collider.
+2. **Solo si hemos tocado ese animal**, desactivamos temporalmente `MovimientoAnimales` con `movimientoAutomatico.enabled = false`.
+3. Mientras lo tenemos cogido, detenemos sus físicas y lo desplazamos sobre un plano horizontal.
+4. Cuando lo soltamos, reactivamos las físicas y `MovimientoAnimales`. El animal vuelve a caminar hacia su destino.
+
+No hace falta que cada uno de los scripts conozca el nombre del otro: el campo `Movimiento Automatico` admite el componente que asignemos desde el Inspector. Por eso podemos reutilizar `ArrastrarFigura3D` también con objetos que no patrullan.
+
+Si queremos las animaciones de `Run` e `Idle` al coger y soltar, activa `Usar Animaciones` en el script de arrastre **solo si esos triggers existen**. Si el animal sigue patrullando después de soltarlo, continúa en `Run`.
+
+## 4. Probarlo con varios animales
+
+Podemos repetir el proceso con todos los animales, asignando una velocidad diferente y puntos de origen y destino. Por ejemplo, con cinco animales podemos utilizar **cinco parejas de puntos (diez puntos en total)** sin cambiar el script.
+
+De momento cada animal recorre su tramo **A↔B**. Más adelante podemos modificar el recorrido para compartir una lista de diez puntos y elegir destinos aleatorios.
+
+!!! tip "Si algo no funciona"
+    Si el animal camina pero no puedes seleccionarlo, comprueba **Box Collider → Edit Collider**. Si puedes cogerlo pero continúa moviéndose solo, comprueba que has asignado su componente `MovimientoAnimales` al campo `Movimiento Automatico` del script de arrastre. Si el animal se cae, revisa el Collider de la plataforma y `Use Gravity`.
 
 ## Próxima ampliación
 
-Cuando tengamos los modelos y las tres cestas, añadiremos la lógica para identificar si un animal pertenece a **mamíferos**, **reptiles** o **aves**, detectar en qué cesta se suelta y dar una respuesta al jugador.
+Cuando terminemos de colocar los animales y las tres cestas, añadiremos la lógica para reconocer el grupo de cada animal (**mamíferos, reptiles o aves**), comprobar dónde lo soltamos y mostrar un acierto o un error.
 
 [← Ejercicio 2 · Clasificador de figuras](ejercicio-2-figuras.md) · [Volver a PMDM](index.md)

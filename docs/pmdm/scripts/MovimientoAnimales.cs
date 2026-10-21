@@ -1,11 +1,13 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class MovimientoCorgi : MonoBehaviour
+public class MovimientoAnimales : MonoBehaviour
 {
+    // Podemos usar este script en cualquier animal, no solo en el Corgi.
     public Transform puntoA;
     public Transform puntoB;
     public float velocidad = 2f;
+    public bool usarAnimaciones = false;
 
     private Rigidbody rb;
     private Animator animator;
@@ -16,13 +18,18 @@ public class MovimientoCorgi : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
 
-        if (puntoA == null || puntoB == null) return;
+        // Es necesario asignar los dos puntos en el Inspector.
+        if (puntoA == null || puntoB == null)
+        {
+            enabled = false;
+            return;
+        }
 
-        // Comenzar en A y dirigirse hacia B.
+        // Empezamos en A y vamos hacia B.
         rb.position = puntoA.position;
         destino = puntoB;
 
-        if (animator != null)
+        if (usarAnimaciones && animator != null)
             animator.SetTrigger("Run");
     }
 
@@ -30,12 +37,12 @@ public class MovimientoCorgi : MonoBehaviour
     {
         if (destino == null) return;
 
-        // Dirección horizontal: no modificamos la velocidad vertical de la gravedad.
+        // Calculamos hacia dónde debe desplazarse.
         Vector3 direccion = destino.position - rb.position;
-        direccion.y = 0;
+        direccion.y = 0; // La gravedad sigue funcionando en el eje Y.
 
-        // Al llegar a un extremo, cambiar de destino: A -> B -> A -> B...
-        if (direccion.magnitude < 0.1f)
+        // Al llegar a B vamos a A, y al llegar a A volvemos a B.
+        if (direccion.magnitude < 0.15f)
         {
             destino = destino == puntoB ? puntoA : puntoB;
             return;
@@ -43,14 +50,14 @@ public class MovimientoCorgi : MonoBehaviour
 
         direccion.Normalize();
 
-        // Avanzar manteniendo la velocidad vertical del Rigidbody.
+        // Movemos al animal sin modificar su velocidad vertical.
         rb.linearVelocity = new Vector3(
             direccion.x * velocidad,
             rb.linearVelocity.y,
             direccion.z * velocidad
         );
 
-        // Mirar hacia la dirección del desplazamiento.
+        // Giramos al animal hacia donde está caminando.
         rb.MoveRotation(Quaternion.LookRotation(direccion));
     }
 }

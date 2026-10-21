@@ -35,7 +35,7 @@ Material de clase, prácticas y recursos del módulo de **Programación Multimed
 
     ---
 
-    Preparación de las cestas de mamíferos, reptiles y aves. Descarga de Cube Pets Vol. 3, arrastre de animales y ejemplo de movimiento del Corgi.
+    Preparación de las cestas de mamíferos, reptiles y aves. Descarga de Cube Pets Vol. 3, arrastre de animales y patrulla A↔B y scripts explicados paso a paso.
 
     [:octicons-arrow-right-24: Abrir ejercicio](ejercicio-3-animales.md)
 
