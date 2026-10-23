@@ -16,6 +16,14 @@ Recursos, ejemplos y prácticas del módulo de **Desarrollo de Interfaces**.
 
     XAML, controles, binding, estilos y desarrollo de aplicaciones de escritorio.
 
+-   :material-clipboard-text-outline:{ .lg .middle } **Proyecto · Aplicación de gestión**
+
+    ---
+
+    Aplicación de escritorio con Avalonia, navegación entre páginas, formularios, base de datos y galería de imágenes.
+
+    [Ver el enunciado](proyecto.md)
+
 -   :material-file-document-outline:{ .lg .middle } **Documentación y distribución**
 
     ---
