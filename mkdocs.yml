@@ -41,6 +41,7 @@ nav:
 
   - Desarrollo de Interfaces:
       - Portada: ddi/index.md
+      - Proyecto · Aplicación de gestión: ddi/proyecto.md
 
   - Proyecto II:
       - Portada: proyecto2/index.md
