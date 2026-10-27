@@ -1,8 +1,8 @@
 # UD2 · Usuarios, permisos y procesos
 
-Esta unidad está dedicada a la administración básica de GNU/Linux. Comenzamos por **usuarios, grupos, permisos y propietarios**; más adelante incorporaremos procesos, servicios y registros del sistema.
+Esta unidad está dedicada a la administración básica de GNU/Linux: **usuarios, grupos, permisos, procesos, servicios y registros del sistema**. Terminaremos creando un pequeño servicio web en Python para preparar el trabajo de redes de la UD3.
 
-## Objetivos de esta primera parte
+## Objetivos de la unidad
 
 Al terminar deberás poder:
 
@@ -12,6 +12,10 @@ Al terminar deberás poder:
 - Modificar permisos con `chmod` en modo simbólico y octal.
 - Identificar y modificar, cuando tengas autorización, el propietario y el grupo con `chown`.
 - Comprobar los cambios realizados sin afectar a otros archivos del sistema.
+- Identificar y controlar procesos mediante su PID y comandos de Linux.
+- Crear un pequeño proceso Python y observarlo desde la terminal.
+- Arrancar, detener y revisar servicios mediante `systemctl` y `journalctl`.
+- Ejecutar una aplicación Flask de prueba como servicio local, antes de estudiar puertos y redes.
 
 ## 1. Propietario, grupo y otros usuarios
 
@@ -183,6 +187,73 @@ El fichero `/etc/passwd` contiene datos públicos de las cuentas, como nombre y 
 
 A continuación, utilizarás estos comandos en una práctica guiada con un TXT.
 
+## 7. Procesos: ejecutar y supervisar programas
+
+Un **programa** es un conjunto de instrucciones; un **proceso** es una ejecución concreta del programa. Un mismo programa puede tener varios procesos y cada proceso se identifica mediante un **PID**.
+
+| Comando | Función |
+| --- | --- |
+| `ps` | Muestra procesos de la terminal |
+| `ps -u "$USER"` | Muestra procesos del usuario |
+| `top` | Monitoriza procesos y consumo de recursos |
+| `pgrep -a nombre` | Busca procesos por nombre |
+| `kill PID` | Solicita la finalización de un proceso mediante una señal |
+| `sleep 30 &` | Ejecuta un proceso de espera en segundo plano |
+
+Ejemplo: arranca un proceso y deténlo por su PID:
+
+~~~bash
+sleep 120 &
+pid=$!
+ps -p "$pid"
+kill "$pid"
+~~~
+
+!!! warning "Cuida tu entorno"
+    No detengas procesos de SSH, XRDP, VS Code ni de otros alumnos. En los ejercicios trabajarás únicamente con los procesos de prueba que hayas iniciado.
+
+### Python también crea procesos
+
+~~~python
+import os
+import time
+
+print("PID:", os.getpid())
+time.sleep(10)
+~~~
+
+La función `os.getpid()` permite saber qué PID tiene el propio proceso Python. En **UD2.3** comprobarás cómo observarlo y detenerlo. De forma opcional utilizarás `psutil` para consultar procesos desde Python.
+
+## 8. Servicios de Linux y systemd
+
+Un **servicio** realiza una función que puede permanecer disponible sin tener abierta una terminal. Muchos sistemas Debian utilizan **systemd** como gestor de servicios.
+
+| Comando | Para qué se utiliza |
+| --- | --- |
+| `systemctl status nombre` | Consulta su estado |
+| `sudo systemctl start nombre` | Lo inicia |
+| `sudo systemctl stop nombre` | Lo detiene |
+| `sudo systemctl restart nombre` | Lo reinicia |
+| `sudo systemctl enable nombre` | Habilita su arranque automático |
+| `sudo systemctl disable nombre` | Deshabilita su arranque automático |
+| `journalctl -u nombre` | Consulta sus registros |
+
+!!! info "No confundir start y enable"
+    `start` **inicia ahora**; `enable` **configura su arranque automático**, pero no lo inicia inmediatamente salvo que se use otra opción. También puedes arrancar un servicio sin habilitarlo para el siguiente inicio.
+
+En **UD2.4** crearás un servidor Flask de prueba que escucha en `127.0.0.1:5050`, y aprenderás a ejecutarlo y controlarlo con un servicio `systemd`. Es necesario realizar esta parte en un Debian de laboratorio **con systemd y permisos administrativos autorizados**; no todos los contenedores lo admiten.
+
+## 9. Relación con la UD3: redes y puertos
+
+Después de arrancar tu servicio Flask podrás probarlo desde el propio Debian con:
+
+~~~bash
+curl http://127.0.0.1:5050/estado
+ss -ltn
+~~~
+
+Aquí aparecerán tres conceptos que desarrollaremos en la siguiente unidad: **dirección IP, puerto TCP y conectividad entre equipos**. En esta UD2 solo observamos el servicio local: no es necesario publicarlo en la red.
+
 ## Ejercicios
 
 <div class="si-units">
@@ -200,7 +271,21 @@ A continuación, utilizarás estos comandos en una práctica guiada con un TXT.
     <p>Lee usuarios, grupos, contraseñas y shells mediante Bash. Comprueba las cuentas y realiza pruebas de acceso por grupo.</p>
     <div class="si-card-bottom"><div class="si-ra"><span>useradd · groupadd · chpasswd</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_2/">Ver ejercicio <span>→</span></a></div></div>
   </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD2.3</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Procesos con Bash y Python</h3>
+    <p>Consulta procesos, trabaja con PID, ejecuta un script Python y aprende a detener tus propios procesos.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>ps · top · kill · Python</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_3/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD2.4</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Servicios systemd y servidor Flask</h3>
+    <p>Crea una web Python, conviértela en un servicio local y comprueba su estado y sus registros.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Flask · systemctl · journalctl</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_4/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
 </div>
 
 !!! tip "Entorno de trabajo"
-    Utiliza Debian y el terminal integrado de VS Code. Los scripts estarán en `/workspace/ud2/`. La práctica de creación de cuentas requiere un entorno de pruebas donde tengas autorización para administrar usuarios.
+    Utiliza Debian y el terminal integrado de VS Code. Los scripts estarán en `/workspace/ud2/`. La práctica de creación de cuentas y la instalación de servicios requieren un entorno de pruebas donde tengas autorización para administrar el sistema.
