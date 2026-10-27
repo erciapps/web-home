@@ -187,72 +187,157 @@ El fichero `/etc/passwd` contiene datos públicos de las cuentas, como nombre y 
 
 A continuación, utilizarás estos comandos en una práctica guiada con un TXT.
 
-## 7. Procesos: ejecutar y supervisar programas
+## 7. ¿Qué es un proceso?
 
-Un **programa** es un conjunto de instrucciones; un **proceso** es una ejecución concreta del programa. Un mismo programa puede tener varios procesos y cada proceso se identifica mediante un **PID**.
+Un **programa** es un archivo que contiene instrucciones (por ejemplo, `python3`). Un **proceso** es ese programa **mientras se está ejecutando**. Puedes abrir dos veces el mismo programa y tendrás dos procesos diferentes.
 
-| Comando | Función |
-| --- | --- |
-| `ps` | Muestra procesos de la terminal |
-| `ps -u "$USER"` | Muestra procesos del usuario |
-| `top` | Monitoriza procesos y consumo de recursos |
-| `pgrep -a nombre` | Busca procesos por nombre |
-| `kill PID` | Solicita la finalización de un proceso mediante una señal |
-| `sleep 30 &` | Ejecuta un proceso de espera en segundo plano |
+Cada proceso dispone de un **PID** (*Process ID*), un número que identifica esa ejecución. Puede consumir CPU, memoria y otros recursos. Un proceso puede ejecutarse en **primer plano** (la terminal queda ocupada) o en **segundo plano** (podemos seguir utilizando la terminal).
 
-Ejemplo: arranca un proceso y deténlo por su PID:
+### `ps`: consultar procesos
+
+~~~bash
+ps                 # Procesos asociados a la terminal
+ps -u "$USER"      # Procesos del usuario actual
+ps -ef             # Todos los procesos con más información
+ps -p 1234         # Consultar un PID concreto (sustituir el número)
+~~~
+
+En una salida habitual verás columnas como `PID` (identificador), `TTY` (terminal), `TIME` (CPU acumulada) y `CMD` (comando).
+
+### `top` y `htop`: monitorizar procesos
+
+~~~bash
+top
+htop
+~~~
+
+Ambos permiten observar los procesos y el uso de CPU y memoria. `top` suele estar instalado; `htop` es una alternativa visual, con navegación y funciones interactivas. Para salir de `top` o `htop` pulsa `q` (en `htop` también puedes utilizar F10).
+
+Si `htop` no está instalado, el profesor puede autorizar `sudo apt install htop` **en un Debian de laboratorio**, pero no es imprescindible.
+
+### `kill` y `pkill`: finalizar procesos
 
 ~~~bash
 sleep 120 &
 pid=$!
+echo "$pid"
 ps -p "$pid"
 kill "$pid"
 ~~~
 
-!!! warning "Cuida tu entorno"
-    No detengas procesos de SSH, XRDP, VS Code ni de otros alumnos. En los ejercicios trabajarás únicamente con los procesos de prueba que hayas iniciado.
+- `sleep 120` mantiene un proceso esperando.
+- `&` lo deja en segundo plano.
+- `$!` guarda su PID.
+- `kill "$pid"` envía una señal de finalización (SIGTERM) a **ese PID**; el proceso puede cerrarse ordenadamente.
 
-### Python también crea procesos
-
-~~~python
-import os
-import time
-
-print("PID:", os.getpid())
-time.sleep(10)
-~~~
-
-La función `os.getpid()` permite saber qué PID tiene el propio proceso Python. En **UD2.3** comprobarás cómo observarlo y detenerlo. De forma opcional utilizarás `psutil` para consultar procesos desde Python.
-
-## 8. Servicios de Linux y systemd
-
-Un **servicio** realiza una función que puede permanecer disponible sin tener abierta una terminal. Muchos sistemas Debian utilizan **systemd** como gestor de servicios.
-
-| Comando | Para qué se utiliza |
-| --- | --- |
-| `systemctl status nombre` | Consulta su estado |
-| `sudo systemctl start nombre` | Lo inicia |
-| `sudo systemctl stop nombre` | Lo detiene |
-| `sudo systemctl restart nombre` | Lo reinicia |
-| `sudo systemctl enable nombre` | Habilita su arranque automático |
-| `sudo systemctl disable nombre` | Deshabilita su arranque automático |
-| `journalctl -u nombre` | Consulta sus registros |
-
-!!! info "No confundir start y enable"
-    `start` **inicia ahora**; `enable` **configura su arranque automático**, pero no lo inicia inmediatamente salvo que se use otra opción. También puedes arrancar un servicio sin habilitarlo para el siguiente inicio.
-
-En **UD2.4** crearás un servidor Flask de prueba que escucha en `127.0.0.1:5050`, y aprenderás a ejecutarlo y controlarlo con un servicio `systemd`. Es necesario realizar esta parte en un Debian de laboratorio **con systemd y permisos administrativos autorizados**; no todos los contenedores lo admiten.
-
-## 9. Relación con la UD3: redes y puertos
-
-Después de arrancar tu servicio Flask podrás probarlo desde el propio Debian con:
+Con `pkill` no hace falta conocer el PID: busca procesos **por nombre**. Puedes comprobar primero qué procesos coincidirían con `pgrep`.
 
 ~~~bash
-curl http://127.0.0.1:5050/estado
-ss -ltn
+sleep 120 &
+pgrep -a -u "$USER" -x sleep
 ~~~
 
-Aquí aparecerán tres conceptos que desarrollaremos en la siguiente unidad: **dirección IP, puerto TCP y conectividad entre equipos**. En esta UD2 solo observamos el servicio local: no es necesario publicarlo en la red.
+Si la consulta muestra **solo el proceso de prueba que acabas de lanzar**, puedes detenerlo con:
+
+~~~bash
+pkill -u "$USER" -x sleep
+~~~
+
+`pkill` podría terminar **varios procesos coincidentes**; por eso debes consultar primero `pgrep` y limitar la búsqueda al usuario actual. Si aparece más de uno, utiliza mejor `kill PID`. No pruebes estas herramientas sobre SSH, XRDP, VS Code, procesos del sistema ni los de otras personas.
+
+| Comando | Función |
+| --- | --- |
+| `ps` | Consulta puntual de procesos |
+| `top` | Monitorización interactiva |
+| `htop` | Monitorización visual, si está instalado |
+| `kill PID` | Envía una señal a un PID |
+| `pgrep nombre` | Busca procesos por nombre |
+| `pkill nombre` | Envía una señal a procesos que coinciden por nombre |
+
+En **UD2.3** practicarás estos comandos y comprobarás el PID de un pequeño programa Python.
+
+## 8. Primer servidor web con Flask
+
+**Flask** es una biblioteca (*framework web*) de Python con la que podemos crear páginas y responder a peticiones HTTP. Al ejecutar una aplicación Flask también estamos iniciando **un proceso de Linux**, por lo que sirve de enlace con el apartado anterior.
+
+### Crear y activar un entorno virtual
+
+~~~bash
+mkdir -p /workspace/ud2/flask
+cd /workspace/ud2/flask
+
+python3 -m venv .venv
+source .venv/bin/activate
+pip install flask
+~~~
+
+Un entorno virtual (`venv`) mantiene las dependencias de este proyecto separadas de las del resto del sistema. Si falta el soporte de entornos virtuales, el profesor podrá instalar `python3-venv` en el Debian de prácticas.
+
+### No subir `.venv` a Git
+
+Crea `/workspace/ud2/flask/.gitignore` con este contenido:
+
+~~~gitignore
+.venv/
+__pycache__/
+*.pyc
+~~~
+
+Git ignorará el directorio del entorno virtual y los archivos temporales de Python. **Sí se suben** `app.py`, los HTML y `.gitignore`. Si `.venv` ya estaba añadido a Git, hay que dejar de seguirlo antes de confirmar cambios.
+
+### Nuestro primer `app.py`
+
+~~~python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/saludo")
+def saludo():
+    return "Esto es un saludo"
+
+@app.route("/")
+def inicio():
+    return "Esta es mi web"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+~~~
+
+- `Flask(__name__)` crea la aplicación web.
+- `@app.route("/")` asocia una **ruta URL** a una función Python.
+- `return` devuelve lo que mostrará el navegador.
+- `if __name__ == "__main__":` permite iniciar el servidor al ejecutar directamente el archivo.
+- `app.run(debug=True)` inicia el **servidor de desarrollo** de Flask, normalmente en `127.0.0.1:5000`.
+
+~~~bash
+python3 app.py
+~~~
+
+Puedes visitar `http://127.0.0.1:5000/` y `http://127.0.0.1:5000/saludo`. Para detener el servidor, pulsa **Ctrl+C**. `debug=True` solo debe utilizarse en desarrollo y **nunca** en un servicio publicado.
+
+### Próximo paso: HTML, botones y comandos Linux
+
+En **UD2.4** sustituiremos el texto inicial por una plantilla `templates/index.html` con botones. Cada botón llamará a un **endpoint**, es decir, una ruta de Flask.
+
+Por ejemplo, un botón consultará el usuario que ejecuta Flask (`whoami`), y otro mostrará procesos (`ps`). Python podrá lanzar esos comandos mediante `subprocess.run()` **sin solicitar privilegios adicionales ni recibir comandos arbitrarios del navegador**.
+
+## 9. Servicios y enlace con redes
+
+Un **servicio** es una funcionalidad que puede mantenerse disponible sin una terminal abierta. En Debian, `systemd` puede gestionar servicios y sus registros.
+
+| Comando | Función |
+| --- | --- |
+| `systemctl status nombre` | Consultar el estado |
+| `sudo systemctl start nombre` | Iniciar el servicio |
+| `sudo systemctl stop nombre` | Detenerlo |
+| `sudo systemctl restart nombre` | Reiniciarlo |
+| `sudo systemctl enable nombre` | Habilitar su inicio al arrancar |
+| `journalctl -u nombre` | Consultar sus registros |
+
+`start` inicia ahora; `enable` prepara el arranque automático. **No son lo mismo**.
+
+Después de probar Flask manualmente, la **UD2.4** incluye una ampliación con `systemd` para una máquina Debian de laboratorio autorizada. En la **UD3**, estudiaremos las direcciones IP, interfaces, puertos y conectividad que permiten acceder a servicios desde otros equipos.
 
 ## Ejercicios
 
@@ -276,14 +361,14 @@ Aquí aparecerán tres conceptos que desarrollaremos en la siguiente unidad: **d
     <div class="si-unit-icon">$</div>
     <h3>Procesos con Bash y Python</h3>
     <p>Consulta procesos, trabaja con PID, ejecuta un script Python y aprende a detener tus propios procesos.</p>
-    <div class="si-card-bottom"><div class="si-ra"><span>ps · top · kill · Python</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_3/">Ver ejercicio <span>→</span></a></div></div>
+    <div class="si-card-bottom"><div class="si-ra"><span>ps · top · htop · kill · pkill</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_3/">Ver ejercicio <span>→</span></a></div></div>
   </article>
   <article class="si-card available" style="--accent:#ff7a00">
     <div class="si-card-top"><span class="si-code">UD2.4</span><span class="si-state available">Disponible</span></div>
     <div class="si-unit-icon">$</div>
-    <h3>Servicios systemd y servidor Flask</h3>
-    <p>Crea una web Python, conviértela en un servicio local y comprueba su estado y sus registros.</p>
-    <div class="si-card-bottom"><div class="si-ra"><span>Flask · systemctl · journalctl</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_4/">Ver ejercicio <span>→</span></a></div></div>
+    <h3>Flask, HTML y servicios</h3>
+    <p>Crea una web Flask con botones que consultan comandos Linux y descubre cómo gestionar un servicio con systemd.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Flask · HTML · subprocess · systemd</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_4/">Ver ejercicio <span>→</span></a></div></div>
   </article>
 </div>
 
