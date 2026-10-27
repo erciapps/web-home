@@ -20,11 +20,13 @@ nav:
               - UD1.9 · Validador automático de entregas: si/ud1/ejercicios/ud1_9.md
               - Entregable UD1 · Gestor de archivos (45 min): si/ud1/ejercicios/entregable_ud1.md
               - ENTREGABLE 2 UD1 · Preparar y comprobar (60 min): si/ud1/ejercicios/entregable_ud1_2.md
-      - UD2 · Usuarios, permisos y procesos:
-          - Contenidos · Permisos y propietarios: si/ud2/index.md
+      - UD2 · Usuarios, permisos, procesos y servicios:
+          - Contenidos · Administración de Linux: si/ud2/index.md
           - Ejercicios:
               - UD2.1 · chmod y chown: si/ud2/ejercicios/ud2_1.md
               - UD2.2 · Usuarios y grupos desde TXT: si/ud2/ejercicios/ud2_2.md
+              - UD2.3 · Procesos con Bash y Python: si/ud2/ejercicios/ud2_3.md
+              - UD2.4 · Servicios systemd y Flask: si/ud2/ejercicios/ud2_4.md
 
   - PMDM:
       - Portada: pmdm/index.md
