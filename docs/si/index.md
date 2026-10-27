@@ -54,8 +54,8 @@ hide:
         <span class="si-state available">Disponible</span>
       </div>
       <div class="si-unit-icon">$</div>
-      <h3>Usuarios, permisos y procesos</h3>
-      <p>Primera parte disponible: permisos de archivos y directorios, chmod y chown. Procesos y servicios se incorporarán después.</p>
+      <h3>Usuarios, permisos, procesos y servicios</h3>
+      <p>Permisos y grupos, procesos con Bash y Python, servicios con systemd y una web Flask de prueba. Preparación para redes y puertos.</p>
       <div class="si-card-bottom">
         <div class="si-ra"><span>RA4</span></div>
         <div class="si-actions">
