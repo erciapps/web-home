@@ -25,7 +25,7 @@ nav:
           - Ejercicios:
               - UD2.1 · chmod y chown: si/ud2/ejercicios/ud2_1.md
               - UD2.2 · Usuarios y grupos desde TXT: si/ud2/ejercicios/ud2_2.md
-              - UD2.3 · Procesos: ps, top, htop, kill y pkill: si/ud2/ejercicios/ud2_3.md
+              - "UD2.3 · Procesos: ps, top, htop, kill y pkill": si/ud2/ejercicios/ud2_3.md
               - UD2.4 · Flask, HTML y procesos desde Python: si/ud2/ejercicios/ud2_4.md
               - UD2.5 · Gestor de procesos con Flask y Bash: si/ud2/ejercicios/ud2_5.md
 
