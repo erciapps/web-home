@@ -370,6 +370,13 @@ Después de probar Flask manualmente, la **UD2.4** incluye una ampliación con `
     <p>Crea una web Flask con botones que consultan comandos Linux y descubre cómo gestionar un servicio con systemd.</p>
     <div class="si-card-bottom"><div class="si-ra"><span>Flask · HTML · subprocess · systemd</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_4/">Ver ejercicio <span>→</span></a></div></div>
   </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD2.5</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Gestor de procesos Linux con Flask</h3>
+    <p>Inicia, consulta y detén procesos de prueba con scripts Bash desde un formulario web.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>pgrep · kill · Flask · POST</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_5/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
 </div>
 
 !!! tip "Entorno de trabajo"
