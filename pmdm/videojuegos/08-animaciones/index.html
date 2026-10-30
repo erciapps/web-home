@@ -1,0 +1,2460 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recursos educativos de los módulos de Desarrollo de Aplicaciones Multiplataforma">
+      
+      
+      
+        <link rel="canonical" href="https://erciapps.es/pmdm/videojuegos/08-animaciones/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>8. Animaciones - ERCI Apps · DAM</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/erci-site.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#8-animaciones" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../../.." title="ERCI Apps · DAM" class="md-header__button md-logo" aria-label="ERCI Apps · DAM" data-md-component="logo">
+      
+  <img src="../../../assets/images/ercilogo2.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ERCI Apps · DAM
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              8. Animaciones
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../si/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Sistemas Informáticos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PMDM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../recursos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Recursos transversales
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ddi/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Desarrollo de Interfaces
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../proyecto2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Proyecto II
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="ERCI Apps · DAM" class="md-nav__button md-logo" aria-label="ERCI Apps · DAM" data-md-component="logo">
+      
+  <img src="../../../assets/images/ercilogo2.png" alt="logo">
+
+    </a>
+    ERCI Apps · DAM
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../si/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sistemas Informáticos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sistemas Informáticos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../si/ud1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1 · Introducción al entorno Linux
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD1 · Introducción al entorno Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.2 · Creación de directorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.3 · Rutas absolutas y relativas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.4 · Scripts y gestión de estructuras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.5 · Edición de ficheros con sed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.6 · Cuestionario con Bash y sed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.7 · Generación de estructuras desde un fichero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.8 · Gestión automatizada de archivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/ud1_9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.9 · Validador automático de entregas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/entregable_ud1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable UD1 · Gestor de archivos (45 min)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud1/ejercicios/entregable_ud1_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ENTREGABLE 2 UD1 · Preparar y comprobar (60 min)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../si/ud2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2 · Usuarios, permisos, procesos y servicios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD2 · Usuarios, permisos, procesos y servicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud2/ejercicios/ud2_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.1 · chmod y chown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud2/ejercicios/ud2_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.2 · Usuarios y grupos desde TXT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud2/ejercicios/ud2_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.3 · Procesos: ps, top, htop, kill y pkill
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud2/ejercicios/ud2_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.4 · Flask, HTML y procesos desde Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud2/ejercicios/ud2_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.5 · Gestor de procesos con Flask y Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../si/ud2/ejercicios/ud2_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.6 · Programación de tareas con Cron y Flask
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMDM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PMDM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Videojuegos 2D con Unity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../androicilla/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Androicilla · Unity 3D y Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicio-2-figuras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio 2 · Clasificador de figuras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ejercicio-3-animales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio 3 · Clasificador de animales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../recursos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos transversales
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recursos transversales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../recursos/git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git · Control de versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../recursos/markdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ddi/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desarrollo de Interfaces
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desarrollo de Interfaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ddi/proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyecto · Aplicación de gestión
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../proyecto2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyecto II
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proyecto II
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-crear-los-clips-desde-los-sprites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Crear los clips desde los sprites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-configurar-la-repeticion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Configurar la repetición
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-preparar-un-unico-animator-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Preparar un único Animator Controller
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-anadir-los-estados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Añadir los estados
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cambiar-entre-reposo-y-carrera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cambiar entre reposo y carrera
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Cambiar entre reposo y carrera">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crear-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crear Speed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crear-las-transiciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crear las transiciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actualizar-speed-desde-playercs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actualizar Speed desde Player.cs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-animar-el-salto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Animar el salto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Animar el salto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#crear-los-parametros" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crear los parámetros
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrar-en-jump" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entrar en jump
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volver-al-suelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volver al suelo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enviar-los-datos-del-salto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enviar los datos del salto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-playercs-hasta-este-punto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Player.cs hasta este punto
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ejecutar-y-comprobar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ejecutar y comprobar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="8-animaciones">8. Animaciones<a class="headerlink" href="#8-animaciones" title="Permanent link">&para;</a></h1>
+<p>El Player ya se mueve, cambia de orientación y salta. Ahora cambiaremos <strong>su imagen según lo que esté haciendo</strong>: reposo, carrera o salto. Utilizaremos el mismo Player y el mismo <strong>Player.cs</strong> del <a href="../05-movimiento-salto/">paso anterior</a>.</p>
+<h2 id="1-crear-los-clips-desde-los-sprites">1. Crear los clips desde los sprites<a class="headerlink" href="#1-crear-los-clips-desde-los-sprites" title="Permanent link">&para;</a></h2>
+<p>Un <strong>Animation Clip</strong> contiene la secuencia de imágenes que se reproducirá. El <strong>Animator Controller</strong> decide qué clip utilizar según el estado del jugador.</p>
+<ol>
+<li>Detén Play. En Project, crea <strong>animations</strong> dentro de la carpeta del juego que ya estás utilizando: <strong>Assets → ErciGame → animations</strong>. Si tu carpeta se llama ErciDemo o Gamercilla, utiliza esa misma; no crees otra copia del proyecto. En las capturas aparece <strong>Gamercilla</strong>.</li>
+<li>Abre <strong>sprites</strong> y despliega la flecha de <strong>knight</strong>, que ya recortamos en celdas de <strong>32 × 32</strong>.</li>
+<li>Selecciona los <strong>cuatro primeros fotogramas</strong>, desde knight_0 hasta knight_3. Puedes seleccionar el primero y pulsar Shift al seleccionar el último.</li>
+</ol>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/57-unity-frames-idle.png"><img alt="Selecciona los cuatro primeros fotogramas del personaje para idle" loading="lazy" src="../../../assets/images/pmdm/unity/57-unity-frames-idle.png" /></a></p>
+<figcaption>Selecciona los cuatro primeros fotogramas del personaje para idle</figcaption>
+</figure>
+<ol start="4">
+<li>Arrastra los cuatro fotogramas juntos a <strong>Scene</strong>. En el diálogo <strong>Create New Animation</strong>, entra en animations y guarda el clip como <strong>idle.anim</strong>.</li>
+</ol>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/58-unity-guardar-idle.png"><img alt="Guarda idle.anim dentro de la carpeta animations del juego" loading="lazy" src="../../../assets/images/pmdm/unity/58-unity-guardar-idle.png" /></a></p>
+<figcaption>Guarda idle.anim dentro de la carpeta animations del juego</figcaption>
+</figure>
+<p>Unity crea un objeto temporal con Sprite Renderer y Animator, además del clip y un controlador. <strong>Ese objeto no sustituye al Player que tiene el script y las físicas.</strong> Lo eliminaremos después.</p>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/59-unity-personaje-temporal.png"><img alt="Al arrastrar los fotogramas, Unity crea un personaje temporal junto al Player principal" loading="lazy" src="../../../assets/images/pmdm/unity/59-unity-personaje-temporal.png" /></a></p>
+<figcaption>Al arrastrar los fotogramas, Unity crea un personaje temporal junto al Player principal</figcaption>
+</figure>
+<p>Repite la selección y el arrastre con las demás secuencias. Guarda cada clip en la misma carpeta:</p>
+<table>
+<thead>
+<tr>
+<th>Clip</th>
+<th>Fotogramas y uso en esta práctica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>idle</strong></td>
+<td>knight_0 a knight_3: reposo.</td>
+</tr>
+<tr>
+<td><strong>run</strong></td>
+<td>knight_8 a knight_23: carrera.</td>
+</tr>
+<tr>
+<td><strong>jump</strong></td>
+<td>knight_26 a knight_33: reutilizamos la secuencia de giro (<strong>roll</strong>) como animación del salto.</td>
+</tr>
+<tr>
+<td><strong>death</strong></td>
+<td>Los fotogramas de la secuencia de muerte, antes de las letras DEATH. Lo dejamos preparado para una mecánica posterior.</td>
+</tr>
+</tbody>
+</table>
+<p>Los números corresponden al recorte de las capturas. <strong>Comprueba visualmente cada selección y su orden</strong>: la hoja contiene celdas con letras como IDLE, RUN o DEATH, que no deben entrar en la animación.</p>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/60-unity-frames-run.png"><img alt="Selección de los fotogramas de carrera, sin incluir las celdas con letras" loading="lazy" src="../../../assets/images/pmdm/unity/60-unity-frames-run.png" /></a></p>
+<figcaption>Selección de los fotogramas de carrera, sin incluir las celdas con letras</figcaption>
+</figure>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/61-unity-frames-jump.png"><img alt="En esta práctica reutilizamos la secuencia de giro para el clip jump" loading="lazy" src="../../../assets/images/pmdm/unity/61-unity-frames-jump.png" /></a></p>
+<figcaption>En esta práctica reutilizamos la secuencia de giro para el clip jump</figcaption>
+</figure>
+<p>En un salto podríamos utilizar clips distintos para subir y caer. Aquí utilizaremos <strong>un único clip jump durante todo el salto</strong>. Reutilizar la secuencia de roll es una elección visual: no estamos añadiendo una acción de rodar al juego.</p>
+<p>También puedes preparar <strong>hit</strong> y <strong>attack</strong> siguiendo el mismo procedimiento. No son necesarios para completar este paso; los utilizaremos al trabajar el combate.</p>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/62-unity-frames-hit.png"><img alt="Selección de otra secuencia: los fotogramas de hit, que reservamos para más adelante" loading="lazy" src="../../../assets/images/pmdm/unity/62-unity-frames-hit.png" /></a></p>
+<figcaption>Selección de otra secuencia: los fotogramas de hit, que reservamos para más adelante</figcaption>
+</figure>
+<h2 id="2-configurar-la-repeticion">2. Configurar la repetición<a class="headerlink" href="#2-configurar-la-repeticion" title="Permanent link">&para;</a></h2>
+<p>En Project, abre <strong>animations</strong>, selecciona cada archivo <strong>.anim</strong> y ajusta <strong>Loop Time</strong> en el Inspector:</p>
+<table>
+<thead>
+<tr>
+<th>Clip</th>
+<th>Loop Time</th>
+<th>Motivo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>idle</strong></td>
+<td>Activado</td>
+<td>Se repite mientras el jugador está quieto.</td>
+</tr>
+<tr>
+<td><strong>run</strong></td>
+<td>Activado</td>
+<td>Se repite mientras camina.</td>
+</tr>
+<tr>
+<td><strong>jump</strong></td>
+<td>Desactivado</td>
+<td>Se reproduce una vez y mantiene el último fotograma hasta aterrizar.</td>
+</tr>
+<tr>
+<td><strong>death</strong></td>
+<td>Desactivado</td>
+<td>La muerte se reproduce una sola vez.</td>
+</tr>
+</tbody>
+</table>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/64-unity-death-loop-time.png"><img alt="El clip death tiene Loop Time desmarcado para reproducirse una sola vez" loading="lazy" src="../../../assets/images/pmdm/unity/64-unity-death-loop-time.png" /></a></p>
+<figcaption>El clip death tiene Loop Time desmarcado para reproducirse una sola vez</figcaption>
+</figure>
+<p><strong>Loop Time se configura en el clip, no en la flecha de una transición.</strong> Desactivarlo no elimina el objeto ni programa la muerte: eso lo haremos más adelante.</p>
+<h2 id="3-preparar-un-unico-animator-controller">3. Preparar un único Animator Controller<a class="headerlink" href="#3-preparar-un-unico-animator-controller" title="Permanent link">&para;</a></h2>
+<p>Al crear los clips por arrastre pueden aparecer varios archivos <strong>.controller</strong>. Conserva el que se generó con <strong>idle</strong> —en las capturas se llama knight_0— y renómbralo <strong>AnimatorController</strong> desde Project.</p>
+<p>Elimina únicamente los <strong>controladores sobrantes que se crearon para los personajes temporales</strong>. Conserva todos los clips <strong>.anim</strong> y cualquier controlador que utilices en otros objetos.</p>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/63-unity-eliminar-controladores.png"><img alt="Conserva el controlador de idle y elimina solo los controladores temporales que no utilizarás" loading="lazy" src="../../../assets/images/pmdm/unity/63-unity-eliminar-controladores.png" /></a></p>
+<figcaption>Conserva el controlador de idle y elimina solo los controladores temporales que no utilizarás</figcaption>
+</figure>
+<ol>
+<li>Selecciona el <strong>Player principal</strong> en Hierarchy: el que contiene Player (Script), Rigidbody 2D, Box Collider 2D y el hijo GroundCheck.</li>
+<li>Pulsa <strong>Add Component</strong>, busca <strong>Animator</strong> y añádelo si todavía no lo tiene.</li>
+</ol>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/65-unity-add-animator.png"><img alt="Añade el componente Animator al Player principal" loading="lazy" src="../../../assets/images/pmdm/unity/65-unity-add-animator.png" /></a></p>
+<figcaption>Añade el componente Animator al Player principal</figcaption>
+</figure>
+<ol start="3">
+<li>Arrastra <strong>AnimatorController</strong> desde Project al campo <strong>Controller</strong> del componente Animator. También puedes utilizar el selector circular.</li>
+<li>Deja <strong>Apply Root Motion desactivado</strong>. En esta práctica el script y Rigidbody 2D controlan la posición; los clips cambian el Sprite.</li>
+</ol>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/66-unity-asignar-animator-controller.png"><img alt="AnimatorController asignado al Animator del Player, con Apply Root Motion desactivado" loading="lazy" src="../../../assets/images/pmdm/unity/66-unity-asignar-animator-controller.png" /></a></p>
+<figcaption>AnimatorController asignado al Animator del Player, con Apply Root Motion desactivado</figcaption>
+</figure>
+<ol start="5">
+<li>Borra de Hierarchy los personajes temporales creados al arrastrar las secuencias. <strong>Conserva el Player principal y su GroundCheck.</strong> No borres los archivos de animación de Project.</li>
+<li>Guarda la escena fuera de Play.</li>
+</ol>
+<h2 id="4-anadir-los-estados">4. Añadir los estados<a class="headerlink" href="#4-anadir-los-estados" title="Permanent link">&para;</a></h2>
+<p>Haz doble clic en <strong>AnimatorController</strong> para abrir la ventana <strong>Animator</strong>. También puedes abrirla desde <strong>Window → Animation → Animator</strong>.</p>
+<p>Arrastra los clips <strong>run</strong> y <strong>jump</strong> desde Project al área central. Si idle no aparece, arrástralo también. Cada rectángulo es un <strong>estado</strong> que reproduce un clip; al seleccionarlo puedes comprobar su campo <strong>Motion</strong>.</p>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/76-unity-estados-animator.gif"><img alt="Arrastra los clips al Animator para crear sus estados; idle es el estado inicial" loading="lazy" src="../../../assets/images/pmdm/unity/76-unity-estados-animator.gif" /></a></p>
+<figcaption>Arrastra los clips al Animator para crear sus estados; idle es el estado inicial</figcaption>
+</figure>
+<p>Establece <strong>idle</strong> como estado inicial: clic derecho en idle → <strong>Set as Layer Default State</strong>. Aparecerá en naranja y la flecha de <strong>Entry</strong> apuntará a él. Si ya está en naranja, no hace falta cambiarlo.</p>
+<p>Las capturas también muestran hit, attack y death. Puedes dejarlos preparados, pero <strong>en este paso solo conectamos idle, run y jump</strong>. Añadir un rectángulo no hace que una animación se active por sí sola.</p>
+<h2 id="5-cambiar-entre-reposo-y-carrera">5. Cambiar entre reposo y carrera<a class="headerlink" href="#5-cambiar-entre-reposo-y-carrera" title="Permanent link">&para;</a></h2>
+<h3 id="crear-speed">Crear Speed<a class="headerlink" href="#crear-speed" title="Permanent link">&para;</a></h3>
+<p>En la esquina superior izquierda del Animator aparecen <strong>Layers</strong> y <strong>Parameters</strong>. Abre <strong>Parameters</strong>, pulsa <strong>+ → Float</strong> y escribe exactamente <strong>Speed</strong>.</p>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/67-unity-crear-parametro-float.png"><img alt="En Parameters, utiliza el botón más y elige Float" loading="lazy" src="../../../assets/images/pmdm/unity/67-unity-crear-parametro-float.png" /></a></p>
+<figcaption>En Parameters, utiliza el botón más y elige Float</figcaption>
+</figure>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/68-unity-parametro-speed.png"><img alt="Parámetro Speed creado: el nombre debe coincidir con el utilizado en el script" loading="lazy" src="../../../assets/images/pmdm/unity/68-unity-parametro-speed.png" /></a></p>
+<figcaption>Parámetro Speed creado: el nombre debe coincidir con el utilizado en el script</figcaption>
+</figure>
+<p>Speed indicará si el jugador intenta moverse horizontalmente. Lo enviaremos desde el script con valores <strong>0</strong> o <strong>1</strong>, tanto al ir a la derecha como a la izquierda.</p>
+<h3 id="crear-las-transiciones">Crear las transiciones<a class="headerlink" href="#crear-las-transiciones" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Clic derecho en <strong>idle → Make Transition</strong>; pulsa sobre <strong>run</strong>.</li>
+</ol>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/69-unity-make-transition.png"><img alt="Clic derecho en idle y Make Transition para conectarlo con run" loading="lazy" src="../../../assets/images/pmdm/unity/69-unity-make-transition.png" /></a></p>
+<figcaption>Clic derecho en idle y Make Transition para conectarlo con run</figcaption>
+</figure>
+<ol start="2">
+<li>Selecciona la <strong>flecha</strong> para ver sus propiedades en el Inspector.</li>
+<li>Desmarca <strong>Has Exit Time</strong>. Despliega <strong>Settings</strong> y establece <strong>Transition Duration en 0</strong>.</li>
+<li>En <strong>Conditions</strong>, pulsa <strong>+</strong> y selecciona <strong>Speed → Greater → 0.1</strong>.</li>
+</ol>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/70-unity-idle-run.png"><img alt="idle → run: Speed Greater 0.1, Has Exit Time desactivado y duración 0" loading="lazy" src="../../../assets/images/pmdm/unity/70-unity-idle-run.png" /></a></p>
+<figcaption>idle → run: Speed Greater 0.1, Has Exit Time desactivado y duración 0</figcaption>
+</figure>
+<p>Haz lo mismo desde <strong>run → idle</strong>, utilizando <strong>Speed → Less → 0.1</strong>. Desactiva Has Exit Time y pon la duración en 0 también en esta flecha.</p>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/71-unity-run-idle.png"><img alt="run → idle: Speed Less 0.1, Has Exit Time desactivado y duración 0" loading="lazy" src="../../../assets/images/pmdm/unity/71-unity-run-idle.png" /></a></p>
+<figcaption>run → idle: Speed Less 0.1, Has Exit Time desactivado y duración 0</figcaption>
+</figure>
+<table>
+<thead>
+<tr>
+<th>Transición</th>
+<th>Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>idle → run</strong></td>
+<td>Speed <strong>Greater 0.1</strong>: hay movimiento horizontal.</td>
+</tr>
+<tr>
+<td><strong>run → idle</strong></td>
+<td>Speed <strong>Less 0.1</strong>: el jugador se ha detenido.</td>
+</tr>
+</tbody>
+</table>
+<p>Sin Has Exit Time no esperamos a un punto concreto del clip; con duración 0, el cambio de imagen es inmediato.</p>
+<h3 id="actualizar-speed-desde-playercs">Actualizar Speed desde Player.cs<a class="headerlink" href="#actualizar-speed-desde-playercs" title="Permanent link">&para;</a></h3>
+<p>Dentro de la clase Player, junto a los demás campos, añade:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">public</span><span class="w"> </span><span class="n">Animator</span><span class="w"> </span><span class="n">anim</span><span class="p">;</span>
+</code></pre></div>
+<p>Dentro del <strong>Start existente</strong>, después de obtener rb2D:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">anim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Animator</span><span class="o">&gt;</span><span class="p">();</span>
+</code></pre></div>
+<p>Al final del <strong>Update existente</strong>, después del movimiento y el salto:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">anim</span><span class="p">.</span><span class="n">SetFloat</span><span class="p">(</span><span class="s">"Speed"</span><span class="p">,</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="n">move</span><span class="p">));</span>
+</code></pre></div>
+<p><strong>anim guarda una referencia al componente Animator del mismo Player.</strong> SetFloat cambia un parámetro del controlador; <strong>Mathf.Abs</strong> obtiene el valor absoluto, de modo que tanto -1 como 1 se convierten en 1. Así se reproduce run en ambas direcciones; la orientación sigue dependiendo de la escala X que ya programamos.</p>
+<p>Guarda y espera a que Unity compile. La referencia se obtiene en Start: el campo <strong>Anim</strong> puede estar vacío antes de Play, pero el <strong>Animator debe estar añadido al Player y tener su Controller asignado</strong>.</p>
+<p>Prueba A/D en Game: idle al detenerte y run al caminar. Detén Play antes de continuar.</p>
+<h2 id="6-animar-el-salto">6. Animar el salto<a class="headerlink" href="#6-animar-el-salto" title="Permanent link">&para;</a></h2>
+<h3 id="crear-los-parametros">Crear los parámetros<a class="headerlink" href="#crear-los-parametros" title="Permanent link">&para;</a></h3>
+<p>En <strong>Parameters</strong> añade estos dos parámetros, respetando sus mayúsculas:</p>
+<table>
+<thead>
+<tr>
+<th>Nombre</th>
+<th>Tipo</th>
+<th>Valor que enviará el script</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>VerticalVelocity</strong></td>
+<td><strong>Float</strong></td>
+<td>Velocidad vertical del Rigidbody 2D: positiva al subir, negativa al caer.</td>
+</tr>
+<tr>
+<td><strong>IsGrounded</strong></td>
+<td><strong>Bool</strong></td>
+<td>true si GroundCheck detecta suelo y el personaje no está ascendiendo.</td>
+</tr>
+</tbody>
+</table>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/72-unity-parametros-salto.png"><img alt="Speed y VerticalVelocity son Float; IsGrounded es Bool" loading="lazy" src="../../../assets/images/pmdm/unity/72-unity-parametros-salto.png" /></a></p>
+<figcaption>Speed y VerticalVelocity son Float; IsGrounded es Bool</figcaption>
+</figure>
+<h3 id="entrar-en-jump">Entrar en jump<a class="headerlink" href="#entrar-en-jump" title="Permanent link">&para;</a></h3>
+<p>Clic derecho en <strong>Any State → Make Transition</strong> y pulsa <strong>jump</strong>. Any State permite entrar en el salto desde reposo o carrera.</p>
+<p>Selecciona la flecha, desactiva <strong>Has Exit Time</strong>, pon <strong>Transition Duration en 0</strong> y añade <strong>las dos condiciones</strong>:</p>
+<ul>
+<li><strong>VerticalVelocity → Greater → 0.1</strong>.</li>
+<li><strong>IsGrounded → false</strong>.</li>
+</ul>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/73-unity-any-state-jump.png"><img alt="Any State → jump: velocidad vertical positiva y sin suelo; falta desmarcar Can Transition To Self" loading="lazy" src="../../../assets/images/pmdm/unity/73-unity-any-state-jump.png" /></a></p>
+<figcaption>Any State → jump: velocidad vertical positiva y sin suelo; falta desmarcar Can Transition To Self</figcaption>
+</figure>
+<div class="admonition important">
+<p class="admonition-title">Completar el ajuste de la captura</p>
+<p><strong>Desmarca Can Transition To Self</strong> en esta transición. En la imagen todavía aparece marcado: dejarlo activado permite volver a entrar en jump mientras continúa subiendo y puede reiniciar el clip repetidamente.</p>
+</div>
+<h3 id="volver-al-suelo">Volver al suelo<a class="headerlink" href="#volver-al-suelo" title="Permanent link">&para;</a></h3>
+<p>Crea dos transiciones desde jump. En cada flecha añade ambas condiciones de la tabla:</p>
+<table>
+<thead>
+<tr>
+<th>Transición</th>
+<th>Condiciones que deben cumplirse a la vez</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>jump → idle</strong></td>
+<td><strong>Speed Less 0.1</strong> e <strong>IsGrounded true</strong>.</td>
+</tr>
+<tr>
+<td><strong>jump → run</strong></td>
+<td><strong>Speed Greater 0.1</strong> e <strong>IsGrounded true</strong>.</td>
+</tr>
+</tbody>
+</table>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/74-unity-jump-idle.png"><img alt="jump → idle: Speed Less 0.1 e IsGrounded true para volver al reposo al aterrizar" loading="lazy" src="../../../assets/images/pmdm/unity/74-unity-jump-idle.png" /></a></p>
+<figcaption>jump → idle: Speed Less 0.1 e IsGrounded true para volver al reposo al aterrizar</figcaption>
+</figure>
+<figure class="unity-shot">
+<p><a aria-label="Ampliar imagen" href="../../../assets/images/pmdm/unity/75-unity-jump-run.png"><img alt="jump → run: las condiciones ya están; falta quitar Has Exit Time y cambiar la duración a 0" loading="lazy" src="../../../assets/images/pmdm/unity/75-unity-jump-run.png" /></a></p>
+<figcaption>jump → run: las condiciones ya están; falta quitar Has Exit Time y cambiar la duración a 0</figcaption>
+</figure>
+<p>En <strong>las dos transiciones</strong>, desmarca <strong>Has Exit Time</strong> y pon <strong>Transition Duration en 0</strong>. La captura de jump → run muestra todavía Has Exit Time activado y duración 0.25: <strong>corrige esos valores</strong> para cambiar al aterrizar sin esperar al clip.</p>
+<p>La condición IsGrounded evita volver a idle o run en el punto más alto del salto: tener una velocidad vertical cercana a cero no significa haber tocado el suelo.</p>
+<div class="admonition note">
+<p class="admonition-title">Al caer desde el borde de una plataforma</p>
+<p>La entrada con VerticalVelocity Greater 0.1 solo se activa al subir. Si quieres que jump se muestre también al caer por un borde sin haber saltado, deja en Any State → jump únicamente <strong>IsGrounded false</strong>, manteniendo Can Transition To Self desactivado. Para la prueba de salto con la barra espaciadora utilizamos las dos condiciones indicadas arriba.</p>
+</div>
+<h3 id="enviar-los-datos-del-salto">Enviar los datos del salto<a class="headerlink" href="#enviar-los-datos-del-salto" title="Permanent link">&para;</a></h3>
+<p>Al final de Update, junto a SetFloat de Speed, añade:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">anim</span><span class="p">.</span><span class="n">SetFloat</span><span class="p">(</span><span class="s">"VerticalVelocity"</span><span class="p">,</span><span class="w"> </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">anim</span><span class="p">.</span><span class="n">SetBool</span><span class="p">(</span><span class="s">"IsGrounded"</span><span class="p">,</span><span class="w"> </span><span class="n">isGrounded</span><span class="p">);</span>
+</code></pre></div>
+<p>Utilizamos <strong>el mismo isGrounded que permite saltar</strong>. En el paso anterior lo pusimos en false al despegar y comprobamos el suelo sin considerar apoyado al jugador mientras asciende.</p>
+<h2 id="7-playercs-hasta-este-punto">7. Player.cs hasta este punto<a class="headerlink" href="#7-playercs-hasta-este-punto" title="Permanent link">&para;</a></h2>
+<p>Esta versión reúne lo incorporado hasta ahora: movimiento, orientación, salto y animaciones. Si copias el código completo, <strong>sustituye el contenido de Player.cs</strong>; no lo añadas debajo de la clase ni crees otros Start o Update.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">{</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6f</span><span class="p">;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">jumpForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6f</span><span class="p">;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">groundCheck</span><span class="p">;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">groundRadius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">LayerMask</span><span class="w"> </span><span class="n">groundLayer</span><span class="p">;</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Animator</span><span class="w"> </span><span class="n">anim</span><span class="p">;</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">Rigidbody2D</span><span class="w"> </span><span class="n">rb2D</span><span class="p">;</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">move</span><span class="p">;</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">isGrounded</span><span class="p">;</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">        </span><span class="n">rb2D</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Rigidbody2D</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">        </span><span class="n">anim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">Animator</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">        </span><span class="n">move</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Input</span><span class="p">.</span><span class="n">GetAxisRaw</span><span class="p">(</span><span class="s">"Horizontal"</span><span class="p">);</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">        </span><span class="c1">// ORIENTACIÓN: conserva la última dirección al detenerse.</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">move</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">            </span><span class="n">transform</span><span class="p">.</span><span class="n">localScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector3</span><span class="p">(</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Sign</span><span class="p">(</span><span class="n">move</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">        </span><span class="c1">// Movimiento horizontal; conserva la velocidad vertical.</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">        </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">            </span><span class="n">move</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">speed</span><span class="p">,</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">            </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="p">.</span><span class="n">y</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w">        </span><span class="p">);</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w">        </span><span class="c1">// Salto únicamente cuando estamos apoyados.</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="n">GetButtonDown</span><span class="p">(</span><span class="s">"Jump"</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isGrounded</span><span class="p">)</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="w">            </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="w">                </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="p">.</span><span class="n">x</span><span class="p">,</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="w">                </span><span class="n">jumpForce</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="w">            </span><span class="p">);</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="w">            </span><span class="n">isGrounded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a>
+<a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="w">        </span><span class="c1">// Comunicamos el movimiento y el contacto con el suelo.</span>
+<a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a><span class="w">        </span><span class="n">anim</span><span class="p">.</span><span class="n">SetFloat</span><span class="p">(</span><span class="s">"Speed"</span><span class="p">,</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">Abs</span><span class="p">(</span><span class="n">move</span><span class="p">));</span>
+<a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a><span class="w">        </span><span class="n">anim</span><span class="p">.</span><span class="n">SetFloat</span><span class="p">(</span><span class="s">"VerticalVelocity"</span><span class="p">,</span><span class="w"> </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="p">.</span><span class="n">y</span><span class="p">);</span>
+<a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a><span class="w">        </span><span class="n">anim</span><span class="p">.</span><span class="n">SetBool</span><span class="p">(</span><span class="s">"IsGrounded"</span><span class="p">,</span><span class="w"> </span><span class="n">isGrounded</span><span class="p">);</span>
+<a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a>
+<a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">FixedUpdate</span><span class="p">()</span>
+<a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a><span class="w">        </span><span class="n">isGrounded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Physics2D</span><span class="p">.</span><span class="n">OverlapCircle</span><span class="p">(</span>
+<a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a><span class="w">            </span><span class="n">groundCheck</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a><span class="w">            </span><span class="n">groundRadius</span><span class="p">,</span>
+<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a><span class="w">            </span><span class="n">groundLayer</span>
+<a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a><span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">rb2D</span><span class="p">.</span><span class="n">linearVelocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">;</span>
+<a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="8-ejecutar-y-comprobar">8. Ejecutar y comprobar<a class="headerlink" href="#8-ejecutar-y-comprobar" title="Permanent link">&para;</a></h2>
+<p>Guarda el script y la escena. Comprueba que el Player conserva <strong>GroundCheck asignado, Ground Layer en Floor</strong>, las físicas del paso anterior y el Animator con <strong>AnimatorController</strong>.</p>
+<p>Pulsa <strong>Play</strong>, haz clic en <strong>Game</strong> y comprueba:</p>
+<ol>
+<li>Sin pulsar teclas, se reproduce <strong>idle</strong>.</li>
+<li>Con A/D o las flechas, se reproduce <strong>run</strong> y el personaje mira hacia donde camina.</li>
+<li>Con espacio desde el suelo, entra en <strong>jump</strong> y permanece en ese estado hasta aterrizar.</li>
+<li>Al aterrizar vuelve a <strong>idle</strong> si no pulsas una dirección, o a <strong>run</strong> si sigues caminando.</li>
+</ol>
+<p>Puedes seleccionar el Player y abrir Animator durante Play para observar los valores de los parámetros y el estado activo. Después, detén Play.</p>
+<table>
+<thead>
+<tr>
+<th>Si ocurre esto…</th>
+<th>Revisa…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No cambia la animación.</td>
+<td>Animator en el Player principal, Controller asignado, Motion de cada estado y nombres de los parámetros.</td>
+</tr>
+<tr>
+<td>Run solo funciona hacia la derecha.</td>
+<td>Envía Mathf.Abs(move), para que Speed no sea negativo.</td>
+</tr>
+<tr>
+<td>Jump se reinicia mientras sube.</td>
+<td>Desmarca Can Transition To Self en Any State → jump.</td>
+</tr>
+<tr>
+<td>Jump no termina al aterrizar.</td>
+<td>GroundCheck, Floor en Escenario y Ground Layer, y ambas transiciones de salida.</td>
+</tr>
+<tr>
+<td>Tarda en volver a correr.</td>
+<td>Has Exit Time desactivado y duración 0 en jump → run.</td>
+</tr>
+<tr>
+<td>La animación cambia la posición o la escala.</td>
+<td>Los clips deben animar <strong>Sprite Renderer → Sprite</strong>; elimina pistas de Transform añadidas por error y deja Apply Root Motion desactivado.</td>
+</tr>
+<tr>
+<td>Aparecen letras en el personaje.</td>
+<td>Elimina del clip los fotogramas que contienen rótulos de la hoja.</td>
+</tr>
+</tbody>
+</table>
+<p>Continúa con <a href="../10-objetos-recogibles/">Objetos recogibles</a>.</p>
+<p>Referencias: <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/class-Animator.html">componente Animator</a>, <a href="https://docs.unity3d.com/6000.0/Documentation/Manual/class-Transition.html">transiciones</a>, <a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Animator.SetFloat.html">Animator.SetFloat</a> y <a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Animator.SetBool.html">Animator.SetBool</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      IES Alonso de Ercilla · Curso 2026-2027
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../../assets/javascripts/home.js"></script>
+      
+        <script src="../../../assets/javascripts/image-viewer.js"></script>
+      
+    
+  </body>
+</html>
