@@ -377,6 +377,13 @@ Después de probar Flask manualmente, la **UD2.4** incluye una ampliación con `
     <p>Inicia, consulta y detén procesos de prueba con scripts Bash desde un formulario web.</p>
     <div class="si-card-bottom"><div class="si-ra"><span>pgrep · kill · Flask · POST</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_5/">Ver ejercicio <span>→</span></a></div></div>
   </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD2.6</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Programación de tareas con Cron y Flask</h3>
+    <p>Programa un script con crontab y crea una web para configurar, consultar y eliminar la tarea.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>cron · crontab · python-crontab</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_6/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
 </div>
 
 !!! tip "Entorno de trabajo"
