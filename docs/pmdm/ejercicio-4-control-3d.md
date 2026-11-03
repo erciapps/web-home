@@ -55,6 +55,19 @@ Añade un cubo pequeño llamado **`Frente`**, hijo de `Jugador` (no otro objeto 
 !!! tip "Por qué es hijo de Jugador"
     Al girar o mover al personaje, `Frente` se desplazará y girará con él. Así veremos claramente hacia dónde apunta, aunque el cuerpo sea una esfera simétrica.
 
+### Corregir la altura y el pivote de los objetos ProBuilder
+
+En la primera prueba comprobamos que la esfera quedaba visualmente **por encima del suelo**, mientras que el pequeño cubo `Frente` se veía medio enterrado. Son dos cosas distintas: el `Character Controller` define la colisión, pero no recoloca la malla visible.
+
+1. Selecciona **`Jugador`** y utiliza **Tools → ProBuilder → Object → Center Pivot** para colocar el origen en el centro de la geometría.
+2. Como la esfera mide una unidad de diámetro, coloca su `Transform → Position` en **`(0, 0.5, 0)`**. Conserva `Rotation (0, 0, 0)` y `Scale (1, 1, 1)`.
+3. Selecciona **`Frente`**, comprueba que es hijo de `Jugador` y configura **Position local `(0, 0, 0.6)`**, Rotation `(0, 0, 0)`, Scale `(0.3, 0.3, 0.3)`.
+4. En `Character Controller`, comprueba **Center (0, 0, 0)**, **Radius 0.5** y **Height 1**. El contorno debe ajustarse a la esfera.
+5. Comprueba el resultado desde una vista lateral en `Scene` antes de programar el movimiento. Si sigue elevado, revisa el pivote y la posición real de los vértices antes de cambiar el controlador.
+
+!!! note "Centro de malla y centro de colisión no son lo mismo"
+    **Center Pivot** centra el origen de la geometría de ProBuilder. El parámetro **Center** del `Character Controller` solo mueve su volumen de colisión. No se debe usar este segundo ajuste para disimular una malla colocada a otra altura.
+
 ### Comprobación antes de programar
 
 - `Frente` aparece indentado dentro de `Jugador` en la jerarquía.
