@@ -39,6 +39,14 @@ Material de clase, prácticas y recursos del módulo de **Programación Multimed
 
     [:octicons-arrow-right-24: Abrir ejercicio](ejercicio-3-animales.md)
 
+-   :material-camera-switch:{ .lg .middle } **Ejercicio 4 · Control y cámaras 3D**
+
+    ---
+
+    Movimiento tipo vehículo con un personaje ProBuilder, controles de teclado y táctiles, y cámaras en primera y tercera persona.
+
+    [:octicons-arrow-right-24: Abrir ejercicio](ejercicio-4-control-3d.md)
+
 -   :material-folder-multiple-image:{ .lg .middle } **Recursos**
 
     ---
