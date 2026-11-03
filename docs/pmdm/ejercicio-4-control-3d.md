@@ -157,69 +157,79 @@ Selecciona `Jugador` y añade el script `MovimientoJugador`. Ejecuta **Play** y 
 !!! tip "Antes de continuar"
     Comprueba que la figura está apoyada en el plano, que al girar `Frente` cambia de dirección y que al avanzar el personaje sigue mirando hacia delante. Si atraviesa el suelo, revisa las colisiones y el ajuste del `Character Controller`.
 
-## 3. Construir una escalera
+## 3. Una escalera curva con ProBuilder
 
-Ahora que podemos avanzar y girar, vamos a comprobar una diferencia importante entre un personaje controlado con `Character Controller` y una bola que se mueve con `Rigidbody`: **el primero puede subir peldaños pequeños automáticamente**.
+**Corrección de la práctica:** ProBuilder ya incorpora las formas **Stair** y **Curved Stair**. No necesitamos crear los peldaños mediante cubos individuales. Vamos a usar una sola **Curved Stair** para practicar la subida con `Character Controller` y los giros con **A/D**.
 
-No modificamos todavía `MovimientoJugador.cs`. Primero construiremos un obstáculo y comprobaremos qué ocurre.
+### Paso 1. Crear la forma
 
-### Paso 1. Crear los peldaños
+En la jerarquía, pulsa el botón derecho sobre un espacio vacío y selecciona:
 
-En `Hierarchy`, crea un GameObject vacío llamado **`Escalera`**. Dentro añade cuatro cubos, usando **ProBuilder** (también puedes crear cubos convencionales y convertirlos después).
+**ProBuilder → Curved Stair**
 
-Cada peldaño tiene un ancho de **3 unidades** y un fondo de **0,8**. Lo que cambia es la altura.
+Cambia el nombre del objeto generado por **`EscaleraCurva`**.
 
-| Objeto | Position (X, Y, Z) | Scale (X, Y, Z) |
-| --- | --- | --- |
-| `Peldaño1` | `(0, 0.1, 2)` | `(3, 0.2, 0.8)` |
-| `Peldaño2` | `(0, 0.2, 2.8)` | `(3, 0.4, 0.8)` |
-| `Peldaño3` | `(0, 0.3, 3.6)` | `(3, 0.6, 0.8)` |
-| `Peldaño4` | `(0, 0.4, 4.4)` | `(3, 0.8, 0.8)` |
+En las opciones de la forma de ProBuilder, configura estos valores de partida:
 
-**Importante:** estas coordenadas son **locales a `Escalera`**, que debe permanecer en `Position (0,0,0)`, `Rotation (0,0,0)` y `Scale (1,1,1)`. Si ProBuilder cambia los pivotes de las piezas, centra cada uno antes de introducir los valores.
+| Parámetro de la forma | Valor para la práctica | Significado |
+| --- | ---: | --- |
+| **Steps Generation** | **Count** | Elegimos cuántos escalones queremos |
+| **Steps Count** | **6** | Seis escalones |
+| **Height** / altura total | **1.2** | Cada escalón sube 1.2 / 6 = **0.2** unidades |
+| **Width** / ancho | **2** | Zona por la que puede pasar el personaje |
+| **Inner Radius** | **3** | Radio interior de la curva |
+| **Circumference** / Curvature | **90°** | Curva de un cuarto de vuelta |
+| **Sides** / Build Sides | **Activado** | Cierra los laterales de la geometría |
 
-No crees cubos flotando: cada pieza parte del suelo y su cara superior está **0,2 unidades** por encima de la anterior.
+Los nombres y la disposición de estas opciones pueden variar ligeramente en el Inspector entre versiones de ProBuilder. **No confundas `Height` de la forma con `Transform → Scale Y`**: configuramos las dimensiones en el generador y dejamos la escala del GameObject en 1.
 
-### Paso 2. Plataforma de llegada
+> La altura de **0.2 por peldaño** es intencionada: el `Step Offset` del personaje será **0.3**. ProBuilder permite generar escalones por **Count** o por **Height**, así como controlar la curvatura y los laterales. Consulta la [documentación de escaleras de ProBuilder](https://docs.unity.cn/Packages/com.unity.probuilder%406.0/manual/Stair.html).
 
-Añade otro cubo hijo de `Escalera` llamado `PlataformaSuperior`:
+### Paso 2. Pivote y posición
+
+Para esta práctica, utiliza preferentemente **Pivot = First Corner** si aparece esa opción **al crear la forma**. De ese modo resulta más sencillo colocar la base. No pulses automáticamente **Center Pivot**: centrar el origen de una escalera curva cambia las coordenadas de referencia.
+
+Empezamos con el siguiente **Transform**:
+
+| Objeto | Position (X, Y, Z) | Rotation (X, Y, Z) | Scale (X, Y, Z) |
+| --- | --- | --- | --- |
+| `Suelo` | `(0, 0, 0)` | `(0, 0, 0)` | `(2, 1, 2)` |
+| `Jugador` | `(0, 0.5, 0)` | `(0, 0, 0)` | `(1, 1, 1)` |
+| `Frente` (**local**, hijo de Jugador) | `(0, 0, 0.6)` | `(0, 0, 0)` | `(0.3, 0.3, 0.3)` |
+| `EscaleraCurva` (**inicio**) | `(0, 0, 3)` | `(0, 0, 0)` | `(1, 1, 1)` |
+
+Estas coordenadas sitúan la escalera **aproximadamente delante del personaje**, pero **no garantizan que su entrada mire hacia él**, porque la malla curva depende del pivote y del sentido del arco. Después de crearla:
+
+1. Cambia a vista **superior** de la escena y busca el **primer escalón, el más bajo**.
+2. Mueve `EscaleraCurva` sobre el plano **X/Z** y gírala alrededor de **Y** hasta dejar la entrada frente a `Jugador`. No alteres `Scale`.
+3. En vista lateral, comprueba que el inicio de la escalera **toca `Suelo` (Y = 0)** y no flota ni queda enterrado. Ajusta únicamente `Position Y` si el pivote creado no coincide con la base.
+4. Comprueba que la escalera conserva un **Mesh Collider** estático, no convexo y **no Trigger**. No necesita `Rigidbody`.
+
+**Por ahora no creamos una plataforma superior.** La posición exacta de esa plataforma depende de dónde acabe el arco y de cómo hayamos girado la escalera. La añadiremos cuando la escalera esté colocada y probada, evitando inventar coordenadas que podrían dejarla separada de la salida.
+
+### Paso 3. Ajustar Character Controller
+
+Selecciona `Jugador` y comprueba:
 
 | Propiedad | Valor |
-| --- | --- |
-| Position | `(0, 0.4, 6)` |
-| Scale | `(3, 0.8, 2.4)` |
-
-La cara superior queda a **Y = 0.8**, como el último escalón. Así el personaje podrá terminar la subida sin encontrarse otro salto.
-
-Comprueba que los cinco objetos tienen un **Collider** válido. No hace falta añadirles un `Rigidbody`: son elementos fijos del escenario.
-
-### Paso 3. Configurar la subida
-
-Selecciona `Jugador`, busca su componente **Character Controller** y revisa:
-
-| Parámetro | Valor |
 | --- | ---: |
 | `Step Offset` | **0.3** |
 | `Slope Limit` | **45** |
 | `Height` | **1** |
 | `Radius` | **0.5** |
 
-`Step Offset` indica aproximadamente qué altura puede superar de forma automática. Como cada peldaño sube **0,2 unidades**, es inferior al límite de `0.3`.
+`Character Controller` puede superar escalones pequeños mediante `Step Offset`, aunque no utiliza `Rigidbody` para desplazarse.
 
-### Paso 4. Probar la escalera
+### Paso 4. Probar la subida
 
-1. Coloca `Jugador` en **`(0, 0.5, 0)`**, mirando hacia el eje **Z positivo**, en dirección a la escalera.
-2. Pulsa **Play** y mantén **W** para acercarte.
-3. Comprueba que el personaje sube los cuatro escalones y llega a la plataforma.
-4. Prueba a retroceder con **S**. Después gira con **A/D** para bajar mirando hacia delante.
-5. Si el personaje se atasca, comprueba primero el `Collider` de cada peldaño, las dimensiones de la geometría ProBuilder y `Step Offset`. No aumentes la velocidad para intentar atravesar el obstáculo.
+Pulsa **Play**. Acércate al primer peldaño con **W** y corrige la dirección con **A/D**: **una escalera curva no puede subirse únicamente manteniendo W**; el personaje debe girar mientras avanza.
 
-!!! warning "Prueba para comprender Step Offset"
-    Cuando ya funcione, cambia temporalmente `Step Offset` de **0.3 a 0.1** y vuelve a probar. El personaje debería dejar de superar los peldaños de **0.2**. Recupera después **0.3**.
+Si se atasca, comprueba el paso del primer escalón (0.2), la posición real del `Mesh Collider` y que la entrada de la curva está orientada hacia el personaje.
 
-### Comprobación
+Cuando funcione, cambia temporalmente `Step Offset` a **0.1** y repite la prueba. Después vuelve a **0.3**.
 
-Antes de continuar, necesitamos una **captura de Scene** donde se vean la escalera, la plataforma y el `Character Controller`. Después probaremos a modificar el suelo y configuraremos una cámara que siga al personaje.
+!!! note "Punto de control"
+    Antes de seguir con la cámara, guarda una captura de **Scene** con `EscaleraCurva` seleccionada y el **Inspector completo**, especialmente la forma, el `Transform` y el `Mesh Collider`. Así fijaremos su posición definitiva para esta versión del proyecto.
 
 ## 4. Qué haremos después
 
