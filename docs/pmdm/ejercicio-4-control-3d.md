@@ -1,88 +1,85 @@
-# Ejercicio 4 · Control de personaje y cámaras 3D
+# Ejercicio 4 · Rescate 3D: personaje, cámaras y controles táctiles
 
-En este ejercicio vamos a controlar una figura en un escenario 3D. El movimiento será **tipo vehículo**: avanzar, retroceder y girar sobre sí misma. Primero utilizaremos las teclas **W, A, S y D**; después añadiremos **botones táctiles** y una cámara que pueda cambiar entre **primera y tercera persona**.
+Vamos a desarrollar un pequeño juego en **Unity 6.6 (URP)**: controlaremos a un Goblin que recorre un escenario, supera una escalera curva y **rescata tres Cube Pets**. También podrá encontrar un **bláster** que gira como objeto especial.
 
-Seguimos trabajando con **Unity 6.6**, **ProBuilder** y el **Input System**. No necesitamos modelos descargados ni animaciones para entender el movimiento.
+El ejercicio es **una única escena** que iremos ampliando. Primero entenderemos el movimiento con una esfera provisional; después la sustituiremos por un personaje animado. No es necesario crear un cubo para señalar el frente: utilizaremos el eje **Z positivo** del personaje.
 
-!!! info "Objetivo de la práctica"
-    Crear una escena `Control3D`, controlar un personaje con `Character Controller` y cambiar el punto de vista de la cámara. El código y las siguientes fases se incorporarán a medida que los probemos en clase.
+!!! info "Qué vamos a aprender"
+    Movimiento 3D con **Character Controller**, ProBuilder, seguimiento y cambio de cámara, **Input System**, controles táctiles que funcionan mientras se pulsan, importación de modelos y materiales URP, **Animator**, prefabs, **triggers**, objetos recolectables y una interfaz con contador.
 
-## 1. Preparar la escena Control3D
+## Recursos y preparación
 
-Crea una escena llamada **`Control3D`** y guarda el archivo en `Assets/Scenes`.
+Trabajaremos en un proyecto **Universal 3D (URP)** y utilizaremos estos recursos:
 
-En la jerarquía deben aparecer:
+| Recurso | Uso en nuestra práctica |
+| --- | --- |
+| [Goblin Skirmisher (G4G Assets)](https://g4g-assets.itch.io/goblin-skirmisher-100-animations) | Personaje principal, con animaciones de reposo, caminar y girar |
+| [Cube Pets Free (Sneznyj)](https://sneznyj.itch.io/cube-pets-free) | Tres animales para rescatar: pollito, conejo y mariquita |
+| [Blaster Kit (Kenney)](https://kenney-assets.itch.io/blaster-kit) | Un bláster coleccionable y modelos de decoración |
 
-```text
+El Goblin tiene **110 animaciones** y un paquete específico para Unity. Cube Pets Free incluye **tres modelos animados** en FBX, GLB y Blender. Blaster Kit contiene modelos de armas, objetivos y proyectiles. **Los archivos se descargan de las páginas originales**, no se redistribuyen con este enunciado.
+
+!!! note "Alcance"
+    El objetivo obligatorio es **mover al Goblin, cambiar de cámara y rescatar las tres mascotas**. El bláster será un objeto coleccionable sencillo. **Disparar proyectiles y crear enemigos** son posibles ampliaciones, no requisitos de esta primera versión.
+
+## 1. Crear el escenario y un jugador provisional
+
+Crea y guarda la escena **Control3D** en la carpeta **Assets/Scenes**.
+
+### 1.1. Suelo
+
+Crea **GameObject → 3D Object → Plane** y llámalo **Suelo**:
+
+| Propiedad | Valor |
+| --- | --- |
+| Position | (0, 0, 0) |
+| Scale | (2, 1, 2) |
+
+Comprueba que conserva su **Mesh Collider**.
+
+### 1.2. Jugador
+
+Crea una **Sphere** llamada **Jugador**. También puedes utilizar una esfera de ProBuilder, como en clase.
+
+| Propiedad | Valor inicial |
+| --- | --- |
+| Position | (0, 0.5, 0) |
+| Rotation | (0, 0, 0) |
+| Scale | (1, 1, 1) |
+
+Añade el componente **Character Controller** y configura inicialmente:
+
+| Propiedad | Valor |
+| --- | ---: |
+| Height | 1 |
+| Radius | 0.5 |
+| Center | (0, 0, 0) |
+| Step Offset | 0.3 |
+| Slope Limit | 45 |
+
+Elimina el **Sphere Collider / Mesh Collider** adicional de la figura, si existe. **No añadas un Rigidbody al jugador**: utilizaremos CharacterController.Move.
+
+!!! tip "Si utilizas ProBuilder"
+    El pivote de la malla puede estar descentrado. Si la esfera parece flotar aunque Position sea (0, 0.5, 0), utiliza **Tools → ProBuilder → Object → Center Pivot** y comprueba de nuevo la posición. El centro visual de la malla y el **Center** del Character Controller no son lo mismo.
+
+La jerarquía inicial será sencilla:
+
+~~~text
 Control3D
 ├── Main Camera
 ├── Directional Light
 ├── Global Volume
 ├── Suelo
 └── Jugador
-    └── Frente
-```
+~~~
 
-### El suelo
+**No creamos el antiguo cubo Frente**. La dirección en la que avanzará el personaje es **transform.forward**, correspondiente a su eje Z positivo.
 
-Crea un `Plane` como `Suelo`, con `Position (0, 0, 0)` y `Scale (2, 1, 2)`. Asegúrate de que tiene un `Mesh Collider` que actúe como suelo.
+## 2. Movimiento con WASD
 
-### La figura Jugador
+Crea **Assets/Scripts/MovimientoJugador.cs** y asigna el script a **Jugador**.
 
-Podemos utilizar una **Sphere de ProBuilder**, como la que estamos preparando en clase. No tiene que ser una cápsula: lo importante es que seamos capaces de distinguir su orientación y mover su controlador.
-
-En `Jugador`:
-
-1. Añade un **Character Controller** desde `Add Component`.
-2. No añadas un `Rigidbody`: en esta actividad moveremos el objeto con `CharacterController.Move()`.
-3. Si el objeto conserva un `Mesh Collider` o `Sphere Collider` adicional, elimínalo para no duplicar la colisión del propio personaje.
-4. Con **Edit Collider**, comprueba que el contorno del `Character Controller` envuelve la figura y que su base toca el suelo. **ProBuilder puede situar el pivote de la malla en un lugar distinto de su centro visual**: si ocurre, ajusta `Center` y `Height` del controlador o corrige la geometría antes de continuar.
-
-> En nuestra primera prueba usamos una esfera ProBuilder, un controlador de altura 1 y radio 0,5. Esos valores son de partida, no una garantía de que el collider esté alineado con cualquier malla.
-
-### Indicar el frente del personaje
-
-Añade un cubo pequeño llamado **`Frente`**, hijo de `Jugador` (no otro objeto al mismo nivel). Sus coordenadas son **locales al jugador**:
-
-| Transform de Frente | X | Y | Z |
-| --- | ---: | ---: | ---: |
-| Position | 0 | 0 | 0.6 |
-| Rotation | 0 | 0 | 0 |
-| Scale | 0.3 | 0.3 | 0.3 |
-
-`Frente` señala el **eje Z positivo** de `Jugador`, que será la dirección de avance. Como es una referencia visual, quita su `Mesh Collider` si ProBuilder lo ha creado.
-
-!!! tip "Por qué es hijo de Jugador"
-    Al girar o mover al personaje, `Frente` se desplazará y girará con él. Así veremos claramente hacia dónde apunta, aunque el cuerpo sea una esfera simétrica.
-
-### Corregir la altura y el pivote de los objetos ProBuilder
-
-En la primera prueba comprobamos que la esfera quedaba visualmente **por encima del suelo**, mientras que el pequeño cubo `Frente` se veía medio enterrado. Son dos cosas distintas: el `Character Controller` define la colisión, pero no recoloca la malla visible.
-
-1. Selecciona **`Jugador`** y utiliza **Tools → ProBuilder → Object → Center Pivot** para colocar el origen en el centro de la geometría.
-2. Como la esfera mide una unidad de diámetro, coloca su `Transform → Position` en **`(0, 0.5, 0)`**. Conserva `Rotation (0, 0, 0)` y `Scale (1, 1, 1)`.
-3. Selecciona **`Frente`**. Si también es una figura de ProBuilder, aplica **Tools → ProBuilder → Object → Center Pivot** para centrar su pivote. Comprueba que sigue siendo hijo de `Jugador` y **vuelve a establecer sus coordenadas locales**: Position `(0, 0, 0.6)`, Rotation `(0, 0, 0)`, Scale `(0.3, 0.3, 0.3)`. Tras centrar un pivote, Unity puede modificar la posición mostrada sin que el objeto parezca moverse.
-4. En `Character Controller`, comprueba **Center (0, 0, 0)**, **Radius 0.5** y **Height 1**. El contorno debe ajustarse a la esfera.
-5. Comprueba el resultado desde una vista lateral en `Scene` antes de programar el movimiento. Si sigue elevado, revisa el pivote y la posición real de los vértices antes de cambiar el controlador.
-
-!!! note "Centro de malla y centro de colisión no son lo mismo"
-    **Center Pivot** centra el origen de la geometría de ProBuilder. El parámetro **Center** del `Character Controller` solo mueve su volumen de colisión. No se debe usar este segundo ajuste para disimular una malla colocada a otra altura.
-
-### Comprobación antes de programar
-
-- `Frente` aparece indentado dentro de `Jugador` en la jerarquía.
-- `Jugador` tiene `Character Controller` y no tiene `Rigidbody`.
-- El controlador envuelve la malla visible y queda apoyado sobre `Suelo`.
-- No hay colliders sobrantes en `Frente`.
-- `Main Camera` conserva la etiqueta `MainCamera`.
-
-## 2. Movimiento con teclado: avanzar, retroceder y girar
-
-Primero comprobaremos el movimiento con el teclado. Más adelante reutilizaremos las mismas acciones con botones táctiles.
-
-Crea la carpeta `Assets/Scripts` si todavía no existe. Dentro crea **`MovimientoJugador.cs`** y añade el siguiente código. Utilizamos el paquete **Input System**, como en los ejercicios anteriores:
-
-```csharp
+~~~csharp
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -105,145 +102,658 @@ public class MovimientoJugador : MonoBehaviour
     {
         if (Keyboard.current == null) return;
 
-        float avanzar = 0f;
+        float mover = 0f;
         float girar = 0f;
 
-        if (Keyboard.current.wKey.isPressed) avanzar = 1f;
-        if (Keyboard.current.sKey.isPressed) avanzar = -1f;
-        if (Keyboard.current.aKey.isPressed) girar = -1f;
-        if (Keyboard.current.dKey.isPressed) girar = 1f;
+        if (Keyboard.current.wKey.isPressed) mover += 1f;
+        if (Keyboard.current.sKey.isPressed) mover -= 1f;
+        if (Keyboard.current.aKey.isPressed) girar -= 1f;
+        if (Keyboard.current.dKey.isPressed) girar += 1f;
 
-        // Giramos alrededor del eje vertical del personaje.
+        // A/D giran el personaje sobre su eje Y.
         transform.Rotate(0, girar * velocidadGiro * Time.deltaTime, 0);
 
-        // El CharacterController no aplica gravedad automáticamente.
+        // Character Controller no aplica gravedad automáticamente.
         if (controlador.isGrounded && velocidadVertical < 0f)
             velocidadVertical = -2f;
 
         velocidadVertical += gravedad * Time.deltaTime;
 
-        // Avanzar siempre significa desplazarse hacia el frente del objeto.
-        Vector3 movimiento = transform.forward * (avanzar * velocidad);
+        // W/S avanzan o retroceden según la orientación del jugador.
+        Vector3 movimiento = transform.forward * (mover * velocidad);
         movimiento.y = velocidadVertical;
+
         controlador.Move(movimiento * Time.deltaTime);
     }
 }
-```
-
-### Qué significa cada parte
-
-- `transform.forward`: dirección **Z positiva local** del personaje, que cambia cuando giramos.
-- `transform.Rotate(...)`: gira el personaje alrededor del eje **Y**, sin desplazarse lateralmente.
-- `CharacterController.Move(...)`: mueve al personaje respetando las colisiones del controlador.
-- `Time.deltaTime`: evita que el movimiento dependa de los fotogramas por segundo.
-- `velocidadVertical`: aplica una gravedad sencilla, ya que `CharacterController` **no incorpora gravedad automáticamente**.
-
-Selecciona `Jugador` y añade el script `MovimientoJugador`. Ejecuta **Play** y prueba:
+~~~
 
 | Tecla | Acción |
 | --- | --- |
-| W | Avanzar hacia `Frente` |
+| W | Avanzar |
 | S | Retroceder |
 | A | Girar a la izquierda |
 | D | Girar a la derecha |
 
-<figure class="unity-shot" markdown="1">
+**Comprueba en Play** que la figura gira y se desplaza, sin atravesar el suelo.
 
-[![El personaje colocado sobre el suelo en la vista Game después de configurar el movimiento](../assets/images/pmdm/control3d/movimiento-personaje.webp){ loading=lazy }](../assets/images/pmdm/control3d/movimiento-personaje.webp){ aria-label="Ampliar captura de la prueba de movimiento" }
+!!! note "Más adelante sustituiremos este script"
+    Esta primera versión sirve para explicar WASD y la gravedad. En el **apartado 5** pondremos la versión completa para teclado y botones táctiles. No conserves las dos versiones del código a la vez.
 
-<figcaption>Prueba inicial del movimiento en la vista Game. La esfera tiene una pequeña referencia frontal para distinguir su orientación. Imagen aportada durante la práctica.</figcaption>
-</figure>
+## 3. Crear una escalera curva con ProBuilder
 
-!!! tip "Antes de continuar"
-    Comprueba que la figura está apoyada en el plano, que al girar `Frente` cambia de dirección y que al avanzar el personaje sigue mirando hacia delante. Si atraviesa el suelo, revisa las colisiones y el ajuste del `Character Controller`.
+Con **ProBuilder** instalado, pulsa con el botón derecho en la jerarquía y selecciona **ProBuilder → Curved Stair**. Llámala **Escalera**.
 
-## 3. Una escalera curva con ProBuilder
+En el generador de la forma, utiliza estos valores como punto de partida:
 
-**Corrección de la práctica:** ProBuilder ya incorpora las formas **Stair** y **Curved Stair**. No necesitamos crear los peldaños mediante cubos individuales. Vamos a usar una sola **Curved Stair** para practicar la subida con `Character Controller` y los giros con **A/D**.
+| Opción | Valor |
+| --- | --- |
+| Shape Size | Aproximadamente (8, 1.2, 4) |
+| Steps Generation | Count |
+| Steps Count | 6 |
+| Circumference | 90° |
+| Inner Radius | 2 |
+| Sides | Activado |
 
-### Paso 1. Crear la forma
+La altura total es **1,2 unidades**, por lo que seis peldaños uniformes tienen una subida aproximada de **0,2 unidades** cada uno.
 
-En la jerarquía, pulsa el botón derecho sobre un espacio vacío y selecciona:
+**Coloca la escalera visualmente** con las herramientas Move y Rotate. La entrada debe quedar al alcance del jugador. Comprueba en vista lateral que la base toca el suelo; según el pivote elegido, puede ser necesario elevar la forma aproximadamente **0,6 unidades**.
 
-**ProBuilder → Curved Stair**
+Verifica que conserva un **Mesh Collider** (no Trigger) para que podamos subir sus escalones.
 
-Cambia el nombre del objeto generado por **`EscaleraCurva`**.
+Pulsa **Play** y sube utilizando **W** y los giros **A/D**. Al tratarse de una escalera curva, necesitaremos corregir la orientación mientras avanzamos.
 
-En las opciones de la forma de ProBuilder, configura estos valores de partida:
+!!! tip "Qué revisar si no sube"
+    Comprueba el Mesh Collider de la escalera, la altura del primer peldaño, el **Step Offset** del Character Controller y que el jugador no esté enterrado en el suelo. No es necesario modificar Step Offset durante el ejercicio si ya funciona correctamente.
 
-| Parámetro de la forma | Valor para la práctica | Significado |
-| --- | ---: | --- |
-| **Steps Generation** | **Count** | Elegimos cuántos escalones queremos |
-| **Steps Count** | **6** | Seis escalones |
-| **Height** / altura total | **1.2** | Cada escalón sube 1.2 / 6 = **0.2** unidades |
-| **Width** / ancho | **2** | Zona por la que puede pasar el personaje |
-| **Inner Radius** | **3** | Radio interior de la curva |
-| **Circumference** / Curvature | **90°** | Curva de un cuarto de vuelta |
-| **Sides** / Build Sides | **Activado** | Cierra los laterales de la geometría |
+## 4. Cámara en tercera y primera persona
 
-Los nombres y la disposición de estas opciones pueden variar ligeramente en el Inspector entre versiones de ProBuilder. **No confundas `Height` de la forma con `Transform → Scale Y`**: configuramos las dimensiones en el generador y dejamos la escala del GameObject en 1.
+Selecciona **Main Camera** y añade el script **CamaraSeguimiento.cs**. La cámara seguirá la posición y orientación de Jugador.
 
-> La altura de **0.2 por peldaño** es intencionada: el `Step Offset` del personaje será **0.3**. ProBuilder permite generar escalones por **Count** o por **Height**, así como controlar la curvatura y los laterales. Consulta la [documentación de escaleras de ProBuilder](https://docs.unity.cn/Packages/com.unity.probuilder%406.0/manual/Stair.html).
+~~~csharp
+using UnityEngine;
+using UnityEngine.InputSystem;
 
-### Paso 2. Pivote y posición
+public class CamaraSeguimiento : MonoBehaviour
+{
+    public Transform objetivo;
+    public float distancia = 5f;
+    public float altura = 3f;
+    public float suavidad = 5f;
 
-Para esta práctica, utiliza preferentemente **Pivot = First Corner** si aparece esa opción **al crear la forma**. De ese modo resulta más sencillo colocar la base. No pulses automáticamente **Center Pivot**: centrar el origen de una escalera curva cambia las coordenadas de referencia.
+    private bool primeraPersona = false;
 
-Empezamos con el siguiente **Transform**:
+    // Permite cambiar de cámara desde un botón de la interfaz.
+    public void CambiarVista()
+    {
+        primeraPersona = !primeraPersona;
+    }
 
-| Objeto | Position (X, Y, Z) | Rotation (X, Y, Z) | Scale (X, Y, Z) |
-| --- | --- | --- | --- |
-| `Suelo` | `(0, 0, 0)` | `(0, 0, 0)` | `(2, 1, 2)` |
-| `Jugador` | `(0, 0.5, 0)` | `(0, 0, 0)` | `(1, 1, 1)` |
-| `Frente` (**local**, hijo de Jugador) | `(0, 0, 0.6)` | `(0, 0, 0)` | `(0.3, 0.3, 0.3)` |
-| `EscaleraCurva` (**inicio**) | `(0, 0, 3)` | `(0, 0, 0)` | `(1, 1, 1)` |
+    void Update()
+    {
+        // Tecla C para cambiar la vista en el ordenador.
+        if (Keyboard.current != null &&
+            Keyboard.current.cKey.wasPressedThisFrame)
+            CambiarVista();
+    }
 
-Estas coordenadas sitúan la escalera **aproximadamente delante del personaje**, pero **no garantizan que su entrada mire hacia él**, porque la malla curva depende del pivote y del sentido del arco. Después de crearla:
+    void LateUpdate()
+    {
+        if (objetivo == null) return;
 
-1. Cambia a vista **superior** de la escena y busca el **primer escalón, el más bajo**.
-2. Mueve `EscaleraCurva` sobre el plano **X/Z** y gírala alrededor de **Y** hasta dejar la entrada frente a `Jugador`. No alteres `Scale`.
-3. En vista lateral, comprueba que el inicio de la escalera **toca `Suelo` (Y = 0)** y no flota ni queda enterrado. Ajusta únicamente `Position Y` si el pivote creado no coincide con la base.
-4. Comprueba que la escalera conserva un **Mesh Collider** estático, no convexo y **no Trigger**. No necesita `Rigidbody`.
+        Vector3 posicion;
+        Quaternion rotacion;
 
-**Por ahora no creamos una plataforma superior.** La posición exacta de esa plataforma depende de dónde acabe el arco y de cómo hayamos girado la escalera. La añadiremos cuando la escalera esté colocada y probada, evitando inventar coordenadas que podrían dejarla separada de la salida.
+        if (primeraPersona)
+        {
+            // Ajustaremos esta altura cuando coloquemos el Goblin.
+            posicion = objetivo.position
+                     + objetivo.forward * 0.7f
+                     + Vector3.up * 0.6f;
 
-### Paso 3. Ajustar Character Controller
+            rotacion = Quaternion.LookRotation(objetivo.forward);
+        }
+        else
+        {
+            posicion = objetivo.position
+                     - objetivo.forward * distancia
+                     + Vector3.up * altura;
 
-Selecciona `Jugador` y comprueba:
+            Vector3 mirada = objetivo.position + Vector3.up * 0.4f;
+            rotacion = Quaternion.LookRotation(mirada - posicion);
+        }
 
-| Propiedad | Valor |
-| --- | ---: |
-| `Step Offset` | **0.3** |
-| `Slope Limit` | **45** |
-| `Height` | **1** |
-| `Radius` | **0.5** |
+        float t = Mathf.Clamp01(suavidad * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, posicion, t);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotacion, t);
+    }
+}
+~~~
 
-`Character Controller` puede superar escalones pequeños mediante `Step Offset`, aunque no utiliza `Rigidbody` para desplazarse.
+En el Inspector de **Main Camera**, arrastra **Jugador** al campo **Objetivo**.
 
-### Paso 4. Probar la subida
+Prueba **WASD** y pulsa **C** para alternar las vistas.
 
-Pulsa **Play**. Acércate al primer peldaño con **W** y corrige la dirección con **A/D**: **una escalera curva no puede subirse únicamente manteniendo W**; el personaje debe girar mientras avanza.
+- **LateUpdate** permite colocar la cámara después de mover al personaje.
+- **Lerp** suaviza el desplazamiento y **Slerp** suaviza la rotación.
+- **CambiarVista()** será también el método que llamará un botón táctil.
 
-Si se atasca, comprueba el paso del primer escalón (0.2), la posición real del `Mesh Collider` y que la entrada de la curva está orientada hacia el personaje.
+!!! warning "Primera persona y modelos 3D"
+    Cuando sustituyamos la esfera por el Goblin, revisaremos la altura de la vista en primera persona. Si la cámara atraviesa la cabeza del modelo, habrá que ajustar el desplazamiento frontal y vertical o esconder la malla propia para esa vista. **No necesitamos crear cubos que simulen manos o armas.**
 
-Cuando funcione, cambia temporalmente `Step Offset` a **0.1** y repite la prueba. Después vuelve a **0.3**.
+## 5. Controles táctiles para Android
 
-!!! note "Punto de control"
-    Antes de seguir con la cámara, guarda una captura de **Scene** con `EscaleraCurva` seleccionada y el **Inspector completo**, especialmente la forma, el `Transform` y el `Mesh Collider`. Así fijaremos su posición definitiva para esta versión del proyecto.
+### 5.1. Crear la interfaz
 
-## 4. Qué haremos después
+Crea un **Canvas** llamado **CanvasControles**. En **Canvas Scaler** selecciona:
 
-Sin empezar otro proyecto, continuaremos con:
+- **UI Scale Mode:** Scale With Screen Size.
+- **Reference Resolution:** 1920 × 1080.
+- **Screen Match Mode:** Match Width Or Height, con **Match = 0.5**.
 
-- **Una rampa inclinada:** comparar `Slope Limit` con `Step Offset`.
-- **Cámara en tercera persona:** seguir al jugador desde atrás.
-- **Cambio de cámara:** pasar a primera persona con un botón.
-- **Controles táctiles:** mantener pulsados botones en Android para avanzar, retroceder y girar.
+Dentro crea cinco **Button - TextMeshPro**:
 
+| Botón | Texto | Acción |
+| --- | --- | --- |
+| BtnAdelante | ↑ | Avanzar mientras se pulsa |
+| BtnAtras | ↓ | Retroceder mientras se pulsa |
+| BtnIzquierda | ↶ | Girar a la izquierda mientras se pulsa |
+| BtnDerecha | ↷ | Girar a la derecha mientras se pulsa |
+| BtnCamara | Cámara o C | Cambiar de vista una vez |
 
+Coloca los cuatro botones de movimiento agrupados en la **esquina inferior izquierda** usando anclajes. Deja el botón de cámara en otra zona cómoda, por ejemplo la **esquina inferior derecha**.
 
-Una vez probado el movimiento, prepararemos **cuatro botones táctiles** que funcionen mientras se mantienen pulsados (`PointerDown` / `PointerUp`) y configuraremos el **cambio entre cámara de primera y tercera persona**.
+!!! tip "Si no aparece el texto"
+    Importa **Window → TextMeshPro → Import TMP Essential Resources** y asigna una fuente TMP al hijo **Text (TMP)**. Si la fuente no muestra bien las flechas, utiliza W, S, A y D.
 
+Comprueba que la escena tiene un **EventSystem** con **Input System UI Input Module**.
+
+### 5.2. Crear BotonTactil.cs
+
+No utilizaremos **On Click()** para desplazarnos: solo se ejecuta una pulsación, mientras que necesitamos **mantener el movimiento** hasta levantar el dedo.
+
+Crea este script:
+
+~~~csharp
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class BotonTactil : MonoBehaviour,
+    IPointerDownHandler,
+    IPointerUpHandler,
+    IPointerExitHandler
+{
+    public MovimientoJugador jugador;
+    public MovimientoJugador.Control control;
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (jugador != null)
+            jugador.CambiarControl(control, true);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (jugador != null)
+            jugador.CambiarControl(control, false);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (jugador != null)
+            jugador.CambiarControl(control, false);
+    }
+
+    void OnDisable()
+    {
+        if (jugador != null)
+            jugador.CambiarControl(control, false);
+    }
+}
+~~~
+
+Añade **BotonTactil** a los cuatro botones de movimiento, **no** a sus hijos Text (TMP). En cada botón arrastra **Jugador** al campo **Jugador** y elige el valor adecuado en **Control**.
+
+| Objeto | Control |
+| --- | --- |
+| BtnAdelante | Adelante |
+| BtnAtras | Atras |
+| BtnIzquierda | Izquierda |
+| BtnDerecha | Derecha |
+
+El botón **BtnCamara** es distinto: en **Button → On Click()**, arrastra **Main Camera** y selecciona **CamaraSeguimiento → CambiarVista()**.
+
+### 5.3. Sustituir MovimientoJugador.cs por su versión completa
+
+La siguiente versión permite utilizar **WASD o los botones táctiles**. También deja preparado el parámetro **Movimiento** que usaremos después con las animaciones del Goblin.
+
+**Sustituye completamente** el contenido del script anterior:
+
+~~~csharp
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(CharacterController))]
+public class MovimientoJugador : MonoBehaviour
+{
+    public float velocidad = 4f;
+    public float velocidadGiro = 120f;
+    public float gravedad = -9.81f;
+
+    private CharacterController controlador;
+    private Animator animador;
+    private float velocidadVertical;
+
+    // Botones táctiles mantenidos.
+    private bool adelante;
+    private bool atras;
+    private bool izquierda;
+    private bool derecha;
+
+    public enum Control
+    {
+        Adelante,
+        Atras,
+        Izquierda,
+        Derecha
+    }
+
+    void Start()
+    {
+        controlador = GetComponent<CharacterController>();
+        animador = GetComponentInChildren<Animator>();
+    }
+
+    // Lo llaman los botones al pulsar o soltar.
+    public void CambiarControl(Control control, bool pulsado)
+    {
+        switch (control)
+        {
+            case Control.Adelante:
+                adelante = pulsado;
+                break;
+            case Control.Atras:
+                atras = pulsado;
+                break;
+            case Control.Izquierda:
+                izquierda = pulsado;
+                break;
+            case Control.Derecha:
+                derecha = pulsado;
+                break;
+        }
+    }
+
+    void Update()
+    {
+        // El teclado es opcional: en Android puede no existir.
+        bool w = Keyboard.current != null &&
+                 Keyboard.current.wKey.isPressed;
+        bool s = Keyboard.current != null &&
+                 Keyboard.current.sKey.isPressed;
+        bool a = Keyboard.current != null &&
+                 Keyboard.current.aKey.isPressed;
+        bool d = Keyboard.current != null &&
+                 Keyboard.current.dKey.isPressed;
+
+        float mover = 0f;
+        float girar = 0f;
+
+        if (w || adelante) mover += 1f;
+        if (s || atras) mover -= 1f;
+        if (a || izquierda) girar -= 1f;
+        if (d || derecha) girar += 1f;
+
+        transform.Rotate(0, girar * velocidadGiro * Time.deltaTime, 0);
+
+        if (controlador.isGrounded && velocidadVertical < 0f)
+            velocidadVertical = -2f;
+
+        velocidadVertical += gravedad * Time.deltaTime;
+
+        Vector3 movimiento = transform.forward * (mover * velocidad);
+        movimiento.y = velocidadVertical;
+        controlador.Move(movimiento * Time.deltaTime);
+
+        // Estados del Animator, cuando añadamos el Goblin.
+        if (animador != null)
+        {
+            int estado = 0; // Idle
+
+            if (mover != 0f)
+            {
+                if (girar < 0f) estado = 4;       // WalkTurnLeft
+                else if (girar > 0f) estado = 5;  // WalkTurnRight
+                else estado = 1;                  // Walking
+            }
+            else
+            {
+                if (girar < 0f) estado = 2;       // TurnLeft
+                else if (girar > 0f) estado = 3;  // TurnRight
+            }
+
+            animador.SetInteger("Movimiento", estado);
+        }
+    }
+}
+~~~
+
+**Prueba en Game** que mantener pulsado cada botón con el ratón produce movimiento continuo y que al soltarlo el personaje se detiene. Comprueba que WASD sigue funcionando.
+
+## 6. Sustituir la esfera por el Goblin
+
+### 6.1. Importar el personaje
+
+Descarga el archivo **GoblinSkirmisher-Unity-1.0.0.zip** de la página enlazada al principio.
+
+1. Descomprime el ZIP.
+2. En Unity, selecciona **Assets → Import Package → Custom Package**.
+3. Importa **GoblinSkirmisher.unitypackage**.
+4. En **Assets/GoblinSkirmisher/Prefabs**, arrastra el prefab **GoblinSkirmisher** **dentro de Jugador**.
+
+**Conservamos Jugador** como objeto principal, porque tiene el Character Controller, MovimientoJugador y las referencias de los botones y la cámara. Desactiva solamente su **Mesh Renderer** para ocultar la esfera.
+
+~~~text
+Jugador                         ← MovimientoJugador + Character Controller
+└── GoblinSkirmisher            ← Modelo visual (prefab)
+    └── GoblinSkirmisher        ← Modelo animado, con Animator
+        └── GoblinRig           ← Esqueleto y mallas
+~~~
+
+La estructura del prefab puede tener otros hijos, pero lo importante es **no añadir un segundo Animator al objeto Jugador**: utiliza el que ya trae el modelo animado dentro del prefab.
+
+### 6.2. Corregir los materiales rosa o blancos
+
+El proyecto utiliza **URP**. Si el Goblin aparece rosa o sin textura:
+
+1. Abre **Assets/GoblinSkirmisher/Materials**.
+2. Selecciona el material **GoblinSkirmisher**.
+3. Establece el shader **Universal Render Pipeline/Lit**.
+4. En **Base Map**, arrastra la textura correspondiente desde la carpeta **Textures**, sobre el **cuadrado pequeño** del mapa.
+5. Repite el proceso con el material **Dagger**, utilizando su textura.
+
+No hay que modificar los FBX ni rehacer las animaciones para corregir los materiales.
+
+### 6.3. Ajustar posición y colisiones
+
+El Goblin mide aproximadamente **1,35 unidades**. Como punto de partida:
+
+- En el hijo visual **GoblinSkirmisher**: Position local aproximada **(0, -0.5, 0)**, Rotation (0, 0, 0) y Scale (1, 1, 1).
+- En **Jugador / Character Controller**: Height **1.35**, Radius **0.3**, Center Y aproximado **0.175**, manteniendo Jugador en Y **0.5**.
+
+Son valores **orientativos**: ajusta el modelo para que **sus pies toquen el suelo** y la cápsula del controlador se adapte al cuerpo. Comprueba también que el Goblin mire hacia la dirección **Z positiva de Jugador**. Si hace falta girar el modelo, gira **solo el hijo visual**.
+
+En el Animator del Goblin desactiva **Apply Root Motion**. El movimiento real seguirá controlándolo **MovimientoJugador.cs**.
+
+## 7. Configurar las animaciones de caminar y girar
+
+El paquete incluye **clips y un controlador de previsualización**, pero no un sistema de control completo conectado a nuestros botones. Crearemos un Animator Controller sencillo para nuestra práctica.
+
+Crea **Assets/Animators/JugadorAnimator** desde **Create → Animation → Animator Controller**.
+
+Arrastra estos clips desde **Assets/GoblinSkirmisher/Animations**:
+
+| Estado en nuestro Animator | Clip del paquete | Movimiento |
+| --- | --- | --- |
+| Idle | A000_Idle | Quieto |
+| Walking | A-02_Walking | Avanzar o retroceder |
+| TurnLeft | A576_Idle_Turn_Left | Girar quieto a la izquierda |
+| TurnRight | A586_Idle_Turn_Right | Girar quieto a la derecha |
+| WalkTurnLeft | A572_Walk_Turn_Left | Avanzar y girar a la izquierda |
+| WalkTurnRight | A583_Walk_Turn_Right | Avanzar y girar a la derecha |
+
+Haz **Idle** el estado predeterminado (naranja).
+
+### 7.1. Un parámetro para seis estados
+
+En **Animator → Parameters**, crea un parámetro de tipo **Int** llamado **Movimiento**.
+
+| Movimiento | Animación | Entrada |
+| ---: | --- | --- |
+| 0 | Idle | Sin pulsar |
+| 1 | Walking | W o S |
+| 2 | TurnLeft | A |
+| 3 | TurnRight | D |
+| 4 | WalkTurnLeft | W + A |
+| 5 | WalkTurnRight | W + D |
+
+### 7.2. Transiciones
+
+Crea **seis transiciones desde Any State**, una hacia cada estado. En cada transición:
+
+- **Has Exit Time:** desactivado.
+- **Fixed Duration:** activado; **Transition Duration:** 0.1 segundos como punto de partida.
+- **Can Transition To Self:** desactivado.
+- **Condition:** **Movimiento Equals** el número de la tabla.
+
+No mantengas transiciones antiguas que dependan de otros parámetros, como **Caminando**, si has pasado a utilizar **Movimiento**.
+
+!!! tip "Has Exit Time"
+    Si está activado, Unity espera al momento de salida configurado del clip antes de permitir la transición. Para responder rápidamente a nuestros botones, lo desactivamos. **Transition Duration** regula, en cambio, cuánto dura la mezcla entre animaciones.
+
+### 7.3. Asignar el controlador correcto
+
+Selecciona el **objeto interior del prefab GoblinSkirmisher que contiene Animator**. En el campo **Controller**, asigna **JugadorAnimator**.
+
+No añadas el Animator al objeto padre Jugador. El código ya utiliza **GetComponentInChildren<Animator>()** para encontrar el componente del modelo.
+
+Pulsa **Play** y comprueba las seis acciones con el teclado o los botones táctiles.
+
+!!! warning "Animaciones con desplazamiento y bucles"
+    El paquete conserva movimientos de cadera en algunos clips. Como el desplazamiento del juego lo controla Character Controller, verifica que **Apply Root Motion** esté desactivado y revisa si algún clip produce saltos o deslizamientos. Comprueba que **Idle y Walking** se repiten correctamente; en las animaciones cortas de giro, prueba el bucle antes de activarlo, porque no todas están preparadas para repetirse sin salto.
+
+## 8. Rescatar tres Cube Pets
+
+Ahora añadiremos un objetivo al juego: **encontrar y rescatar el pollito, el conejo y la mariquita**.
+
+### 8.1. Importar los animales
+
+Descarga **Cube Pets Free** desde el enlace de recursos y descomprime el ZIP. Importa en **Assets/Models/CubePets** los **FBX y sus texturas** (el paquete también ofrece GLB y Blender).
+
+Coloca un animal cerca del inicio, otro en el recorrido de la escalera y el tercero en una zona que requiera explorar el escenario. **No dependas de coordenadas idénticas para todas las escenas:** ajusta posición y escala según el modelo.
+
+Si sus materiales no muestran el aspecto adecuado, crea materiales **Universal Render Pipeline/Lit** y asigna sus mapas de color. Puedes utilizar su animación **Idle** si la has configurado; para la mecánica de rescate basta con que los animales sean visibles.
+
+### 8.2. Preparar cada mascota para detectar el contacto
+
+En cada animal crea un objeto raíz con un nombre identificable, por ejemplo **MascotaPollito**, que contenga el modelo visual.
+
+Añade al objeto raíz:
+
+1. **Box Collider** o **Sphere Collider**, ajustado al tamaño del animal.
+2. **Is Trigger:** activado.
+3. **Rigidbody** con **Use Gravity** desactivado e **Is Kinematic** activado.
+4. El script **Recolectable**, que crearemos en el apartado siguiente.
+
+En el objeto **Jugador**, cambia la etiqueta (**Tag**) a **Player**. Conserva su Character Controller.
+
+Después de configurar la primera mascota, arrástrala a **Assets/Prefabs** para crear un **Prefab**. Repite con los otros dos animales.
+
+### 8.3. Interfaz de rescate
+
+En el Canvas añade dos textos **Text - TextMeshPro**:
+
+- **TextoContador**: mostrará **Mascotas: 0/3** y si tenemos el bláster.
+- **TextoVictoria**: mostrará **¡Has rescatado a todas las mascotas!**. Déjalo visible en el editor para configurarlo; el script lo ocultará al iniciar.
+
+Crea un objeto vacío **GestorJuego** y añade el script **GestorRescate.cs**:
+
+~~~csharp
+using UnityEngine;
+using TMPro;
+
+public class GestorRescate : MonoBehaviour
+{
+    public TMP_Text textoContador;
+    public GameObject textoVictoria;
+    public int totalMascotas = 3;
+
+    private int mascotasRescatadas = 0;
+    private bool blasterRecogido = false;
+
+    void Start()
+    {
+        if (textoVictoria != null)
+            textoVictoria.SetActive(false);
+
+        ActualizarInterfaz();
+    }
+
+    public void Recoger(TipoRecolectable tipo)
+    {
+        if (tipo == TipoRecolectable.Mascota)
+            mascotasRescatadas = Mathf.Min(
+                mascotasRescatadas + 1, totalMascotas);
+        else
+            blasterRecogido = true;
+
+        ActualizarInterfaz();
+
+        if (mascotasRescatadas >= totalMascotas &&
+            textoVictoria != null)
+            textoVictoria.SetActive(true);
+    }
+
+    void ActualizarInterfaz()
+    {
+        if (textoContador == null) return;
+
+        string blaster = blasterRecogido ? "Sí" : "No";
+        textoContador.text =
+            $"Mascotas: {mascotasRescatadas}/{totalMascotas} | " +
+            $"Bláster: {blaster}";
+    }
+}
+~~~
+
+En el Inspector de **GestorJuego** asigna los dos textos a sus campos.
+
+### 8.4. Script de recolección
+
+Crea **Recolectable.cs**:
+
+~~~csharp
+using UnityEngine;
+
+public enum TipoRecolectable
+{
+    Mascota,
+    Blaster
+}
+
+public class Recolectable : MonoBehaviour
+{
+    public TipoRecolectable tipo = TipoRecolectable.Mascota;
+    public float velocidadGiro = 0f;
+
+    private bool recogido = false;
+
+    void Update()
+    {
+        // Si velocidadGiro es 0, el objeto no gira.
+        transform.Rotate(0, velocidadGiro * Time.deltaTime, 0);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (recogido || !other.CompareTag("Player")) return;
+
+        GestorRescate gestor =
+            FindFirstObjectByType<GestorRescate>();
+
+        if (gestor == null) return;
+
+        recogido = true;
+        gestor.Recoger(tipo);
+
+        Destroy(gameObject);
+    }
+}
+~~~
+
+En las tres mascotas configura:
+
+- **Tipo:** Mascota.
+- **Velocidad Giro:** 0 (de momento no necesitan girar).
+
+**Prueba:** al tocar cada mascota con el Goblin debe desaparecer y el contador debe avanzar de **0/3** a **3/3**. Al rescatar la tercera aparecerá el mensaje de victoria.
+
+!!! note "Por qué usamos un Trigger"
+    Un **Collider con Is Trigger** detecta el contacto sin bloquear el desplazamiento del personaje. El Rigidbody cinemático del coleccionable permite configurar la detección de forma sencilla, mientras que el jugador sigue utilizando **Character Controller**. **Destroy(gameObject)** elimina el objeto raíz de la mascota, junto con su modelo.
+
+## 9. El bláster como objeto coleccionable que gira
+
+Descarga el **Blaster Kit** de Kenney y elige **uno de sus modelos FBX**. Puedes utilizar también algún objetivo o caja del paquete para decorar el nivel, pero **no programaremos disparos todavía**.
+
+Coloca el bláster en una zona visible del escenario, por ejemplo cerca de la escalera. Llámalo **Blaster**.
+
+Como ya hemos comprobado en clase, **no hace falta crear un objeto vacío solo para hacerlo girar**: podemos asignar un script directamente al modelo cuando su pivote está bien colocado.
+
+### 9.1. GirarObjeto.cs
+
+~~~csharp
+using UnityEngine;
+
+public class GirarObjeto : MonoBehaviour
+{
+    public float velocidad = 90f;
+
+    void Update()
+    {
+        transform.Rotate(0, velocidad * Time.deltaTime, 0);
+    }
+}
+~~~
+
+Asigna **GirarObjeto** al bláster y comprueba que gira sobre el eje Y. Si gira descentrado, revisa el pivote del modelo antes de complicar la jerarquía.
+
+### 9.2. Hacerlo coleccionable
+
+Igual que con las mascotas, añade **un Collider con Is Trigger** y **un Rigidbody cinemático sin gravedad** al objeto que detectará la recogida.
+
+Añade **Recolectable**, pero configura:
+
+- **Tipo:** Blaster.
+- **Velocidad Giro:** 0, porque ya gira con **GirarObjeto**.
+
+Al tocar el objeto, desaparecerá y el contador indicará **Bláster: Sí**.
+
+!!! tip "Evitar duplicar el giro"
+    Si prefieres utilizar únicamente **Recolectable**, elimina **GirarObjeto** del bláster y establece **Velocidad Giro = 90** en Recolectable. Las dos soluciones son válidas; **no actives ambas rotaciones a la vez**.
+
+Recoger el bláster **no sustituye el objetivo principal**: el nivel se completa cuando rescatas las **tres mascotas**.
+
+## 10. Preparar la prueba en Android
+
+Cuando todo funcione en el editor:
+
+1. Comprueba que Unity tiene instalado **Android Build Support** y sus herramientas necesarias.
+2. Abre **File → Build Profiles** y selecciona **Android**; cambia al perfil Android si fuera necesario.
+3. Añade la escena **Control3D** a la lista de escenas de la compilación.
+4. Configura el juego en **orientación horizontal** y revisa la colocación de los controles en **Game**, con una relación de aspecto parecida a la del móvil.
+5. Genera la aplicación y pruébala en un dispositivo Android.
+
+En el móvil debemos comprobar especialmente las **pulsaciones mantenidas**, la posibilidad de **avanzar y girar a la vez**, el botón de cámara y la recogida de objetos.
+
+## Resultado mínimo y comprobaciones
+
+La práctica estará terminada cuando se cumpla lo siguiente:
+
+- [ ] El Goblin reemplaza visualmente a la esfera, pero **Jugador** mantiene Character Controller y MovimientoJugador.
+- [ ] Se mueve con **WASD** y con los **cuatro botones táctiles**.
+- [ ] Puede recorrer la **escalera curva**.
+- [ ] La cámara lo sigue y cambia entre **primera y tercera persona** con **C** o el botón.
+- [ ] El Goblin utiliza **Idle**, **Walking** y animaciones de giro mediante **Animator**.
+- [ ] Los **tres Cube Pets** se recogen por contacto y actualizan el contador.
+- [ ] El **bláster gira** y puede recogerse como objeto especial.
+- [ ] Al rescatar las tres mascotas aparece un **mensaje de victoria**.
+- [ ] La escena puede probarse en **Android** con controles táctiles.
+
+!!! info "Ampliaciones voluntarias"
+    Podemos añadir una animación de recogida (**A284_Collect_Object**), una de victoria (**A412_Victory**), efectos de sonido, objetivos del Blaster Kit y disparos. **No son necesarios para comprender ni superar el núcleo de este ejercicio.**
+
+!!! note "Uso de recursos externos"
+    Descarga los modelos desde los enlaces originales. **Goblin Skirmisher** y **Cube Pets Free** permiten utilizarlos en proyectos, pero prohíben redistribuir los archivos originales como paquete de recursos. **Blaster Kit** se distribuye bajo licencia **CC0**. Cita a los autores en los créditos del juego por buena práctica y revisa las condiciones que acompañan cada descarga.
 
 ---
 
