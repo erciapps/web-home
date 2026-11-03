@@ -76,18 +76,84 @@ En la primera prueba comprobamos que la esfera quedaba visualmente **por encima 
 - No hay colliders sobrantes en `Frente`.
 - `Main Camera` conserva la etiqueta `MainCamera`.
 
-## 2. Próximo paso: movimiento tipo vehículo
+## 2. Movimiento con teclado: avanzar, retroceder y girar
 
-Prepararemos un script `MovimientoJugador.cs` con este comportamiento:
+Primero comprobaremos el movimiento con el teclado. Más adelante reutilizaremos las mismas acciones con botones táctiles.
+
+Crea la carpeta `Assets/Scripts` si todavía no existe. Dentro crea **`MovimientoJugador.cs`** y añade el siguiente código. Utilizamos el paquete **Input System**, como en los ejercicios anteriores:
+
+```csharp
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(CharacterController))]
+public class MovimientoJugador : MonoBehaviour
+{
+    public float velocidad = 4f;
+    public float velocidadGiro = 120f;
+    public float gravedad = -9.81f;
+
+    private CharacterController controlador;
+    private float velocidadVertical;
+
+    void Start()
+    {
+        controlador = GetComponent<CharacterController>();
+    }
+
+    void Update()
+    {
+        if (Keyboard.current == null) return;
+
+        float avanzar = 0f;
+        float girar = 0f;
+
+        if (Keyboard.current.wKey.isPressed) avanzar = 1f;
+        if (Keyboard.current.sKey.isPressed) avanzar = -1f;
+        if (Keyboard.current.aKey.isPressed) girar = -1f;
+        if (Keyboard.current.dKey.isPressed) girar = 1f;
+
+        // Giramos alrededor del eje vertical del personaje.
+        transform.Rotate(0, girar * velocidadGiro * Time.deltaTime, 0);
+
+        // El CharacterController no aplica gravedad automáticamente.
+        if (controlador.isGrounded && velocidadVertical < 0f)
+            velocidadVertical = -2f;
+
+        velocidadVertical += gravedad * Time.deltaTime;
+
+        // Avanzar siempre significa desplazarse hacia el frente del objeto.
+        Vector3 movimiento = transform.forward * (avanzar * velocidad);
+        movimiento.y = velocidadVertical;
+        controlador.Move(movimiento * Time.deltaTime);
+    }
+}
+```
+
+### Qué significa cada parte
+
+- `transform.forward`: dirección **Z positiva local** del personaje, que cambia cuando giramos.
+- `transform.Rotate(...)`: gira el personaje alrededor del eje **Y**, sin desplazarse lateralmente.
+- `CharacterController.Move(...)`: mueve al personaje respetando las colisiones del controlador.
+- `Time.deltaTime`: evita que el movimiento dependa de los fotogramas por segundo.
+- `velocidadVertical`: aplica una gravedad sencilla, ya que `CharacterController` **no incorpora gravedad automáticamente**.
+
+Selecciona `Jugador` y añade el script `MovimientoJugador`. Ejecuta **Play** y prueba:
 
 | Tecla | Acción |
 | --- | --- |
-| W | Avanzar hacia `transform.forward` |
+| W | Avanzar hacia `Frente` |
 | S | Retroceder |
-| A | Girar alrededor del eje Y hacia la izquierda |
-| D | Girar alrededor del eje Y hacia la derecha |
+| A | Girar a la izquierda |
+| D | Girar a la derecha |
 
-Después crearemos botones táctiles que respondan **mientras estén pulsados**, no solo a `onClick`, y alternaremos entre dos enfoques de cámara.
+!!! tip "Antes de continuar"
+    Comprueba que la figura está apoyada en el plano, que al girar `Frente` cambia de dirección y que al avanzar el personaje sigue mirando hacia delante. Si atraviesa el suelo, revisa las colisiones y el ajuste del `Character Controller`.
+
+## 3. Siguiente parte
+
+Una vez probado el movimiento, prepararemos **cuatro botones táctiles** que funcionen mientras se mantienen pulsados (`PointerDown` / `PointerUp`) y configuraremos el **cambio entre cámara de primera y tercera persona**.
+
 
 ---
 
