@@ -16,6 +16,22 @@ Recursos, ejemplos y prácticas del módulo de **Desarrollo de Interfaces**.
 
     XAML, controles, binding, estilos y desarrollo de aplicaciones de escritorio.
 
+-   :material-android:{ .lg .middle } **Avalonia en Android**
+
+    ---
+
+    Instalación de .NET 10, Rider, JDK 21, Android SDK y emulador para ejecutar proyectos Avalonia en Android.
+
+    [Seguir la guía](instalacion-avalonia-android.md)
+
+-   :material-web:{ .lg .middle } **Avalonia en navegador**
+
+    ---
+
+    Configuración de Edge, WebAssembly, certificados HTTPS y ejecución de proyectos Avalonia Browser.
+
+    [Seguir la guía](avalonia-en-navegador.md)
+
 -   :material-clipboard-text-outline:{ .lg .middle } **Proyecto · Aplicación de gestión**
 
     ---
