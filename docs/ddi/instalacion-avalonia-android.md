@@ -89,37 +89,34 @@ Comprobar las cargas instaladas:
 dotnet workload list
 ```
 
-## 5. Instalar Microsoft OpenJDK 21
+## 5. Preparar Java JDK 21
 
-Java es necesario para las herramientas de compilación de Android.
+Java es necesario para compilar aplicaciones Android. Podemos instalar **Microsoft OpenJDK 21** manualmente, aunque también podemos permitir que la tarea del apartado 6 descargue el JDK requerido a una carpeta del usuario.
+
+Si prefieres instalarlo manualmente:
 
 ```powershell
 winget install Microsoft.OpenJDK.21
 ```
 
-**Alternativa:** [descargar Microsoft OpenJDK 21 desde la web oficial](https://learn.microsoft.com/es-es/java/openjdk/download).
+**Alternativa web:** [descargar Microsoft OpenJDK 21](https://learn.microsoft.com/es-es/java/openjdk/download).
 
-Cerrar y volver a abrir la terminal si acabamos de instalarlo. Comprobar:
+Si lo instalas manualmente, cierra y vuelve a abrir la terminal y comprueba `java -version`. **Esta comprobación no garantiza que exista el JDK en la carpeta `$jdk` que usaremos abajo**.
 
-```powershell
-java -version
-```
+### Elegir una carpeta de JDK sin permisos de administrador
 
-### Localizar el JDK (paso imprescindible antes de usar `$jdk`)
+Para evitar el error **«Please set JavaSdkDirectory to a valid non-administrator path»** al instalar las dependencias de Android, utilizaremos una ruta dentro del perfil del usuario en lugar de la carpeta protegida `C:\Program Files\Microsoft`.
 
-En las instrucciones siguientes se utiliza la variable `$jdk`. **Debemos asignarle primero una ruta válida**. Si hemos instalado el JDK de Microsoft en la ubicación habitual:
+**Ejecuta esta línea en PowerShell:**
 
 ```powershell
-$jdk = Get-ChildItem "C:\Program Files\Microsoft" -Directory -Filter "jdk-21*" |
-    Sort-Object Name -Descending |
-    Select-Object -First 1 -ExpandProperty FullName
-
-if (-not $jdk) { throw "No se ha encontrado el JDK 21. Revisa su ruta de instalación." }
-
-$jdk
+$jdk = "$env:LOCALAPPDATA\Android\Jdk"
 ```
 
-Si está instalado en otra carpeta, asigna manualmente esa carpeta a `$jdk` (la que contiene `bin\java.exe`).
+`$env:LOCALAPPDATA` apunta a la carpeta de datos locales del usuario de Windows. `$jdk` contendrá la ruta elegida para el JDK. **No es necesario que el directorio exista todavía**: el paso `InstallAndroidDependencies` puede descargar allí el JDK requerido.
+
+!!! note "Sobre la instalación con winget"
+    Si instalaste Java con `winget install Microsoft.OpenJDK.21`, puedes mantenerlo para otros proyectos. En esta guía, `JavaSdkDirectory` usará **la ruta del usuario** (`$jdk`), no la instalación bajo `Program Files`. Por eso no es obligatorio instalar Java con `winget` si dejas que `InstallAndroidDependencies` descargue sus dependencias.
 
 ### Configurar las variables de entorno
 
@@ -159,6 +156,8 @@ dotnet build `
 
 !!! warning "Importante"
     En PowerShell, el símbolo **`** al final de una línea permite continuar el comando en la siguiente. No pongas espacios después de él. Si la aplicación usa otro `TargetFramework`, consulta su `.Android.csproj` y adapta `net10.0-android`.
+
+**El JDK se instalará o utilizará en la carpeta `$env:LOCALAPPDATA\Android\Jdk`**, evitando intentar escribir dentro de `Program Files`.
 
 **Qué hace cada parte:**
 
