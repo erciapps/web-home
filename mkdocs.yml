@@ -45,6 +45,8 @@ nav:
 
   - Desarrollo de Interfaces:
       - Portada: ddi/index.md
+      - Avalonia · Instalar y ejecutar en Android: ddi/instalacion-avalonia-android.md
+      - Avalonia · Ejecutar en navegador: ddi/avalonia-en-navegador.md
       - Proyecto · Aplicación de gestión: ddi/proyecto.md
 
   - Proyecto II:
