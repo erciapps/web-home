@@ -47,6 +47,22 @@ Material de clase, prácticas y recursos del módulo de **Programación Multimed
 
     [:octicons-arrow-right-24: Abrir ejercicio](ejercicio-4-control-3d.md)
 
+-   :material-microphone:{ .lg .middle } **Ejercicio 5 · Laberinto 3D por voz**
+
+    ---
+
+    Personaje KayKit, tablero de casillas, obstáculos y órdenes de voz en Android.
+
+    [:octicons-arrow-right-24: Abrir ejercicio](ejercicio-5-laberinto-voz.md)
+
+-   :material-hand-back-left:{ .lg .middle } **Ejercicio 6 · Preparar gestos y palabras**
+
+    ---
+
+    Instalar Speech to Text y HandForge, configurar Android y probar el script de gestos y voz.
+
+    [:octicons-arrow-right-24: Abrir preparación](ejercicio-6-preparacion-gestos-voz.md)
+
 -   :material-folder-multiple-image:{ .lg .middle } **Recursos**
 
     ---
