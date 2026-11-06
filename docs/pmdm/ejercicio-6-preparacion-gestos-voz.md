@@ -1,43 +1,37 @@
 # Ejercicio 6 · Preparación de gestos y palabras
 
-Prepararemos las **dependencias y un script** para el siguiente minijuego de Unity 3D en Android. Por ahora **no construiremos escenarios ni mecánicas**: solo comprobaremos que podemos leer voz y gestos en pantalla.
+Preparamos **dependencias y un único script** para el siguiente minijuego. Por ahora solo mostraremos el gesto y las palabras que reconoce el móvil: **sin escenarios ni mecánicas**.
 
-## 1. Dependencias
+## 1. Instalar dependencias
 
 Abre **Window → Package Manager → + → Install package from git URL**.
 
-**Reconocimiento de voz** (si ya lo instalaste en el ejercicio 5, no lo repitas):
+**Speech to Text** (si lo instalaste en el ejercicio 5, no hace falta repetirlo):
 
 ~~~text
 https://github.com/yasirkula/UnitySpeechToText.git
 ~~~
 
-**HandForge · runtime de MediaPipe:**
+**HandForge · motor MediaPipe:**
 
 ~~~text
 https://github.com/ShonubiSamuel/HandForge.git?path=/Packages/com.samuelshonubi.handtracking
 ~~~
 
-**HandForge · componentes de Unity:**
+**HandForge · componentes Unity:**
 
 ~~~text
 https://github.com/ShonubiSamuel/HandForge.git?path=/Packages/com.handforge.handtracking
 ~~~
 
-!!! warning "Android"
-    HandForge incluye bibliotecas para Android, pero el paquete que hemos utilizado no trae **mediapipe_c.dll** para ejecutar su backend en **Unity Editor sobre Windows**. Hay que probar el reconocimiento de manos con **Build And Run** en un dispositivo Android.
+## 2. Configurar Unity
 
-## 2. Configuración mínima de HandForge
+1. Crea **HandManager** y añade el componente **Hand Tracking Manager**.
+2. Selecciona **Source Kind: Webcam**, **Camera Facing: Front**, **Max Hand Count: 1** y **Origin: Main Camera**.
+3. Abre **Edit → Project Settings → Hand Tracking**. Comprueba que el modelo **gesture_recognizer.bytes** está asignado. Si falta, pulsa **Locate Model**.
+4. En el Canvas crea dos TextMeshPro: **TextoGestos** y **TextoVoz**, y un botón **ESCUCHAR**.
 
-1. Añade un objeto **HandManager** con componente **Hand Tracking Manager**.
-2. Configura **Source Kind: Webcam**, **Camera Facing: Front**, **Max Hand Count: 1** y **Origin: Main Camera**.
-3. Abre **Edit → Project Settings → Hand Tracking** y verifica que el modelo **gesture_recognizer.bytes** está asignado. Si no aparece, utiliza **Locate Model**.
-4. En el Canvas crea dos textos TextMeshPro: **TextoGestos** y **TextoVoz**.
-5. Añade un botón **ESCUCHAR**. No necesitamos mostrar la cámara: el Raw Image es opcional.
-
-### Conservar el backend en Android
-
-Crea un archivo **Assets/link.xml** (archivo de texto, no link.xml.txt) con el contenido:
+Crea el archivo **Assets/link.xml** desde el Explorador de Windows, asegurándote de que no termina en .txt:
 
 ~~~xml
 <linker>
@@ -45,28 +39,134 @@ Crea un archivo **Assets/link.xml** (archivo de texto, no link.xml.txt) con el c
 </linker>
 ~~~
 
-Esto evita que Unity elimine el ensamblado que registra el backend MediaPipe durante el proceso de compilación. También conserva el campo privado que utiliza el script.
+Esto conserva el backend MediaPipe en la compilación Android. No hay que modificar los archivos del plugin.
 
 ## 3. Script GestosYPalabras.cs
 
-Descarga o copia **[GestosYPalabras.cs](scripts/GestosYPalabras.cs)** en **Assets/Scripts**.
+Crea **Assets/Scripts/GestosYPalabras.cs** y copia el código completo:
 
-El script:
+~~~csharp
+using System.Reflection;
+using TMPro;
+using UnityEngine;
+using HandForge.HandTracking;
+using Mediapipe.Tasks.Vision.GestureRecognizer;
 
-- Muestra **MANO ABIERTA**, **PUÑO CERRADO**, **PULGAR ARRIBA** y **PULGAR ABAJO**, sin distinguir izquierda/derecha.
-- Lee la clasificación de gestos del modelo MediaPipe, en lugar de aproximarla con la flexión de los dedos.
-- Muestra el texto de voz reconocido al pulsar el botón.
-- Todavía **no hace que el personaje se mueva ni da puntos**; eso será parte del siguiente minijuego.
+public class GestosYPalabras : MonoBehaviour, ISpeechToTextListener
+{
+    public HandTrackingManager tracker;
+    public TMP_Text textoGestos;
+    public TMP_Text textoVoz;
 
-!!! note "Sin modificar paquetes"
-    HandForge no expone públicamente la clasificación de gestos de MediaPipe. Para la práctica leemos su campo interno mediante **reflexión**, desde nuestro script. No se edita ningún archivo del plugin; este acceso es un atajo que podría requerir adaptación si cambia la versión de HandForge.
+    private FieldInfo campo;
+
+    void Start()
+    {
+        SpeechToText.Initialize("es-ES");
+
+        // Leemos el resultado del detector sin modificar el plugin.
+        campo = typeof(MediaPipeHandProvider).GetField(
+            "_result", BindingFlags.NonPublic | BindingFlags.Instance);
+    }
+
+    void Update()
+    {
+        if (!tracker.IsReady)
+        {
+            textoGestos.text = "Detector no iniciado";
+            return;
+        }
+
+        if (!tracker.RightHand.IsTracked && !tracker.LeftHand.IsTracked)
+        {
+            textoGestos.text = "No se detecta ninguna mano";
+            return;
+        }
+
+        var detector = tracker.Subsystem.Provider as MediaPipeHandProvider;
+        if (detector == null || campo == null)
+            return;
+
+        var resultado = (GestureRecognizerResult)campo.GetValue(detector);
+        textoGestos.text = "Gesto no reconocido";
+
+        if (resultado.gestures == null)
+            return;
+
+        foreach (var mano in resultado.gestures)
+        {
+            if (mano.categories == null)
+                continue;
+
+            foreach (var categoria in mano.categories)
+            {
+                if (categoria.score < 0.7f)
+                    continue;
+
+                if (categoria.categoryName == "Open_Palm")
+                    textoGestos.text = "MANO ABIERTA";
+                else if (categoria.categoryName == "Closed_Fist")
+                    textoGestos.text = "PUÑO CERRADO";
+                else if (categoria.categoryName == "Thumb_Up")
+                    textoGestos.text = "PULGAR ARRIBA";
+                else if (categoria.categoryName == "Thumb_Down")
+                    textoGestos.text = "PULGAR ABAJO";
+            }
+        }
+    }
+
+    // Botón ESCUCHAR.
+    public void Escuchar()
+    {
+        if (SpeechToText.IsBusy())
+            return;
+
+        if (!SpeechToText.IsServiceAvailable())
+        {
+            textoVoz.text = "Voz no disponible";
+            return;
+        }
+
+        SpeechToText.RequestPermissionAsync(permiso =>
+        {
+            if (permiso == SpeechToText.Permission.Granted)
+            {
+                if (!SpeechToText.Start(this))
+                    textoVoz.text = "No se pudo escuchar";
+            }
+            else
+                textoVoz.text = "Permiso de micrófono denegado";
+        });
+    }
+
+    public void OnReadyForSpeech() { textoVoz.text = "Escuchando..."; }
+    public void OnBeginningOfSpeech() { }
+    public void OnVoiceLevelChanged(float nivel) { }
+    public void OnPartialResultReceived(string frase) { }
+
+    public void OnResultReceived(string frase, int? error)
+    {
+        if (error.HasValue || string.IsNullOrWhiteSpace(frase))
+            textoVoz.text = "No se reconoció la voz";
+        else
+            textoVoz.text = "Has dicho: " + frase;
+    }
+}
+~~~
+
+Este script muestra cuatro gestos (**mano abierta, puño cerrado, pulgar arriba y pulgar abajo**) sin distinguir izquierda o derecha. El botón de voz muestra la frase reconocida.
+
+!!! note "Una particularidad de HandForge"
+    El paquete guarda la clasificación de gestos en un campo privado. Por eso utilizamos **FieldInfo** para leerlo sin editar el plugin. Es un atajo válido para probar esta versión, pero depende de sus detalles internos.
 
 ## 4. Conectar y comprobar
 
-1. Crea un objeto **Controlador** y añádele **GestosYPalabras.cs**.
+1. Crea un objeto **Controlador** y añade el script **GestosYPalabras.cs**.
 2. Arrastra **HandManager**, **TextoGestos** y **TextoVoz** a sus campos.
-3. En el botón **ESCUCHAR → On Click()**, conecta **Controlador → GestosYPalabras → Escuchar()**.
-4. Ejecuta **Build And Run** en Android y acepta permisos de cámara y micrófono.
-5. Prueba los cuatro gestos, y pronuncia una palabra para comprobar que aparece en TextoVoz.
+3. En el botón **ESCUCHAR → On Click()**, selecciona **Controlador → GestosYPalabras.Escuchar()**.
+4. Pulsa **Build And Run** para Android y concede los permisos de cámara y micrófono.
 
-Por ahora no necesitamos más escenas, objetos ni scripts.
+!!! warning
+    El paquete instalado no incluye la DLL nativa de MediaPipe para ejecutar el detector en el Editor de Windows; prueba los gestos en Android.
+
+**[Ver también el archivo GestosYPalabras.cs](scripts/GestosYPalabras.cs)**

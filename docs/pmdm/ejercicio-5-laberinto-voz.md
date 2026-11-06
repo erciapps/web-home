@@ -1,124 +1,282 @@
 # Ejercicio 5 · Laberinto 3D controlado por voz
 
-Vamos a crear un minijuego en **Unity 6 para Android**. Un personaje 3D de KayKit debe salir de un laberinto formado por casillas. Lo controlaremos **únicamente con órdenes de voz**. No habrá botones de movimiento.
+Crearemos un minijuego en **Unity 6 para Android**: un personaje 3D de KayKit tiene que llegar a la meta de un laberinto. Lo controlaremos **únicamente con la voz**.
 
-## 1. Recursos y proyecto
+## 1. Recursos e instalación
 
-Crea un proyecto **Universal 3D (URP)**. Descarga los modelos desde itch.io:
+Crea un proyecto **Universal 3D (URP)**. Descarga de itch.io:
 
-- [KayKit Adventurers](https://kaylousberg.itch.io/kaykit-adventurers): personaje 3D.
-- [KayKit Prototype Bits](https://kaylousberg.itch.io/prototype-bits): objetos estáticos para los obstáculos.
+- [KayKit Adventurers](https://kaylousberg.itch.io/kaykit-adventurers) — personaje 3D.
+- [KayKit Prototype Bits](https://kaylousberg.itch.io/prototype-bits) — obstáculos estáticos.
 
-Importa los modelos en Assets. Los recursos se descargan desde sus páginas originales; no se incluyen en este repositorio.
-
-## 2. Instalar el reconocimiento de voz
-
-En Unity abre **Window → Package Manager → + → Install package from git URL** y pega:
+Para instalar el reconocimiento de voz, abre **Window → Package Manager → + → Install package from git URL** y pega:
 
 ~~~text
 https://github.com/yasirkula/UnitySpeechToText.git
 ~~~
 
-El paquete se llama **Speech to Text** y utiliza el reconocimiento de voz del dispositivo. En Android necesita permiso de micrófono; el script lo solicitará cuando pulsemos el botón.
+El paquete convierte la voz en texto. En Android pediremos permiso de micrófono cuando pulsemos **ESCUCHAR**.
 
-!!! note
-    El reconocimiento no es continuo: una pulsación inicia una sesión, el usuario habla y el sistema devuelve el texto definitivo. En algunos móviles requiere que el servicio de reconocimiento de voz esté disponible y conexión a Internet.
+## 2. Crear el tablero
 
-## 3. Crear el tablero 3D
+1. Guarda la escena como **LaberintoVoz**.
+2. Construye un tablero de **8 × 8 casillas** con cubos de escala **(1, 0.2, 1)**. Los centros deben estar en coordenadas enteras, X = 0 a 7 y Z = 0 a 7. Coloca los cubos para que su superficie superior esté en Y = 0.
+3. Coloca obstáculos de KayKit sobre algunas casillas. Añade a cada uno un **Box Collider**, crea la capa **Obstaculos** y asígnasela. Los obstáculos son estáticos, sin Rigidbody.
+4. Añade un objeto **Meta** en una casilla libre.
+5. Crea un GameObject vacío **Jugador** en otra casilla libre, con X y Z enteros e Y = 0. Mete el modelo de KayKit como hijo y ajusta su altura. El eje Z positivo de Jugador será su frente.
+6. Coloca una cámara elevada que permita ver el laberinto completo.
 
-Crea y guarda la escena **LaberintoVoz**.
+!!! important
+    El suelo y la meta **no** deben estar en la capa Obstaculos. No añadiremos Rigidbody ni Character Controller al jugador: nos moveremos por casillas mediante el script.
 
-1. Crea un objeto vacío **Tablero**.
-2. Dentro crea **Cube** de escala **(1, 0.2, 1)**, centrado en **(0, -0.1, 0)**. Su cara superior quedará en Y = 0.
-3. Duplica el cubo para obtener un tablero de **8 × 8 casillas**. Sus centros deben estar en coordenadas enteras: X = 0 a 7, Z = 0 a 7.
-4. Añade varios objetos estáticos de **KayKit Prototype Bits** sobre las casillas que quieras bloquear.
-5. A cada obstáculo añádele **Box Collider** (ajústalo a su tamaño). Crea la capa **Obstaculos** y asígnala a esos objetos.
-6. Marca una casilla libre como **Meta** con un objeto visible. Su posición X y Z también debe ser entera.
+## 3. Las cinco instrucciones
 
-!!! warning "Importante"
-    Los obstáculos tienen Collider, **pero no Rigidbody**, porque son estáticos. No asignes la capa Obstaculos al tablero ni a la meta. La posición lógica del personaje se comprobará antes de avanzar a cada casilla, para evitar atravesar objetos.
-
-### Preparar el personaje
-
-1. Crea un GameObject vacío llamado **Jugador** y colócalo inicialmente en **(0, 0, 0)**, o en otra casilla libre de coordenadas enteras.
-2. Añade el modelo 3D de KayKit como **hijo** de Jugador. Ajusta su escala y posición local para que sus pies toquen el suelo.
-3. La orientación inicial de Jugador será **Rotation (0, 0, 0)**; mirará hacia **Z positivo**.
-4. No es necesario añadir Rigidbody ni Character Controller: el script se encargará del desplazamiento por casillas.
-
-Usa una cámara fija elevada que permita ver el tablero completo.
-
-## 4. Instrucciones permitidas
-
-| Lo que dice el jugador | Acción |
+| Lo que decimos | Lo que hace el personaje |
 | --- | --- |
-| **Avanza cinco casillas** | Se desplaza 5 casillas en la dirección a la que mira |
-| **Retrocede cinco casillas** | Retrocede 5 casillas sin cambiar la orientación |
+| **Avanza cinco casillas** | Avanza cinco casillas |
+| **Retrocede cinco casillas** | Retrocede cinco casillas |
 | **Gira izquierda** | Gira 90° a la izquierda |
 | **Gira derecha** | Gira 90° a la derecha |
 | **Da la vuelta** | Gira 180° en sentido horario |
 
-También se aceptan el número **5** en lugar de «cinco» y la frase «gira a la derecha/izquierda».
+También se acepta el número **5** en lugar de «cinco», y las expresiones «gira a la izquierda» y «gira a la derecha».
 
-El usuario puede decir una instrucción o encadenar varias con **«y»**, por ejemplo:
+**Funcionamiento:** pulsamos ESCUCHAR, decimos **una sola instrucción** y esta se añade al array. Podemos repetir el proceso. Cuando pulsemos EJECUTAR, el personaje realizará las órdenes por orden. Las frases distintas de las cinco órdenes permitidas se rechazan.
 
-~~~text
-Avanza cinco casillas y gira derecha y retrocede cinco casillas
+Por ejemplo, después de escuchar tres veces, el array será:
+
+~~~csharp
+["AVANZA", "DERECHA", "RETROCEDE"]
 ~~~
 
-El script transforma el texto final en un **array de instrucciones** y las ejecuta en orden. Las palabras que no pertenezcan a las instrucciones válidas provocan el rechazo de toda la frase. Si una casilla está ocupada, se detiene la secuencia. Se gana al llegar a la meta.
+## 4. Script LaberintoVoz.cs
 
-## 5. Script LaberintoVoz.cs
+Crea el archivo **Assets/Scripts/LaberintoVoz.cs** y copia este código:
 
-Crea **Assets/Scripts/LaberintoVoz.cs** y copia este archivo:
+~~~csharp
+using System;
+using System.Collections;
+using TMPro;
+using UnityEngine;
 
-**[Descargar / ver LaberintoVoz.cs](scripts/LaberintoVoz.cs)**
+public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
+{
+    public Transform jugador;
+    public Transform meta;
+    public TMP_Text texto;
+    public LayerMask obstaculos;
+    public int columnas = 8;
+    public int filas = 8;
+    public float velocidad = 3f;
 
-El script contiene:
+    // Guardamos las instrucciones reconocidas en un array.
+    public string[] instrucciones = new string[0];
 
-- Una referencia al **Jugador** y otra a la **Meta**.
-- Un **LayerMask** para comprobar qué casillas están ocupadas.
-- Un array **instrucciones** visible en el Inspector durante Play.
-- El reconocimiento de voz mediante **ISpeechToTextListener**.
-- La ejecución secuencial: giros de 90° / 180° y desplazamientos de cinco casillas.
+    private bool ejecutando;
+    private bool bloqueado;
+    private bool terminado;
 
-Solo se interpretan los resultados finales de voz (**OnResultReceived**), no el texto provisional (**OnPartialResultReceived**). Así evitamos ejecutar dos veces una misma orden.
+    void Start()
+    {
+        SpeechToText.Initialize("es-ES");
+        texto.text = "Pulsa ESCUCHAR";
+    }
 
-## 6. Preparar la interfaz
+    // Se llama desde el botón ESCUCHAR.
+    public void Escuchar()
+    {
+        if (ejecutando || terminado || SpeechToText.IsBusy())
+            return;
 
-En un Canvas añade:
+        if (!SpeechToText.IsServiceAvailable())
+        {
+            texto.text = "Voz no disponible";
+            return;
+        }
 
-- Un **Text - TextMeshPro** llamado **TextoOrdenes**.
-- Un botón **ESCUCHAR**.
+        SpeechToText.RequestPermissionAsync(permiso =>
+        {
+            if (permiso == SpeechToText.Permission.Granted)
+            {
+                if (!SpeechToText.Start(this))
+                    texto.text = "No se pudo iniciar el micrófono";
+            }
+            else
+                texto.text = "Permiso de micrófono denegado";
+        });
+    }
 
-Crea un GameObject vacío **Controlador**, añádele el script LaberintoVoz.cs y configura sus campos:
+    // Recibimos una instrucción completa cada vez.
+    public void OnResultReceived(string frase, int? error)
+    {
+        if (error.HasValue || string.IsNullOrWhiteSpace(frase))
+        {
+            texto.text = "No se reconoció la voz";
+            return;
+        }
 
-| Campo | Referencia / valor |
+        string orden = frase.ToLower().Trim().TrimEnd('.', '!', '?');
+
+        // Solo permitimos estas cinco instrucciones.
+        if (orden == "avanza cinco casillas" || orden == "avanza 5 casillas")
+            orden = "AVANZA";
+        else if (orden == "retrocede cinco casillas" || orden == "retrocede 5 casillas")
+            orden = "RETROCEDE";
+        else if (orden == "gira izquierda" || orden == "gira a la izquierda")
+            orden = "IZQUIERDA";
+        else if (orden == "gira derecha" || orden == "gira a la derecha")
+            orden = "DERECHA";
+        else if (orden == "da la vuelta")
+            orden = "VUELTA";
+        else
+        {
+            texto.text = "Orden no válida: " + frase;
+            return;
+        }
+
+        // Añadimos la orden al array.
+        Array.Resize(ref instrucciones, instrucciones.Length + 1);
+        instrucciones[instrucciones.Length - 1] = orden;
+
+        texto.text = "Órdenes: " + string.Join(" - ", instrucciones);
+    }
+
+    // Se llama desde el botón EJECUTAR.
+    public void Ejecutar()
+    {
+        if (ejecutando || terminado || SpeechToText.IsBusy() || instrucciones.Length == 0)
+            return;
+
+        StartCoroutine(Recorrer());
+    }
+
+    private IEnumerator Recorrer()
+    {
+        ejecutando = true;
+        bloqueado = false;
+
+        foreach (string orden in instrucciones)
+        {
+            texto.text = "Ejecutando: " + orden;
+
+            if (orden == "AVANZA")
+                yield return Mover(1);
+            else if (orden == "RETROCEDE")
+                yield return Mover(-1);
+            else if (orden == "IZQUIERDA")
+                jugador.Rotate(0, -90, 0);
+            else if (orden == "DERECHA")
+                jugador.Rotate(0, 90, 0);
+            else if (orden == "VUELTA")
+                jugador.Rotate(0, 180, 0);
+
+            if (bloqueado || terminado)
+                break;
+        }
+
+        instrucciones = new string[0];
+
+        if (terminado)
+            texto.text = "¡META CONSEGUIDA!";
+        else if (bloqueado)
+            texto.text = "Obstáculo o borde del tablero";
+        else
+            texto.text = "Recorrido terminado";
+
+        ejecutando = false;
+    }
+
+    // Mueve el personaje cinco casillas, una a una.
+    private IEnumerator Mover(int sentido)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            Vector3 direccion = jugador.forward * sentido;
+
+            Vector3 destino = new Vector3(
+                Mathf.RoundToInt(jugador.position.x + direccion.x),
+                jugador.position.y,
+                Mathf.RoundToInt(jugador.position.z + direccion.z));
+
+            bool fuera = destino.x < 0 || destino.x >= columnas ||
+                         destino.z < 0 || destino.z >= filas;
+
+            bool hayObstaculo = Physics.CheckBox(
+                destino + Vector3.up * 0.5f,
+                new Vector3(0.4f, 0.45f, 0.4f),
+                Quaternion.identity, obstaculos);
+
+            if (fuera || hayObstaculo)
+            {
+                bloqueado = true;
+                yield break;
+            }
+
+            while (Vector3.Distance(jugador.position, destino) > 0.01f)
+            {
+                jugador.position = Vector3.MoveTowards(
+                    jugador.position, destino, velocidad * Time.deltaTime);
+                yield return null;
+            }
+
+            jugador.position = destino;
+
+            if (meta != null &&
+                Mathf.Abs(jugador.position.x - meta.position.x) < 0.1f &&
+                Mathf.Abs(jugador.position.z - meta.position.z) < 0.1f)
+            {
+                terminado = true;
+                yield break;
+            }
+        }
+    }
+
+    // Métodos obligatorios del plugin de voz.
+    public void OnReadyForSpeech() { texto.text = "Escuchando..."; }
+    public void OnBeginningOfSpeech() { }
+    public void OnVoiceLevelChanged(float nivel) { }
+    public void OnPartialResultReceived(string frase) { }
+}
+~~~
+
+### Qué hace cada parte
+
+- **Start:** prepara el reconocimiento de voz en español.
+- **Escuchar:** pide permiso y activa el micrófono.
+- **OnResultReceived:** comprueba la frase y la añade al array si es válida.
+- **Ejecutar / Recorrer:** realiza las instrucciones del array una a una.
+- **Mover:** intenta avanzar cinco casillas sin atravesar obstáculos, salir del tablero ni saltarse la meta.
+
+## 5. Conectar el script en Unity
+
+En el Canvas crea un **Text - TextMeshPro** y dos botones: **ESCUCHAR** y **EJECUTAR**.
+
+Crea un GameObject vacío llamado **Controlador**, añade **LaberintoVoz.cs** y configura sus campos:
+
+| Campo del Inspector | Valor |
 | --- | --- |
-| Jugador | Arrastra el objeto Jugador |
-| Meta | Arrastra el objeto Meta |
-| Texto | TextoOrdenes |
-| Obstaculos | Selecciona únicamente la capa Obstaculos |
+| Jugador | Objeto Jugador |
+| Meta | Objeto Meta |
+| Texto | TextMeshPro del Canvas |
+| Obstaculos | Solo la capa Obstaculos |
 | Columnas | 8 |
 | Filas | 8 |
 | Velocidad | 3 |
 
-En el botón **ESCUCHAR → On Click()**, arrastra **Controlador** y selecciona **LaberintoVoz → Escuchar()**.
+En el evento **On Click()** de cada botón, arrastra Controlador:
 
-## 7. Probar en Android
+- Botón **ESCUCHAR** → función **LaberintoVoz.Escuchar()**.
+- Botón **EJECUTAR** → función **LaberintoVoz.Ejecutar()**.
 
-Abre **File → Build Profiles → Android** y utiliza **Build And Run**. Concede permiso de micrófono cuando se solicite.
+El array **Instrucciones** se puede consultar en el Inspector mientras el juego está en Play.
 
-Prueba las cinco instrucciones. Comprueba que:
+## 6. Probar en Android
 
-1. El array recoge únicamente las órdenes reconocidas y válidas.
-2. El personaje recorre **cinco** casillas por cada «avanza» o «retrocede».
-3. Los giros modifican la orientación, pero no la casilla actual.
-4. No puede atravesar obstáculos ni salir del tablero.
-5. Al llegar a la meta aparece **¡META CONSEGUIDA!**
+Abre **File → Build Profiles → Android → Build And Run** y concede acceso al micrófono.
 
-!!! note "Pruebas en el editor"
-    El plugin de voz utiliza un simulador en Unity Editor; para reconocer de verdad lo que decimos hay que ejecutar la aplicación en Android.
+Comprueba que los comandos válidos se añaden al array, se ejecutan por orden, los obstáculos bloquean el paso y aparece **¡META CONSEGUIDA!** al llegar a la meta.
 
-## Entrega
+!!! note
+    En Unity Editor, Speech to Text simula respuestas; la prueba real de voz debe hacerse en el móvil. El servicio de reconocimiento de Android debe estar disponible.
 
-Una escena funcional con tablero 8 × 8, personaje KayKit, obstáculos estáticos, meta, botón para escuchar y los cinco comandos de voz. El juego debe impedir movimientos fuera del tablero o hacia casillas bloqueadas.
+**[Ver también el archivo LaberintoVoz.cs](scripts/LaberintoVoz.cs)**
