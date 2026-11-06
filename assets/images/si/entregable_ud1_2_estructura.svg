@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="530" viewBox="0 0 1000 530" role="img" aria-labelledby="title desc">
+  <title id="title">Estructura inicial del segundo entregable UD1</title>
+  <desc id="desc">La raíz es /workspace/ud1/pruebas/entregable2. origen contiene documentos, con README.txt y notas.txt, y config, con ajustes.txt. destino contiene las carpetas vacías documentos, archivados y copias.</desc>
+  <rect width="1000" height="530" rx="18" fill="#f4f6fa"/>
+  <g font-family="Arial, sans-serif">
+    <rect x="24" y="24" width="952" height="74" rx="12" fill="#18324a"/>
+    <text x="46" y="51" fill="#a9c2d7" font-size="14" font-weight="bold">CARPETA QUE DEBE GENERAR EL SCRIPT</text>
+    <text x="46" y="80" fill="#fff" font-size="23" font-family="monospace">/workspace/ud1/pruebas/entregable2</text>
+    <rect x="24" y="118" width="468" height="362" rx="12" fill="#fff" stroke="#afc4d5" stroke-width="2"/>
+    <rect x="508" y="118" width="468" height="362" rx="12" fill="#fff" stroke="#e0c299" stroke-width="2"/>
+    <text x="48" y="157" fill="#18324a" font-size="25" font-weight="bold">origen/</text>
+    <text x="532" y="157" fill="#845014" font-size="25" font-weight="bold">destino/</text>
+    <rect x="48" y="182" width="420" height="148" rx="9" fill="#eaf2f8"/>
+    <text x="67" y="212" fill="#18324a" font-size="21" font-weight="bold">documentos/</text>
+    <rect x="69" y="230" width="374" height="35" rx="5" fill="#fff"/>
+    <text x="83" y="254" fill="#263746" font-family="monospace" font-size="19">README.txt</text>
+    <rect x="69" y="275" width="374" height="35" rx="5" fill="#fff"/>
+    <text x="83" y="299" fill="#263746" font-family="monospace" font-size="19">notas.txt</text>
+    <rect x="48" y="348" width="420" height="109" rx="9" fill="#eaf2f8"/>
+    <text x="67" y="379" fill="#18324a" font-size="21" font-weight="bold">config/</text>
+    <rect x="69" y="395" width="374" height="39" rx="5" fill="#fff"/>
+    <text x="83" y="421" fill="#263746" font-family="monospace" font-size="19">ajustes.txt</text>
+    <rect x="532" y="182" width="420" height="78" rx="9" fill="#fff3e3"/>
+    <text x="553" y="213" fill="#845014" font-size="21" font-weight="bold">documentos/</text>
+    <text x="553" y="240" fill="#76644e" font-size="16">Vacía</text>
+    <rect x="532" y="279" width="420" height="78" rx="9" fill="#fff3e3"/>
+    <text x="553" y="310" fill="#845014" font-size="21" font-weight="bold">archivados/</text>
+    <text x="553" y="337" fill="#76644e" font-size="16">Vacía</text>
+    <rect x="532" y="376" width="420" height="78" rx="9" fill="#fff3e3"/>
+    <text x="553" y="407" fill="#845014" font-size="21" font-weight="bold">copias/</text>
+    <text x="553" y="434" fill="#76644e" font-size="16">Vacía</text>
+    <text x="25" y="510" fill="#526474" font-size="17">Los archivos de origen se crean vacíos. Las carpetas de destino se preparan sin archivos.</text>
+  </g>
+</svg>

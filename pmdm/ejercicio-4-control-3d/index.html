@@ -1,0 +1,3262 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recursos educativos de los módulos de Desarrollo de Aplicaciones Multiplataforma">
+      
+      
+      
+        <link rel="canonical" href="https://erciapps.es/pmdm/ejercicio-4-control-3d/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>Ejercicio 4 · Rescate 3D: personaje, cámaras y controles táctiles - ERCI Apps · DAM</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/erci-site.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ejercicio-4-rescate-3d-personaje-camaras-y-controles-tactiles" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="ERCI Apps · DAM" class="md-header__button md-logo" aria-label="ERCI Apps · DAM" data-md-component="logo">
+      
+  <img src="../../assets/images/ercilogo2.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ERCI Apps · DAM
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ejercicio 4 · Rescate 3D: personaje, cámaras y controles táctiles
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../si/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Sistemas Informáticos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PMDM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../recursos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Recursos transversales
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ddi/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Desarrollo de Interfaces
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../proyecto2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Proyecto II
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ERCI Apps · DAM" class="md-nav__button md-logo" aria-label="ERCI Apps · DAM" data-md-component="logo">
+      
+  <img src="../../assets/images/ercilogo2.png" alt="logo">
+
+    </a>
+    ERCI Apps · DAM
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../si/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sistemas Informáticos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sistemas Informáticos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../si/ud1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1 · Introducción al entorno Linux
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD1 · Introducción al entorno Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.2 · Creación de directorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.3 · Rutas absolutas y relativas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.4 · Scripts y gestión de estructuras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.5 · Edición de ficheros con sed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.6 · Cuestionario con Bash y sed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.7 · Generación de estructuras desde un fichero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.8 · Gestión automatizada de archivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.9 · Validador automático de entregas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/entregable_ud1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable UD1 · Gestor de archivos (45 min)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/entregable_ud1_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ENTREGABLE 2 UD1 · Preparar y comprobar (60 min)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../si/ud2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2 · Usuarios, permisos, procesos y servicios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD2 · Usuarios, permisos, procesos y servicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.1 · chmod y chown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.2 · Usuarios y grupos desde TXT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.3 · Procesos: ps, top, htop, kill y pkill
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.4 · Flask, HTML y procesos desde Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.5 · Gestor de procesos con Flask y Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.6 · Programación de tareas con Cron y Flask
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.7 · Git, Debian y servicios con systemd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMDM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PMDM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videojuegos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Videojuegos 2D con Unity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../androicilla/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Androicilla · Unity 3D y Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicio-2-figuras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio 2 · Clasificador de figuras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicio-3-animales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio 3 · Clasificador de animales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicio-5-laberinto-voz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio 5 · Laberinto 3D por voz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicio-6-preparacion-gestos-voz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio 6 · Preparación de gestos y palabras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../recursos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos transversales
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recursos transversales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recursos/git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git · Control de versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recursos/markdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ddi/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desarrollo de Interfaces
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desarrollo de Interfaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ddi/instalacion-avalonia-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avalonia · Instalar y ejecutar en Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ddi/avalonia-en-navegador/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avalonia · Ejecutar en navegador
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ddi/proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyecto · Aplicación de gestión
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../proyecto2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyecto II
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proyecto II
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recursos-y-preparacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursos y preparación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-crear-el-escenario-y-un-jugador-provisional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Crear el escenario y un jugador provisional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Crear el escenario y un jugador provisional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-suelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1. Suelo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-jugador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2. Jugador
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-movimiento-con-wasd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Movimiento con WASD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-crear-una-escalera-curva-con-probuilder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Crear una escalera curva con ProBuilder
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-camara-en-tercera-y-primera-persona" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Cámara en tercera y primera persona
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-controles-tactiles-para-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Controles táctiles para Android
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Controles táctiles para Android">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-crear-la-interfaz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Crear la interfaz
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-crear-botontactilcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Crear BotonTactil.cs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-sustituir-movimientojugadorcs-por-su-version-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. Sustituir MovimientoJugador.cs por su versión completa
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-sustituir-la-esfera-por-el-goblin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Sustituir la esfera por el Goblin
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Sustituir la esfera por el Goblin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-importar-el-personaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Importar el personaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-corregir-los-materiales-rosa-o-blancos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Corregir los materiales rosa o blancos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-ajustar-posicion-y-colisiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Ajustar posición y colisiones
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-configurar-las-animaciones-de-caminar-y-girar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Configurar las animaciones de caminar y girar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Configurar las animaciones de caminar y girar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-un-parametro-para-seis-estados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. Un parámetro para seis estados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-transiciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. Transiciones
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-asignar-el-controlador-correcto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3. Asignar el controlador correcto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-rescatar-tres-cube-pets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Rescatar tres Cube Pets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Rescatar tres Cube Pets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-importar-los-animales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Importar los animales
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-preparar-cada-mascota-para-detectar-el-contacto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Preparar cada mascota para detectar el contacto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-interfaz-de-rescate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. Interfaz de rescate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-script-de-recoleccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4. Script de recolección
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-el-blaster-como-objeto-coleccionable-que-gira" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. El bláster como objeto coleccionable que gira
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. El bláster como objeto coleccionable que gira">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-girarobjetocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1. GirarObjeto.cs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-hacerlo-coleccionable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2. Hacerlo coleccionable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-preparar-la-prueba-en-android" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Preparar la prueba en Android
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado-minimo-y-comprobaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resultado mínimo y comprobaciones
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ejercicio-4-rescate-3d-personaje-camaras-y-controles-tactiles">Ejercicio 4 · Rescate 3D: personaje, cámaras y controles táctiles<a class="headerlink" href="#ejercicio-4-rescate-3d-personaje-camaras-y-controles-tactiles" title="Permanent link">&para;</a></h1>
+<p>Vamos a desarrollar un pequeño juego en <strong>Unity 6.6 (URP)</strong>: controlaremos a un Goblin que recorre un escenario, supera una escalera curva y <strong>rescata tres Cube Pets</strong>. También podrá encontrar un <strong>bláster</strong> que gira como objeto especial.</p>
+<p>El ejercicio es <strong>una única escena</strong> que iremos ampliando. Primero entenderemos el movimiento con una esfera provisional; después la sustituiremos por un personaje animado. No es necesario crear un cubo para señalar el frente: utilizaremos el eje <strong>Z positivo</strong> del personaje.</p>
+<div class="admonition info">
+<p class="admonition-title">Qué vamos a aprender</p>
+<p>Movimiento 3D con <strong>Character Controller</strong>, ProBuilder, seguimiento y cambio de cámara, <strong>Input System</strong>, controles táctiles que funcionan mientras se pulsan, importación de modelos y materiales URP, <strong>Animator</strong>, prefabs, <strong>triggers</strong>, objetos recolectables y una interfaz con contador.</p>
+</div>
+<h2 id="recursos-y-preparacion">Recursos y preparación<a class="headerlink" href="#recursos-y-preparacion" title="Permanent link">&para;</a></h2>
+<p>Trabajaremos en un proyecto <strong>Universal 3D (URP)</strong> y utilizaremos estos recursos:</p>
+<table>
+<thead>
+<tr>
+<th>Recurso</th>
+<th>Uso en nuestra práctica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://g4g-assets.itch.io/goblin-skirmisher-100-animations">Goblin Skirmisher (G4G Assets)</a></td>
+<td>Personaje principal, con animaciones de reposo, caminar y girar</td>
+</tr>
+<tr>
+<td><a href="https://sneznyj.itch.io/cube-pets-free">Cube Pets Free (Sneznyj)</a></td>
+<td>Tres animales para rescatar: pollito, conejo y mariquita</td>
+</tr>
+<tr>
+<td><a href="https://kenney-assets.itch.io/blaster-kit">Blaster Kit (Kenney)</a></td>
+<td>Un bláster coleccionable y modelos de decoración</td>
+</tr>
+</tbody>
+</table>
+<p>El Goblin tiene <strong>110 animaciones</strong> y un paquete específico para Unity. Cube Pets Free incluye <strong>tres modelos animados</strong> en FBX, GLB y Blender. Blaster Kit contiene modelos de armas, objetivos y proyectiles. <strong>Los archivos se descargan de las páginas originales</strong>, no se redistribuyen con este enunciado.</p>
+<div class="admonition note">
+<p class="admonition-title">Alcance</p>
+<p>El objetivo obligatorio es <strong>mover al Goblin, cambiar de cámara y rescatar las tres mascotas</strong>. El bláster será un objeto coleccionable sencillo. <strong>Disparar proyectiles y crear enemigos</strong> son posibles ampliaciones, no requisitos de esta primera versión.</p>
+</div>
+<h2 id="1-crear-el-escenario-y-un-jugador-provisional">1. Crear el escenario y un jugador provisional<a class="headerlink" href="#1-crear-el-escenario-y-un-jugador-provisional" title="Permanent link">&para;</a></h2>
+<p>Crea y guarda la escena <strong>Control3D</strong> en la carpeta <strong>Assets/Scenes</strong>.</p>
+<h3 id="11-suelo">1.1. Suelo<a class="headerlink" href="#11-suelo" title="Permanent link">&para;</a></h3>
+<p>Crea <strong>GameObject → 3D Object → Plane</strong> y llámalo <strong>Suelo</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Position</td>
+<td>(0, 0, 0)</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>(2, 1, 2)</td>
+</tr>
+</tbody>
+</table>
+<p>Comprueba que conserva su <strong>Mesh Collider</strong>.</p>
+<h3 id="12-jugador">1.2. Jugador<a class="headerlink" href="#12-jugador" title="Permanent link">&para;</a></h3>
+<p>Crea una <strong>Sphere</strong> llamada <strong>Jugador</strong>. También puedes utilizar una esfera de ProBuilder, como en clase.</p>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Valor inicial</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Position</td>
+<td>(0, 0.5, 0)</td>
+</tr>
+<tr>
+<td>Rotation</td>
+<td>(0, 0, 0)</td>
+</tr>
+<tr>
+<td>Scale</td>
+<td>(1, 1, 1)</td>
+</tr>
+</tbody>
+</table>
+<p>Añade el componente <strong>Character Controller</strong> y configura inicialmente:</p>
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th style="text-align: right;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Height</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>Radius</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr>
+<td>Center</td>
+<td style="text-align: right;">(0, 0, 0)</td>
+</tr>
+<tr>
+<td>Step Offset</td>
+<td style="text-align: right;">0.3</td>
+</tr>
+<tr>
+<td>Slope Limit</td>
+<td style="text-align: right;">45</td>
+</tr>
+</tbody>
+</table>
+<p>Elimina el <strong>Sphere Collider / Mesh Collider</strong> adicional de la figura, si existe. <strong>No añadas un Rigidbody al jugador</strong>: utilizaremos CharacterController.Move.</p>
+<div class="admonition tip">
+<p class="admonition-title">Si utilizas ProBuilder</p>
+<p>El pivote de la malla puede estar descentrado. Si la esfera parece flotar aunque Position sea (0, 0.5, 0), utiliza <strong>Tools → ProBuilder → Object → Center Pivot</strong> y comprueba de nuevo la posición. El centro visual de la malla y el <strong>Center</strong> del Character Controller no son lo mismo.</p>
+</div>
+<p>La jerarquía inicial será sencilla:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Control3D
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── Main Camera
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── Directional Light
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── Global Volume
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── Suelo
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>└── Jugador
+</code></pre></div>
+<p><strong>No creamos el antiguo cubo Frente</strong>. La dirección en la que avanzará el personaje es <strong>transform.forward</strong>, correspondiente a su eje Z positivo.</p>
+<h2 id="2-movimiento-con-wasd">2. Movimiento con WASD<a class="headerlink" href="#2-movimiento-con-wasd" title="Permanent link">&para;</a></h2>
+<p>Crea <strong>Assets/Scripts/MovimientoJugador.cs</strong> y asigna el script a <strong>Jugador</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine.InputSystem</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="na">[RequireComponent(typeof(CharacterController))]</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MovimientoJugador</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">{</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">velocidad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4f</span><span class="p">;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">velocidadGiro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">120f</span><span class="p">;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">gravedad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">9.81f</span><span class="p">;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">CharacterController</span><span class="w"> </span><span class="n">controlador</span><span class="p">;</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">velocidadVertical</span><span class="p">;</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="n">controlador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">CharacterController</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">mover</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0f</span><span class="p">;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">girar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0f</span><span class="p">;</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">wKey</span><span class="p">.</span><span class="n">isPressed</span><span class="p">)</span><span class="w"> </span><span class="n">mover</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">1f</span><span class="p">;</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">sKey</span><span class="p">.</span><span class="n">isPressed</span><span class="p">)</span><span class="w"> </span><span class="n">mover</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mf">1f</span><span class="p">;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">aKey</span><span class="p">.</span><span class="n">isPressed</span><span class="p">)</span><span class="w"> </span><span class="n">girar</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mf">1f</span><span class="p">;</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">dKey</span><span class="p">.</span><span class="n">isPressed</span><span class="p">)</span><span class="w"> </span><span class="n">girar</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">1f</span><span class="p">;</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">        </span><span class="c1">// A/D giran el personaje sobre su eje Y.</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">        </span><span class="n">transform</span><span class="p">.</span><span class="n">Rotate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">girar</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">velocidadGiro</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">        </span><span class="c1">// Character Controller no aplica gravedad automáticamente.</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">controlador</span><span class="p">.</span><span class="n">isGrounded</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">velocidadVertical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0f</span><span class="p">)</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">            </span><span class="n">velocidadVertical</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">2f</span><span class="p">;</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">        </span><span class="n">velocidadVertical</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">gravedad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">        </span><span class="c1">// W/S avanzan o retroceden según la orientación del jugador.</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">        </span><span class="n">Vector3</span><span class="w"> </span><span class="n">movimiento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="p">.</span><span class="n">forward</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">mover</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">velocidad</span><span class="p">);</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">        </span><span class="n">movimiento</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">velocidadVertical</span><span class="p">;</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">        </span><span class="n">controlador</span><span class="p">.</span><span class="n">Move</span><span class="p">(</span><span class="n">movimiento</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">);</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Tecla</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W</td>
+<td>Avanzar</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Retroceder</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Girar a la izquierda</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Girar a la derecha</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Comprueba en Play</strong> que la figura gira y se desplaza, sin atravesar el suelo.</p>
+<div class="admonition note">
+<p class="admonition-title">Más adelante sustituiremos este script</p>
+<p>Esta primera versión sirve para explicar WASD y la gravedad. En el <strong>apartado 5</strong> pondremos la versión completa para teclado y botones táctiles. No conserves las dos versiones del código a la vez.</p>
+</div>
+<h2 id="3-crear-una-escalera-curva-con-probuilder">3. Crear una escalera curva con ProBuilder<a class="headerlink" href="#3-crear-una-escalera-curva-con-probuilder" title="Permanent link">&para;</a></h2>
+<p>Con <strong>ProBuilder</strong> instalado, pulsa con el botón derecho en la jerarquía y selecciona <strong>ProBuilder → Curved Stair</strong>. Llámala <strong>Escalera</strong>.</p>
+<p>En el generador de la forma, utiliza estos valores como punto de partida:</p>
+<table>
+<thead>
+<tr>
+<th>Opción</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shape Size</td>
+<td>Aproximadamente (8, 1.2, 4)</td>
+</tr>
+<tr>
+<td>Steps Generation</td>
+<td>Count</td>
+</tr>
+<tr>
+<td>Steps Count</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Circumference</td>
+<td>90°</td>
+</tr>
+<tr>
+<td>Inner Radius</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Sides</td>
+<td>Activado</td>
+</tr>
+</tbody>
+</table>
+<p>La altura total es <strong>1,2 unidades</strong>, por lo que seis peldaños uniformes tienen una subida aproximada de <strong>0,2 unidades</strong> cada uno.</p>
+<p><strong>Coloca la escalera visualmente</strong> con las herramientas Move y Rotate. La entrada debe quedar al alcance del jugador. Comprueba en vista lateral que la base toca el suelo; según el pivote elegido, puede ser necesario elevar la forma aproximadamente <strong>0,6 unidades</strong>.</p>
+<p>Verifica que conserva un <strong>Mesh Collider</strong> (no Trigger) para que podamos subir sus escalones.</p>
+<p>Pulsa <strong>Play</strong> y sube utilizando <strong>W</strong> y los giros <strong>A/D</strong>. Al tratarse de una escalera curva, necesitaremos corregir la orientación mientras avanzamos.</p>
+<div class="admonition tip">
+<p class="admonition-title">Qué revisar si no sube</p>
+<p>Comprueba el Mesh Collider de la escalera, la altura del primer peldaño, el <strong>Step Offset</strong> del Character Controller y que el jugador no esté enterrado en el suelo. No es necesario modificar Step Offset durante el ejercicio si ya funciona correctamente.</p>
+</div>
+<h2 id="4-camara-en-tercera-y-primera-persona">4. Cámara en tercera y primera persona<a class="headerlink" href="#4-camara-en-tercera-y-primera-persona" title="Permanent link">&para;</a></h2>
+<p>Selecciona <strong>Main Camera</strong> y añade el script <strong>CamaraSeguimiento.cs</strong>. La cámara seguirá la posición y orientación de Jugador.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine.InputSystem</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CamaraSeguimiento</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">Transform</span><span class="w"> </span><span class="n">objetivo</span><span class="p">;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">distancia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5f</span><span class="p">;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">altura</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3f</span><span class="p">;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">suavidad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5f</span><span class="p">;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">primeraPersona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="c1">// Permite cambiar de cámara desde un botón de la interfaz.</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">CambiarVista</span><span class="p">()</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">        </span><span class="n">primeraPersona</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">primeraPersona</span><span class="p">;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">        </span><span class="c1">// Tecla C para cambiar la vista en el ordenador.</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">            </span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">cKey</span><span class="p">.</span><span class="n">wasPressedThisFrame</span><span class="p">)</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">            </span><span class="n">CambiarVista</span><span class="p">();</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">LateUpdate</span><span class="p">()</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">objetivo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">        </span><span class="n">Vector3</span><span class="w"> </span><span class="n">posicion</span><span class="p">;</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">        </span><span class="n">Quaternion</span><span class="w"> </span><span class="n">rotacion</span><span class="p">;</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">primeraPersona</span><span class="p">)</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">            </span><span class="c1">// Ajustaremos esta altura cuando coloquemos el Goblin.</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">            </span><span class="n">posicion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">objetivo</span><span class="p">.</span><span class="n">position</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">                     </span><span class="o">+</span><span class="w"> </span><span class="n">objetivo</span><span class="p">.</span><span class="n">forward</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.7f</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">                     </span><span class="o">+</span><span class="w"> </span><span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.6f</span><span class="p">;</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">            </span><span class="n">rotacion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quaternion</span><span class="p">.</span><span class="n">LookRotation</span><span class="p">(</span><span class="n">objetivo</span><span class="p">.</span><span class="n">forward</span><span class="p">);</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">        </span><span class="k">else</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">            </span><span class="n">posicion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">objetivo</span><span class="p">.</span><span class="n">position</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">                     </span><span class="o">-</span><span class="w"> </span><span class="n">objetivo</span><span class="p">.</span><span class="n">forward</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">distancia</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="w">                     </span><span class="o">+</span><span class="w"> </span><span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">altura</span><span class="p">;</span>
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="w">            </span><span class="n">Vector3</span><span class="w"> </span><span class="n">mirada</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">objetivo</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Vector3</span><span class="p">.</span><span class="n">up</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.4f</span><span class="p">;</span>
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="w">            </span><span class="n">rotacion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quaternion</span><span class="p">.</span><span class="n">LookRotation</span><span class="p">(</span><span class="n">mirada</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">posicion</span><span class="p">);</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">Clamp01</span><span class="p">(</span><span class="n">suavidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">);</span>
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="w">        </span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector3</span><span class="p">.</span><span class="n">Lerp</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">posicion</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="w">        </span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Quaternion</span><span class="p">.</span><span class="n">Slerp</span><span class="p">(</span><span class="n">transform</span><span class="p">.</span><span class="n">rotation</span><span class="p">,</span><span class="w"> </span><span class="n">rotacion</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
+<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="p">}</span>
+</code></pre></div>
+<p>En el Inspector de <strong>Main Camera</strong>, arrastra <strong>Jugador</strong> al campo <strong>Objetivo</strong>.</p>
+<p>Prueba <strong>WASD</strong> y pulsa <strong>C</strong> para alternar las vistas.</p>
+<ul>
+<li><strong>LateUpdate</strong> permite colocar la cámara después de mover al personaje.</li>
+<li><strong>Lerp</strong> suaviza el desplazamiento y <strong>Slerp</strong> suaviza la rotación.</li>
+<li><strong>CambiarVista()</strong> será también el método que llamará un botón táctil.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Primera persona y modelos 3D</p>
+<p>Cuando sustituyamos la esfera por el Goblin, revisaremos la altura de la vista en primera persona. Si la cámara atraviesa la cabeza del modelo, habrá que ajustar el desplazamiento frontal y vertical o esconder la malla propia para esa vista. <strong>No necesitamos crear cubos que simulen manos o armas.</strong></p>
+</div>
+<h2 id="5-controles-tactiles-para-android">5. Controles táctiles para Android<a class="headerlink" href="#5-controles-tactiles-para-android" title="Permanent link">&para;</a></h2>
+<h3 id="51-crear-la-interfaz">5.1. Crear la interfaz<a class="headerlink" href="#51-crear-la-interfaz" title="Permanent link">&para;</a></h3>
+<p>Crea un <strong>Canvas</strong> llamado <strong>CanvasControles</strong>. En <strong>Canvas Scaler</strong> selecciona:</p>
+<ul>
+<li><strong>UI Scale Mode:</strong> Scale With Screen Size.</li>
+<li><strong>Reference Resolution:</strong> 1920 × 1080.</li>
+<li><strong>Screen Match Mode:</strong> Match Width Or Height, con <strong>Match = 0.5</strong>.</li>
+</ul>
+<p>Dentro crea cinco <strong>Button - TextMeshPro</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Botón</th>
+<th>Texto</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BtnAdelante</td>
+<td>↑</td>
+<td>Avanzar mientras se pulsa</td>
+</tr>
+<tr>
+<td>BtnAtras</td>
+<td>↓</td>
+<td>Retroceder mientras se pulsa</td>
+</tr>
+<tr>
+<td>BtnIzquierda</td>
+<td>↶</td>
+<td>Girar a la izquierda mientras se pulsa</td>
+</tr>
+<tr>
+<td>BtnDerecha</td>
+<td>↷</td>
+<td>Girar a la derecha mientras se pulsa</td>
+</tr>
+<tr>
+<td>BtnCamara</td>
+<td>Cámara o C</td>
+<td>Cambiar de vista una vez</td>
+</tr>
+</tbody>
+</table>
+<p>Coloca los cuatro botones de movimiento agrupados en la <strong>esquina inferior izquierda</strong> usando anclajes. Deja el botón de cámara en otra zona cómoda, por ejemplo la <strong>esquina inferior derecha</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Si no aparece el texto</p>
+<p>Importa <strong>Window → TextMeshPro → Import TMP Essential Resources</strong> y asigna una fuente TMP al hijo <strong>Text (TMP)</strong>. Si la fuente no muestra bien las flechas, utiliza W, S, A y D.</p>
+</div>
+<p>Comprueba que la escena tiene un <strong>EventSystem</strong> con <strong>Input System UI Input Module</strong>.</p>
+<h3 id="52-crear-botontactilcs">5.2. Crear BotonTactil.cs<a class="headerlink" href="#52-crear-botontactilcs" title="Permanent link">&para;</a></h3>
+<p>No utilizaremos <strong>On Click()</strong> para desplazarnos: solo se ejecuta una pulsación, mientras que necesitamos <strong>mantener el movimiento</strong> hasta levantar el dedo.</p>
+<p>Crea este script:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine.EventSystems</span><span class="p">;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">BotonTactil</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">IPointerDownHandler</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">IPointerUpHandler</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="n">IPointerExitHandler</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">{</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">MovimientoJugador</span><span class="w"> </span><span class="n">jugador</span><span class="p">;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">MovimientoJugador</span><span class="p">.</span><span class="n">Control</span><span class="w"> </span><span class="n">control</span><span class="p">;</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnPointerDown</span><span class="p">(</span><span class="n">PointerEventData</span><span class="w"> </span><span class="n">eventData</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">jugador</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">            </span><span class="n">jugador</span><span class="p">.</span><span class="n">CambiarControl</span><span class="p">(</span><span class="n">control</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">);</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnPointerUp</span><span class="p">(</span><span class="n">PointerEventData</span><span class="w"> </span><span class="n">eventData</span><span class="p">)</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">jugador</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">            </span><span class="n">jugador</span><span class="p">.</span><span class="n">CambiarControl</span><span class="p">(</span><span class="n">control</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="p">);</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnPointerExit</span><span class="p">(</span><span class="n">PointerEventData</span><span class="w"> </span><span class="n">eventData</span><span class="p">)</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">jugador</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">            </span><span class="n">jugador</span><span class="p">.</span><span class="n">CambiarControl</span><span class="p">(</span><span class="n">control</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="p">);</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">OnDisable</span><span class="p">()</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">jugador</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">            </span><span class="n">jugador</span><span class="p">.</span><span class="n">CambiarControl</span><span class="p">(</span><span class="n">control</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="p">);</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="p">}</span>
+</code></pre></div>
+<p>Añade <strong>BotonTactil</strong> a los cuatro botones de movimiento, <strong>no</strong> a sus hijos Text (TMP). En cada botón arrastra <strong>Jugador</strong> al campo <strong>Jugador</strong> y elige el valor adecuado en <strong>Control</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Objeto</th>
+<th>Control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BtnAdelante</td>
+<td>Adelante</td>
+</tr>
+<tr>
+<td>BtnAtras</td>
+<td>Atras</td>
+</tr>
+<tr>
+<td>BtnIzquierda</td>
+<td>Izquierda</td>
+</tr>
+<tr>
+<td>BtnDerecha</td>
+<td>Derecha</td>
+</tr>
+</tbody>
+</table>
+<p>El botón <strong>BtnCamara</strong> es distinto: en <strong>Button → On Click()</strong>, arrastra <strong>Main Camera</strong> y selecciona <strong>CamaraSeguimiento → CambiarVista()</strong>.</p>
+<h3 id="53-sustituir-movimientojugadorcs-por-su-version-completa">5.3. Sustituir MovimientoJugador.cs por su versión completa<a class="headerlink" href="#53-sustituir-movimientojugadorcs-por-su-version-completa" title="Permanent link">&para;</a></h3>
+<p>La siguiente versión permite utilizar <strong>WASD o los botones táctiles</strong>. También deja preparado el parámetro <strong>Movimiento</strong> que usaremos después con las animaciones del Goblin.</p>
+<p><strong>Sustituye completamente</strong> el contenido del script anterior:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine.InputSystem</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="na">[RequireComponent(typeof(CharacterController))]</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">MovimientoJugador</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">{</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">velocidad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4f</span><span class="p">;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">velocidadGiro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">120f</span><span class="p">;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">gravedad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">9.81f</span><span class="p">;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">CharacterController</span><span class="w"> </span><span class="n">controlador</span><span class="p">;</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">Animator</span><span class="w"> </span><span class="n">animador</span><span class="p">;</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">velocidadVertical</span><span class="p">;</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">    </span><span class="c1">// Botones táctiles mantenidos.</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">adelante</span><span class="p">;</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">atras</span><span class="p">;</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">izquierda</span><span class="p">;</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">derecha</span><span class="p">;</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">Control</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">        </span><span class="n">Adelante</span><span class="p">,</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">        </span><span class="n">Atras</span><span class="p">,</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">        </span><span class="n">Izquierda</span><span class="p">,</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">        </span><span class="n">Derecha</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">        </span><span class="n">controlador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponent</span><span class="o">&lt;</span><span class="n">CharacterController</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">        </span><span class="n">animador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetComponentInChildren</span><span class="o">&lt;</span><span class="n">Animator</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">    </span><span class="c1">// Lo llaman los botones al pulsar o soltar.</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">CambiarControl</span><span class="p">(</span><span class="n">Control</span><span class="w"> </span><span class="n">control</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">pulsado</span><span class="p">)</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="n">Control</span><span class="p">.</span><span class="n">Adelante</span><span class="p">:</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="w">                </span><span class="n">adelante</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pulsado</span><span class="p">;</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="n">Control</span><span class="p">.</span><span class="n">Atras</span><span class="p">:</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="w">                </span><span class="n">atras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pulsado</span><span class="p">;</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="n">Control</span><span class="p">.</span><span class="n">Izquierda</span><span class="p">:</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a><span class="w">                </span><span class="n">izquierda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pulsado</span><span class="p">;</span>
+<a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="n">Control</span><span class="p">.</span><span class="n">Derecha</span><span class="p">:</span>
+<a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="w">                </span><span class="n">derecha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pulsado</span><span class="p">;</span>
+<a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a><span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a>
+<a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a><span class="w">        </span><span class="c1">// El teclado es opcional: en Android puede no existir.</span>
+<a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a><span class="w">                 </span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">wKey</span><span class="p">.</span><span class="n">isPressed</span><span class="p">;</span>
+<a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a><span class="w">                 </span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">sKey</span><span class="p">.</span><span class="n">isPressed</span><span class="p">;</span>
+<a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a><span class="w">                 </span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">aKey</span><span class="p">.</span><span class="n">isPressed</span><span class="p">;</span>
+<a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a><span class="w">                 </span><span class="n">Keyboard</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">dKey</span><span class="p">.</span><span class="n">isPressed</span><span class="p">;</span>
+<a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a>
+<a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">mover</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0f</span><span class="p">;</span>
+<a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a><span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">girar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0f</span><span class="p">;</span>
+<a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a>
+<a id="__codelineno-4-70" name="__codelineno-4-70" href="#__codelineno-4-70"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">w</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">adelante</span><span class="p">)</span><span class="w"> </span><span class="n">mover</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">1f</span><span class="p">;</span>
+<a id="__codelineno-4-71" name="__codelineno-4-71" href="#__codelineno-4-71"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">atras</span><span class="p">)</span><span class="w"> </span><span class="n">mover</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mf">1f</span><span class="p">;</span>
+<a id="__codelineno-4-72" name="__codelineno-4-72" href="#__codelineno-4-72"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">izquierda</span><span class="p">)</span><span class="w"> </span><span class="n">girar</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="mf">1f</span><span class="p">;</span>
+<a id="__codelineno-4-73" name="__codelineno-4-73" href="#__codelineno-4-73"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">d</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">derecha</span><span class="p">)</span><span class="w"> </span><span class="n">girar</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">1f</span><span class="p">;</span>
+<a id="__codelineno-4-74" name="__codelineno-4-74" href="#__codelineno-4-74"></a>
+<a id="__codelineno-4-75" name="__codelineno-4-75" href="#__codelineno-4-75"></a><span class="w">        </span><span class="n">transform</span><span class="p">.</span><span class="n">Rotate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">girar</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">velocidadGiro</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-4-76" name="__codelineno-4-76" href="#__codelineno-4-76"></a>
+<a id="__codelineno-4-77" name="__codelineno-4-77" href="#__codelineno-4-77"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">controlador</span><span class="p">.</span><span class="n">isGrounded</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">velocidadVertical</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0f</span><span class="p">)</span>
+<a id="__codelineno-4-78" name="__codelineno-4-78" href="#__codelineno-4-78"></a><span class="w">            </span><span class="n">velocidadVertical</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">2f</span><span class="p">;</span>
+<a id="__codelineno-4-79" name="__codelineno-4-79" href="#__codelineno-4-79"></a>
+<a id="__codelineno-4-80" name="__codelineno-4-80" href="#__codelineno-4-80"></a><span class="w">        </span><span class="n">velocidadVertical</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">gravedad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">;</span>
+<a id="__codelineno-4-81" name="__codelineno-4-81" href="#__codelineno-4-81"></a>
+<a id="__codelineno-4-82" name="__codelineno-4-82" href="#__codelineno-4-82"></a><span class="w">        </span><span class="n">Vector3</span><span class="w"> </span><span class="n">movimiento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transform</span><span class="p">.</span><span class="n">forward</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">mover</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">velocidad</span><span class="p">);</span>
+<a id="__codelineno-4-83" name="__codelineno-4-83" href="#__codelineno-4-83"></a><span class="w">        </span><span class="n">movimiento</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">velocidadVertical</span><span class="p">;</span>
+<a id="__codelineno-4-84" name="__codelineno-4-84" href="#__codelineno-4-84"></a><span class="w">        </span><span class="n">controlador</span><span class="p">.</span><span class="n">Move</span><span class="p">(</span><span class="n">movimiento</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">);</span>
+<a id="__codelineno-4-85" name="__codelineno-4-85" href="#__codelineno-4-85"></a>
+<a id="__codelineno-4-86" name="__codelineno-4-86" href="#__codelineno-4-86"></a><span class="w">        </span><span class="c1">// Estados del Animator, cuando añadamos el Goblin.</span>
+<a id="__codelineno-4-87" name="__codelineno-4-87" href="#__codelineno-4-87"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">animador</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-4-88" name="__codelineno-4-88" href="#__codelineno-4-88"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-4-89" name="__codelineno-4-89" href="#__codelineno-4-89"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">estado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Idle</span>
+<a id="__codelineno-4-90" name="__codelineno-4-90" href="#__codelineno-4-90"></a>
+<a id="__codelineno-4-91" name="__codelineno-4-91" href="#__codelineno-4-91"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mover</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mf">0f</span><span class="p">)</span>
+<a id="__codelineno-4-92" name="__codelineno-4-92" href="#__codelineno-4-92"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-4-93" name="__codelineno-4-93" href="#__codelineno-4-93"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">girar</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0f</span><span class="p">)</span><span class="w"> </span><span class="n">estado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">       </span><span class="c1">// WalkTurnLeft</span>
+<a id="__codelineno-4-94" name="__codelineno-4-94" href="#__codelineno-4-94"></a><span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="nf">if</span><span class="w"> </span><span class="p">(</span><span class="n">girar</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0f</span><span class="p">)</span><span class="w"> </span><span class="n">estado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">  </span><span class="c1">// WalkTurnRight</span>
+<a id="__codelineno-4-95" name="__codelineno-4-95" href="#__codelineno-4-95"></a><span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="n">estado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">                  </span><span class="c1">// Walking</span>
+<a id="__codelineno-4-96" name="__codelineno-4-96" href="#__codelineno-4-96"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-4-97" name="__codelineno-4-97" href="#__codelineno-4-97"></a><span class="w">            </span><span class="k">else</span>
+<a id="__codelineno-4-98" name="__codelineno-4-98" href="#__codelineno-4-98"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-4-99" name="__codelineno-4-99" href="#__codelineno-4-99"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">girar</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0f</span><span class="p">)</span><span class="w"> </span><span class="n">estado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">       </span><span class="c1">// TurnLeft</span>
+<a id="__codelineno-4-100" name="__codelineno-4-100" href="#__codelineno-4-100"></a><span class="w">                </span><span class="k">else</span><span class="w"> </span><span class="nf">if</span><span class="w"> </span><span class="p">(</span><span class="n">girar</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0f</span><span class="p">)</span><span class="w"> </span><span class="n">estado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">  </span><span class="c1">// TurnRight</span>
+<a id="__codelineno-4-101" name="__codelineno-4-101" href="#__codelineno-4-101"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-4-102" name="__codelineno-4-102" href="#__codelineno-4-102"></a>
+<a id="__codelineno-4-103" name="__codelineno-4-103" href="#__codelineno-4-103"></a><span class="w">            </span><span class="n">animador</span><span class="p">.</span><span class="n">SetInteger</span><span class="p">(</span><span class="s">"Movimiento"</span><span class="p">,</span><span class="w"> </span><span class="n">estado</span><span class="p">);</span>
+<a id="__codelineno-4-104" name="__codelineno-4-104" href="#__codelineno-4-104"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-4-105" name="__codelineno-4-105" href="#__codelineno-4-105"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-106" name="__codelineno-4-106" href="#__codelineno-4-106"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Prueba en Game</strong> que mantener pulsado cada botón con el ratón produce movimiento continuo y que al soltarlo el personaje se detiene. Comprueba que WASD sigue funcionando.</p>
+<h2 id="6-sustituir-la-esfera-por-el-goblin">6. Sustituir la esfera por el Goblin<a class="headerlink" href="#6-sustituir-la-esfera-por-el-goblin" title="Permanent link">&para;</a></h2>
+<h3 id="61-importar-el-personaje">6.1. Importar el personaje<a class="headerlink" href="#61-importar-el-personaje" title="Permanent link">&para;</a></h3>
+<p>Descarga el archivo <strong>GoblinSkirmisher-Unity-1.0.0.zip</strong> de la página enlazada al principio.</p>
+<ol>
+<li>Descomprime el ZIP.</li>
+<li>En Unity, selecciona <strong>Assets → Import Package → Custom Package</strong>.</li>
+<li>Importa <strong>GoblinSkirmisher.unitypackage</strong>.</li>
+<li>En <strong>Assets/GoblinSkirmisher/Prefabs</strong>, arrastra el prefab <strong>GoblinSkirmisher</strong> <strong>dentro de Jugador</strong>.</li>
+</ol>
+<p><strong>Conservamos Jugador</strong> como objeto principal, porque tiene el Character Controller, MovimientoJugador y las referencias de los botones y la cámara. Desactiva solamente su <strong>Mesh Renderer</strong> para ocultar la esfera.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Jugador                         ← MovimientoJugador + Character Controller
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>└── GoblinSkirmisher            ← Modelo visual (prefab)
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    └── GoblinSkirmisher        ← Modelo animado, con Animator
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        └── GoblinRig           ← Esqueleto y mallas
+</code></pre></div>
+<p>La estructura del prefab puede tener otros hijos, pero lo importante es <strong>no añadir un segundo Animator al objeto Jugador</strong>: utiliza el que ya trae el modelo animado dentro del prefab.</p>
+<h3 id="62-corregir-los-materiales-rosa-o-blancos">6.2. Corregir los materiales rosa o blancos<a class="headerlink" href="#62-corregir-los-materiales-rosa-o-blancos" title="Permanent link">&para;</a></h3>
+<p>El proyecto utiliza <strong>URP</strong>. Si el Goblin aparece rosa o sin textura:</p>
+<ol>
+<li>Abre <strong>Assets/GoblinSkirmisher/Materials</strong>.</li>
+<li>Selecciona el material <strong>GoblinSkirmisher</strong>.</li>
+<li>Establece el shader <strong>Universal Render Pipeline/Lit</strong>.</li>
+<li>En <strong>Base Map</strong>, arrastra la textura correspondiente desde la carpeta <strong>Textures</strong>, sobre el <strong>cuadrado pequeño</strong> del mapa.</li>
+<li>Repite el proceso con el material <strong>Dagger</strong>, utilizando su textura.</li>
+</ol>
+<p>No hay que modificar los FBX ni rehacer las animaciones para corregir los materiales.</p>
+<h3 id="63-ajustar-posicion-y-colisiones">6.3. Ajustar posición y colisiones<a class="headerlink" href="#63-ajustar-posicion-y-colisiones" title="Permanent link">&para;</a></h3>
+<p>El Goblin mide aproximadamente <strong>1,35 unidades</strong>. Como punto de partida:</p>
+<ul>
+<li>En el hijo visual <strong>GoblinSkirmisher</strong>: Position local aproximada <strong>(0, -0.5, 0)</strong>, Rotation (0, 0, 0) y Scale (1, 1, 1).</li>
+<li>En <strong>Jugador / Character Controller</strong>: Height <strong>1.35</strong>, Radius <strong>0.3</strong>, Center Y aproximado <strong>0.175</strong>, manteniendo Jugador en Y <strong>0.5</strong>.</li>
+</ul>
+<p>Son valores <strong>orientativos</strong>: ajusta el modelo para que <strong>sus pies toquen el suelo</strong> y la cápsula del controlador se adapte al cuerpo. Comprueba también que el Goblin mire hacia la dirección <strong>Z positiva de Jugador</strong>. Si hace falta girar el modelo, gira <strong>solo el hijo visual</strong>.</p>
+<p>En el Animator del Goblin desactiva <strong>Apply Root Motion</strong>. El movimiento real seguirá controlándolo <strong>MovimientoJugador.cs</strong>.</p>
+<h2 id="7-configurar-las-animaciones-de-caminar-y-girar">7. Configurar las animaciones de caminar y girar<a class="headerlink" href="#7-configurar-las-animaciones-de-caminar-y-girar" title="Permanent link">&para;</a></h2>
+<p>El paquete incluye <strong>clips y un controlador de previsualización</strong>, pero no un sistema de control completo conectado a nuestros botones. Crearemos un Animator Controller sencillo para nuestra práctica.</p>
+<p>Crea <strong>Assets/Animators/JugadorAnimator</strong> desde <strong>Create → Animation → Animator Controller</strong>.</p>
+<p>Arrastra estos clips desde <strong>Assets/GoblinSkirmisher/Animations</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Estado en nuestro Animator</th>
+<th>Clip del paquete</th>
+<th>Movimiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Idle</td>
+<td>A000_Idle</td>
+<td>Quieto</td>
+</tr>
+<tr>
+<td>Walking</td>
+<td>A-02_Walking</td>
+<td>Avanzar o retroceder</td>
+</tr>
+<tr>
+<td>TurnLeft</td>
+<td>A576_Idle_Turn_Left</td>
+<td>Girar quieto a la izquierda</td>
+</tr>
+<tr>
+<td>TurnRight</td>
+<td>A586_Idle_Turn_Right</td>
+<td>Girar quieto a la derecha</td>
+</tr>
+<tr>
+<td>WalkTurnLeft</td>
+<td>A572_Walk_Turn_Left</td>
+<td>Avanzar y girar a la izquierda</td>
+</tr>
+<tr>
+<td>WalkTurnRight</td>
+<td>A583_Walk_Turn_Right</td>
+<td>Avanzar y girar a la derecha</td>
+</tr>
+</tbody>
+</table>
+<p>Haz <strong>Idle</strong> el estado predeterminado (naranja).</p>
+<h3 id="71-un-parametro-para-seis-estados">7.1. Un parámetro para seis estados<a class="headerlink" href="#71-un-parametro-para-seis-estados" title="Permanent link">&para;</a></h3>
+<p>En <strong>Animator → Parameters</strong>, crea un parámetro de tipo <strong>Int</strong> llamado <strong>Movimiento</strong>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Movimiento</th>
+<th>Animación</th>
+<th>Entrada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">0</td>
+<td>Idle</td>
+<td>Sin pulsar</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Walking</td>
+<td>W o S</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>TurnLeft</td>
+<td>A</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>TurnRight</td>
+<td>D</td>
+</tr>
+<tr>
+<td style="text-align: right;">4</td>
+<td>WalkTurnLeft</td>
+<td>W + A</td>
+</tr>
+<tr>
+<td style="text-align: right;">5</td>
+<td>WalkTurnRight</td>
+<td>W + D</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-transiciones">7.2. Transiciones<a class="headerlink" href="#72-transiciones" title="Permanent link">&para;</a></h3>
+<p>Crea <strong>seis transiciones desde Any State</strong>, una hacia cada estado. En cada transición:</p>
+<ul>
+<li><strong>Has Exit Time:</strong> desactivado.</li>
+<li><strong>Fixed Duration:</strong> activado; <strong>Transition Duration:</strong> 0.1 segundos como punto de partida.</li>
+<li><strong>Can Transition To Self:</strong> desactivado.</li>
+<li><strong>Condition:</strong> <strong>Movimiento Equals</strong> el número de la tabla.</li>
+</ul>
+<p>No mantengas transiciones antiguas que dependan de otros parámetros, como <strong>Caminando</strong>, si has pasado a utilizar <strong>Movimiento</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Has Exit Time</p>
+<p>Si está activado, Unity espera al momento de salida configurado del clip antes de permitir la transición. Para responder rápidamente a nuestros botones, lo desactivamos. <strong>Transition Duration</strong> regula, en cambio, cuánto dura la mezcla entre animaciones.</p>
+</div>
+<h3 id="73-asignar-el-controlador-correcto">7.3. Asignar el controlador correcto<a class="headerlink" href="#73-asignar-el-controlador-correcto" title="Permanent link">&para;</a></h3>
+<p>Selecciona el <strong>objeto interior del prefab GoblinSkirmisher que contiene Animator</strong>. En el campo <strong>Controller</strong>, asigna <strong>JugadorAnimator</strong>.</p>
+<p>No añadas el Animator al objeto padre Jugador. El código ya utiliza <strong>GetComponentInChildren<Animator>()</strong> para encontrar el componente del modelo.</p>
+<p>Pulsa <strong>Play</strong> y comprueba las seis acciones con el teclado o los botones táctiles.</p>
+<div class="admonition warning">
+<p class="admonition-title">Animaciones con desplazamiento y bucles</p>
+<p>El paquete conserva movimientos de cadera en algunos clips. Como el desplazamiento del juego lo controla Character Controller, verifica que <strong>Apply Root Motion</strong> esté desactivado y revisa si algún clip produce saltos o deslizamientos. Comprueba que <strong>Idle y Walking</strong> se repiten correctamente; en las animaciones cortas de giro, prueba el bucle antes de activarlo, porque no todas están preparadas para repetirse sin salto.</p>
+</div>
+<h2 id="8-rescatar-tres-cube-pets">8. Rescatar tres Cube Pets<a class="headerlink" href="#8-rescatar-tres-cube-pets" title="Permanent link">&para;</a></h2>
+<p>Ahora añadiremos un objetivo al juego: <strong>encontrar y rescatar el pollito, el conejo y la mariquita</strong>.</p>
+<h3 id="81-importar-los-animales">8.1. Importar los animales<a class="headerlink" href="#81-importar-los-animales" title="Permanent link">&para;</a></h3>
+<p>Descarga <strong>Cube Pets Free</strong> desde el enlace de recursos y descomprime el ZIP. Importa en <strong>Assets/Models/CubePets</strong> los <strong>FBX y sus texturas</strong> (el paquete también ofrece GLB y Blender).</p>
+<p>Coloca un animal cerca del inicio, otro en el recorrido de la escalera y el tercero en una zona que requiera explorar el escenario. <strong>No dependas de coordenadas idénticas para todas las escenas:</strong> ajusta posición y escala según el modelo.</p>
+<p>Si sus materiales no muestran el aspecto adecuado, crea materiales <strong>Universal Render Pipeline/Lit</strong> y asigna sus mapas de color. Puedes utilizar su animación <strong>Idle</strong> si la has configurado; para la mecánica de rescate basta con que los animales sean visibles.</p>
+<h3 id="82-preparar-cada-mascota-para-detectar-el-contacto">8.2. Preparar cada mascota para detectar el contacto<a class="headerlink" href="#82-preparar-cada-mascota-para-detectar-el-contacto" title="Permanent link">&para;</a></h3>
+<p>En cada animal crea un objeto raíz con un nombre identificable, por ejemplo <strong>MascotaPollito</strong>, que contenga el modelo visual.</p>
+<p>Añade al objeto raíz:</p>
+<ol>
+<li><strong>Box Collider</strong> o <strong>Sphere Collider</strong>, ajustado al tamaño del animal.</li>
+<li><strong>Is Trigger:</strong> activado.</li>
+<li><strong>Rigidbody</strong> con <strong>Use Gravity</strong> desactivado e <strong>Is Kinematic</strong> activado.</li>
+<li>El script <strong>Recolectable</strong>, que crearemos en el apartado siguiente.</li>
+</ol>
+<p>En el objeto <strong>Jugador</strong>, cambia la etiqueta (<strong>Tag</strong>) a <strong>Player</strong>. Conserva su Character Controller.</p>
+<p>Después de configurar la primera mascota, arrástrala a <strong>Assets/Prefabs</strong> para crear un <strong>Prefab</strong>. Repite con los otros dos animales.</p>
+<h3 id="83-interfaz-de-rescate">8.3. Interfaz de rescate<a class="headerlink" href="#83-interfaz-de-rescate" title="Permanent link">&para;</a></h3>
+<p>En el Canvas añade dos textos <strong>Text - TextMeshPro</strong>:</p>
+<ul>
+<li><strong>TextoContador</strong>: mostrará <strong>Mascotas: 0/3</strong> y si tenemos el bláster.</li>
+<li><strong>TextoVictoria</strong>: mostrará <strong>¡Has rescatado a todas las mascotas!</strong>. Déjalo visible en el editor para configurarlo; el script lo ocultará al iniciar.</li>
+</ul>
+<p>Crea un objeto vacío <strong>GestorJuego</strong> y añade el script <strong>GestorRescate.cs</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">using</span><span class="w"> </span><span class="nn">TMPro</span><span class="p">;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">GestorRescate</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">{</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">TMP_Text</span><span class="w"> </span><span class="n">textoContador</span><span class="p">;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">GameObject</span><span class="w"> </span><span class="n">textoVictoria</span><span class="p">;</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">totalMascotas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">mascotasRescatadas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">blasterRecogido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Start</span><span class="p">()</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">textoVictoria</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">            </span><span class="n">textoVictoria</span><span class="p">.</span><span class="n">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">        </span><span class="n">ActualizarInterfaz</span><span class="p">();</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Recoger</span><span class="p">(</span><span class="n">TipoRecolectable</span><span class="w"> </span><span class="n">tipo</span><span class="p">)</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tipo</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TipoRecolectable</span><span class="p">.</span><span class="n">Mascota</span><span class="p">)</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">            </span><span class="n">mascotasRescatadas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Mathf</span><span class="p">.</span><span class="n">Min</span><span class="p">(</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">                </span><span class="n">mascotasRescatadas</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">totalMascotas</span><span class="p">);</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">        </span><span class="k">else</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="w">            </span><span class="n">blasterRecogido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="w">        </span><span class="n">ActualizarInterfaz</span><span class="p">();</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mascotasRescatadas</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">totalMascotas</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="w">            </span><span class="n">textoVictoria</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="w">            </span><span class="n">textoVictoria</span><span class="p">.</span><span class="n">SetActive</span><span class="p">(</span><span class="k">true</span><span class="p">);</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">ActualizarInterfaz</span><span class="p">()</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">textoContador</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">blaster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blasterRecogido</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">"Sí"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s">"No"</span><span class="p">;</span>
+<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a><span class="w">        </span><span class="n">textoContador</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a><span class="w">            </span><span class="s">$"Mascotas: {mascotasRescatadas}/{totalMascotas} | "</span><span class="w"> </span><span class="o">+</span>
+<a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a><span class="w">            </span><span class="s">$"Bláster: {blaster}"</span><span class="p">;</span>
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-45" name="__codelineno-6-45" href="#__codelineno-6-45"></a><span class="p">}</span>
+</code></pre></div>
+<p>En el Inspector de <strong>GestorJuego</strong> asigna los dos textos a sus campos.</p>
+<h3 id="84-script-de-recoleccion">8.4. Script de recolección<a class="headerlink" href="#84-script-de-recoleccion" title="Permanent link">&para;</a></h3>
+<p>Crea <strong>Recolectable.cs</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">public</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">TipoRecolectable</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">{</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">Mascota</span><span class="p">,</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="n">Blaster</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">}</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Recolectable</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">{</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="n">TipoRecolectable</span><span class="w"> </span><span class="n">tipo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TipoRecolectable</span><span class="p">.</span><span class="n">Mascota</span><span class="p">;</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">velocidadGiro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0f</span><span class="p">;</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">recogido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">        </span><span class="c1">// Si velocidadGiro es 0, el objeto no gira.</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">        </span><span class="n">transform</span><span class="p">.</span><span class="n">Rotate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">velocidadGiro</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">OnTriggerEnter</span><span class="p">(</span><span class="n">Collider</span><span class="w"> </span><span class="n">other</span><span class="p">)</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">recogido</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">other</span><span class="p">.</span><span class="n">CompareTag</span><span class="p">(</span><span class="s">"Player"</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">        </span><span class="n">GestorRescate</span><span class="w"> </span><span class="n">gestor</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">            </span><span class="n">FindFirstObjectByType</span><span class="o">&lt;</span><span class="n">GestorRescate</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gestor</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="w">        </span><span class="n">recogido</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="w">        </span><span class="n">gestor</span><span class="p">.</span><span class="n">Recoger</span><span class="p">(</span><span class="n">tipo</span><span class="p">);</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>
+<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="w">        </span><span class="n">Destroy</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="p">}</span>
+</code></pre></div>
+<p>En las tres mascotas configura:</p>
+<ul>
+<li><strong>Tipo:</strong> Mascota.</li>
+<li><strong>Velocidad Giro:</strong> 0 (de momento no necesitan girar).</li>
+</ul>
+<p><strong>Prueba:</strong> al tocar cada mascota con el Goblin debe desaparecer y el contador debe avanzar de <strong>0/3</strong> a <strong>3/3</strong>. Al rescatar la tercera aparecerá el mensaje de victoria.</p>
+<div class="admonition note">
+<p class="admonition-title">Por qué usamos un Trigger</p>
+<p>Un <strong>Collider con Is Trigger</strong> detecta el contacto sin bloquear el desplazamiento del personaje. El Rigidbody cinemático del coleccionable permite configurar la detección de forma sencilla, mientras que el jugador sigue utilizando <strong>Character Controller</strong>. <strong>Destroy(gameObject)</strong> elimina el objeto raíz de la mascota, junto con su modelo.</p>
+</div>
+<h2 id="9-el-blaster-como-objeto-coleccionable-que-gira">9. El bláster como objeto coleccionable que gira<a class="headerlink" href="#9-el-blaster-como-objeto-coleccionable-que-gira" title="Permanent link">&para;</a></h2>
+<p>Descarga el <strong>Blaster Kit</strong> de Kenney y elige <strong>uno de sus modelos FBX</strong>. Puedes utilizar también algún objetivo o caja del paquete para decorar el nivel, pero <strong>no programaremos disparos todavía</strong>.</p>
+<p>Coloca el bláster en una zona visible del escenario, por ejemplo cerca de la escalera. Llámalo <strong>Blaster</strong>.</p>
+<p>Como ya hemos comprobado en clase, <strong>no hace falta crear un objeto vacío solo para hacerlo girar</strong>: podemos asignar un script directamente al modelo cuando su pivote está bien colocado.</p>
+<h3 id="91-girarobjetocs">9.1. GirarObjeto.cs<a class="headerlink" href="#91-girarobjetocs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">using</span><span class="w"> </span><span class="nn">UnityEngine</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">GirarObjeto</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">MonoBehaviour</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">{</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">velocidad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">90f</span><span class="p">;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">Update</span><span class="p">()</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">        </span><span class="n">transform</span><span class="p">.</span><span class="n">Rotate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">velocidad</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Time</span><span class="p">.</span><span class="n">deltaTime</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>Asigna <strong>GirarObjeto</strong> al bláster y comprueba que gira sobre el eje Y. Si gira descentrado, revisa el pivote del modelo antes de complicar la jerarquía.</p>
+<h3 id="92-hacerlo-coleccionable">9.2. Hacerlo coleccionable<a class="headerlink" href="#92-hacerlo-coleccionable" title="Permanent link">&para;</a></h3>
+<p>Igual que con las mascotas, añade <strong>un Collider con Is Trigger</strong> y <strong>un Rigidbody cinemático sin gravedad</strong> al objeto que detectará la recogida.</p>
+<p>Añade <strong>Recolectable</strong>, pero configura:</p>
+<ul>
+<li><strong>Tipo:</strong> Blaster.</li>
+<li><strong>Velocidad Giro:</strong> 0, porque ya gira con <strong>GirarObjeto</strong>.</li>
+</ul>
+<p>Al tocar el objeto, desaparecerá y el contador indicará <strong>Bláster: Sí</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Evitar duplicar el giro</p>
+<p>Si prefieres utilizar únicamente <strong>Recolectable</strong>, elimina <strong>GirarObjeto</strong> del bláster y establece <strong>Velocidad Giro = 90</strong> en Recolectable. Las dos soluciones son válidas; <strong>no actives ambas rotaciones a la vez</strong>.</p>
+</div>
+<p>Recoger el bláster <strong>no sustituye el objetivo principal</strong>: el nivel se completa cuando rescatas las <strong>tres mascotas</strong>.</p>
+<h2 id="10-preparar-la-prueba-en-android">10. Preparar la prueba en Android<a class="headerlink" href="#10-preparar-la-prueba-en-android" title="Permanent link">&para;</a></h2>
+<p>Cuando todo funcione en el editor:</p>
+<ol>
+<li>Comprueba que Unity tiene instalado <strong>Android Build Support</strong> y sus herramientas necesarias.</li>
+<li>Abre <strong>File → Build Profiles</strong> y selecciona <strong>Android</strong>; cambia al perfil Android si fuera necesario.</li>
+<li>Añade la escena <strong>Control3D</strong> a la lista de escenas de la compilación.</li>
+<li>Configura el juego en <strong>orientación horizontal</strong> y revisa la colocación de los controles en <strong>Game</strong>, con una relación de aspecto parecida a la del móvil.</li>
+<li>Genera la aplicación y pruébala en un dispositivo Android.</li>
+</ol>
+<p>En el móvil debemos comprobar especialmente las <strong>pulsaciones mantenidas</strong>, la posibilidad de <strong>avanzar y girar a la vez</strong>, el botón de cámara y la recogida de objetos.</p>
+<h2 id="resultado-minimo-y-comprobaciones">Resultado mínimo y comprobaciones<a class="headerlink" href="#resultado-minimo-y-comprobaciones" title="Permanent link">&para;</a></h2>
+<p>La práctica estará terminada cuando se cumpla lo siguiente:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El Goblin reemplaza visualmente a la esfera, pero <strong>Jugador</strong> mantiene Character Controller y MovimientoJugador.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Se mueve con <strong>WASD</strong> y con los <strong>cuatro botones táctiles</strong>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Puede recorrer la <strong>escalera curva</strong>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La cámara lo sigue y cambia entre <strong>primera y tercera persona</strong> con <strong>C</strong> o el botón.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El Goblin utiliza <strong>Idle</strong>, <strong>Walking</strong> y animaciones de giro mediante <strong>Animator</strong>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Los <strong>tres Cube Pets</strong> se recogen por contacto y actualizan el contador.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> El <strong>bláster gira</strong> y puede recogerse como objeto especial.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Al rescatar las tres mascotas aparece un <strong>mensaje de victoria</strong>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> La escena puede probarse en <strong>Android</strong> con controles táctiles.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Ampliaciones voluntarias</p>
+<p>Podemos añadir una animación de recogida (<strong>A284_Collect_Object</strong>), una de victoria (<strong>A412_Victory</strong>), efectos de sonido, objetivos del Blaster Kit y disparos. <strong>No son necesarios para comprender ni superar el núcleo de este ejercicio.</strong></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Uso de recursos externos</p>
+<p>Descarga los modelos desde los enlaces originales. <strong>Goblin Skirmisher</strong> y <strong>Cube Pets Free</strong> permiten utilizarlos en proyectos, pero prohíben redistribuir los archivos originales como paquete de recursos. <strong>Blaster Kit</strong> se distribuye bajo licencia <strong>CC0</strong>. Cita a los autores en los créditos del juego por buena práctica y revisa las condiciones que acompañan cada descarga.</p>
+</div>
+<hr />
+<p><a href="../ejercicio-3-animales/">← Ejercicio 3 · Clasificador de animales</a> · <a href="../">Volver a PMDM</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      IES Alonso de Ercilla · Curso 2026-2027
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+        <script src="../../assets/javascripts/home.js"></script>
+      
+        <script src="../../assets/javascripts/image-viewer.js"></script>
+      
+    
+  </body>
+</html>
