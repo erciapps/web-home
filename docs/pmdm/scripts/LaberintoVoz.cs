@@ -1,8 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -12,25 +9,24 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
     public Transform meta;
     public TMP_Text texto;
     public LayerMask obstaculos;
-
     public int columnas = 8;
     public int filas = 8;
     public float velocidad = 3f;
 
-    // Se puede consultar el array en el Inspector durante Play.
-    [SerializeField] private string[] instrucciones = new string[0];
+    // Guardamos las instrucciones reconocidas en un array.
+    public string[] instrucciones = new string[0];
 
     private bool ejecutando;
-    private bool terminado;
     private bool bloqueado;
+    private bool terminado;
 
     void Start()
     {
         SpeechToText.Initialize("es-ES");
-        texto.text = "Pulsa ESCUCHAR y di una instrucción";
+        texto.text = "Pulsa ESCUCHAR";
     }
 
-    // Conectar este método al botón ESCUCHAR.
+    // Se llama desde el botón ESCUCHAR.
     public void Escuchar()
     {
         if (ejecutando || terminado || SpeechToText.IsBusy())
@@ -38,213 +34,123 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
 
         if (!SpeechToText.IsServiceAvailable())
         {
-            texto.text = "Reconocimiento de voz no disponible";
+            texto.text = "Voz no disponible";
             return;
         }
 
         SpeechToText.RequestPermissionAsync(permiso =>
         {
-            if (permiso != SpeechToText.Permission.Granted)
+            if (permiso == SpeechToText.Permission.Granted)
             {
-                texto.text = "Permiso de micrófono denegado";
-                return;
+                if (!SpeechToText.Start(this))
+                    texto.text = "No se pudo iniciar el micrófono";
             }
-
-            if (!SpeechToText.Start(this))
-                texto.text = "No se pudo iniciar el micrófono";
+            else
+                texto.text = "Permiso de micrófono denegado";
         });
     }
 
-    public void OnReadyForSpeech()
-    {
-        texto.text = "Escuchando...";
-    }
-
-    public void OnBeginningOfSpeech() { }
-    public void OnVoiceLevelChanged(float nivel) { }
-
-    // Mostramos el texto provisional, pero NO ejecutamos órdenes todavía.
-    public void OnPartialResultReceived(string frase)
-    {
-        texto.text = "Escuchando: " + frase;
-    }
-
-    // Solo procesamos el resultado final, una vez por pulsación.
+    // Recibimos una instrucción completa cada vez.
     public void OnResultReceived(string frase, int? error)
     {
         if (error.HasValue || string.IsNullOrWhiteSpace(frase))
         {
-            texto.text = "No se reconoció la instrucción";
+            texto.text = "No se reconoció la voz";
             return;
         }
 
-        if (ejecutando || terminado)
-            return;
+        string orden = frase.ToLower().Trim().TrimEnd('.', '!', '?');
 
-        if (!ConvertirEnArray(frase, out instrucciones))
+        // Solo permitimos estas cinco instrucciones.
+        if (orden == "avanza cinco casillas" || orden == "avanza 5 casillas")
+            orden = "AVANZA";
+        else if (orden == "retrocede cinco casillas" || orden == "retrocede 5 casillas")
+            orden = "RETROCEDE";
+        else if (orden == "gira izquierda" || orden == "gira a la izquierda")
+            orden = "IZQUIERDA";
+        else if (orden == "gira derecha" || orden == "gira a la derecha")
+            orden = "DERECHA";
+        else if (orden == "da la vuelta")
+            orden = "VUELTA";
+        else
         {
             texto.text = "Orden no válida: " + frase;
             return;
         }
 
-        texto.text = "Órdenes: " + string.Join(" | ", instrucciones);
-        StartCoroutine(Ejecutar());
+        // Añadimos la orden al array.
+        Array.Resize(ref instrucciones, instrucciones.Length + 1);
+        instrucciones[instrucciones.Length - 1] = orden;
+
+        texto.text = "Órdenes: " + string.Join(" - ", instrucciones);
     }
 
-    // Aceptamos únicamente las instrucciones de la actividad.
-    private bool ConvertirEnArray(string frase, out string[] resultado)
+    // Se llama desde el botón EJECUTAR.
+    public void Ejecutar()
     {
-        List<string> lista = new List<string>();
-        string[] palabras = Normalizar(frase).Split(
-            new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        if (ejecutando || terminado || SpeechToText.IsBusy() || instrucciones.Length == 0)
+            return;
 
-        int i = 0;
-
-        while (i < palabras.Length)
-        {
-            // Permite encadenar: "avanza cinco casillas y gira derecha".
-            if (palabras[i] == "y")
-            {
-                i++;
-                continue;
-            }
-
-            if (palabras[i] == "avanza" || palabras[i] == "retrocede")
-            {
-                if (i + 2 >= palabras.Length ||
-                    (palabras[i + 1] != "5" && palabras[i + 1] != "cinco") ||
-                    (palabras[i + 2] != "casilla" && palabras[i + 2] != "casillas"))
-                {
-                    resultado = new string[0];
-                    return false;
-                }
-
-                lista.Add(palabras[i] == "avanza" ? "AVANZA" : "RETROCEDE");
-                i += 3;
-                continue;
-            }
-
-            if (palabras[i] == "gira")
-            {
-                i++;
-                // Acepta "gira derecha" y "gira a la derecha".
-                if (i < palabras.Length && palabras[i] == "a")
-                    i++;
-                if (i < palabras.Length && palabras[i] == "la")
-                    i++;
-
-                if (i >= palabras.Length ||
-                    (palabras[i] != "izquierda" && palabras[i] != "derecha"))
-                {
-                    resultado = new string[0];
-                    return false;
-                }
-
-                lista.Add(palabras[i] == "izquierda" ? "IZQUIERDA" : "DERECHA");
-                i++;
-                continue;
-            }
-
-            if (i + 2 < palabras.Length &&
-                palabras[i] == "da" &&
-                palabras[i + 1] == "la" &&
-                palabras[i + 2] == "vuelta")
-            {
-                lista.Add("VUELTA");
-                i += 3;
-                continue;
-            }
-
-            // Una palabra extraña invalida la frase completa.
-            resultado = new string[0];
-            return false;
-        }
-
-        resultado = lista.ToArray();
-        return resultado.Length > 0;
+        StartCoroutine(Recorrer());
     }
 
-    private string Normalizar(string frase)
-    {
-        string sinTildes = frase.ToLowerInvariant().Normalize(NormalizationForm.FormD);
-        StringBuilder limpio = new StringBuilder();
-
-        foreach (char letra in sinTildes)
-        {
-            if (CharUnicodeInfo.GetUnicodeCategory(letra) == UnicodeCategory.NonSpacingMark)
-                continue;
-
-            limpio.Append(char.IsLetterOrDigit(letra) ? letra : ' ');
-        }
-
-        return limpio.ToString();
-    }
-
-    private IEnumerator Ejecutar()
+    private IEnumerator Recorrer()
     {
         ejecutando = true;
         bloqueado = false;
 
-        foreach (string instruccion in instrucciones)
+        foreach (string orden in instrucciones)
         {
-            switch (instruccion)
-            {
-                case "AVANZA":
-                    yield return Mover(1);
-                    break;
+            texto.text = "Ejecutando: " + orden;
 
-                case "RETROCEDE":
-                    yield return Mover(-1);
-                    break;
+            if (orden == "AVANZA")
+                yield return Mover(1);
+            else if (orden == "RETROCEDE")
+                yield return Mover(-1);
+            else if (orden == "IZQUIERDA")
+                jugador.Rotate(0, -90, 0);
+            else if (orden == "DERECHA")
+                jugador.Rotate(0, 90, 0);
+            else if (orden == "VUELTA")
+                jugador.Rotate(0, 180, 0);
 
-                case "IZQUIERDA":
-                    jugador.Rotate(0f, -90f, 0f, Space.World);
-                    break;
-
-                case "DERECHA":
-                    jugador.Rotate(0f, 90f, 0f, Space.World);
-                    break;
-
-                case "VUELTA":
-                    jugador.Rotate(0f, 180f, 0f, Space.World);
-                    break;
-            }
-
-            if (terminado || bloqueado)
+            if (bloqueado || terminado)
                 break;
         }
+
+        instrucciones = new string[0];
 
         if (terminado)
             texto.text = "¡META CONSEGUIDA!";
         else if (bloqueado)
-            texto.text = "¡Obstáculo o borde! Inténtalo de nuevo";
+            texto.text = "Obstáculo o borde del tablero";
         else
-            texto.text = "Ejecutado: " + string.Join(" | ", instrucciones);
+            texto.text = "Recorrido terminado";
 
         ejecutando = false;
     }
 
-    // Avanza o retrocede siempre 5 casillas, una detrás de otra.
+    // Mueve el personaje cinco casillas, una a una.
     private IEnumerator Mover(int sentido)
     {
-        for (int paso = 0; paso < 5; paso++)
+        for (int i = 0; i < 5; i++)
         {
             Vector3 direccion = jugador.forward * sentido;
-            Vector3 desplazamiento = new Vector3(
-                Mathf.RoundToInt(direccion.x), 0f,
-                Mathf.RoundToInt(direccion.z));
 
-            Vector3 destino = jugador.position + desplazamiento;
+            Vector3 destino = new Vector3(
+                Mathf.RoundToInt(jugador.position.x + direccion.x),
+                jugador.position.y,
+                Mathf.RoundToInt(jugador.position.z + direccion.z));
 
-            // Tablero: casillas con coordenadas X y Z de 0 a 7.
-            if (destino.x < 0 || destino.x >= columnas ||
-                destino.z < 0 || destino.z >= filas ||
-                Physics.CheckBox(
-                    destino + Vector3.up * 0.5f,
-                    new Vector3(0.35f, 0.45f, 0.35f),
-                    Quaternion.identity,
-                    obstaculos,
-                    QueryTriggerInteraction.Ignore))
+            bool fuera = destino.x < 0 || destino.x >= columnas ||
+                         destino.z < 0 || destino.z >= filas;
+
+            bool hayObstaculo = Physics.CheckBox(
+                destino + Vector3.up * 0.5f,
+                new Vector3(0.4f, 0.45f, 0.4f),
+                Quaternion.identity, obstaculos);
+
+            if (fuera || hayObstaculo)
             {
                 bloqueado = true;
                 yield break;
@@ -259,7 +165,6 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
 
             jugador.position = destino;
 
-            // Comprobamos la meta después de cada casilla.
             if (meta != null &&
                 Mathf.Abs(jugador.position.x - meta.position.x) < 0.1f &&
                 Mathf.Abs(jugador.position.z - meta.position.z) < 0.1f)
@@ -269,4 +174,10 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
             }
         }
     }
+
+    // Métodos obligatorios del plugin de voz.
+    public void OnReadyForSpeech() { texto.text = "Escuchando..."; }
+    public void OnBeginningOfSpeech() { }
+    public void OnVoiceLevelChanged(float nivel) { }
+    public void OnPartialResultReceived(string frase) { }
 }
