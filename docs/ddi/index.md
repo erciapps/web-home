@@ -4,6 +4,15 @@ Recursos, ejemplos y prácticas del módulo de **Desarrollo de Interfaces**.
 
 <div class="grid cards" markdown>
 
+-   :material-gamepad-variant:{ .lg .middle } **Proyecto común DDI + PMDM · Minijuegos 3D en Unity**
+
+    ---
+
+    Cuatro minijuegos 3D para Android: interfaces, interacción táctil, sensores, voz y gestos. **Entrega: 8 de diciembre de 2026**. Exposición en directo.
+
+    [Ver el enunciado](../pmdm/proyecto-minijuegos-3d-android.md)
+
+
 -   :material-view-grid-outline:{ .lg .middle } **Diseño de interfaces**
 
     ---
