@@ -7,6 +7,15 @@ Material de clase, prácticas y recursos del módulo de **Programación Multimed
 
 <div class="grid cards" markdown>
 
+-   :material-controller-classic:{ .lg .middle } **Proyecto común DDI + PMDM · Colección de minijuegos 3D para Android**
+
+    ---
+
+    Por parejas, crear cuatro minijuegos 3D en una sola aplicación Unity. Entrega: **8 de diciembre de 2026**. Exposición en directo (fecha presencial pendiente de confirmación por festivo).
+
+    [:octicons-arrow-right-24: Ver enunciado](proyecto-minijuegos-3d-android.md)
+
+
 -   :material-gamepad-variant:{ .lg .middle } **Videojuegos 2D con Unity**
 
     ---
