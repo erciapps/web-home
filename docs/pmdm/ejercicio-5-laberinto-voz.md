@@ -29,29 +29,34 @@ El paquete convierte la voz en texto. En Android pediremos permiso de micrófono
 !!! important
     El suelo y la meta **no** deben estar en la capa Obstaculos. No añadiremos Rigidbody ni Character Controller al jugador: nos moveremos por casillas mediante el script.
 
-## 3. Las cinco instrucciones
+## 3. Instrucciones por voz
 
 | Lo que decimos | Lo que hace el personaje |
 | --- | --- |
-| **Avanza cinco casillas** | Avanza cinco casillas |
-| **Retrocede cinco casillas** | Retrocede cinco casillas |
+| **Avanza 5** / **Avanza tres casillas** | Avanza 5 o 3 casillas, respectivamente |
+| **Retrocede 2** / **Retrocede una casilla** | Retrocede 2 o 1 casillas, respectivamente |
 | **Gira izquierda** | Gira 90° a la izquierda |
 | **Gira derecha** | Gira 90° a la derecha |
 | **Da la vuelta** | Gira 180° en sentido horario |
 
-También se acepta el número **5** en lugar de «cinco», y las expresiones «gira a la izquierda» y «gira a la derecha».
+La cantidad de casillas **ya no está fija en cinco**. Se admite cualquier entero positivo escrito con cifras (por ejemplo, «avanza 12»). Si el reconocimiento devuelve palabras, el script también interpreta los números **del uno al veinte**. Se puede decir «casilla» o «casillas», o no indicar esa palabra.
 
-**Funcionamiento:** pulsamos ESCUCHAR, decimos **una sola instrucción** y esta se añade al array. Podemos repetir el proceso. Cuando pulsemos EJECUTAR, el personaje realizará las órdenes por orden. Las frases distintas de las cinco órdenes permitidas se rechazan.
+También se aceptan «gira a la izquierda» y «gira a la derecha».
 
-Por ejemplo, después de escuchar tres veces, el array será:
+**Funcionamiento:** pulsa **ESCUCHAR**, di **una instrucción** y añádela al array. Repite tantas veces como quieras. Al pulsar **EJECUTAR**, el personaje ejecuta las instrucciones en orden, deteniéndose si encuentra un obstáculo, sale del tablero o llega a la meta.
+
+Por ejemplo, al escuchar cinco instrucciones, el array contendrá:
 
 ~~~csharp
-["AVANZA", "DERECHA", "RETROCEDE"]
+["AVANZA 5", "DERECHA", "AVANZA 3", "IZQUIERDA", "RETROCEDE 2"]
 ~~~
+
+!!! tip "Si aparece «Orden no válida»"
+    Abre la consola de Unity y comprueba el mensaje **Voz reconocida: [...]**. Puede que el servicio devuelva «cinco» en vez de «5», añada palabras extra o no reconozca bien la instrucción. En el Editor de Unity la voz se simula; la prueba real se hace en Android.
 
 ## 4. Script LaberintoVoz.cs
 
-Crea el archivo **Assets/Scripts/LaberintoVoz.cs** y copia este código:
+Crea el archivo **Assets/Scripts/LaberintoVoz.cs** y copia este código actualizado. Ya incluye reconocimiento de números y movimiento variable:
 
 ~~~csharp
 using System;
@@ -115,13 +120,30 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
             return;
         }
 
-        string orden = frase.ToLower().Trim().TrimEnd('.', '!', '?');
+        // Permite comprobar qué ha entendido realmente el reconocedor.
+        Debug.Log("Voz reconocida: [" + frase + "]");
 
-        // Solo permitimos estas cinco instrucciones.
-        if (orden == "avanza cinco casillas" || orden == "avanza 5 casillas")
-            orden = "AVANZA";
-        else if (orden == "retrocede cinco casillas" || orden == "retrocede 5 casillas")
-            orden = "RETROCEDE";
+        string orden = frase.ToLowerInvariant().Trim().TrimEnd('.', '!', '?', ',', ' ');
+        string[] partes = orden.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+        // Reconocemos números variables: "avanza 5", "retrocede dos",
+        // "avanza tres casillas" o "retrocede 1 casilla".
+        if (partes.Length >= 2 &&
+            (partes[0] == "avanza" || partes[0] == "retrocede"))
+        {
+            int casillas = ObtenerNumero(partes[1]);
+            bool formatoCorrecto = partes.Length == 2 ||
+                (partes.Length == 3 &&
+                 (partes[2] == "casilla" || partes[2] == "casillas"));
+
+            if (casillas > 0 && formatoCorrecto)
+                orden = partes[0].ToUpperInvariant() + " " + casillas;
+            else
+            {
+                texto.text = "Orden no válida: " + frase;
+                return;
+            }
+        }
         else if (orden == "gira izquierda" || orden == "gira a la izquierda")
             orden = "IZQUIERDA";
         else if (orden == "gira derecha" || orden == "gira a la derecha")
@@ -134,11 +156,46 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
             return;
         }
 
-        // Añadimos la orden al array.
+        // Añadimos la orden y su cantidad al array.
         Array.Resize(ref instrucciones, instrucciones.Length + 1);
         instrucciones[instrucciones.Length - 1] = orden;
 
         texto.text = "Órdenes: " + string.Join(" - ", instrucciones);
+    }
+
+    // El reconocedor puede devolver cifras ("5") o palabras ("cinco").
+    private int ObtenerNumero(string palabra)
+    {
+        if (int.TryParse(palabra, out int numero))
+            return numero;
+
+        switch (palabra)
+        {
+            case "uno":
+            case "un":
+            case "una": return 1;
+            case "dos": return 2;
+            case "tres": return 3;
+            case "cuatro": return 4;
+            case "cinco": return 5;
+            case "seis": return 6;
+            case "siete": return 7;
+            case "ocho": return 8;
+            case "nueve": return 9;
+            case "diez": return 10;
+            case "once": return 11;
+            case "doce": return 12;
+            case "trece": return 13;
+            case "catorce": return 14;
+            case "quince": return 15;
+            case "dieciséis":
+            case "dieciseis": return 16;
+            case "diecisiete": return 17;
+            case "dieciocho": return 18;
+            case "diecinueve": return 19;
+            case "veinte": return 20;
+            default: return -1;
+        }
     }
 
     // Se llama desde el botón EJECUTAR.
@@ -159,10 +216,12 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
         {
             texto.text = "Ejecutando: " + orden;
 
-            if (orden == "AVANZA")
-                yield return Mover(1);
-            else if (orden == "RETROCEDE")
-                yield return Mover(-1);
+            string[] partes = orden.Split(' ');
+
+            if (partes[0] == "AVANZA")
+                yield return Mover(1, int.Parse(partes[1]));
+            else if (partes[0] == "RETROCEDE")
+                yield return Mover(-1, int.Parse(partes[1]));
             else if (orden == "IZQUIERDA")
                 jugador.Rotate(0, -90, 0);
             else if (orden == "DERECHA")
@@ -186,10 +245,10 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
         ejecutando = false;
     }
 
-    // Mueve el personaje cinco casillas, una a una.
-    private IEnumerator Mover(int sentido)
+    // Mueve el personaje tantas casillas como indique la orden.
+    private IEnumerator Mover(int sentido, int casillas)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < casillas; i++)
         {
             Vector3 direccion = jugador.forward * sentido;
 
@@ -241,11 +300,12 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
 
 ### Qué hace cada parte
 
-- **Start:** prepara el reconocimiento de voz en español.
-- **Escuchar:** pide permiso y activa el micrófono.
-- **OnResultReceived:** comprueba la frase y la añade al array si es válida.
-- **Ejecutar / Recorrer:** realiza las instrucciones del array una a una.
-- **Mover:** intenta avanzar cinco casillas sin atravesar obstáculos, salir del tablero ni saltarse la meta.
+- **Start:** inicializa el reconocimiento de voz en español.
+- **Escuchar:** solicita permiso y activa el micrófono.
+- **OnResultReceived:** normaliza la frase, comprueba si es válida y añade la orden al array.
+- **ObtenerNumero:** interpreta cifras y números escritos con palabras del uno al veinte.
+- **Ejecutar / Recorrer:** lee cada orden; en movimientos separa el verbo y la cantidad.
+- **Mover:** avanza o retrocede el número indicado de casillas sin atravesar obstáculos, abandonar el tablero ni saltarse la meta.
 
 ## 5. Conectar el script en Unity
 
@@ -274,7 +334,7 @@ El array **Instrucciones** se puede consultar en el Inspector mientras el juego 
 
 Abre **File → Build Profiles → Android → Build And Run** y concede acceso al micrófono.
 
-Comprueba que los comandos válidos se añaden al array, se ejecutan por orden, los obstáculos bloquean el paso y aparece **¡META CONSEGUIDA!** al llegar a la meta.
+Prueba **«avanza 5»**, **«avanza tres casillas»**, **«retrocede 2»** y los giros. Comprueba que el array almacena la cantidad, los movimientos respetan esa cantidad, los obstáculos bloquean el paso y aparece **¡META CONSEGUIDA!** al llegar a la meta.
 
 !!! note
     En Unity Editor, Speech to Text simula respuestas; la prueba real de voz debe hacerse en el móvil. El servicio de reconocimiento de Android debe estar disponible.
