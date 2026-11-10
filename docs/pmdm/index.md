@@ -51,7 +51,7 @@ Material de clase, prácticas y recursos del módulo de **Programación Multimed
 
     ---
 
-    Personaje KayKit, tablero de casillas, obstáculos y órdenes de voz en Android.
+    Personaje KayKit, tablero de casillas, obstáculos y órdenes de voz variables («avanza 5», «retrocede 2») en Android.
 
     [:octicons-arrow-right-24: Abrir ejercicio](ejercicio-5-laberinto-voz.md)
 
