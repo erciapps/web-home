@@ -59,13 +59,30 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
             return;
         }
 
-        string orden = frase.ToLower().Trim().TrimEnd('.', '!', '?');
+        // Permite comprobar qué ha entendido realmente el reconocedor.
+        Debug.Log("Voz reconocida: [" + frase + "]");
 
-        // Solo permitimos estas cinco instrucciones.
-        if (orden == "avanza cinco casillas" || orden == "avanza 5 casillas")
-            orden = "AVANZA";
-        else if (orden == "retrocede cinco casillas" || orden == "retrocede 5 casillas")
-            orden = "RETROCEDE";
+        string orden = frase.ToLowerInvariant().Trim().TrimEnd('.', '!', '?', ',', ' ');
+        string[] partes = orden.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+        // Reconocemos números variables: "avanza 5", "retrocede dos",
+        // "avanza tres casillas" o "retrocede 1 casilla".
+        if (partes.Length >= 2 &&
+            (partes[0] == "avanza" || partes[0] == "retrocede"))
+        {
+            int casillas = ObtenerNumero(partes[1]);
+            bool formatoCorrecto = partes.Length == 2 ||
+                (partes.Length == 3 &&
+                 (partes[2] == "casilla" || partes[2] == "casillas"));
+
+            if (casillas > 0 && formatoCorrecto)
+                orden = partes[0].ToUpperInvariant() + " " + casillas;
+            else
+            {
+                texto.text = "Orden no válida: " + frase;
+                return;
+            }
+        }
         else if (orden == "gira izquierda" || orden == "gira a la izquierda")
             orden = "IZQUIERDA";
         else if (orden == "gira derecha" || orden == "gira a la derecha")
@@ -78,11 +95,46 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
             return;
         }
 
-        // Añadimos la orden al array.
+        // Añadimos la orden y su cantidad al array.
         Array.Resize(ref instrucciones, instrucciones.Length + 1);
         instrucciones[instrucciones.Length - 1] = orden;
 
         texto.text = "Órdenes: " + string.Join(" - ", instrucciones);
+    }
+
+    // El reconocedor puede devolver cifras ("5") o palabras ("cinco").
+    private int ObtenerNumero(string palabra)
+    {
+        if (int.TryParse(palabra, out int numero))
+            return numero;
+
+        switch (palabra)
+        {
+            case "uno":
+            case "un":
+            case "una": return 1;
+            case "dos": return 2;
+            case "tres": return 3;
+            case "cuatro": return 4;
+            case "cinco": return 5;
+            case "seis": return 6;
+            case "siete": return 7;
+            case "ocho": return 8;
+            case "nueve": return 9;
+            case "diez": return 10;
+            case "once": return 11;
+            case "doce": return 12;
+            case "trece": return 13;
+            case "catorce": return 14;
+            case "quince": return 15;
+            case "dieciséis":
+            case "dieciseis": return 16;
+            case "diecisiete": return 17;
+            case "dieciocho": return 18;
+            case "diecinueve": return 19;
+            case "veinte": return 20;
+            default: return -1;
+        }
     }
 
     // Se llama desde el botón EJECUTAR.
@@ -103,10 +155,12 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
         {
             texto.text = "Ejecutando: " + orden;
 
-            if (orden == "AVANZA")
-                yield return Mover(1);
-            else if (orden == "RETROCEDE")
-                yield return Mover(-1);
+            string[] partes = orden.Split(' ');
+
+            if (partes[0] == "AVANZA")
+                yield return Mover(1, int.Parse(partes[1]));
+            else if (partes[0] == "RETROCEDE")
+                yield return Mover(-1, int.Parse(partes[1]));
             else if (orden == "IZQUIERDA")
                 jugador.Rotate(0, -90, 0);
             else if (orden == "DERECHA")
@@ -130,10 +184,10 @@ public class LaberintoVoz : MonoBehaviour, ISpeechToTextListener
         ejecutando = false;
     }
 
-    // Mueve el personaje cinco casillas, una a una.
-    private IEnumerator Mover(int sentido)
+    // Mueve el personaje tantas casillas como indique la orden.
+    private IEnumerator Mover(int sentido, int casillas)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < casillas; i++)
         {
             Vector3 direccion = jugador.forward * sentido;
 
