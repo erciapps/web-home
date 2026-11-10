@@ -98,3 +98,56 @@ Durante la exposición deberéis:
 ---
 
 **Objetivo:** conseguir una colección de cuatro minijuegos 3D que sea coherente, original, fácil de utilizar y completamente funcional en Android.
+
+---
+
+## Algunas ideas para empezar
+
+Si todavía no tenéis clara la temática, aquí van cinco ejemplos de cómo se podrían organizar los cuatro minijuegos. **Son propuestas para orientaros, no juegos que tengáis que copiar.** Podéis elegir una de estas temáticas, cambiar los retos o plantear otra distinta, siempre que se utilicen las cuatro formas de interacción.
+
+### 1. El templo perdido
+
+La aplicación reúne cuatro pruebas ambientadas en un templo antiguo.
+
+- **Táctil — Las puertas del templo:** colocar varias figuras 3D en los huecos que les corresponden para abrir una puerta.
+- **Sensores — El puente inestable:** llevar una esfera hasta la salida inclinando el móvil y evitando que caiga en las trampas.
+- **Voz — El guardián del laberinto:** guiar a un personaje por un recorrido diciendo órdenes como «avanza 3» o «gira a la derecha».
+- **Gestos — Los símbolos mágicos:** activar distintos mecanismos mostrando con la mano el gesto correcto.
+
+### 2. Rescate animal
+
+Los minijuegos se desarrollan en una isla donde hay que ayudar a diferentes animales.
+
+- **Táctil — El refugio:** arrastrar animales a la zona que les corresponde según su especie o hábitat.
+- **Sensores — El río:** conducir una pequeña balsa inclinando el teléfono para evitar las rocas y llegar a la otra orilla.
+- **Voz — El veterinario:** reconocer animales o alimentos y decir en voz alta la respuesta correcta.
+- **Gestos — Las jaulas:** abrir cierres y activar mecanismos con diferentes gestos para liberar animales.
+
+### 3. Misión espacial
+
+Las pruebas forman parte de una misión en una estación espacial y un planeta cercano.
+
+- **Táctil — Preparación de la nave:** colocar baterías, motores y otras piezas 3D en los espacios correspondientes.
+- **Sensores — Campo de asteroides:** mover una nave inclinando el móvil para evitar obstáculos.
+- **Voz — Robot explorador:** dirigir un robot por un terreno desconocido mediante órdenes habladas.
+- **Gestos — Reparación de la estación:** encender, apagar o confirmar acciones de diferentes máquinas usando la mano.
+
+### 4. La fábrica inteligente
+
+La aplicación está ambientada en un almacén y una fábrica que preparan pedidos.
+
+- **Táctil — Clasificación de paquetes:** colocar cajas en distintas estanterías según su contenido, tamaño o color.
+- **Sensores — Transporte de mercancías:** llevar una carga por un recorrido manteniendo el equilibrio con la inclinación del teléfono.
+- **Voz — Robot de almacén:** dar instrucciones a un robot para que llegue a un paquete y lo lleve a la zona de entrega.
+- **Gestos — Cadena de montaje:** detener una cinta, sujetar piezas o confirmar operaciones con gestos de la mano.
+
+### 5. Academia de magia
+
+Una escuela de magia plantea cuatro pruebas distintas a sus aprendices.
+
+- **Táctil — Preparación de pociones:** arrastrar los ingredientes correctos a un caldero siguiendo una receta.
+- **Sensores — La esfera encantada:** guiar una bola mágica a través de un recorrido con plataformas y trampas.
+- **Voz — Hechizos:** dar instrucciones habladas para abrir puertas, mover objetos o dirigir a un personaje.
+- **Gestos — Duelo mágico:** activar un escudo o lanzar distintos poderes según el gesto reconocido.
+
+En todos los casos, los cuatro minijuegos se abren **desde el mismo menú principal**. No es necesario jugar uno para acceder a los demás y, al terminar cada prueba, se muestra el resultado y se vuelve al menú.
