@@ -392,6 +392,14 @@ Después de probar Flask manualmente, la **UD2.4** incluye una ampliación con `
     <p>Configura Git y Python en tu Debian, prepara el repositorio y ejecuta una aplicación Flask como servicio.</p>
     <div class="si-card-bottom"><div class="si-ra"><span>Git · venv · Flask · systemctl</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_7/">Ver ejercicio <span>→</span></a></div></div>
   </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD2.8</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Administración de SSH, PostgreSQL y pgAdmin</h3>
+    <p>Instala y configura servicios reales en Debian, cambia sus puertos y comprueba sus procesos y conexiones.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>systemctl · ss · sshd · PostgreSQL</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_8/">Ver contenido <span>→</span></a></div></div>
+  </article>
+
 </div>
 
 !!! tip "Entorno de trabajo"
