@@ -30,6 +30,7 @@ nav:
               - UD2.5 · Gestor de procesos con Flask y Bash: si/ud2/ejercicios/ud2_5.md
               - UD2.6 · Programación de tareas con Cron y Flask: si/ud2/ejercicios/ud2_6.md
               - UD2.7 · Git, Debian y servicios con systemd: si/ud2/ejercicios/ud2_7.md
+              - UD2.8 · Servicios SSH, PostgreSQL y pgAdmin: si/ud2/ejercicios/ud2_8.md
 
   - PMDM:
       - Portada: pmdm/index.md
