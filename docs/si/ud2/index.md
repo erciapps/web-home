@@ -400,6 +400,14 @@ Después de probar Flask manualmente, la **UD2.4** incluye una ampliación con `
     <div class="si-card-bottom"><div class="si-ra"><span>systemctl · ss · sshd · PostgreSQL</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_8/">Ver contenido <span>→</span></a></div></div>
   </article>
 
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD2.9</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">$</div>
+    <h3>Servicio de copia de seguridad PostgreSQL con Flask</h3>
+    <p>Crea un servicio oneshot que ejecute un script Bash y descarga la copia desde Flask. Consulta los registros con journalctl.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>Bash · systemd · Flask · journald</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud2_9/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
+
 </div>
 
 !!! tip "Entorno de trabajo"
