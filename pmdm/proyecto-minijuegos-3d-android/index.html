@@ -1,0 +1,2598 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recursos educativos de los módulos de Desarrollo de Aplicaciones Multiplataforma">
+      
+      
+      
+        <link rel="canonical" href="https://erciapps.es/pmdm/proyecto-minijuegos-3d-android/">
+      
+      
+        <link rel="prev" href="../androicilla/">
+      
+      
+        <link rel="next" href="../ejercicio-2-figuras/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Proyecto común DDI + PMDM · Minijuegos 3D Android - ERCI Apps · DAM</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/erci-site.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#proyecto-comun-ddi-pmdm-coleccion-de-minijuegos-3d-para-android" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../.." title="ERCI Apps · DAM" class="md-header__button md-logo" aria-label="ERCI Apps · DAM" data-md-component="logo">
+      
+  <img src="../../assets/images/ercilogo2.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ERCI Apps · DAM
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Proyecto común DDI + PMDM · Minijuegos 3D Android
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo claro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo claro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="deep-orange"  aria-label="Cambiar a modo oscuro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo oscuro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Pestañas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Inicio
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../si/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Sistemas Informáticos
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PMDM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../recursos/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Recursos transversales
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ddi/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Desarrollo de Interfaces
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../proyecto2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Proyecto II
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ERCI Apps · DAM" class="md-nav__button md-logo" aria-label="ERCI Apps · DAM" data-md-component="logo">
+      
+  <img src="../../assets/images/ercilogo2.png" alt="logo">
+
+    </a>
+    ERCI Apps · DAM
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../si/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sistemas Informáticos
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sistemas Informáticos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../si/ud1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1 · Introducción al entorno Linux
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD1 · Introducción al entorno Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.2 · Creación de directorios
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.3 · Rutas absolutas y relativas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.4 · Scripts y gestión de estructuras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.5 · Edición de ficheros con sed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.6 · Cuestionario con Bash y sed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.7 · Generación de estructuras desde un fichero
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.8 · Gestión automatizada de archivos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/ud1_9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD1.9 · Validador automático de entregas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/entregable_ud1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entregable UD1 · Gestor de archivos (45 min)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud1/ejercicios/entregable_ud1_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ENTREGABLE 2 UD1 · Preparar y comprobar (60 min)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../si/ud2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2 · Usuarios, permisos, procesos y servicios
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UD2 · Usuarios, permisos, procesos y servicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicios
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ejercicios
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.1 · chmod y chown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.2 · Usuarios y grupos desde TXT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.3 · Procesos: ps, top, htop, kill y pkill
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.4 · Flask, HTML y procesos desde Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.5 · Gestor de procesos con Flask y Bash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.6 · Programación de tareas con Cron y Flask
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.7 · Git, Debian y servicios con systemd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.8 · Administración de servicios: PostgreSQL, pgAdmin y SSH
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../si/ud2/ejercicios/ud2_9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UD2.9 · Copia de seguridad PostgreSQL con Flask
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PMDM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PMDM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../videojuegos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Videojuegos 2D con Unity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../androicilla/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Androicilla · Unity 3D y Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyecto común DDI + PMDM · Minijuegos 3D Android
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyecto común DDI + PMDM · Minijuegos 3D Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#en-que-consiste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿En qué consiste?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#los-cuatro-minijuegos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Los cuatro minijuegos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionamiento-de-la-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funcionamiento de la aplicación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-y-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño y desarrollo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entrega
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exposicion-en-directo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exposición en directo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algunas-ideas-para-empezar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algunas ideas para empezar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algunas ideas para empezar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-el-templo-perdido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. El templo perdido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-rescate-animal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Rescate animal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mision-espacial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Misión espacial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-la-fabrica-inteligente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. La fábrica inteligente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-academia-de-magia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Academia de magia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicio-2-figuras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio 2 · Clasificador de figuras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicio-3-animales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio 3 · Clasificador de animales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicio-5-laberinto-voz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio 5 · Laberinto 3D por voz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ejercicio-6-preparacion-gestos-voz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ejercicio 6 · Preparación de gestos y palabras
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recursos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../recursos/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recursos transversales
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recursos transversales
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recursos/git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git · Control de versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recursos/markdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ddi/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Desarrollo de Interfaces
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Desarrollo de Interfaces
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ddi/instalacion-avalonia-android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avalonia · Instalar y ejecutar en Android
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ddi/avalonia-en-navegador/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Avalonia · Ejecutar en navegador
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ddi/proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyecto · Aplicación de gestión
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../proyecto2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proyecto II
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Proyecto II
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#en-que-consiste" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿En qué consiste?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#los-cuatro-minijuegos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Los cuatro minijuegos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funcionamiento-de-la-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Funcionamiento de la aplicación
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diseno-y-desarrollo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diseño y desarrollo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entrega" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entrega
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exposicion-en-directo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exposición en directo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#algunas-ideas-para-empezar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Algunas ideas para empezar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Algunas ideas para empezar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-el-templo-perdido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. El templo perdido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-rescate-animal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Rescate animal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-mision-espacial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Misión espacial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-la-fabrica-inteligente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. La fábrica inteligente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-academia-de-magia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Academia de magia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="proyecto-comun-ddi-pmdm-coleccion-de-minijuegos-3d-para-android">Proyecto común DDI + PMDM · Colección de minijuegos 3D para Android<a class="headerlink" href="#proyecto-comun-ddi-pmdm-coleccion-de-minijuegos-3d-para-android" title="Permanent link">&para;</a></h1>
+<p><strong>Curso:</strong> 2026-2027<br />
+<strong>Módulos:</strong> Desarrollo de Interfaces (DDI) y Programación Multimedia y Dispositivos Móviles (PMDM)<br />
+<strong>Modalidad:</strong> Por parejas<br />
+<strong>Tecnología:</strong> <strong>Unity 6 y C#</strong>, con aplicación final para <strong>Android</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Entrega y exposición</p>
+<p><strong>Fecha de entrega: martes, 8 de diciembre de 2026.</strong><br />
+<strong>Fecha indicada para la exposición en directo: martes, 8 de diciembre de 2026.</strong></p>
+<p>El <strong>8 de diciembre es festivo</strong> en Castilla-La Mancha. Por ello, la <strong>fecha de la exposición presencial está pendiente de confirmación</strong>. Se mantiene provisionalmente la fecha indicada hasta que el profesorado comunique el ajuste.</p>
+</div>
+<h2 id="en-que-consiste">¿En qué consiste?<a class="headerlink" href="#en-que-consiste" title="Permanent link">&para;</a></h2>
+<p>Vais a crear <strong>un único videojuego 3D para Android que reúna cuatro minijuegos diferentes</strong>. Cada pareja elegirá una temática común y diseñará cuatro desafíos originales relacionados con ella.</p>
+<p>Por ejemplo, podéis ambientar la colección en un templo antiguo, una isla llena de animales, una estación espacial, una fábrica, una academia de magia o cualquier otra temática que os interese.</p>
+<p><strong>No son cuatro aplicaciones distintas ni cuatro niveles que haya que superar en orden.</strong> Todos los minijuegos forman parte de la <strong>misma aplicación</strong> y se pueden elegir libremente desde el <strong>menú principal</strong>.</p>
+<p>Al terminar cualquiera de ellos, aparecerá su resultado y el jugador <strong>volverá al menú principal</strong>, desde donde podrá iniciar otro minijuego o repetir el anterior.</p>
+<h2 id="los-cuatro-minijuegos">Los cuatro minijuegos<a class="headerlink" href="#los-cuatro-minijuegos" title="Permanent link">&para;</a></h2>
+<p>Cada minijuego utilizará una de las formas de interacción que hemos trabajado en clase. El orden y la temática son libres.</p>
+<table>
+<thead>
+<tr>
+<th>Minijuego</th>
+<th>Tecnología</th>
+<th>¿Qué podéis hacer?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Interacción táctil</strong></td>
+<td>Selección, arrastre y controles táctiles en Unity</td>
+<td>Clasificar objetos 3D, colocar figuras, construir mecanismos o resolver puzles moviendo elementos con el dedo.</td>
+</tr>
+<tr>
+<td><strong>Sensores del móvil</strong></td>
+<td>Inclinación del dispositivo (por ejemplo, <code>GravitySensor</code>)</td>
+<td>Dirigir una bola por un laberinto, equilibrar una plataforma, controlar un vehículo o esquivar obstáculos.</td>
+</tr>
+<tr>
+<td><strong>Reconocimiento de voz</strong></td>
+<td>Speech to Text</td>
+<td>Dar órdenes como «avanza 3», «retrocede 2» o «gira derecha», responder preguntas o activar mecanismos mediante instrucciones habladas.</td>
+</tr>
+<tr>
+<td><strong>Reconocimiento de gestos</strong></td>
+<td>Cámara y reconocimiento de manos con HandForge</td>
+<td>Abrir puertas, seleccionar opciones o activar elementos al mostrar mano abierta, puño cerrado o pulgar arriba/abajo.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Elegid mecánicas distintas</p>
+<p>No basta con cambiar los modelos o los colores: <strong>cada minijuego debe proponer un reto y una forma de jugar diferentes</strong>. Podéis utilizar los ejercicios realizados en clase como punto de partida, pero tendréis que adaptarlos y ampliarlos a vuestra propia temática.</p>
+</div>
+<h2 id="funcionamiento-de-la-aplicacion">Funcionamiento de la aplicación<a class="headerlink" href="#funcionamiento-de-la-aplicacion" title="Permanent link">&para;</a></h2>
+<p>Al abrir el juego aparecerá un <strong>menú principal</strong> con acceso a los cuatro minijuegos, las instrucciones y los resultados.</p>
+<p>En cada minijuego, el jugador debe saber qué tiene que hacer antes de empezar. Deberá existir:</p>
+<ul>
+<li>Un <strong>escenario 3D</strong> con un objetivo claro.</li>
+<li>Una mecánica que utilice realmente la tecnología asignada.</li>
+<li>Una forma de detectar si el reto se ha completado, y de informar de errores o intentos fallidos cuando corresponda.</li>
+<li>Un indicador de <strong>tiempo, puntuación, aciertos o errores</strong>, según el tipo de juego.</li>
+<li>Una <strong>pantalla de resultado</strong> al finalizar.</li>
+<li>Una opción para <strong>regresar al menú principal</strong> sin necesidad de terminar el reto.</li>
+</ul>
+<p>Los minijuegos serán <strong>independientes</strong>: superar uno no desbloquea ni obliga a jugar otro. Desde el menú se podrán consultar los <strong>mejores resultados</strong>, que deberán conservarse al cerrar y volver a abrir la aplicación.</p>
+<h2 id="diseno-y-desarrollo">Diseño y desarrollo<a class="headerlink" href="#diseno-y-desarrollo" title="Permanent link">&para;</a></h2>
+<p>La aplicación se desarrollará <strong>únicamente con Unity 6 y C#</strong>. No se utilizará Avalonia ni será necesario crear una segunda aplicación.</p>
+<p>Aprovecharemos las herramientas y tecnologías vistas en clase: <strong>Unity 3D, Input System, ProBuilder, escenas, cámaras, colliders, Rigidbody, materiales, animaciones, TextMeshPro, controles táctiles, sensores, reconocimiento de voz y reconocimiento de gestos</strong>, según las necesidades de cada minijuego.</p>
+<p>Prestad especial atención a:</p>
+<ul>
+<li><strong>Interfaz y navegación:</strong> menús, botones y mensajes claros, con una apariencia común y tamaños adecuados para el móvil.</li>
+<li><strong>Experiencia de usuario:</strong> instrucciones comprensibles, información durante la partida y resultados fáciles de interpretar.</li>
+<li><strong>Escenarios y mecánicas:</strong> objetos y entornos 3D, colisiones, físicas, cámaras y animaciones cuando correspondan.</li>
+<li><strong>Sonido y respuesta visual:</strong> efectos que acompañen las acciones y permitan entender qué está ocurriendo.</li>
+<li><strong>Organización del código:</strong> scripts bien estructurados y componentes reutilizables para los menús, resultados u otras funciones compartidas.</li>
+<li><strong>Pruebas:</strong> comprobar la navegación, la detección de aciertos y errores y las cuatro tecnologías en un <strong>dispositivo Android real</strong>. Gestionad los permisos de cámara y micrófono.</li>
+<li><strong>Trabajo en pareja:</strong> organización de las tareas y uso de <strong>Git</strong> para registrar los avances.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Proyecto común de dos módulos</p>
+<p>El proyecto sirve para trabajar y evaluar aprendizajes de <strong>DDI y PMDM</strong>, pero <strong>solo se desarrolla un juego en Unity</strong>. Cada módulo valorará los aspectos que le correspondan; no es un proyecto intermodular.</p>
+</div>
+<h2 id="entrega">Entrega<a class="headerlink" href="#entrega" title="Permanent link">&para;</a></h2>
+<p>La entrega deberá incluir:</p>
+<ol>
+<li><strong>Proyecto completo de Unity</strong>, con <code>Assets</code>, <code>Packages</code>, <code>ProjectSettings</code> y los recursos necesarios para abrirlo.</li>
+<li><strong>APK para Android</strong> que permita probar la colección de minijuegos.</li>
+<li><strong>README.md</strong> con la temática, la explicación de los cuatro minijuegos, instrucciones y controles, herramientas utilizadas y procedencia de los recursos.</li>
+</ol>
+<p><strong>Fecha de entrega: 8 de diciembre de 2026.</strong></p>
+<h2 id="exposicion-en-directo">Exposición en directo<a class="headerlink" href="#exposicion-en-directo" title="Permanent link">&para;</a></h2>
+<p><strong>No hay que entregar un vídeo.</strong> Cada pareja realizará una <strong>presentación en tiempo real</strong> de su aplicación, ejecutando el juego y enseñando cómo funciona.</p>
+<p>Durante la exposición deberéis:</p>
+<ol>
+<li>Presentar la temática y enseñar el <strong>menú principal</strong>.</li>
+<li><strong>Jugar en directo a los cuatro minijuegos</strong>, mostrando sus controles y cómo se obtienen los resultados.</li>
+<li>Demostrar el funcionamiento de la <strong>interacción táctil, los sensores, la voz y los gestos</strong> en Android.</li>
+<li>Enseñar las partes principales del <strong>código C#</strong> y explicar cómo habéis desarrollado las mecánicas e interfaces.</li>
+<li>Explicar brevemente cómo os habéis repartido el trabajo y qué problemas habéis resuelto.</li>
+</ol>
+<p><strong>Ambos integrantes de la pareja deberán intervenir y conocer el funcionamiento del proyecto.</strong></p>
+<p><strong>Fecha indicada para la exposición: 8 de diciembre de 2026</strong>, pendiente de confirmación presencial al coincidir con festivo.</p>
+<hr />
+<p><strong>Objetivo:</strong> conseguir una colección de cuatro minijuegos 3D que sea coherente, original, fácil de utilizar y completamente funcional en Android.</p>
+<hr />
+<h2 id="algunas-ideas-para-empezar">Algunas ideas para empezar<a class="headerlink" href="#algunas-ideas-para-empezar" title="Permanent link">&para;</a></h2>
+<p>Si todavía no tenéis clara la temática, aquí van cinco ejemplos de cómo se podrían organizar los cuatro minijuegos. <strong>Son propuestas para orientaros, no juegos que tengáis que copiar.</strong> Podéis elegir una de estas temáticas, cambiar los retos o plantear otra distinta, siempre que se utilicen las cuatro formas de interacción.</p>
+<h3 id="1-el-templo-perdido">1. El templo perdido<a class="headerlink" href="#1-el-templo-perdido" title="Permanent link">&para;</a></h3>
+<p>La aplicación reúne cuatro pruebas ambientadas en un templo antiguo.</p>
+<ul>
+<li><strong>Táctil — Las puertas del templo:</strong> colocar varias figuras 3D en los huecos que les corresponden para abrir una puerta.</li>
+<li><strong>Sensores — El puente inestable:</strong> llevar una esfera hasta la salida inclinando el móvil y evitando que caiga en las trampas.</li>
+<li><strong>Voz — El guardián del laberinto:</strong> guiar a un personaje por un recorrido diciendo órdenes como «avanza 3» o «gira a la derecha».</li>
+<li><strong>Gestos — Los símbolos mágicos:</strong> activar distintos mecanismos mostrando con la mano el gesto correcto.</li>
+</ul>
+<h3 id="2-rescate-animal">2. Rescate animal<a class="headerlink" href="#2-rescate-animal" title="Permanent link">&para;</a></h3>
+<p>Los minijuegos se desarrollan en una isla donde hay que ayudar a diferentes animales.</p>
+<ul>
+<li><strong>Táctil — El refugio:</strong> arrastrar animales a la zona que les corresponde según su especie o hábitat.</li>
+<li><strong>Sensores — El río:</strong> conducir una pequeña balsa inclinando el teléfono para evitar las rocas y llegar a la otra orilla.</li>
+<li><strong>Voz — El veterinario:</strong> reconocer animales o alimentos y decir en voz alta la respuesta correcta.</li>
+<li><strong>Gestos — Las jaulas:</strong> abrir cierres y activar mecanismos con diferentes gestos para liberar animales.</li>
+</ul>
+<h3 id="3-mision-espacial">3. Misión espacial<a class="headerlink" href="#3-mision-espacial" title="Permanent link">&para;</a></h3>
+<p>Las pruebas forman parte de una misión en una estación espacial y un planeta cercano.</p>
+<ul>
+<li><strong>Táctil — Preparación de la nave:</strong> colocar baterías, motores y otras piezas 3D en los espacios correspondientes.</li>
+<li><strong>Sensores — Campo de asteroides:</strong> mover una nave inclinando el móvil para evitar obstáculos.</li>
+<li><strong>Voz — Robot explorador:</strong> dirigir un robot por un terreno desconocido mediante órdenes habladas.</li>
+<li><strong>Gestos — Reparación de la estación:</strong> encender, apagar o confirmar acciones de diferentes máquinas usando la mano.</li>
+</ul>
+<h3 id="4-la-fabrica-inteligente">4. La fábrica inteligente<a class="headerlink" href="#4-la-fabrica-inteligente" title="Permanent link">&para;</a></h3>
+<p>La aplicación está ambientada en un almacén y una fábrica que preparan pedidos.</p>
+<ul>
+<li><strong>Táctil — Clasificación de paquetes:</strong> colocar cajas en distintas estanterías según su contenido, tamaño o color.</li>
+<li><strong>Sensores — Transporte de mercancías:</strong> llevar una carga por un recorrido manteniendo el equilibrio con la inclinación del teléfono.</li>
+<li><strong>Voz — Robot de almacén:</strong> dar instrucciones a un robot para que llegue a un paquete y lo lleve a la zona de entrega.</li>
+<li><strong>Gestos — Cadena de montaje:</strong> detener una cinta, sujetar piezas o confirmar operaciones con gestos de la mano.</li>
+</ul>
+<h3 id="5-academia-de-magia">5. Academia de magia<a class="headerlink" href="#5-academia-de-magia" title="Permanent link">&para;</a></h3>
+<p>Una escuela de magia plantea cuatro pruebas distintas a sus aprendices.</p>
+<ul>
+<li><strong>Táctil — Preparación de pociones:</strong> arrastrar los ingredientes correctos a un caldero siguiendo una receta.</li>
+<li><strong>Sensores — La esfera encantada:</strong> guiar una bola mágica a través de un recorrido con plataformas y trampas.</li>
+<li><strong>Voz — Hechizos:</strong> dar instrucciones habladas para abrir puertas, mover objetos o dirigir a un personaje.</li>
+<li><strong>Gestos — Duelo mágico:</strong> activar un escudo o lanzar distintos poderes según el gesto reconocido.</li>
+</ul>
+<p>En todos los casos, los cuatro minijuegos se abren <strong>desde el mismo menú principal</strong>. No es necesario jugar uno para acceder a los demás y, al terminar cada prueba, se muestra el resultado y se vuelve al menú.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      IES Alonso de Ercilla · Curso 2026-2027
+    </div>
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../../assets/javascripts/home.js"></script>
+      
+        <script src="../../assets/javascripts/image-viewer.js"></script>
+      
+    
+  </body>
+</html>

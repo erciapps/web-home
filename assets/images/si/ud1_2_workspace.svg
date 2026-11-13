@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+<title id="title">Organización de directorios del ejercicio UD1.2</title>
+<desc id="desc">Workspace contiene ud1. Dentro de ud1 hay scripts y pruebas. Scripts contiene el script principal y una carpeta auxiliares. Pruebas contiene ud1_2, donde se genera la estructura del ejercicio.</desc>
+<style>
+  .bg{fill:#11151d}.panel{fill:#181d27;stroke:#394150;stroke-width:2}.root{fill:#222938;stroke:#ff9800;stroke-width:3}.folder{fill:#202735;stroke:#667085;stroke-width:2}.accent{fill:#2b2113;stroke:#ff9800;stroke-width:2}.file{fill:#17202c;stroke:#475467;stroke-width:2}.line{stroke:#667085;stroke-width:3;fill:none}.dash{stroke:#667085;stroke-width:2;stroke-dasharray:7 7}.t1{fill:#f5f7fa;font:700 27px system-ui,sans-serif}.t2{fill:#f5f7fa;font:600 21px system-ui,sans-serif}.t3{fill:#cbd5e1;font:17px system-ui,sans-serif}.mono{fill:#f5f7fa;font:18px ui-monospace,SFMono-Regular,Consolas,monospace}.orange{fill:#ffab40}.muted{fill:#98a2b3;font:16px system-ui,sans-serif}
+</style>
+<rect class="bg" width="1200" height="650" rx="24"/>
+<text class="t1" x="60" y="62">UD1.2 · Organización del trabajo</text>
+<text class="t3" x="60" y="94">Todo el ejercicio permanece dentro de /workspace/ud1</text>
+
+<rect class="root" x="60" y="130" width="1080" height="76" rx="16"/>
+<text class="t2" x="92" y="165">📁 /workspace/ud1/</text>
+<text class="muted" x="92" y="190">Raíz de la unidad</text>
+
+<path class="line" d="M600 206 V246 M315 246 H885 M315 246 V274 M885 246 V274"/>
+
+<rect class="panel" x="80" y="274" width="470" height="310" rx="18"/>
+<text class="t2 orange" x="110" y="314">📁 scripts/</text>
+<text class="muted" x="110" y="340">Código que ejecutas</text>
+<path class="line" d="M130 365 V515"/>
+<path class="line" d="M130 394 H165 M130 454 H165"/>
+<rect class="file" x="165" y="367" width="330" height="54" rx="12"/>
+<text class="mono" x="187" y="401">ud1_2.sh</text>
+<rect class="accent" x="165" y="435" width="330" height="122" rx="12"/>
+<text class="mono orange" x="187" y="469">auxiliares/</text>
+<text class="mono" x="210" y="503">├─ crear_estructura.sh</text>
+<text class="mono" x="210" y="535">└─ reiniciar_ud1_2.sh</text>
+
+<rect class="panel" x="650" y="274" width="470" height="310" rx="18"/>
+<text class="t2 orange" x="680" y="314">📁 pruebas/</text>
+<text class="muted" x="680" y="340">Zona que modifican los scripts</text>
+<rect class="folder" x="700" y="367" width="370" height="190" rx="14"/>
+<text class="mono" x="725" y="402">ud1_2/</text>
+<text class="mono" x="750" y="438">├─ java/</text>
+<text class="mono" x="775" y="472">├─ config/ · models/</text>
+<text class="mono" x="775" y="506">└─ views/ · controllers/</text>
+<text class="mono" x="750" y="540">└─ resources/</text>
+
+<path class="dash" d="M550 430 H650"/>
+<text class="muted" x="565" y="414">actúan</text>
+<text class="t3" x="60" y="625">scripts = lógica   ·   auxiliares = preparar/reiniciar   ·   pruebas = resultado</text>
+</svg>
