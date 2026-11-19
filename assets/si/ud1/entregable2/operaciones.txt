@@ -1,0 +1,4 @@
+COPY;./plantilla.txt;./pruebas/entregable2/origen/documentos/README.txt
+COPY;./pruebas/entregable2/origen/documentos/README.txt;./pruebas/entregable2/destino/documentos/README.txt
+MOVE;./pruebas/entregable2/origen/documentos/notas.txt;./pruebas/entregable2/destino/archivados/notas.txt
+COPYDIR;./pruebas/entregable2/origen/config;./pruebas/entregable2/destino/copias/config
