@@ -34,6 +34,13 @@ En esta unidad aprenderás a conectar equipos en red, configurar sus direcciones
     <p>Configura un bridge desde WebFig, consulta la tabla MAC y administra los puertos del switch.</p>
     <div class="si-card-bottom"><div class="si-ra"><span>GNS3 · MikroTik · WebFig · Bridge · MAC</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud3_3/">Ver ejercicio <span>→</span></a></div></div>
   </article>
+  <article class="si-card available" style="--accent:#ff7a00">
+    <div class="si-card-top"><span class="si-code">UD3.4</span><span class="si-state available">Disponible</span></div>
+    <div class="si-unit-icon">TCP</div>
+    <h3>Servidor web y redirección de puertos con OpenWrt</h3>
+    <p>Publica un servidor Python de la LAN, configura la redirección desde LuCI y comprueba el acceso desde la WAN.</p>
+    <div class="si-card-bottom"><div class="si-ra"><span>GNS3 · OpenWrt · NAT · TCP · Python</span></div><div class="si-actions"><a class="si-button" href="ejercicios/ud3_4/">Ver ejercicio <span>→</span></a></div></div>
+  </article>
 </div>
 
 !!! tip "Entorno de trabajo"
