@@ -36,6 +36,7 @@ nav:
           - Contenidos: si/ud3/index.md
           - Ejercicios:
               - UD3.1 · Creación de una red local con GNS3: si/ud3/ejercicios/ud3_1.md
+              - UD3.2 · OpenWrt, DHCP y Webterm: si/ud3/ejercicios/ud3_2.md
 
   - PMDM:
       - Portada: pmdm/index.md
