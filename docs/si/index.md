@@ -19,7 +19,7 @@ hide:
     <div class="si-stats">
       <div><strong>08</strong><span>Unidades didácticas</span></div>
       <div><strong>07</strong><span>Resultados de aprendizaje</span></div>
-      <div><strong>02</strong><span>Unidades disponibles</span></div>
+      <div><strong>03</strong><span>Unidades disponibles</span></div>
     </div>
   </section>
 
@@ -64,12 +64,12 @@ hide:
       </div>
     </article>
 
-    <article class="si-card" style="--accent:#ff7a00">
-      <div class="si-card-top"><span class="si-code">UD3</span><span class="si-state">En preparación</span></div>
-      <div class="si-unit-icon">↔</div>
+    <article class="si-card available" style="--accent:#ff7a00">
+      <div class="si-card-top"><span class="si-code">UD3</span><span class="si-state available">Disponible</span></div>
+      <div class="si-unit-icon">LAN</div>
       <h3>Redes TCP/IP y conectividad</h3>
-      <p>Redes TCP/IP, conectividad, SSH y puertos.</p>
-      <div class="si-card-bottom"><div class="si-ra"><span>RA5</span></div><span class="si-soon">Próximamente</span></div>
+      <p>Redes TCP/IP, configuración de redes en GNS3, conectividad, SSH y puertos.</p>
+      <div class="si-card-bottom"><div class="si-ra"><span>RA5</span></div><div class="si-actions"><a class="si-button" href="ud3/">Acceder <span>→</span></a></div></div>
     </article>
 
     <article class="si-card" style="--accent:#ff7a00">
