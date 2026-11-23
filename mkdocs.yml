@@ -38,6 +38,7 @@ nav:
               - UD3.1 · Creación de una red local con GNS3: si/ud3/ejercicios/ud3_1.md
               - UD3.2 · OpenWrt, DHCP y Webterm: si/ud3/ejercicios/ud3_2.md
               - UD3.3 · Switch MikroTik RouterOS: si/ud3/ejercicios/ud3_3.md
+              - UD3.4 · Redirección de puertos con OpenWrt: si/ud3/ejercicios/ud3_4.md
 
   - PMDM:
       - Portada: pmdm/index.md
