@@ -32,6 +32,10 @@ nav:
               - UD2.7 · Git, Debian y servicios con systemd: si/ud2/ejercicios/ud2_7.md
               - "UD2.8 · Administración de servicios: PostgreSQL, pgAdmin y SSH": si/ud2/ejercicios/ud2_8.md
               - UD2.9 · Copia de seguridad PostgreSQL con Flask: si/ud2/ejercicios/ud2_9.md
+      - UD3 · Redes TCP/IP y conectividad:
+          - Contenidos: si/ud3/index.md
+          - Ejercicios:
+              - UD3.1 · Creación de una red local con GNS3: si/ud3/ejercicios/ud3_1.md
 
   - PMDM:
       - Portada: pmdm/index.md
