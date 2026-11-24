@@ -42,6 +42,7 @@ nav:
 
   - PMDM:
       - Portada: pmdm/index.md
+      - Práctica · DinoManager SQLite y PowerSync: pmdm/dinomanager-sqlite-powersync.md
       - Videojuegos 2D con Unity: pmdm/videojuegos/index.md
       - Androicilla · Unity 3D y Android: pmdm/androicilla/index.md
       - Proyecto común DDI + PMDM · Minijuegos 3D Android: pmdm/proyecto-minijuegos-3d-android.md
