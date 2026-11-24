@@ -11,6 +11,12 @@ En esta unidad aprenderás a conectar equipos en red, configurar sus direcciones
 - Configurar progresivamente servicios y acceso entre redes.
 
 
+## Material teórico
+
+[**Subredes, bridges y VLANs (PDF)**](SUBNETING2026.pdf)
+
+Apuntes sobre máscaras de red, subnetting, bridges y segmentación mediante VLANs, con ejemplos y esquemas.
+
 ## Direcciones WAN y puertos asignados
 
 Utiliza exclusivamente la IP WAN estática y los puertos externos asignados a tu usuario. La máscara WAN es `/24` y la puerta de enlace y DNS son `192.168.122.1`. No utilices los puertos de otros alumnos.
