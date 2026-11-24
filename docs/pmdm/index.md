@@ -7,6 +7,14 @@ Material de clase, prácticas y recursos del módulo de **Programación Multimed
 
 <div class="grid cards" markdown>
 
+-   :material-database-sync:{ .lg .middle } **Práctica · DinoManager: SQLite y PowerSync (parte 1)**
+
+    ---
+
+    Crear un CRUD de dinosaurios con Avalonia y SQLite. Preparar PostgreSQL y PowerSync en Portainer para descargar registros. Código comentado y ViewModel para desarrollar en clase.
+
+    [:octicons-arrow-right-24: Abrir práctica](dinomanager-sqlite-powersync.md)
+
 -   :material-controller-classic:{ .lg .middle } **Proyecto común DDI + PMDM · Colección de minijuegos 3D para Android**
 
     ---
