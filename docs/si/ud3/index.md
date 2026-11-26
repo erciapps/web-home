@@ -13,9 +13,18 @@ En esta unidad aprenderás a conectar equipos en red, configurar sus direcciones
 
 ## Material teórico
 
+[**Sistemas informáticos en red · Redes 2026 (PDF)**](REDES_2026.pdf)
+
+Apuntes sobre direccionamiento IP, NAT, DNS, puertos, modelos OSI y TCP/IP, DHCP y dispositivos de red.
+
 [**Subredes, bridges y VLANs (PDF)**](SUBNETING2026.pdf)
 
 Apuntes sobre máscaras de red, subnetting, bridges y segmentación mediante VLANs, con ejemplos y esquemas.
+
+## Recursos interactivos y ejercicios complementarios
+
+- [**Protocol Explorer**](https://protocol-explorer-alpha.vercel.app/): recurso interactivo para explorar los protocolos de red.
+- [**Ejercicios de subnetting — Subredes.es**](https://subredes.es/ejercicios-subnetting/): ejercicios para practicar el cálculo de subredes.
 
 ## Direcciones WAN y puertos asignados
 
