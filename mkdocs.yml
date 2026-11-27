@@ -32,6 +32,10 @@ nav:
               - UD2.7 · Git, Debian y servicios con systemd: si/ud2/ejercicios/ud2_7.md
               - "UD2.8 · Administración de servicios: PostgreSQL, pgAdmin y SSH": si/ud2/ejercicios/ud2_8.md
               - UD2.9 · Copia de seguridad PostgreSQL con Flask: si/ud2/ejercicios/ud2_9.md
+          - Tareas tipo examen:
+              - Tarea 1 · Panel de mantenimiento: si/ud2/tareas/tarea_01.md
+              - Tarea 2 · Panel de almacenamiento: si/ud2/tareas/tarea_02.md
+              - Tarea 3 · Panel de actividad del sistema: si/ud2/tareas/tarea_03.md
       - UD3 · Redes TCP/IP y conectividad:
           - Contenidos: si/ud3/index.md
           - Ejercicios:
